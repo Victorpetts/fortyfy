@@ -11,6 +11,7 @@ import {
 
 import {NewsArticle} from '../components/NewsArticle';
 import output from '../output.json';
+import style from '../assets/Style.js';
 
 let data = output;
 
@@ -35,13 +36,8 @@ export default class NewsScreen extends React.Component {
   render() {
 
     return (
-      <ScrollView style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex'
-      }}>
+      <ScrollView style={style.mainContainer}>
       <View style={{
-          paddingBottom: 10,
           alignItems: 'center'
        }}>
 

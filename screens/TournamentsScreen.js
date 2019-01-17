@@ -10,10 +10,18 @@ import {
   Button
 } from 'react-native';
 
+import tournaments from '../tournaments.json';
 import {MyTours} from '../components/MyTours.js';
 import style from '../assets/Style.js';
 
 export default class TournamentsScreen extends React.Component {
+
+  state = {
+    tours: tournaments,
+    bla: 0
+  }
+
+
   static navigationOptions = {
     title: 'Tournaments',
     headerStyle: {
@@ -29,34 +37,29 @@ export default class TournamentsScreen extends React.Component {
     }
   };
 
-  func() {
-
+  addTour = () => {
+    this.setState(prevState => ({
+      bla: (++prevState.bla)
+    }))
   }
 
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
+
     return (
-      <ScrollView style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex'
-      }}>
+      <ScrollView style={style.mainContainer}>
         <View style={{
             paddingBottom: 10,
             alignItems: 'center'
          }}>
 
-         <MyTours />
+         <MyTours
+          bla={this.state.bla}
+          tours={this.state.tours}/>
+         
 
-         <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          width: '100%'
-         }}>
+         <View style={style.buttonContainer}>
          <TouchableOpacity
-           onPress={this.func}
+           onPress={this.addTour}
            accessibilityLabel="Learn more about this purple button"
            style={style.buttonClass}
          >
