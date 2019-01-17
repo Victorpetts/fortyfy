@@ -11,14 +11,16 @@ import {
 } from 'react-native';
 
 import tournaments from '../tournaments.json';
-import {MyTours} from '../components/MyTours.js';
+import { MyTours } from '../components/MyTours.js';
+import { CreateTour } from '../components/CreateTour.js';
 import style from '../assets/Style.js';
 
 export default class TournamentsScreen extends React.Component {
 
   state = {
     tours: tournaments,
-    bla: 0
+    bla: '',
+    create: false
   }
 
 
@@ -39,7 +41,8 @@ export default class TournamentsScreen extends React.Component {
 
   addTour = () => {
     this.setState(prevState => ({
-      bla: (++prevState.bla)
+      bla: '',
+      create: !prevState.create
     }))
   }
 
@@ -48,35 +51,42 @@ export default class TournamentsScreen extends React.Component {
     return (
       <ScrollView style={style.mainContainer}>
         <View style={{
-            paddingBottom: 10,
-            alignItems: 'center'
-         }}>
+          paddingBottom: 10,
+          alignItems: 'center'
+        }}>
 
-         <MyTours
-          bla={this.state.bla}
-          tours={this.state.tours}/>
-         
+          {!this.state.create
+            ? <MyTours
+              bla={this.state.bla}
+              tours={this.state.tours}
+              />
+            : <CreateTour
+                addTour={this.addTour}
+              />
+          }
 
-         <View style={style.buttonContainer}>
-         <TouchableOpacity
-           onPress={this.addTour}
-           accessibilityLabel="Learn more about this purple button"
-           style={style.buttonClass}
-         >
-           <Text style={style.buttonText}>SKAPA TURNERING</Text>
-         </TouchableOpacity>
+          <View style={style.buttonContainer}>
+            <TouchableOpacity
+              onPress={this.addTour}
+              accessibilityLabel="Knapp - Skapa en turnering"
+              style={style.buttonClass}
+            >
+              <Text style={style.buttonText}>SKAPA TURNERING</Text>
+            </TouchableOpacity>
 
-         <TouchableOpacity
-           onPress={this.func}
-           accessibilityLabel="Learn more about this purple button"
-           style={style.buttonClass}
-         >
-           <Text style={style.buttonText}>HITTA TURNERING</Text>
-         </TouchableOpacity>
-         </View>
+            {!this.state.create &&
+              <TouchableOpacity
+                onPress={this.func}
+                accessibilityLabel="Knapp - Hitta turneringar"
+                style={style.buttonClass}
+              >
+                <Text style={style.buttonText}>HITTA TURNERING</Text>
+              </TouchableOpacity>
+            }
+          </View>
 
-       </View>
-     </ScrollView>
+        </View>
+      </ScrollView>
     )
   }
 }

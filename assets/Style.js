@@ -53,14 +53,18 @@ export default StyleSheet.create({
     backgroundColor: 'black'
   },
   itemContainer: {
-    // borderWidth: 1,
     borderRadius: 3,
     margin: 5,
     padding: 5,
     flexDirection: 'row',
-    // justifyContent: 'space-evenly',
     elevation: 2,
     backgroundColor: 'white'
+  },
+  createContainer: {
+    borderRadius: 3,
+    margin: 5,
+    padding: 5,
+    elevation: 2
   },
   container: {
     margin: 20,
@@ -74,5 +78,11 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%'
+  },
+   inputField: {
+     backgroundColor: 'white',
+     borderRadius: 3,
+     padding: 5,
+     fontSize: 16
    }
 });
