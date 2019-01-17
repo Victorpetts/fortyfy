@@ -14,12 +14,16 @@ import output from '../output.json';
 
 let data = output;
 
+// const scraper = 'https://evening-taiga-62440.herokuapp.com/';
+
 export default class NewsScreen extends React.Component {
   static navigationOptions = {
     title: 'News',
     headerStyle: {
       backgroundColor: 'black',
-      height: 90
+      height: 90,
+      borderBottomWidth: 4,
+      borderColor: 'yellow'
     },
     headerTitleStyle: {
       color: 'yellow',
@@ -29,8 +33,7 @@ export default class NewsScreen extends React.Component {
   };
 
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
+
     return (
       <ScrollView style={{
         width: '100%',
@@ -47,6 +50,8 @@ export default class NewsScreen extends React.Component {
             key={item.title}
             title={item.title}
             date={item.date}
+            img={item.img}
+            link={item.link}
           />
         )
       }

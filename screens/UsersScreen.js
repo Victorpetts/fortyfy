@@ -11,10 +11,19 @@ import {
 
 export default class UsersScreen extends React.Component {
   static navigationOptions = {
-    title: 'Newsz',
-    header: null
+    title: 'Users',
+    headerStyle: {
+      backgroundColor: 'black',
+      height: 90,
+      borderBottomWidth: 4,
+      borderColor: 'yellow'
+    },
+    headerTitleStyle: {
+      color: 'yellow',
+      fontSize: 34,
+      fontFamily: 'sans-serif'
+    }
   };
-
   render() {
     /* Go ahead and delete ExpoConfigView and replace it with your
      * content, we just wanted to give you a quick view of your config */

@@ -18,12 +18,15 @@ ProfileStack.navigationOptions = {
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-person${focused ? '' : '-outline'}`
-          : 'md-person'
-      }
+        Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
   ),
+  tabBarOptions: {
+  activeTintColor: 'yellow',
+  style: {
+    backgroundColor: 'black',
+  },
+}
 };
 
 const UsersStack = createStackNavigator({
@@ -38,6 +41,12 @@ UsersStack.navigationOptions = {
       name={Platform.OS === 'ios' ? 'ios-people' : 'md-people'}
     />
   ),
+  tabBarOptions: {
+  activeTintColor: 'yellow',
+  style: {
+    backgroundColor: 'black',
+  },
+}
 };
 
 const TournamentsStack = createStackNavigator({
@@ -52,6 +61,12 @@ TournamentsStack.navigationOptions = {
       name={Platform.OS === 'ios' ? 'ios-flag' : 'md-flag'}
     />
   ),
+  tabBarOptions: {
+  activeTintColor: 'yellow',
+  style: {
+    backgroundColor: 'black',
+  },
+}
 };
 
 const NewsStack = createStackNavigator({
@@ -66,6 +81,12 @@ NewsStack.navigationOptions = {
       name={Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
     />
   ),
+  tabBarOptions: {
+  activeTintColor: 'yellow',
+  style: {
+    backgroundColor: 'black',
+  },
+}
 };
 
 export default createBottomTabNavigator({

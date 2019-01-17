@@ -1,54 +1,80 @@
 [
   {
     "title": "v7.20 Patch Notes",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-20-patch-notes%2FBR07_News_Featured_ScopedRevolver-1920x1080-ce844c8d456567001e9cff408f68697558a1baae.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-20",
+    "date": "Jan 15, 2019"
   },
   {
     "title": "Itemized Glider Redeploy",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fitemized-glider-redeploy%2FBR07_News_Thumbnail_GliderRedeploy-576x576-98240e8853d05419e84d6e78e2c6d15b661d901f.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/news/itemized-glider-redeploy",
+    "date": "Jan 14, 2019"
   },
   {
     "title": "v7.10 Content Update #3",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-10-content-update-3%2FBR07_News_Thumbnail_SuppressedSniperRifle-576x576-82c6dc58db7249039b86f5fe7718b18a3f802e97.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-10-content-update-3",
+    "date": "Jan 8, 2019"
   },
   {
     "title": "Update On 14 Days of Fortnite",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fupdate-on-14-days-of-fortnite%2FEN_BR07_14-DoF_Blog_Featured-Thumbnail-576x576-7685e20e830a7d6c099050cbc9eeea698877e9e4.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/news/update-on-14-days-of-fortnite",
+    "date": "Jan 4, 2019"
   },
   {
     "title": "v7.10 Content Update #2",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-10-content-update-2%2FBR07_News_Thumbnail_BoomBox-576x576-a023931663690940705ee52ea5a63edaa0187bae.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-10-content-update-2",
+    "date": "Dec 30, 2018"
   },
   {
     "title": "v7.10 Content Update #1",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-10-content-update-1%2FBR07_News_Thumbnail_Presents-576x576-c2096bd091dc86219b5b784e6b8b4b60eaf0f550.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-10-content-update-1",
+    "date": "Dec 23, 2018"
   },
   {
     "title": "14 Days of Fortnite",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2F14-days-of-fortnite%2FEN_BR07_14-DoF_Blog_Featured-Thumbnail-576x576-7685e20e830a7d6c099050cbc9eeea698877e9e4.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/news/14-days-of-fortnite",
+    "date": "Dec 18, 2018"
   },
   {
     "title": "v7.10 Patch Notes",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-10-patch-notes%2FBR05_News_Featured_16_9_EvergreenLine-Up_Orange-1920x1080-9fe056edd3d98e03eaca346587132603a522a900.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-10",
+    "date": "Dec 18, 2018"
   },
   {
     "title": "v7.01 Patch Notes",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-01-patch-notes%2FCM07_News_Thumbnail_CreativeMode_Announce-576x576-03e6a14a47deb5c9bb8bedb19b9b09168d3b89ae.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-01",
+    "date": "Dec 11, 2018"
   },
   {
     "title": "The Storm King Arrives",
-    "date": "Dec 6, 2018"
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fthe-storm-king-arrives%2FStW07_News_Thumbnail_StormKing-576x576-6f9cdd5fca09953d896864675420d013bae304f7.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/news/the-storm-king-arrives",
+    "date": "Dec 10, 2018"
   },
   {
     "title": "the block",
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fblock%2FBR07_News_Thumbnail_TheBlock-576x576-7465224b857d4ccb0de2ebfc146c6e5340a310cb.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/news/the-block",
     "date": "Dec 6, 2018"
   },
   {
     "title": "Take to the skies in Season 7!",
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Ftake-to-the-skies-in-season-7%2FBR07_News_Thumbnail_1_1-576x576-991222c60a5a97ff648a41fbb5be73107c7a26c0.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/news/take-to-the-skies-in-season-7",
     "date": "Dec 6, 2018"
   },
   {
     "title": "v7.00 Patch Notes",
+    "img": "https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fv7-00-patch-notes%2FPATCH-BR07_News_Featured_16_9-1920x1080-cffcaf5bb2ed63854673855b592e167e7e817360.jpg",
+    "link": "https://www.epicgames.com/fortnite/en-US/patch-notes/v7-00",
     "date": "Dec 6, 2018"
   }
 ]

@@ -11,8 +11,18 @@ import {
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
-    title: 'Newsz',
-    header: null
+    title: 'Profile',
+    headerStyle: {
+      backgroundColor: 'black',
+      height: 90,
+      borderBottomWidth: 4,
+      borderColor: 'yellow'
+    },
+    headerTitleStyle: {
+      color: 'yellow',
+      fontSize: 34,
+      fontFamily: 'sans-serif'
+    }
   };
 
   render() {
