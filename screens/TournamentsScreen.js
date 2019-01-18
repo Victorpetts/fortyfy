@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import tournaments from '../tournaments.json';
+import { TourButton } from '../components/TourButton.js';
 import { MyTours } from '../components/MyTours.js';
 import { CreateTour } from '../components/CreateTour.js';
 import style from '../assets/Style.js';
@@ -19,8 +20,9 @@ export default class TournamentsScreen extends React.Component {
 
   state = {
     tours: tournaments,
-    bla: '',
-    create: false
+    create: false,
+    // buttonTitle: '',
+    // buttonFunc: ''
   }
 
 
@@ -39,10 +41,16 @@ export default class TournamentsScreen extends React.Component {
     }
   };
 
-  addTour = () => {
+  toggleTour = () => {
     this.setState(prevState => ({
-      bla: '',
       create: !prevState.create
+    }))
+  }
+
+  addTour = (newTour) => {
+    this.setState(prevState => ({
+      create: !prevState.create,
+      tours: [...prevState.tours, newTour]
     }))
   }
 
@@ -50,42 +58,29 @@ export default class TournamentsScreen extends React.Component {
 
     return (
       <ScrollView style={style.mainContainer}>
-        <View style={{
-          paddingBottom: 10,
-          alignItems: 'center'
-        }}>
-
           {!this.state.create
-            ? <MyTours
-              bla={this.state.bla}
-              tours={this.state.tours}
+            ?
+            <View>
+              <MyTours
+                tours={this.state.tours}
               />
-            : <CreateTour
-                addTour={this.addTour}
-              />
+              <View style={style.buttonContainer}>
+
+                <TourButton
+                  buttonTitle={'SKAPA TURNERING'}
+                  buttonFunc={this.toggleTour}
+                />
+                <TourButton
+                  buttonTitle={'HITTA TURNERING'}
+                />
+              </View>
+            </View>
+            : 
+            <CreateTour
+              addTour={this.addTour}
+              buttonFunc={this.toggleTour}
+            />
           }
-
-          <View style={style.buttonContainer}>
-            <TouchableOpacity
-              onPress={this.addTour}
-              accessibilityLabel="Knapp - Skapa en turnering"
-              style={style.buttonClass}
-            >
-              <Text style={style.buttonText}>SKAPA TURNERING</Text>
-            </TouchableOpacity>
-
-            {!this.state.create &&
-              <TouchableOpacity
-                onPress={this.func}
-                accessibilityLabel="Knapp - Hitta turneringar"
-                style={style.buttonClass}
-              >
-                <Text style={style.buttonText}>HITTA TURNERING</Text>
-              </TouchableOpacity>
-            }
-          </View>
-
-        </View>
       </ScrollView>
     )
   }

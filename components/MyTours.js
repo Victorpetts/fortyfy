@@ -14,7 +14,7 @@ export class MyTours extends React.Component {
     return (
       <View style={style.container}>
         <Text style={style.headerText}> Mina Turneringar </Text>
-        <ScrollView>
+        <ScrollView style={{ height: '100%' }}>
           {this.props.tours.map(item =>
           <Tour
             key={item.name}
@@ -24,17 +24,7 @@ export class MyTours extends React.Component {
           )}
 
         </ScrollView>
-        <Text style={style.headerText}>{this.props.bla}</Text>
       </View>
     )
   }
 }
-
-// {data.map(item =>
-//    <Tour
-//      key={item.title}
-//      title={item.title}
-//      players={item.players}
-//    />
-//  )
-// }

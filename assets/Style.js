@@ -33,7 +33,7 @@ export default StyleSheet.create({
     fontSize: 24,
     alignSelf: 'center',
     color: 'white',
-    marginBottom: 30,
+    marginVertical: 30,
   },
   itemText: {
     fontSize: 18,
@@ -56,9 +56,11 @@ export default StyleSheet.create({
     borderRadius: 3,
     margin: 5,
     padding: 5,
+    paddingRight: 15,
     flexDirection: 'row',
     elevation: 2,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    justifyContent: 'space-between'
   },
   createContainer: {
     borderRadius: 3,
@@ -71,7 +73,7 @@ export default StyleSheet.create({
     borderRadius: 3,
     width: '90%',
     padding: 10,
-    height: hp('50%')
+    height: hp('54%')
   },
   buttonContainer: {
     display: 'flex',
