@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   View,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native';
 
 import { Icon } from 'expo';
@@ -11,6 +12,9 @@ import style from '../assets/Style.js';
 export class Tour extends React.Component {
   render() {
     return (
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('TourIndv')}
+        >
       <View style={style.itemContainer}>
         <Text style={style.itemText}>{this.props.name}</Text>
         <Text style={style.itemNumber}>
@@ -23,7 +27,7 @@ export class Tour extends React.Component {
             color="black"
           />
         </View>
-
       </View>
+    </TouchableOpacity>
   )}
 }

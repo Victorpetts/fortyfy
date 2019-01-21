@@ -63,6 +63,7 @@ export default class TournamentsScreen extends React.Component {
             <View>
               <MyTours
                 tours={this.state.tours}
+                navigation={this.props.navigation}
               />
               <View style={style.buttonContainer}>
 
@@ -75,7 +76,7 @@ export default class TournamentsScreen extends React.Component {
                 />
               </View>
             </View>
-            : 
+            :
             <CreateTour
               addTour={this.addTour}
               buttonFunc={this.toggleTour}

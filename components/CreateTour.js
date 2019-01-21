@@ -11,7 +11,7 @@ import { Icon } from 'expo';
 import style from '../assets/Style.js';
 import { TourButton } from './TourButton.js';
 
-export class CreateTour extends React.Component {
+export default class CreateTour extends React.Component {
 
   state = {
     name: '',
@@ -19,7 +19,7 @@ export class CreateTour extends React.Component {
   }
 
   // createTour = (e) => {
-  //   this.setState(prevState => ({ 
+  //   this.setState(prevState => ({
   //     name: e.target.value
   //     }))
   //    }
@@ -66,12 +66,12 @@ export class CreateTour extends React.Component {
         </View>
         <View style={style.buttonContainer}>
           <TourButton
-            buttonTitle={'SKAPA TURNERING'}
-            buttonFunc={this.createTour}
-          />
-          <TourButton
             buttonTitle={'GÅ TILLBAKA'}
             buttonFunc={this.props.buttonFunc}
+            />
+          <TourButton
+            buttonTitle={'SKAPA TURNERING'}
+            buttonFunc={this.createTour}
           />
         </View>
       </View>

@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import NewsScreen from '../screens/NewsScreen';
 import TournamentsScreen from '../screens/TournamentsScreen';
+import TourIndvScreen from '../screens/TourIndvScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
@@ -50,7 +51,8 @@ UsersStack.navigationOptions = {
 };
 
 const TournamentsStack = createStackNavigator({
-  Settings: TournamentsScreen,
+  Tournaments: TournamentsScreen,
+  TourIndv: TourIndvScreen
 });
 
 TournamentsStack.navigationOptions = {
@@ -88,6 +90,7 @@ NewsStack.navigationOptions = {
   },
 }
 };
+
 
 export default createBottomTabNavigator({
   NewsStack,
