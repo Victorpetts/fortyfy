@@ -19,11 +19,7 @@ export default StyleSheet.create({
   },
 
   iconClass: {
-    paddingTop: 20,
-  },
-
-  iconClass: {
-    paddingTop: 12
+    paddingTop: 12,
   },
 
   buttonText: {
@@ -35,6 +31,12 @@ export default StyleSheet.create({
   headerText: {
     fontWeight: 'bold',
     fontSize: 24,
+    alignSelf: 'center',
+    color: 'white',
+    marginBottom: 10
+  },
+  paragraphText: {
+    fontSize: 20,
     alignSelf: 'center',
     color: 'white',
     marginBottom: 10

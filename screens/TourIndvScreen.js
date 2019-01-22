@@ -8,13 +8,20 @@ import {
 
 import { TourButton } from '../components/TourButton.js';
 import style from '../assets/Style.js';
+import { FinishedTour } from '../components/FinishedTour.js';
+import { OngoingTour } from '../components/OngoingTour.js';
 
 export default class TourIndvScreen extends React.Component {
+
+  state  = {
+    ongoing: false
+  }
 
 
 
   static navigationOptions = {
-    title: 'Tournament Name',
+    title: 'Mirandas turnering',
+    headerLeft: null,
     headerStyle: {
       backgroundColor: 'black',
       height: 90,
@@ -31,10 +38,20 @@ export default class TourIndvScreen extends React.Component {
 
   render() {
     return (
-      <View style={style.mainContainer}>
-        <Text style={style.headerText}>Mirandas turnering</Text>
+      <ScrollView style={style.mainContainer}>
 
-      </View>
+        {!this.state.ongoing
+        ? <View>
+          <OngoingTour />
+          <View style={style.buttonContainer}>
+            <TourButton buttonTitle={'HANTERA TURNERING'} />
+            <TourButton buttonTitle={'BJUD IN VÄNNER'} />
+          </View>
+        </View>
+        : <FinishedTour />
+        }
+        
+      </ScrollView>
 
 
     )

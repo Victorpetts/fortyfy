@@ -6,12 +6,10 @@ import {
   Keyboard
 } from 'react-native';
 
-import { Icon } from 'expo';
-
 import style from '../assets/Style.js';
 import { TourButton } from './TourButton.js';
 
-export default class CreateTour extends React.Component {
+export class CreateTour extends React.Component {
 
   state = {
     name: '',
