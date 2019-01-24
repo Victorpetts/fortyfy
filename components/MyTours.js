@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -8,27 +9,36 @@ import {
 import style from '../assets/Style.js';
 import { Tour } from './Tour.js';
 
-export class MyTours extends React.Component {
+class MyTours extends Component {
+
+  renderTours() {
+    return this.props.tours.map((tour) => {
+      return (
+        <Tour
+          key={tour.name}
+          name={tour.name}
+          players={tour.players}
+          navigation={this.props.navigation}
+        />
+      );
+    });
+  }
 
   render() {
-
     return (
       <View style={style.container}>
         <Text style={style.headerText}> Mina Turneringar </Text>
         <ScrollView style={{ height: '100%' }}>
-
-          {this.props.tours.map(item =>
-
-              <Tour
-                key={item.name}
-                name={item.name}
-                players={item.players}
-                navigation={this.props.navigation}
-              />
-          )}
-
+          {this.renderTours()}
         </ScrollView>
       </View>
     )
   }
+
 }
+
+const mapStateToProps = (state) => {
+  return { tours: state.tours };
+};
+
+export default connect(mapStateToProps, null)(MyTours);
