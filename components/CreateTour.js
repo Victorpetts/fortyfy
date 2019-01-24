@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createTour } from '../actions';
 import {
   View,
   Text,
@@ -9,24 +11,17 @@ import {
 import style from '../assets/Style.js';
 import { TourButton } from './TourButton.js';
 
-export class CreateTour extends React.Component {
+class CreateTour extends Component {
 
   state = {
     name: '',
     players: ''
   }
 
-  // createTour = (e) => {
-  //   this.setState(prevState => ({
-  //     name: e.target.value
-  //     }))
-  //    }
-
   createTour = () => {
     if (this.state.name !== '' && this.state.players !== '') {
       let newTour = { 'name': this.state.name, 'players': this.state.players }
-      console.log('Test: ' + this.state.name, this.state.players)
-      this.props.addTour(newTour)
+      this.props.createTour(newTour)
     }
   }
 
@@ -76,3 +71,10 @@ export class CreateTour extends React.Component {
     )
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return { tours: state.tours };
+};
+
+export default connect(mapStateToProps, {createTour})(CreateTour);

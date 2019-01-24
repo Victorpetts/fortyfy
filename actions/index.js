@@ -7,11 +7,11 @@ export const selectSong = song => {
 
 };
 
-export const createTour = tour => {
+export const createTour = newTour => {
 
   return {
     type: 'TOURNAMENT_CREATED',
-    payload: tour
+    payload: newTour
   };
 
 };

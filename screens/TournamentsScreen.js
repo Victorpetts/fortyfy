@@ -13,7 +13,7 @@ import {
 
 import { TourButton } from '../components/TourButton.js';
 import MyTours from '../components/MyTours.js';
-import { CreateTour } from '../components/CreateTour.js';
+import CreateTour from '../components/CreateTour.js';
 import style from '../assets/Style.js';
 
 export default class TournamentsScreen extends React.Component {

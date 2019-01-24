@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
+const initialState = {
+  arr:[]
+}
+
 const songsReducer = () => {
 
   return [
@@ -22,21 +26,21 @@ const selectedSongReducer = (selectedSong=null, action) => {
 };
 
 
-const toursReducer = () => {
+const toursReducer = (firstToursArr=initialState) => {
 
-  return [
-    { name: "Mirandas Turnering", players: "5" },
-    { name: "Victors Turnering", players: "10" },
-  ];
+  return firstToursArr.arr;
 };
 
-const newTournamentReducer = (newTour=null, action) => {
+const newTournamentReducer = (updatedToursArr=initialState, action) => {
 
   if (action.type === 'TOURNAMENT_CREATED') {
-    return action.payload;
+    return {
+         ...updatedToursArr,
+         updatedToursArr: [...updatedToursArr.arr, action.payload]
+     }
   }
 
-  return newTour;
+  return updatedToursArr;
 
 };
 
@@ -44,5 +48,5 @@ export default combineReducers ({
   songs: songsReducer,
   selectedSong: selectedSongReducer,
   tours: toursReducer,
-  newTour: newTournamentReducer
+  updatedToursArr: newTournamentReducer
 });
