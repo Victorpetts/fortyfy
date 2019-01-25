@@ -5,7 +5,8 @@ import {
   View,
   Text,
   TextInput,
-  Keyboard
+  Keyboard,
+  Picker
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -15,19 +16,22 @@ class CreateTour extends Component {
 
   state = {
     name: '',
-    players: ''
+    players: '10',
+    wincon: '1',
+    matches: '5'
   }
 
   createTour = () => {
-    if (this.state.name !== '' && this.state.players !== '') {
+    if (this.state.name !== '') {
       let newTour = { 'name': this.state.name, 'players': this.state.players }
       this.props.createTour(newTour)
+      this.props.buttonFunc()
     }
   }
 
   render() {
 
-    const { name, players } = this.state
+    const { name, players, matches, wincon } = this.state
 
     return (
       <View style={style.mainContainer}>
@@ -52,6 +56,29 @@ class CreateTour extends Component {
           maxLength={2}
           onChangeText={(event) =>
             this.setState({ players: event })
+          }
+          onSubmitEditing={Keyboard.dismiss}
+          keyboardType='numeric'
+        />
+      <Text style={style.headerText}>Seger villkor: </Text>
+        <Picker
+          selectedValue={this.state.wincon}
+          style={{ height: 50, width: '100%', backgroundColor: 'white' }}
+          onValueChange={(itemValue, itemIndex) => this.setState({wincon: itemValue})}>
+          <Picker.Item label="Överlevt flest minuter" value="1" />
+          <Picker.Item label="Flest sammanlagda kills" value="2" />
+          <Picker.Item label="Flest placeringar i top 5" value="3" />
+        </Picker>
+
+        <Text style={style.headerText}>Antal matcher: </Text>
+        <TextInput
+          id='matches'
+          value={matches}
+          style={style.inputField}
+          placeholder={'Fyll i en siffra...'}
+          maxLength={2}
+          onChangeText={(event) =>
+            this.setState({ matches: event })
           }
           onSubmitEditing={Keyboard.dismiss}
           keyboardType='numeric'

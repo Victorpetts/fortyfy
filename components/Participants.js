@@ -19,13 +19,13 @@ export class Participants extends React.Component {
             <View style={{ flexDirection: 'row', flex: 1 }}>
                 {this.props.owner ?
                 <Text style={style.itemText}>
-                    {this.props.username} {' '}
+                    {this.props.name} {' '}
                     <FontAwesome style={{ fontSize: 14 }}>
                         {Icons.crown}
                     </FontAwesome>
                 </Text>
                 :
-                <Text style={style.itemText}>{this.props.username}</Text>
+                <Text style={style.itemText}>{this.props.name}</Text>
                 }
             </View>
                 <Text style={style.itemNumber}>

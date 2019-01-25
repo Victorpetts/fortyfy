@@ -7,17 +7,19 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import { Tour } from './Tour.js';
+import Tour from './Tour.js';
 
 class MyTours extends Component {
 
-  renderTours() {
+  mapTours() {
     return this.props.tours.map((tour) => {
       return (
         <Tour
           key={tour.name}
           name={tour.name}
           players={tour.players}
+          wincon={tour.wincon}
+          matches={tour.matches}
           navigation={this.props.navigation}
         />
       );
@@ -29,7 +31,7 @@ class MyTours extends Component {
       <View style={style.container}>
         <Text style={style.headerText}> Mina Turneringar </Text>
         <ScrollView style={{ height: '100%' }}>
-          {this.renderTours()}
+          {this.mapTours()}
         </ScrollView>
       </View>
     )

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -9,16 +10,26 @@ import { Icon } from 'expo';
 
 import style from '../assets/Style.js';
 
-export class Tour extends React.Component {
+class Tour extends Component {
+
+
   render() {
+
+    const numberOfPartic = this.props.partic.length;
+    const tourName = this.props.name;
+    const numbPlayers = this.props.players;
+
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('TourIndv')}
+        onPress={() => this.props.navigation.navigate('TourIndv',{
+              tourName: tourName,
+              numbPlayers: numbPlayers
+            })}
         >
       <View style={style.itemContainer}>
         <Text style={style.itemText}>{this.props.name}</Text>
         <Text style={style.itemNumber}>
-        {this.props.players}
+        {numberOfPartic} / {this.props.players}
         </Text>
         <View style={style.iconClass}>
           <Icon.Ionicons
@@ -31,3 +42,9 @@ export class Tour extends React.Component {
     </TouchableOpacity>
   )}
 }
+
+const mapStateToProps = (state) => {
+  return { partic: state.partic };
+};
+
+export default connect(mapStateToProps, null)(Tour);

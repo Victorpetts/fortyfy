@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     View,
     Text,
@@ -8,41 +9,47 @@ import {
 import style from '../assets/Style.js';
 import { Participants } from './Participants.js';
 
-export class OngoingTour extends React.Component {
+class OngoingTour extends Component {
+
+
+  mapPartic() {
+    return this.props.partic.map((player) => {
+      return (
+        <Participants
+          key={player.name}
+          name={player.name}
+          matches={player.matches}
+          />
+      );
+    });
+  }
 
     render() {
+
+      const nameToFilter = this.props.tourName;
+      const filterItems = (e) => {
+        return this.props.tours.filter((el) => el.nameToFilter === e);
+      }
+
         return (
             <View style={style.container}>
                 <Text style={style.headerText}>Seger villkor:</Text>
-                <Text style={style.paragraphText}>Flest kills under 8 matcher</Text>
+                <Text style={style.headerText}>{filterItems(nameToFilter)}</Text>
+                <Text style={style.paragraphText}>{this.props.tourName}</Text>
                 <ScrollView style={{ height: '100%' }}>
-                    <Participants
-                        owner={true}
-                        username={'Miranda'}
-                        matches={2}
-                    />
-                    <Participants
-                        username={'Victor'}
-                        matches={7}
-                    />
-                    <Participants
-                        username={'Robert'}
-                        matches={5}
-                    />
-                    <Participants
-                        username={'Pinar'}
-                        matches={3}
-                    />
-                    <Participants
-                        username={'Fredrik'}
-                        matches={8}
-                    />
-                    <Participants
-                        username={'Jesper'}
-                        matches={4}
-                    />
+                  {this.mapPartic()}
                 </ScrollView>
             </View>
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    partic: state.partic,
+    tours: state.tours
+   };
+};
+
+export default connect(mapStateToProps, null)(OngoingTour);

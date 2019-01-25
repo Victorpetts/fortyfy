@@ -1,52 +1,43 @@
 import { combineReducers } from 'redux';
 
 const initialState = {
-  arr:[]
+  toursArr:[
+    { name: "Victors Turnering", players: "10", wincon: "1", matches: "10" },
+    { name: "Mirandas Turnering", players: "5", wincon: "2", matches: "2" },
+    { name: "Pinars Turnering", players: "5", wincon: "3", matches: "5" },
+  ],
+  particArr:[
+    { name: "Victor", matches: "2"},
+    { name: "Miranda", matches: "5"},
+    { name: "Jesper", matches: "1"},
+  ]
 }
 
-const songsReducer = () => {
+const toursReducer = (oldArr = initialState.toursArr, action) => {
 
-  return [
-    { title: "Master of Puppets", duration: "4:20" },
-    { title: "Unforgiven", duration: "3:10" },
-    { title: "Ride the Lightning", duration: "3:50" },
-    { title: "Fade to Black", duration: "3:20" },
-    { title: "For Whom the Bell Tolls", duration: "3:20" }
-  ];
-};
+  switch (action.type) {
+    case  'TOURNAMENT_CREATED':
+      let newArr = [...oldArr, action.payload]
+      return newArr;
 
-const selectedSongReducer = (selectedSong=null, action) => {
-
-  if (action.type === 'SONG_SELECTED') {
-    return action.payload;
+    default:
+      return oldArr;
   }
-
-  return selectedSong;
-
 };
 
+const particReducer = (oldArr = initialState.particArr, action) => {
 
-const toursReducer = (firstToursArr=initialState) => {
+  switch (action.type) {
+    case  'PLAYER_ADDED':
+      let newArr = [...oldArr, action.payload]
+      return newArr;
 
-  return firstToursArr.arr;
-};
-
-const newTournamentReducer = (updatedToursArr=initialState, action) => {
-
-  if (action.type === 'TOURNAMENT_CREATED') {
-    return {
-         ...updatedToursArr,
-         updatedToursArr: [...updatedToursArr.arr, action.payload]
-     }
+    default:
+      return oldArr;
   }
-
-  return updatedToursArr;
-
 };
 
 export default combineReducers ({
-  songs: songsReducer,
-  selectedSong: selectedSongReducer,
   tours: toursReducer,
-  updatedToursArr: newTournamentReducer
+  partic: particReducer
 });
