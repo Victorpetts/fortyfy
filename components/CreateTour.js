@@ -18,12 +18,17 @@ class CreateTour extends Component {
     name: '',
     players: '10',
     wincon: '1',
-    matches: '5'
+    totalMatches: '5'
   }
 
   createTour = () => {
     if (this.state.name !== '') {
-      let newTour = { 'name': this.state.name, 'players': this.state.players }
+      let newTour = { 
+        'name': this.state.name, 
+        'players': this.state.players,
+        'wincon': this.state.wincon,
+        'totalMatches': this.state.totalMatches
+      }
       this.props.createTour(newTour)
       this.props.buttonFunc()
     }
@@ -31,7 +36,7 @@ class CreateTour extends Component {
 
   render() {
 
-    const { name, players, matches, wincon } = this.state
+    const { name, players, totalMatches, wincon } = this.state
 
     return (
       <View style={style.mainContainer}>
@@ -72,13 +77,13 @@ class CreateTour extends Component {
 
         <Text style={style.headerText}>Antal matcher: </Text>
         <TextInput
-          id='matches'
-          value={matches}
+          id='totalMatches'
+          value={totalMatches}
           style={style.inputField}
           placeholder={'Fyll i en siffra...'}
           maxLength={2}
           onChangeText={(event) =>
-            this.setState({ matches: event })
+            this.setState({ totalMatches: event })
           }
           onSubmitEditing={Keyboard.dismiss}
           keyboardType='numeric'

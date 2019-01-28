@@ -19,7 +19,7 @@ class MyTours extends Component {
           name={tour.name}
           players={tour.players}
           wincon={tour.wincon}
-          matches={tour.matches}
+          totalMatches={tour.totalMatches}
           navigation={this.props.navigation}
         />
       );

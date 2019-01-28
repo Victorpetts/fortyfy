@@ -2,14 +2,14 @@ import { combineReducers } from 'redux';
 
 const initialState = {
   toursArr:[
-    { name: "Victors Turnering", players: "10", wincon: "1", matches: "10" },
-    { name: "Mirandas Turnering", players: "5", wincon: "2", matches: "2" },
-    { name: "Pinars Turnering", players: "5", wincon: "3", matches: "5" },
+    { name: "Victors Turnering", players: "10", wincon: "1", totalMatches: "10" },
+    { name: "Mirandas Turnering", players: "5", wincon: "2", totalMatches: "2" },
+    { name: "Pinars Turnering", players: "5", wincon: "3", totalMatches: "5" },
   ],
   particArr:[
-    { name: "Victor", matches: "2"},
-    { name: "Miranda", matches: "5"},
-    { name: "Jesper", matches: "1"},
+    { name: "Victor", playedMatches: "2"},
+    { name: "Miranda", playedMatches: "5"},
+    { name: "Jesper", playedMatches: "1"},
   ]
 }
 

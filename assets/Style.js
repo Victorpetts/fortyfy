@@ -28,6 +28,14 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
 
+  yellowHeaderText: {
+    fontWeight: 'bold',
+    fontSize: 28,
+    alignSelf: 'center',
+    color: 'yellow',
+    marginBottom: 10,
+  },
+
   headerText: {
     fontWeight: 'bold',
     fontSize: 24,
@@ -35,11 +43,19 @@ export default StyleSheet.create({
     color: 'white',
     marginBottom: 10
   },
+
   paragraphText: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'white',
     marginBottom: 10
+  },
+
+  smallText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: 'yellow',
+    letterSpacing: 0.5
   },
 
   itemText: {
@@ -87,11 +103,23 @@ export default StyleSheet.create({
     height: hp('54%')
   },
 
+  ongoingContainer: {
+    margin: 20,
+    height: hp('70%')
+  },
+
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%'
+  },
+
+  titleContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
+    paddingTop: '10%', 
+    alignItems: 'center' 
   },
 
    inputField: {

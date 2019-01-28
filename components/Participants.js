@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     View,
     Text,
@@ -9,11 +10,10 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import style from '../assets/Style.js';
 
-export class Participants extends React.Component {
-
-
+class Participants extends Component {
 
     render() {
+
         return (
             <View style={style.itemContainer}>
             <View style={{ flexDirection: 'row', flex: 1 }}>
@@ -29,10 +29,18 @@ export class Participants extends React.Component {
                 }
             </View>
                 <Text style={style.itemNumber}>
-                    {this.props.matches} / 8
+                    {this.props.playedMatches} / {this.props.totalMatches}
                 </Text>
-                <FontAwesome style={{ fontSize: 20, paddingTop: 12 }}>{Icons.gamepad}</FontAwesome>
             </View>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    partic: state.partic,
+    tours: state.tours
+   };
+};
+
+export default connect(mapStateToProps, null)(Participants);

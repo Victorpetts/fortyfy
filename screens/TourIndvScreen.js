@@ -9,7 +9,7 @@ import {
 
 import { TourButton } from '../components/TourButton.js';
 import style from '../assets/Style.js';
-import { FinishedTour } from '../components/FinishedTour.js';
+import FinishedTour from '../components/FinishedTour.js';
 import OngoingTour from '../components/OngoingTour.js';
 
 
@@ -20,19 +20,8 @@ class TourIndvScreen extends Component {
   }
 
   static navigationOptions = {
-    title: 'Tournaments',
+    header: null,
     headerLeft: null,
-    headerStyle: {
-      backgroundColor: 'black',
-      height: 90,
-      borderBottomWidth: 4,
-      borderColor: 'yellow'
-    },
-    headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34,
-      fontFamily: 'sans-serif'
-    }
   };
 
 
@@ -52,12 +41,10 @@ class TourIndvScreen extends Component {
             <TourButton buttonTitle={'BJUD IN VÄNNER'} />
           </View>
         </View>
-        : <FinishedTour />
+        : <FinishedTour  tourName={tourName} />
         }
 
       </ScrollView>
-
-
     )
   }
 }
