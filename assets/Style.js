@@ -120,6 +120,13 @@ export default StyleSheet.create({
     alignItems: 'center' 
   },
 
+  titleRowContainer: {
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
+    marginTop: '15%', 
+    alignItems: 'center' 
+  },
+
    inputField: {
      backgroundColor: 'white',
      borderRadius: 3,

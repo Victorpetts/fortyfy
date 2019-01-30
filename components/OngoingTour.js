@@ -50,8 +50,8 @@ class OngoingTour extends Component {
       }
 
         return (
-            <ScrollView style={style.ongoingContainer}>
-            <View style={style.titleContainer}>
+            <View style={style.ongoingContainer}>
+            <View style={style.titleRowContainer}>
               <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleRight}</FontAwesome>
               <View style={{ }}>
                 <Text style={style.yellowHeaderText}>{this.props.tourName}</Text>
@@ -81,7 +81,7 @@ class OngoingTour extends Component {
               <ScrollView style={{ height: '100%' }}>
                 {this.mapPartic(totalMatches)}
               </ScrollView>
-            </ScrollView>
+            </View>
         )
     }
 }
