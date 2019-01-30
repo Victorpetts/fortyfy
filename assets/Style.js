@@ -28,18 +28,32 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
 
+  yellowHeaderText: {
+    fontWeight: 'bold',
+    fontSize: 28,
+    alignSelf: 'center',
+    color: 'yellow'
+  },
+
   headerText: {
     fontWeight: 'bold',
     fontSize: 24,
     alignSelf: 'center',
-    color: 'white',
-    marginBottom: 10
+    color: 'white'
   },
+
   paragraphText: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'white',
     marginBottom: 10
+  },
+
+  smallText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: 'yellow',
+    letterSpacing: 0.5
   },
 
   itemText: {
@@ -70,7 +84,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     elevation: 2,
     backgroundColor: 'white',
-    justifyContent: 'space-between'
+    justifyContent: 'space-evenly'
   },
 
   createContainer: {
@@ -87,11 +101,23 @@ export default StyleSheet.create({
     height: hp('54%')
   },
 
+  ongoingContainer: {
+    margin: 20,
+    height: hp('70%')
+  },
+
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%'
+  },
+
+  titleContainer: {
+    flexDirection: 'column', 
+    justifyContent: 'space-around', 
+    marginTop: '15%', 
+    alignItems: 'center' 
   },
 
    inputField: {

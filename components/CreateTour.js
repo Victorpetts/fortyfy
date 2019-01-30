@@ -1,38 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createTour } from '../actions';
 import {
   View,
   Text,
   TextInput,
-  Keyboard
+  Keyboard,
+  Picker
 } from 'react-native';
 
 import style from '../assets/Style.js';
 import { TourButton } from './TourButton.js';
 
-export class CreateTour extends React.Component {
+class CreateTour extends Component {
 
   state = {
     name: '',
-    players: ''
+    players: '10',
+    wincon: '1',
+    totalMatches: '5'
   }
 
-  // createTour = (e) => {
-  //   this.setState(prevState => ({
-  //     name: e.target.value
-  //     }))
-  //    }
-
   createTour = () => {
-    if (this.state.name !== '' && this.state.players !== '') {
-      let newTour = { 'name': this.state.name, 'players': this.state.players }
-      console.log('Test: ' + this.state.name, this.state.players)
-      this.props.addTour(newTour)
+    if (this.state.name !== '') {
+      let newTour = { 
+        'name': this.state.name, 
+        'players': this.state.players,
+        'wincon': this.state.wincon,
+        'totalMatches': this.state.totalMatches
+      }
+      this.props.createTour(newTour)
+      this.props.buttonFunc()
     }
   }
 
   render() {
 
-    const { name, players } = this.state
+    const { name, players, totalMatches, wincon } = this.state
 
     return (
       <View style={style.mainContainer}>
@@ -61,6 +65,29 @@ export class CreateTour extends React.Component {
           onSubmitEditing={Keyboard.dismiss}
           keyboardType='numeric'
         />
+      <Text style={style.headerText}>Seger villkor: </Text>
+        <Picker
+          selectedValue={this.state.wincon}
+          style={{ height: 50, width: '100%', backgroundColor: 'white' }}
+          onValueChange={(itemValue, itemIndex) => this.setState({wincon: itemValue})}>
+          <Picker.Item label="Överlevt flest minuter" value="1" />
+          <Picker.Item label="Flest sammanlagda kills" value="2" />
+          <Picker.Item label="Flest placeringar i top 5" value="3" />
+        </Picker>
+
+        <Text style={style.headerText}>Antal matcher: </Text>
+        <TextInput
+          id='totalMatches'
+          value={totalMatches}
+          style={style.inputField}
+          placeholder={'Fyll i en siffra...'}
+          maxLength={2}
+          onChangeText={(event) =>
+            this.setState({ totalMatches: event })
+          }
+          onSubmitEditing={Keyboard.dismiss}
+          keyboardType='numeric'
+        />
         </View>
         <View style={style.buttonContainer}>
           <TourButton
@@ -76,3 +103,10 @@ export class CreateTour extends React.Component {
     )
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return { tours: state.tours };
+};
+
+export default connect(mapStateToProps, {createTour})(CreateTour);

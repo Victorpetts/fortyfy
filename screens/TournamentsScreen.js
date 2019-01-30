@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Image,
   Platform,
@@ -10,21 +11,16 @@ import {
   Button
 } from 'react-native';
 
-import tournaments from '../tournaments.json';
 import { TourButton } from '../components/TourButton.js';
-import { MyTours } from '../components/MyTours.js';
-import { CreateTour } from '../components/CreateTour.js';
+import MyTours from '../components/MyTours';
+import CreateTour from '../components/CreateTour.js';
 import style from '../assets/Style.js';
 
 export default class TournamentsScreen extends React.Component {
 
   state = {
-    tours: tournaments,
-    create: false,
-    // buttonTitle: '',
-    // buttonFunc: ''
+    toggle: false
   }
-
 
   static navigationOptions = {
     title: 'Tournaments',
@@ -43,30 +39,28 @@ export default class TournamentsScreen extends React.Component {
 
   toggleTour = () => {
     this.setState(prevState => ({
-      create: !prevState.create
+      toggle: !prevState.toggle
     }))
   }
 
-  addTour = (newTour) => {
-    this.setState(prevState => ({
-      create: !prevState.create,
-      tours: [...prevState.tours, newTour]
-    }))
-  }
+  // addTour = (newTour) => {
+  //   this.setState(prevState => ({
+  //     toggle: !prevState.toggle,
+  //     tours: [...prevState.tours, newTour]
+  //   }))
+  // }
 
   render() {
 
     return (
       <ScrollView style={style.mainContainer}>
-          {!this.state.create
+          {!this.state.toggle
             ?
             <View>
               <MyTours
-                tours={this.state.tours}
                 navigation={this.props.navigation}
               />
               <View style={style.buttonContainer}>
-
                 <TourButton
                   buttonTitle={'SKAPA TURNERING'}
                   buttonFunc={this.toggleTour}
@@ -78,7 +72,6 @@ export default class TournamentsScreen extends React.Component {
             </View>
             :
             <CreateTour
-              addTour={this.addTour}
               buttonFunc={this.toggleTour}
             />
           }

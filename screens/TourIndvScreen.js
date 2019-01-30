@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   ScrollView,
   StyleSheet,
@@ -8,52 +9,50 @@ import {
 
 import { TourButton } from '../components/TourButton.js';
 import style from '../assets/Style.js';
-import { FinishedTour } from '../components/FinishedTour.js';
-import { OngoingTour } from '../components/OngoingTour.js';
+import FinishedTour from '../components/FinishedTour.js';
+import OngoingTour from '../components/OngoingTour.js';
 
-export default class TourIndvScreen extends React.Component {
 
-  state  = {
+class TourIndvScreen extends Component {
+
+  state =  {
     ongoing: false
   }
 
-
-
   static navigationOptions = {
-    title: 'Mirandas turnering',
+    header: null,
     headerLeft: null,
-    headerStyle: {
-      backgroundColor: 'black',
-      height: 90,
-      borderBottomWidth: 4,
-      borderColor: 'yellow'
-    },
-    headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34,
-      fontFamily: 'sans-serif'
-    }
   };
 
 
   render() {
+
+  const tourName = this.props.navigation.getParam('tourName');
+  const numbPlayers = this.props.navigation.getParam('numbPlayers');
+  const tourStatus = this.props.navigation.getParam('tourStatus');
+
+
     return (
       <ScrollView style={style.mainContainer}>
 
-        {!this.state.ongoing
+        {!tourStatus
         ? <View>
-          <OngoingTour />
+          <OngoingTour tourName={tourName} />
           <View style={style.buttonContainer}>
             <TourButton buttonTitle={'HANTERA TURNERING'} />
             <TourButton buttonTitle={'BJUD IN VÄNNER'} />
           </View>
         </View>
-        : <FinishedTour />
+        : <FinishedTour  tourName={tourName} />
         }
-        
+
       </ScrollView>
-
-
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return { tours: state.tours };
+};
+
+export default connect(mapStateToProps, null)(TourIndvScreen);
