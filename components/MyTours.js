@@ -7,31 +7,82 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
+
 import Tour from './Tour.js';
 
 class MyTours extends Component {
 
-  mapTours() {
-    return this.props.tours.map((tour) => {
+  mapOngoingTours() {
+
+    ongoingTour = this.props.tours.filter(function(item){
+      return item.finished === false;
+    }).map(function({name, players, wincon, totalMatches, finished}){
+      return {name, players, wincon, totalMatches, finished};
+    });
+    console.log(ongoingTour);
+
+    return ongoingTour.map((tour) => {
       return (
         <Tour
-          key={tour.name}
-          name={tour.name}
-          players={tour.players}
-          wincon={tour.wincon}
-          totalMatches={tour.totalMatches}
-          navigation={this.props.navigation}
-        />
-      );
+        key={tour.name}
+        name={tour.name}
+        players={tour.players}
+        wincon={tour.wincon}
+        totalMatches={tour.totalMatches}
+        navigation={this.props.navigation}
+        finished={tour.finished}
+      />
+      )
+    })
+  }
+
+  mapFinishedTours() {
+
+    finishedTour = this.props.tours.filter(function(item){
+      return item.finished === true;
+    }).map(function({name, players, wincon, totalMatches, finished}){
+      return {name, players, wincon, totalMatches, finished};
     });
+    console.log(finishedTour);
+
+    return finishedTour.map((tour) => {
+      return (
+        <Tour
+        key={tour.name}
+        name={tour.name}
+        players={tour.players}
+        wincon={tour.wincon}
+        totalMatches={tour.totalMatches}
+        navigation={this.props.navigation}
+        finished={tour.finished}
+      />
+      )
+    })
   }
 
   render() {
     return (
       <View style={style.container}>
-        <Text style={style.headerText}> Mina Turneringar </Text>
+        <View style={{
+          flexDirection: 'row',
+          paddingLeft: '4%',
+        }}>
+          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessRook}</FontAwesome>
+          <Text style={style.smallText}>Pågående</Text>
+        </View>
         <ScrollView style={{ height: '100%' }}>
-          {this.mapTours()}
+          {this.mapOngoingTours()}
+        </ScrollView>
+        <View style={{
+          flexDirection: 'row',
+          paddingLeft: '4%',
+        }}>
+          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessKing}</FontAwesome>
+          <Text style={style.smallText}>Avslutade</Text>
+        </View>
+        <ScrollView style={{ height: '100%' }}>
+          {this.mapFinishedTours()}
         </ScrollView>
       </View>
     )

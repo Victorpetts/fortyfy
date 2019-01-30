@@ -15,7 +15,7 @@ import OngoingTour from '../components/OngoingTour.js';
 
 class TourIndvScreen extends Component {
 
-  state  = {
+  state =  {
     ongoing: false
   }
 
@@ -29,11 +29,13 @@ class TourIndvScreen extends Component {
 
   const tourName = this.props.navigation.getParam('tourName');
   const numbPlayers = this.props.navigation.getParam('numbPlayers');
+  const tourStatus = this.props.navigation.getParam('tourStatus');
+
 
     return (
       <ScrollView style={style.mainContainer}>
 
-        {!this.state.ongoing
+        {!tourStatus
         ? <View>
           <OngoingTour tourName={tourName} />
           <View style={style.buttonContainer}>

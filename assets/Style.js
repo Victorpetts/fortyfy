@@ -32,16 +32,14 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 28,
     alignSelf: 'center',
-    color: 'yellow',
-    marginBottom: 10,
+    color: 'yellow'
   },
 
   headerText: {
     fontWeight: 'bold',
     fontSize: 24,
     alignSelf: 'center',
-    color: 'white',
-    marginBottom: 10
+    color: 'white'
   },
 
   paragraphText: {
@@ -86,7 +84,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     elevation: 2,
     backgroundColor: 'white',
-    justifyContent: 'space-between'
+    justifyContent: 'space-evenly'
   },
 
   createContainer: {
@@ -116,9 +114,9 @@ export default StyleSheet.create({
   },
 
   titleContainer: {
-    flexDirection: 'row', 
+    flexDirection: 'column', 
     justifyContent: 'space-around', 
-    paddingTop: '10%', 
+    marginTop: '15%', 
     alignItems: 'center' 
   },
 

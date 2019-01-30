@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import { TourButton } from '../components/TourButton.js';
-import MyTours from '../components/MyTours.js';
+import MyTours from '../components/MyTours';
 import CreateTour from '../components/CreateTour.js';
 import style from '../assets/Style.js';
 
