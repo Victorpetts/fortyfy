@@ -1,5 +1,5 @@
-import firebase from 'firebase';
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { connect } from 'react-redux';
 import {
     View,
@@ -22,7 +22,7 @@ class OngoingTour extends Component {
   }
 
   componentDidMount() {
-      firebase.database().ref('tours/victors/name').on('value', snapshot => {
+      firebase.database().ref('tours/name').on('value', snapshot => {
           this.setState({ headerText: snapshot.val() })
       });
   }
