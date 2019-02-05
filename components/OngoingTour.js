@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -12,7 +13,19 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 import Participants from './Participants.js';
 
 
+
+
 class OngoingTour extends Component {
+
+  state = {
+    headerText: ''
+  }
+
+  componentDidMount() {
+      firebase.database().ref('tours/victors/name').on('value', snapshot => {
+          this.setState({ headerText: snapshot.val() })
+      });
+  }
 
   mapPartic(totalMatches) {
     return this.props.partic.map((player) => {
@@ -54,7 +67,7 @@ class OngoingTour extends Component {
             <View style={style.titleRowContainer}>
               <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleRight}</FontAwesome>
               <View style={{ }}>
-                <Text style={style.yellowHeaderText}>{this.props.tourName}</Text>
+                <Text style={style.yellowHeaderText}>{this.state.headerText}</Text>
               </View>
                 <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleLeft}</FontAwesome>
                 </View>
