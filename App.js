@@ -6,6 +6,13 @@ import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
 import reducers from './reducers';
+import firebase from 'firebase';
+
+var config = {
+  databaseURL: 'https://fortyfy-1337.firebaseio.com',
+  projectId: 'fortyfy-1337',
+};
+firebase.initializeApp(config);
 
 export default class App extends React.Component {
   state = {
