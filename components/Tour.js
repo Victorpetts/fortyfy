@@ -6,8 +6,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import { Icon } from 'expo';
-
 import style from '../assets/Style.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 

@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
-  Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View,
+  View
 } from 'react-native';
+import { TourButton } from '../components/TourButton.js';
+import FriendsList from '../components/FriendsList.js';
+import style from '../assets/Style.js';
 
-export default class UsersScreen extends React.Component {
+
+class UsersScreen extends Component {
+
   static navigationOptions = {
-    title: 'Users',
+    title: 'Vänner',
     headerStyle: {
       backgroundColor: 'black',
       height: 90,
@@ -24,13 +27,30 @@ export default class UsersScreen extends React.Component {
       fontFamily: 'sans-serif'
     }
   };
+
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
+
     return (
-      <View style={{ paddingTop: 40 }}>
-        <Text>Users test</Text>
-      </View>
+      <ScrollView style={style.mainContainer}>
+        <View>
+          <FriendsList
+            navigation={this.props.navigation}
+          />
+          <View style={style.buttonContainer}>
+            <TourButton
+              buttonTitle={'LÄGG TILL EN VÄN'}
+            />
+
+          </View>
+        </View>
+      </ScrollView>
     )
+
   }
 }
+
+const mapStateToProps = (state) => {
+  return { tours: state.tours };
+};
+
+export default connect(mapStateToProps, null)(UsersScreen);

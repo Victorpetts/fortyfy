@@ -59,7 +59,14 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 18,
     margin: 10,
-    minWidth: 150
+    // minWidth: 150
+  },
+
+  userText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'yellow',
+    marginVertical: 14,
   },
 
   itemNumber: {
@@ -85,6 +92,16 @@ export default StyleSheet.create({
     elevation: 2,
     backgroundColor: 'white',
     justifyContent: 'space-evenly'
+  },
+
+  userContainer: {
+    borderRadius: 3,
+    marginVertical: 5,
+    elevation: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomColor: 'white',
+    borderBottomWidth: 2
   },
 
   createContainer: {
@@ -114,17 +131,17 @@ export default StyleSheet.create({
   },
 
   titleContainer: {
-    flexDirection: 'column', 
-    justifyContent: 'space-around', 
-    marginTop: '15%', 
-    alignItems: 'center' 
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    marginTop: '15%',
+    alignItems: 'center'
   },
 
   titleRowContainer: {
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
-    marginTop: '15%', 
-    alignItems: 'center' 
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: '15%',
+    alignItems: 'center'
   },
 
    inputField: {

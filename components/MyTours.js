@@ -5,11 +5,11 @@ import {
   Text,
   ScrollView
 } from 'react-native';
+import Tour from './Tour.js';
 
 import style from '../assets/Style.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
-import Tour from './Tour.js';
 
 class MyTours extends Component {
 
