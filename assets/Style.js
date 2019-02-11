@@ -49,6 +49,14 @@ export default StyleSheet.create({
     marginBottom: 10
   },
 
+  cardText: {
+    fontSize: 30,
+    alignSelf: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    letterSpacing: 0.5
+  },
+
   smallText: {
     fontSize: 18,
     textAlign: 'center',
@@ -83,6 +91,14 @@ export default StyleSheet.create({
     backgroundColor: 'black'
   },
 
+  cardContainer: {
+    // width: wp('100%'),
+    // height: hp('100%'),
+    height: '100%',
+    width: '100%',
+    // display: 'flex',
+  },
+
   itemContainer: {
     borderRadius: 3,
     margin: 5,
@@ -102,6 +118,21 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     borderBottomColor: 'white',
     borderBottomWidth: 2
+  },
+
+  userCard: {
+    margin: 20,
+    borderColor: 'white',
+    borderWidth: 4
+  },
+
+  cardFrame: {
+    marginTop: 30,
+    marginHorizontal: 19,
+    borderColor: 'yellow',
+    borderWidth: 15,
+    width: 320,
+    height: 445
   },
 
   createContainer: {

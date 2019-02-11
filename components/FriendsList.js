@@ -5,8 +5,8 @@ import {
   Text,
   ScrollView
 } from 'react-native';
-import User from './User.js';
 
+import User from './User.js';
 import style from '../assets/Style.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
@@ -14,22 +14,35 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 class FriendsList extends Component {
 
   mapFriendsList() {
-    return (
-      <View>
-        <User name={"Moa"} lvl={2}/>
-        <User name={"Constantine"} lvl={12} />
-        <User name={"Magnelia"} lvl={15} />
-        <User name={"Jesper"} lvl={99} />
-        <User name={"Axel"} lvl={71} />
-      </View>
-    )
+
+    const friendsList = this.props.users
+
+    return friendsList.map((user) => {
+      return (
+        <User
+        key={user.name}
+        name={user.name}
+        lvl={user.level}
+        navigation={this.props.navigation}
+      />
+      )
+    })
+
   }
 
   mapFriendRequests() {
     return (
       <View>
-        <User name={"Jonathan"} request={true} />
-        <User name={"Anton"} request={true} />
+        <User
+          name={"Jonathan"}
+          request={true}
+          navigation={this.props.navigation}
+        />
+        <User
+          name={"Anton"}
+          request={true}
+          navigation={this.props.navigation}
+        />
       </View>
     )
   }
@@ -72,7 +85,7 @@ class FriendsList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { tours: state.tours };
+  return { users: state.users };
 };
 
 export default connect(mapStateToProps, null)(FriendsList);

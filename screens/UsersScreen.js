@@ -6,6 +6,7 @@ import {
   Text,
   View
 } from 'react-native';
+
 import { TourButton } from '../components/TourButton.js';
 import FriendsList from '../components/FriendsList.js';
 import style from '../assets/Style.js';
@@ -40,7 +41,6 @@ class UsersScreen extends Component {
             <TourButton
               buttonTitle={'LÄGG TILL EN VÄN'}
             />
-
           </View>
         </View>
       </ScrollView>

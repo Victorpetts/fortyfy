@@ -8,6 +8,7 @@ import TournamentsScreen from '../screens/TournamentsScreen';
 import TourIndvScreen from '../screens/TourIndvScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import UserCardScreen from '../screens/UserCardScreen';
 
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
@@ -32,6 +33,7 @@ ProfileStack.navigationOptions = {
 
 const UsersStack = createStackNavigator({
   Links: UsersScreen,
+  UserCard: UserCardScreen
 });
 
 UsersStack.navigationOptions = {
@@ -43,11 +45,11 @@ UsersStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    },
+  }
 };
 
 const TournamentsStack = createStackNavigator({
@@ -64,11 +66,11 @@ TournamentsStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    }
+  }
 };
 
 const NewsStack = createStackNavigator({
@@ -90,7 +92,6 @@ NewsStack.navigationOptions = {
   },
 }
 };
-
 
 export default createBottomTabNavigator({
   NewsStack,

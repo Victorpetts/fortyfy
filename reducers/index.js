@@ -13,6 +13,14 @@ const initialState = {
     { name: "Robert", playedMatches: "2", points: "7"},
     { name: "Pinar", playedMatches: "5", points: "99"},
     { name: "Viktor", playedMatches: "1", points: "4"},
+  ],
+  usersArr:[
+    { name: "Axel", level: "27"},
+    { name: "Constantine", level: "13"},
+    { name: "Moa", level: "2"},
+    { name: "Jesper", level: "99"},
+    { name: "Pinar", level: "7"},
+    { name: "Bo", level: "61"},
   ]
 }
 
@@ -40,7 +48,13 @@ const particReducer = (oldArr = initialState.particArr, action) => {
   }
 };
 
+const usersReducer = (oldArr = initialState.usersArr) => {
+
+  return oldArr;
+};
+
 export default combineReducers ({
   tours: toursReducer,
-  partic: particReducer
+  partic: particReducer,
+  users: usersReducer
 });

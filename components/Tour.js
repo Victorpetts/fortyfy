@@ -22,11 +22,11 @@ class Tour extends Component {
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate('TourIndv',{
-              tourName: tourName,
-              numbPlayers: numbPlayers,
-              tourStatus: tourStatus
-            })}
-        >
+          tourName: tourName,
+          numbPlayers: numbPlayers,
+          tourStatus: tourStatus
+        })}
+      >
       <View style={style.itemContainer}>
         <Text style={style.itemText}>{this.props.name}</Text>
         <Text style={style.itemNumber}>
