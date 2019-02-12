@@ -75,11 +75,22 @@ class FriendsList extends Component {
 
         <View style={{
           flexDirection: 'row',
-          paddingLeft: '4%',
+          justifyContent: 'space-between',
           marginTop: '5%'
         }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessKnight}</FontAwesome>
-          <Text style={style.smallText}>Friends</Text>
+          <View style={{
+            flexDirection: 'row',
+            paddingLeft: '2%',
+          }}>
+            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginRight: '5%' }}>{Icons.userCircle}</FontAwesome>
+            <Text style={style.smallText}>Friends</Text>
+          </View>
+          <View style={{
+            flexDirection: 'row'
+          }}>
+            <Text style={style.smallText}>Level</Text>
+            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginLeft: '5%' }}>{Icons.gamepad}</FontAwesome>
+          </View>
         </View>
 
         <ScrollView style={{ height: '100%' }}>
