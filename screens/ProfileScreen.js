@@ -70,7 +70,7 @@ export default class ProfileScreen extends React.Component {
                 <TouchableOpacity
                   onPress={() => this.toggleProfile()}
                   accessible={true}
-                  accessibilityLabel={'Knapp - Visa min profil'}
+                  accessibilityLabel={'Knapp - Visa mina kort'}
                 >
                   <Text
                     style={style.enabledTabText}
@@ -85,7 +85,7 @@ export default class ProfileScreen extends React.Component {
                 <TouchableOpacity
                   onPress={() => this.toggleCards()}
                   accessible={true}
-                  accessibilityLabel={'Knapp - Visa min arbetsplats'}
+                  accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
                   <Text
                     style={style.disabledTabText}
@@ -118,7 +118,7 @@ export default class ProfileScreen extends React.Component {
                 <TouchableOpacity
                   onPress={() => this.toggleProfile()}
                   accessible={true}
-                  accessibilityLabel={'Knapp - Visa min profil'}
+                  accessibilityLabel={'Knapp - Visa mina kort'}
                 >
                   <Text
                     style={style.disabledTabText}
@@ -133,7 +133,7 @@ export default class ProfileScreen extends React.Component {
                 <TouchableOpacity
                   onPress={() => this.toggleCards()}
                   accessible={true}
-                  accessibilityLabel={'Knapp - Visa min arbetsplats'}
+                  accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
                   <Text
                     style={style.enabledTabText}
