@@ -6,17 +6,24 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { acceptFriend } from '../actions/index.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import style from '../assets/Style.js';
 
 class User extends Component {
 
   render() {
+
+    const userName = this.props.name;
+    const findUser = this.props.users.find( thisUser => thisUser.name === userName );
+
     return (
       <View>
-        {!this.props.request
+        {this.props.friend
           ? <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('UserCard')}
+            onPress={() => this.props.navigation.navigate('UserCard',{
+              userName:userName
+            })}
           >
             <View style={style.userContainer}>
               <View style={{ flexDirection: 'row' }}>
@@ -29,19 +36,22 @@ class User extends Component {
                 </Text>
             </View>
           </TouchableOpacity>
-          : <View style={{ flexDirection: 'row' }}>
-            <FontAwesome style={{ fontSize: 50, color: 'yellow' }}> {Icons.meh} </FontAwesome>
-            <Text style={style.userText}>{this.props.name}</Text>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('UserCard')}
-            >
-              <FontAwesome style={{ fontSize: 30, color: 'yellow' }}> {Icons.windowClose} </FontAwesome>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('UserCard')}
-            >
-              <FontAwesome style={{ fontSize: 30, color: 'yellow' }}> {Icons.checkSquare} </FontAwesome>
-            </TouchableOpacity>
+          : <View style={style.userContainer}>
+            <View style={{ flexDirection: 'row' }}>
+              <FontAwesome style={{ fontSize: 50, color: 'yellow' }}> {Icons.meh} </FontAwesome>
+              <Text style={style.userText}>{this.props.name}</Text>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <TouchableOpacity
+              >
+                <FontAwesome style={{ fontSize: 45, color: 'yellow' }}> {Icons.windowClose} </FontAwesome>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => this.props.acceptFriend(findUser)}
+              >
+                <FontAwesome style={{ fontSize: 45, color: 'yellow' }}> {Icons.checkSquare} </FontAwesome>
+              </TouchableOpacity>
+            </View>
           </View>
         }
       </View>
@@ -52,8 +62,8 @@ class User extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    partic: state.partic
+    users: state.users
    };
 };
 
-export default connect(mapStateToProps, null)(User);
+export default connect(mapStateToProps, { acceptFriend })(User);

@@ -32,7 +32,7 @@ class FinishedTour extends Component {
         winconText = 'Flest placeringar i top 5';
         break
       default:
-        winconText = '';
+        winconText = 'Överlevt flest minuter';
         break
     }
 

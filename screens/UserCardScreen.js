@@ -23,16 +23,17 @@ class userCardScreen extends Component {
   componentWillUnmount() {
     StatusBar.setHidden(false);
   }
-  // funkar inte
+  // funkar inte helt
 
   render() {
 
+    const userName = this.props.navigation.getParam('userName');
 
     return (
       <View>
         <ImageBackground source={require('../assets/images/sings.jpg')} style={{width: '100%', height: '100%'}}>
           <View style={style.cardFrame} />
-          <Text style={style.cardText}>Ditt kort</Text>
+          <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
       </View>
     )

@@ -15,7 +15,11 @@ class FriendsList extends Component {
 
   mapFriendsList() {
 
-    const friendsList = this.props.users
+    friendsList = this.props.users.filter(function(item){
+      return item.friend === true;
+    }).map(function({name, level, friend}){
+      return {name, level, friend};
+    });
 
     return friendsList.map((user) => {
       return (
@@ -23,6 +27,7 @@ class FriendsList extends Component {
         key={user.name}
         name={user.name}
         lvl={user.level}
+        friend={user.friend}
         navigation={this.props.navigation}
       />
       )
@@ -31,20 +36,24 @@ class FriendsList extends Component {
   }
 
   mapFriendRequests() {
-    return (
-      <View>
+
+    friendsList = this.props.users.filter(function(item){
+      return item.friend === false;
+    }).map(function({name, level, friend}){
+      return {name, level, friend};
+    });
+
+    return friendsList.map((user) => {
+      return (
         <User
-          name={"Jonathan"}
-          request={true}
-          navigation={this.props.navigation}
-        />
-        <User
-          name={"Anton"}
-          request={true}
-          navigation={this.props.navigation}
-        />
-      </View>
-    )
+        key={user.name}
+        name={user.name}
+        lvl={user.level}
+        friend={user.friend}
+        navigation={this.props.navigation}
+      />
+      )
+    })
   }
 
   render() {
@@ -57,7 +66,7 @@ class FriendsList extends Component {
           paddingLeft: '4%',
         }}>
           <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessPawn}</FontAwesome>
-          <Text style={style.smallText}>Vänförågan</Text>
+          <Text style={style.smallText}>Friend Requests</Text>
         </View>
 
         <ScrollView style={{ height: '40%' }}>
@@ -70,7 +79,7 @@ class FriendsList extends Component {
           marginTop: '5%'
         }}>
           <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessKnight}</FontAwesome>
-          <Text style={style.smallText}>Dina Vänner</Text>
+          <Text style={style.smallText}>Friends</Text>
         </View>
 
         <ScrollView style={{ height: '100%' }}>

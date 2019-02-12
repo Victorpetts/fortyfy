@@ -15,12 +15,14 @@ const initialState = {
     { name: "Viktor", playedMatches: "1", points: "4"},
   ],
   usersArr:[
-    { name: "Axel", level: "27"},
-    { name: "Constantine", level: "13"},
-    { name: "Moa", level: "2"},
-    { name: "Jesper", level: "99"},
-    { name: "Pinar", level: "7"},
-    { name: "Bo", level: "61"},
+    { name: "Axel", level: "27", friend: true},
+    { name: "Constantine", level: "13", friend: true},
+    { name: "Moa", level: "2", friend: true},
+    { name: "Jesper", level: "99", friend: true},
+    { name: "Pinar", level: "7", friend: true},
+    { name: "Bo", level: "61", friend: true},
+    { name: "Robert", level: "75", friend: false},
+    { name: "Fredrik", level: "23", friend: false},
   ]
 }
 
@@ -48,9 +50,16 @@ const particReducer = (oldArr = initialState.particArr, action) => {
   }
 };
 
-const usersReducer = (oldArr = initialState.usersArr) => {
+const usersReducer = (oldArr = initialState.usersArr, action) => {
 
-  return oldArr;
+  switch (action.type) {
+    case  'FRIEND_ACCEPTED':
+      console.log(action.payload.friend);
+      return oldArr;
+
+    default:
+      return oldArr;
+  }
 };
 
 export default combineReducers ({
