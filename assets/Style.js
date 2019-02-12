@@ -222,4 +222,11 @@ export default StyleSheet.create({
     letterSpacing: 0.31,
     textAlign: "center"
   },
+
+  cardContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    maxWidth: '35%',
+    padding: '5%'
+  }
 });

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   ScrollView,
@@ -10,7 +11,7 @@ import style from '../assets/Style.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 
-export default class ProfileScreen extends React.Component {
+class ProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
@@ -56,8 +57,13 @@ export default class ProfileScreen extends React.Component {
   };
 
   render() {
+
+    const cardsWon = this.props.users
+
     return (
-      <View>
+      <View style={{
+        height: '100%'
+      }}>
 
         {this.state.toggleProfile ? (
           <View>
@@ -102,8 +108,8 @@ export default class ProfileScreen extends React.Component {
                 alignItems: 'center',
                 paddingTop: '5%'
               }}>
-                <FontAwesome style={{ fontSize: 200, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.yellowHeaderText}>Profile test</Text>
+                <FontAwesome style={{ fontSize: 300, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.yellowHeaderText}>Miranda's card</Text>
               </View>
             </ScrollView>
           </View>
@@ -143,26 +149,65 @@ export default class ProfileScreen extends React.Component {
                 </TouchableOpacity>
               </View>
             </View>
-
             <ScrollView style={style.mainContainer}>
               <View style={{
-                maxWidth: '100%',
-                paddingTop: '10%',
-                justifyContent: 'space-around',
-                alignItems: 'center',
+                maxWidth: '90%',
+                justifyContent: 'space-evenly',
+                alignSelf: 'center',
                 flexDirection: 'row',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                height: '100%',
+                display: 'flex',
+                flex: 1
               }}>
-                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[0].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[1].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[2].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[3].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[4].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[5].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[6].name}</Text>
+              </View>
+              <View style={style.cardContainer}>
+                <FontAwesome style={{ fontSize: 85, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <Text style={style.smallText}>{cardsWon[7].name}</Text>
+              </View>
               </View>
             </ScrollView>
           </View>
+
         ) : null}
+        <View style={{
+          height: '100%',
+          paddingTop: '30%'
+        }} />
       </View>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return { users: state.users };
+};
+
+export default connect(mapStateToProps, null)(ProfileScreen);
