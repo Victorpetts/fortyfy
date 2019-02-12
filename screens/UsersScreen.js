@@ -39,7 +39,7 @@ class UsersScreen extends Component {
           />
           <View style={style.buttonContainer}>
             <TourButton
-              buttonTitle={'LÄGG TILL EN VÄN'}
+              buttonTitle={'SEARCH PLAYER'}
             />
           </View>
         </View>
