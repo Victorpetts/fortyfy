@@ -62,20 +62,10 @@ export default class ProfileScreen extends React.Component {
         {this.state.toggleProfile ? (
           <View>
             <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center",
-                borderWidth: 0,
-                backgroundColor: 'black'
-              }}
+              style={style.tabBackground}
             >
               <View
-                style={{
-                  width: "50%",
-                  borderBottomWidth: 4,
-                  borderColor: 'yellow'
-                }}
+                style={style.enabledTab}
               >
                 <TouchableOpacity
                   onPress={() => this.toggleProfile()}
@@ -83,26 +73,14 @@ export default class ProfileScreen extends React.Component {
                   accessibilityLabel={'Knapp - Visa min profil'}
                 >
                   <Text
-                    style={{
-                      color: "#fff",
-                      fontWeight: "900",
-                      padding: 10,
-                      fontSize: 20,
-                      fontStyle: "normal",
-                      letterSpacing: 0.31,
-                      textAlign: "center"
-                    }}
+                    style={style.enabledTabText}
                   >
                     My Card
                     </Text>
                 </TouchableOpacity>
               </View>
               <View
-                style={{
-                  width: "50%",
-                  borderBottomWidth: 4,
-                  borderColor: 'transparent'
-                }}
+                style={style.disabledTab}
               >
                 <TouchableOpacity
                   onPress={() => this.toggleCards()}
@@ -110,16 +88,7 @@ export default class ProfileScreen extends React.Component {
                   accessibilityLabel={'Knapp - Visa min arbetsplats'}
                 >
                   <Text
-                    style={{
-                      color: "#fff",
-                      fontWeight: "900",
-                      padding: 10,
-                      fontSize: 20,
-                      opacity: 0.6,
-                      fontStyle: "normal",
-                      letterSpacing: 0.31,
-                      textAlign: "center"
-                    }}
+                    style={style.disabledTabText}
                   >
                     Card Collection
                       </Text>
@@ -141,20 +110,10 @@ export default class ProfileScreen extends React.Component {
         ) : this.state.toggleCards ? (
           <View>
             <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center",
-                borderWidth: 0,
-                backgroundColor: 'black'
-              }}
+              style={style.tabBackground}
             >
               <View
-                style={{
-                  width: "50%",
-                  borderBottomWidth: 4,
-                  borderColor: "transparent"
-                }}
+                style={style.disabledTab}
               >
                 <TouchableOpacity
                   onPress={() => this.toggleProfile()}
@@ -162,27 +121,14 @@ export default class ProfileScreen extends React.Component {
                   accessibilityLabel={'Knapp - Visa min profil'}
                 >
                   <Text
-                    style={{
-                      color: "#fff",
-                      fontWeight: "900",
-                      padding: 10,
-                      fontSize: 20,
-                      opacity: 0.6,
-                      fontStyle: "normal",
-                      letterSpacing: 0.31,
-                      textAlign: "center"
-                    }}
+                    style={style.disabledTabText}
                   >
                     My Card
                   </Text>
                 </TouchableOpacity>
               </View>
               <View
-                style={{
-                  width: "50%",
-                  borderBottomWidth: 4,
-                  borderColor: 'yellow'
-                }}
+                style={style.enabledTab}
               >
                 <TouchableOpacity
                   onPress={() => this.toggleCards()}
@@ -190,15 +136,7 @@ export default class ProfileScreen extends React.Component {
                   accessibilityLabel={'Knapp - Visa min arbetsplats'}
                 >
                   <Text
-                    style={{
-                      color: "#fff",
-                      fontWeight: "900",
-                      padding: 10,
-                      fontSize: 20,
-                      fontStyle: "normal",
-                      letterSpacing: 0.31,
-                      textAlign: "center"
-                    }}
+                    style={style.enabledTabText}
                   >
                     Card Collection
                     </Text>
@@ -207,18 +145,19 @@ export default class ProfileScreen extends React.Component {
             </View>
 
             <ScrollView style={style.mainContainer}>
-
-              <Text style={style.yellowHeaderText}>Andras kort</Text>
-
               <View style={{
-                paddingTop: '5%',
+                maxWidth: '100%',
+                paddingTop: '10%',
                 justifyContent: 'space-around',
                 alignItems: 'center',
-                flexDirection: 'row'
+                flexDirection: 'row',
+                flexWrap: 'wrap'
               }}>
-                <FontAwesome style={{ fontSize: 100, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <FontAwesome style={{ fontSize: 100, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <FontAwesome style={{ fontSize: 100, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <FontAwesome style={{ fontSize: 125, color: 'white' }}>{Icons.fileImage}</FontAwesome>
               </View>
             </ScrollView>
           </View>

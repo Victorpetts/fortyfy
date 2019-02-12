@@ -63,7 +63,7 @@ class OngoingTour extends Component {
         <View style={style.titleRowContainer}>
           <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleRight}</FontAwesome>
           <View style={{ }}>
-            <Text style={style.yellowHeaderText}>{this.state.headerText}</Text>
+            <Text style={style.yellowHeaderText}>{this.props.tourName}</Text>
           </View>
           <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleLeft}</FontAwesome>
         </View>

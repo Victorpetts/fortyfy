@@ -180,5 +180,46 @@ export default StyleSheet.create({
      borderRadius: 3,
      padding: 5,
      fontSize: 16
-   }
+   },
+
+   tabBackground: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderWidth: 0,
+    backgroundColor: 'black'
+  },
+
+  enabledTab: {
+    width: "50%",
+    borderBottomWidth: 4,
+    borderColor: 'yellow'
+  },
+  
+  disabledTab: {
+    width: "50%",
+    borderBottomWidth: 4,
+    borderColor: "transparent"
+  },
+
+  enabledTabText: {
+    color: "#fff",
+    fontWeight: "900",
+    padding: 10,
+    fontSize: 20,
+    fontStyle: "normal",
+    letterSpacing: 0.31,
+    textAlign: "center"
+  },
+
+  disabledTabText: {
+    color: "#fff",
+    fontWeight: "900",
+    padding: 10,
+    fontSize: 20,
+    opacity: 0.6,
+    fontStyle: "normal",
+    letterSpacing: 0.31,
+    textAlign: "center"
+  },
 });
