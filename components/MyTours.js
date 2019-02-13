@@ -20,7 +20,6 @@ class MyTours extends Component {
     }).map(function({name, players, wincon, totalMatches, finished}){
       return {name, players, wincon, totalMatches, finished};
     });
-    console.log(ongoingTour);
 
     return ongoingTour.map((tour) => {
       return (
@@ -44,7 +43,6 @@ class MyTours extends Component {
     }).map(function({name, players, wincon, totalMatches, finished}){
       return {name, players, wincon, totalMatches, finished};
     });
-    console.log(finishedTour);
 
     return finishedTour.map((tour) => {
       return (
@@ -69,7 +67,7 @@ class MyTours extends Component {
           paddingLeft: '4%',
         }}>
           <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessRook}</FontAwesome>
-          <Text style={style.smallText}>Pågående</Text>
+          <Text style={style.smallText}>Ongoing</Text>
         </View>
         <ScrollView style={{ height: '100%' }}>
           {this.mapOngoingTours()}
@@ -79,7 +77,7 @@ class MyTours extends Component {
           paddingLeft: '4%',
         }}>
           <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessKing}</FontAwesome>
-          <Text style={style.smallText}>Avslutade</Text>
+          <Text style={style.smallText}>Finished</Text>
         </View>
         <ScrollView style={{ height: '100%' }}>
           {this.mapFinishedTours()}

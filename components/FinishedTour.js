@@ -23,16 +23,16 @@ class FinishedTour extends Component {
 
     switch(filter.wincon) {
       case '1':
-        winconText = 'Överlevt flest minuter';
+        winconText = 'Survived most minutes';
         break
       case '2':
-        winconText = 'Flest sammanlagda kills';
+        winconText = 'Most accumulated kills';
         break
       case '3':
-        winconText = 'Flest placeringar i top 5';
+        winconText = 'Most placements in top 5';
         break
       default:
-        winconText = 'Överlevt flest minuter';
+        winconText = 'Survived most minutes';
         break
     }
 
@@ -40,7 +40,7 @@ class FinishedTour extends Component {
       <View style={style.mainContainer}>
         <View style={style.titleContainer}>
           <Text style={style.yellowHeaderText}>{this.props.tourName}</Text>
-          <Text style={style.headerText}>Seger villkor:</Text>
+          <Text style={style.headerText}>Win condition:</Text>
           <Text style={style.paragraphText}>{winconText}</Text>
         </View>
         <ScrollView>
