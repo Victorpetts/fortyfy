@@ -15,7 +15,7 @@ import style from '../assets/Style.js';
 class UsersScreen extends Component {
 
   static navigationOptions = {
-    title: 'Vänner',
+    title: 'Friends',
     headerStyle: {
       backgroundColor: 'black',
       height: 90,

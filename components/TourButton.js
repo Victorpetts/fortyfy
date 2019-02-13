@@ -12,7 +12,7 @@ export class TourButton extends React.Component {
       return (
           <TouchableOpacity
               onPress={this.props.buttonFunc}
-              accessibilityLabel="Knapp - Skapa en turnering"
+              accessibilityLabel="Button"
               style={style.buttonClass}
           >
             <Text style={style.buttonText}>{this.props.buttonTitle}</Text>

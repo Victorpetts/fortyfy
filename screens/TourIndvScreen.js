@@ -39,8 +39,8 @@ class TourIndvScreen extends Component {
         ? <View>
           <OngoingTour tourName={tourName} />
           <View style={style.buttonContainer}>
-            <TourButton buttonTitle={'HANTERA TURNERING'} />
-            <TourButton buttonTitle={'BJUD IN VÄNNER'} />
+            <TourButton buttonTitle={'MANAGE TOURNAMENT'} />
+            <TourButton buttonTitle={'INVITE FRIENDS'} />
           </View>
         </View>
         : <FinishedTour  tourName={tourName} />

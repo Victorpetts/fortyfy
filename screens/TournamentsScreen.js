@@ -62,11 +62,11 @@ export default class TournamentsScreen extends React.Component {
               />
               <View style={style.buttonContainer}>
                 <TourButton
-                  buttonTitle={'SKAPA TURNERING'}
+                  buttonTitle={`CREATE TOURNAMENT`}
                   buttonFunc={this.toggleTour}
                 />
                 <TourButton
-                  buttonTitle={'HITTA TURNERING'}
+                  buttonTitle={'FIND TOURNAMENT'}
                 />
               </View>
             </View>

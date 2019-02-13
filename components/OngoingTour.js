@@ -45,13 +45,13 @@ class OngoingTour extends Component {
 
     switch(filter.wincon) {
       case '1':
-        winconText = 'Överlevt flest minuter';
+        winconText = 'Survived most minutes';
         break
       case '2':
-        winconText = 'Flest sammanlagda kills';
+        winconText = 'Most accumulated kills';
         break
       case '3':
-        winconText = 'Flest placeringar i top 5';
+        winconText = 'Most placements in top 5';
         break
       default:
         winconText = '';
@@ -67,7 +67,7 @@ class OngoingTour extends Component {
           </View>
           <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleLeft}</FontAwesome>
         </View>
-        <Text style={style.headerText}>Seger villkor:</Text>
+        <Text style={style.headerText}>Win condition:</Text>
         <Text style={style.paragraphText}>{winconText}</Text>
         <View style={{
           flexDirection: 'row',
@@ -78,12 +78,12 @@ class OngoingTour extends Component {
             paddingLeft: '2%',
           }}>
             <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginRight: '5%' }}>{Icons.userCircle}</FontAwesome>
-            <Text style={style.smallText}>Spelare</Text>
+            <Text style={style.smallText}>Players</Text>
           </View>
           <View style={{
             flexDirection: 'row'
           }}>
-            <Text style={style.smallText}>Matcher</Text>
+            <Text style={style.smallText}>Matches</Text>
             <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginLeft: '5%' }}>{Icons.gamepad}</FontAwesome>
           </View>
         </View>
