@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import CardCollection from '../components/CardCollection.js';
+import MyCard from '../components/MyCard.js';
+
 import style from '../assets/Style.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
@@ -56,9 +59,29 @@ class ProfileScreen extends Component {
     });
   };
 
-  render() {
+  mapCardCollection() {
 
-    const cardsWon = this.props.users
+    cardCollection = this.props.users.filter(function(item){
+      return item.friend === true;
+    }).map(function({name, level, friend}){
+      return {name, level, friend};
+    });
+
+    return cardCollection.map((user) => {
+      return (
+        <CardCollection
+        key={user.name}
+        name={user.name}
+        lvl={user.level}
+        friend={user.friend}
+        navigation={this.props.navigation}
+      />
+      )
+    })
+
+  }
+
+  render() {
 
     return (
       <View style={{
@@ -103,14 +126,7 @@ class ProfileScreen extends Component {
             </View>
 
             <ScrollView style={style.mainContainer}>
-              <View style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingTop: '5%'
-              }}>
-                <FontAwesome style={{ fontSize: 300, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.yellowHeaderText}>Miranda's card</Text>
-              </View>
+              <MyCard />
             </ScrollView>
           </View>
         ) : this.state.toggleCards ? (
@@ -150,57 +166,13 @@ class ProfileScreen extends Component {
               </View>
             </View>
             <ScrollView style={style.mainContainer}>
-              <View style={{
-                maxWidth: '90%',
-                justifyContent: 'space-evenly',
-                alignSelf: 'center',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                height: '100%',
-                display: 'flex',
-                flex: 1
-              }}>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[0].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[1].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[2].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[3].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[4].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[5].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[6].name}</Text>
-              </View>
-              <View style={style.cardContainer}>
-                <FontAwesome style={{ fontSize: 85, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                <Text style={style.smallText}>{cardsWon[7].name}</Text>
-              </View>
-              </View>
+            <View  style={style.cardsContainer}>
+            {this.mapCardCollection()}
+            </View>
             </ScrollView>
           </View>
 
         ) : null}
-        <View style={{
-          height: '100%',
-          paddingTop: '30%'
-        }} />
       </View>
     )
   }

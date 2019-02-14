@@ -66,7 +66,7 @@ export default class TournamentsScreen extends React.Component {
                   buttonFunc={this.toggleTour}
                 />
                 <TourButton
-                  buttonTitle={'FIND TOURNAMENT'}
+                  buttonTitle={'SEARCH TOURNAMENT'}
                 />
               </View>
             </View>

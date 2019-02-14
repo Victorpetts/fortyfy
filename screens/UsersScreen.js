@@ -9,10 +9,15 @@ import {
 
 import { TourButton } from '../components/TourButton.js';
 import FriendsList from '../components/FriendsList.js';
+import SearchPlayer from '../components/SearchPlayer';
 import style from '../assets/Style.js';
 
 
 class UsersScreen extends Component {
+
+  state = {
+    toggle: false
+  }
 
   static navigationOptions = {
     title: 'Friends',
@@ -29,10 +34,18 @@ class UsersScreen extends Component {
     }
   };
 
+  toggleSearch = () => {
+    this.setState(prevState => ({
+      toggle: !prevState.toggle
+    }))
+  };
+
   render() {
 
     return (
       <ScrollView style={style.mainContainer}>
+      {!this.state.toggle
+            ?
         <View>
           <FriendsList
             navigation={this.props.navigation}
@@ -40,9 +53,14 @@ class UsersScreen extends Component {
           <View style={style.buttonContainer}>
             <TourButton
               buttonTitle={'SEARCH PLAYER'}
+              buttonFunc={this.toggleSearch}
             />
           </View>
         </View>
+        : <SearchPlayer
+            buttonFunc={this.toggleSearch} 
+          />
+         }
       </ScrollView>
     )
 

@@ -12,6 +12,7 @@ import UserCardScreen from '../screens/UserCardScreen';
 
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
+  IndvUserCard: UserCardScreen
 });
 
 ProfileStack.navigationOptions = {
@@ -24,11 +25,11 @@ ProfileStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    },
+  }
 };
 
 const UsersStack = createStackNavigator({
@@ -86,11 +87,11 @@ NewsStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    },
+  }
 };
 
 export default createBottomTabNavigator({

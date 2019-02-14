@@ -64,6 +64,12 @@ export default StyleSheet.create({
     letterSpacing: 0.5
   },
 
+  playerText: {
+    fontSize: 18,
+    color: 'yellow',
+    letterSpacing: 0.5
+  },
+
   itemText: {
     fontSize: 18,
     margin: 10,
@@ -91,12 +97,21 @@ export default StyleSheet.create({
     backgroundColor: 'black'
   },
 
-  cardContainer: {
-    // width: wp('100%'),
-    // height: hp('100%'),
+  cardsContainer: {
+    maxWidth: '100%',
+    justifyContent: 'space-evenly',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     height: '100%',
-    width: '100%',
-    // display: 'flex',
+    display: 'flex',
+    flex: 1,
+    paddingBottom: '10%'
+  },
+
+  cardContainer: {
+    height: '100%',
+    width: '100%'
   },
 
   itemContainer: {
@@ -223,10 +238,9 @@ export default StyleSheet.create({
     textAlign: "center"
   },
 
-  cardContainer: {
+  indvCardContainer: {
     flexDirection: 'column',
     alignItems: 'center',
-    maxWidth: '35%',
     padding: '5%'
   }
 });
