@@ -18,6 +18,15 @@ export default StyleSheet.create({
     width: 150
   },
 
+  roundButton: {
+    backgroundColor: 'yellow',
+    borderRadius: 100,
+    elevation: 4,
+    shadowOffset: {width: 4, height: 4},
+    width: 60,
+    height: 60
+  },
+
   iconClass: {
     paddingTop: 12,
   },
@@ -195,7 +204,7 @@ export default StyleSheet.create({
     borderBottomWidth: 4,
     borderColor: 'yellow'
   },
-  
+
   disabledTab: {
     width: "50%",
     borderBottomWidth: 4,

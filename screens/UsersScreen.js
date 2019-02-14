@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import {
   ScrollView,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 
 import { TourButton } from '../components/TourButton.js';
+import { RoundButton } from '../components/RoundButton.js';
 import FriendsList from '../components/FriendsList.js';
 import style from '../assets/Style.js';
 
@@ -33,15 +33,14 @@ class UsersScreen extends Component {
 
     return (
       <ScrollView style={style.mainContainer}>
-        <View>
-          <FriendsList
-            navigation={this.props.navigation}
+        <FriendsList
+          navigation={this.props.navigation}
+        />
+        <View style={style.buttonContainer}>
+          <TourButton
+            buttonTitle={'SEARCH PLAYER'}
           />
-          <View style={style.buttonContainer}>
-            <TourButton
-              buttonTitle={'SEARCH PLAYER'}
-            />
-          </View>
+          <RoundButton />
         </View>
       </ScrollView>
     )

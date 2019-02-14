@@ -21,6 +21,8 @@ class FriendsList extends Component {
       return {name, level, friend};
     });
 
+    friendsList.sort((a, b) => b.level - a.level);
+
     return friendsList.map((user) => {
       return (
         <User
@@ -69,7 +71,7 @@ class FriendsList extends Component {
           <Text style={style.smallText}>Friend Requests</Text>
         </View>
 
-        <ScrollView style={{ height: '40%' }}>
+        <ScrollView >
           {this.mapFriendRequests()}
         </ScrollView>
 
