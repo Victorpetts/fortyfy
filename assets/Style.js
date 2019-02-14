@@ -18,14 +18,40 @@ export default StyleSheet.create({
     width: 150
   },
 
+  roundButton: {
+    backgroundColor: 'yellow',
+    borderRadius: 100,
+    elevation: 4,
+    shadowOffset: {width: 4, height: 4},
+    width: 60,
+    height: 60
+  },
+  
+  buttonDisabled: {
+    borderColor: 'yellow',
+    borderWidth: 2,
+    padding: 20,
+    borderRadius: 5,
+    elevation: 4,
+    shadowOffset: {width: 4, height: 4},
+    width: 150
+  },
+
   iconClass: {
     paddingTop: 12,
   },
 
   buttonText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center'
+  },
+
+  buttonTextDisabled: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white'
   },
 
   yellowHeaderText: {
@@ -49,6 +75,14 @@ export default StyleSheet.create({
     marginBottom: 10
   },
 
+  cardText: {
+    fontSize: 30,
+    alignSelf: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    letterSpacing: 0.5
+  },
+
   smallText: {
     fontSize: 18,
     textAlign: 'center',
@@ -56,10 +90,23 @@ export default StyleSheet.create({
     letterSpacing: 0.5
   },
 
+  playerText: {
+    fontSize: 18,
+    color: 'yellow',
+    letterSpacing: 0.5
+  },
+
   itemText: {
     fontSize: 18,
     margin: 10,
-    minWidth: 150
+    // minWidth: 150
+  },
+
+  userText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'yellow',
+    marginVertical: 14,
   },
 
   itemNumber: {
@@ -76,6 +123,23 @@ export default StyleSheet.create({
     backgroundColor: 'black'
   },
 
+  cardsContainer: {
+    maxWidth: '100%',
+    justifyContent: 'space-evenly',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    height: '100%',
+    display: 'flex',
+    flex: 1,
+    paddingBottom: '10%'
+  },
+
+  cardContainer: {
+    height: '100%',
+    width: '100%'
+  },
+
   itemContainer: {
     borderRadius: 3,
     margin: 5,
@@ -85,6 +149,31 @@ export default StyleSheet.create({
     elevation: 2,
     backgroundColor: 'white',
     justifyContent: 'space-evenly'
+  },
+
+  userContainer: {
+    borderRadius: 3,
+    marginVertical: 5,
+    elevation: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomColor: 'white',
+    borderBottomWidth: 2
+  },
+
+  userCard: {
+    margin: 20,
+    borderColor: 'white',
+    borderWidth: 4
+  },
+
+  cardFrame: {
+    marginTop: 30,
+    marginHorizontal: 19,
+    borderColor: 'yellow',
+    borderWidth: 15,
+    width: 320,
+    height: 445
   },
 
   createContainer: {
@@ -114,17 +203,17 @@ export default StyleSheet.create({
   },
 
   titleContainer: {
-    flexDirection: 'column', 
-    justifyContent: 'space-around', 
-    marginTop: '15%', 
-    alignItems: 'center' 
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    marginTop: '15%',
+    alignItems: 'center'
   },
 
   titleRowContainer: {
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
-    marginTop: '15%', 
-    alignItems: 'center' 
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: '15%',
+    alignItems: 'center'
   },
 
    inputField: {
@@ -132,5 +221,52 @@ export default StyleSheet.create({
      borderRadius: 3,
      padding: 5,
      fontSize: 16
-   }
+   },
+
+   tabBackground: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderWidth: 0,
+    backgroundColor: 'black'
+  },
+
+  enabledTab: {
+    width: "50%",
+    borderBottomWidth: 4,
+    borderColor: 'yellow'
+  },
+
+  disabledTab: {
+    width: "50%",
+    borderBottomWidth: 4,
+    borderColor: "transparent"
+  },
+
+  enabledTabText: {
+    color: "#fff",
+    fontWeight: "900",
+    padding: 10,
+    fontSize: 20,
+    fontStyle: "normal",
+    letterSpacing: 0.31,
+    textAlign: "center"
+  },
+
+  disabledTabText: {
+    color: "#fff",
+    fontWeight: "900",
+    padding: 10,
+    fontSize: 20,
+    opacity: 0.6,
+    fontStyle: "normal",
+    letterSpacing: 0.31,
+    textAlign: "center"
+  },
+
+  indvCardContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '5%'
+  }
 });

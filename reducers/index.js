@@ -13,13 +13,23 @@ const initialState = {
     { name: "Robert", playedMatches: "2", points: "7"},
     { name: "Pinar", playedMatches: "5", points: "99"},
     { name: "Viktor", playedMatches: "1", points: "4"},
+  ],
+  usersArr:[
+    { name: "Axel", level: "27", friend: true},
+    { name: "Constantine", level: "13", friend: true},
+    { name: "Moa", level: "2", friend: true},
+    { name: "Jesper", level: "99", friend: true},
+    { name: "Pinar", level: "7", friend: true},
+    { name: "Bo", level: "61", friend: true},
+    { name: "Robert", level: "75", friend: false},
+    { name: "Fredrik", level: "23", friend: false},
   ]
 }
 
 const toursReducer = (oldArr = initialState.toursArr, action) => {
 
   switch (action.type) {
-    case  'TOURNAMENT_CREATED':
+    case 'TOURNAMENT_CREATED':
       let newArr = [...oldArr, action.payload]
       return newArr;
 
@@ -31,7 +41,7 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
 const particReducer = (oldArr = initialState.particArr, action) => {
 
   switch (action.type) {
-    case  'PLAYER_ADDED':
+    case 'PLAYER_ADDED':
       let newArr = [...oldArr, action.payload]
       return newArr;
 
@@ -40,7 +50,39 @@ const particReducer = (oldArr = initialState.particArr, action) => {
   }
 };
 
+const usersReducer = (oldArr = initialState.usersArr, action) => {
+
+  switch (action.type) {
+    case 'FRIEND_ACCEPTED':
+      return oldArr.map((item, index) => {
+        if(item.name === action.payload) {
+          return {
+            ...item,
+            friend: true
+          }
+        }
+        return item;
+      });
+
+    case 'FRIEND_DENIED':
+      return oldArr.map((item, index) => {
+        if(item.name === action.payload) {
+          return {
+            ...item,
+            friend: ''
+          }
+        }
+        return item;
+      });
+
+  default:
+    return oldArr;
+  }
+};
+
+
 export default combineReducers ({
   tours: toursReducer,
-  partic: particReducer
+  partic: particReducer,
+  users: usersReducer
 });

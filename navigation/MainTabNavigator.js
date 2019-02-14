@@ -8,9 +8,11 @@ import TournamentsScreen from '../screens/TournamentsScreen';
 import TourIndvScreen from '../screens/TourIndvScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import UserCardScreen from '../screens/UserCardScreen';
 
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
+  IndvUserCard: UserCardScreen
 });
 
 ProfileStack.navigationOptions = {
@@ -23,19 +25,20 @@ ProfileStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    },
+  }
 };
 
 const UsersStack = createStackNavigator({
   Links: UsersScreen,
+  UserCard: UserCardScreen
 });
 
 UsersStack.navigationOptions = {
-  tabBarLabel: 'Users',
+  tabBarLabel: 'Friends',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -43,11 +46,11 @@ UsersStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    },
+  }
 };
 
 const TournamentsStack = createStackNavigator({
@@ -64,11 +67,11 @@ TournamentsStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    }
+  }
 };
 
 const NewsStack = createStackNavigator({
@@ -84,13 +87,12 @@ NewsStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-  activeTintColor: 'yellow',
-  style: {
-    backgroundColor: 'black',
-  },
-}
+    activeTintColor: 'yellow',
+    style: {
+      backgroundColor: 'black',
+    },
+  }
 };
-
 
 export default createBottomTabNavigator({
   NewsStack,
