@@ -12,16 +12,6 @@ import style from '../assets/Style.js';
 
 class User extends Component {
 
-  // changeAStat(findUser) {
-  //   let changedUser = {
-  //     ...findUser,
-  //     friend: true
-  //   }
-  //   console.log(changedUser);
-  //
-  //   this.props.acceptFriend(changedUser);
-  // }
-
   render() {
 
     const userName = this.props.name;
@@ -40,10 +30,10 @@ class User extends Component {
                 <FontAwesome style={{ fontSize: 50, color: 'yellow' }}> {Icons.meh} </FontAwesome>
                 <Text style={style.userText}>{this.props.name}</Text>
               </View>
-                <Text style={style.userText}>
-                  {this.props.lvl}
-                  <FontAwesome style={{ fontSize: 20, color: 'yellow' }}> {Icons.award} </FontAwesome>
-                </Text>
+              <Text style={style.userText}>
+                {this.props.lvl}
+                <FontAwesome style={{ fontSize: 20, color: 'yellow' }}> {Icons.award} </FontAwesome>
+              </Text>
             </View>
           </TouchableOpacity>
           : <View style={style.userContainer}>
