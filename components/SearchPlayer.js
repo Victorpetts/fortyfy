@@ -7,10 +7,9 @@ import {
     View
 } from 'react-native';
 
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, Overlay } from 'react-native-elements';
 
 import { TourButton } from '../components/TourButton.js';
-import FriendsList from '../components/FriendsList.js';
 import style from '../assets/Style.js';
 
 
@@ -45,7 +44,7 @@ class SearchPlayer extends Component {
     };
 
     render() {
-    
+
         let filteredPlayers = this.props.users.filter(
             (player) => {
                 return player.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -53,7 +52,12 @@ class SearchPlayer extends Component {
         );
 
         return (
-            <ScrollView style={style.mainContainer}>
+            <Overlay
+            isVisible={this.state.isVisible}
+            onBackdropPress={() => this.setState({ isVisible: false })}
+            width="auto"
+            height="auto"
+            >
                 <View>
                     <SearchBar
                         placeholder="Search..."
@@ -65,39 +69,35 @@ class SearchPlayer extends Component {
                     />
                     {filteredPlayers.map((player) => {
                         return (
-                            <View
-                             key={player.name}
-                             style={{
-                                 flex: 1,
-                                 flexDirection: 'row',
-                                 justifyContent: 'space-between',
-                                 padding: 5
-                             }}
-                             >
-                             <View style={{
-                                 flexDirection: 'column'
-                             }}>
-                                <Text style={style.playerText}>
-                                    {player.name}
-                                </Text>
-                                <Text style={style.playerText}>
-                                    level: {player.level}
-                                </Text>
-                            </View>
-                                <TourButton
-                                buttonTitle={'ADD FRIEND'}
-                                />
-                            </View>
+                            this.state.search !== '' ? (
+                                <View
+                                    key={player.name}
+                                    style={{
+                                        flex: 1,
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        padding: 5
+                                    }}
+                                >
+                                    <View style={{
+                                        flexDirection: 'column'
+                                    }}>
+                                        <Text style={style.playerText}>
+                                            {player.name}
+                                        </Text>
+                                        <Text style={style.playerText}>
+                                            level: {player.level}
+                                        </Text>
+                                    </View>
+                                    <TourButton
+                                        buttonTitle={'ADD FRIEND'}
+                                    />
+                                </View>
+                            ) : (null)
                         )
                     })}
-                    <View style={style.buttonContainer}>
-                        <TourButton
-                            buttonTitle={'SEARCH PLAYER'}
-                            buttonFunc={this.enterSearch}
-                        />
-                    </View>
                 </View>
-            </ScrollView>
+            </Overlay>
         )
 
     }

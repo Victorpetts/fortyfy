@@ -20,3 +20,17 @@ export class TourButton extends React.Component {
       )
     }
 }
+
+export class DisabledButton extends React.Component {
+    render() {
+      return (
+          <View
+              accessibilityLabel="Disabled Button"
+              style={style.buttonDisabled}
+          >
+            <Text style={style.buttonTextDisabled}>{this.props.buttonTitle}</Text>
+          </View>
+      )
+    }
+}
+
