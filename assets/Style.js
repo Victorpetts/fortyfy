@@ -26,6 +26,16 @@ export default StyleSheet.create({
     width: 60,
     height: 60
   },
+  
+  buttonDisabled: {
+    borderColor: 'yellow',
+    borderWidth: 2,
+    padding: 20,
+    borderRadius: 5,
+    elevation: 4,
+    shadowOffset: {width: 4, height: 4},
+    width: 150
+  },
 
   iconClass: {
     paddingTop: 12,
@@ -35,6 +45,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center'
+  },
+
+  buttonTextDisabled: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white'
   },
 
   yellowHeaderText: {
