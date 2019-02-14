@@ -6,16 +6,26 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import { acceptFriend } from '../actions/index.js';
+import { acceptFriend, denyFriend } from '../actions/index.js';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import style from '../assets/Style.js';
 
 class User extends Component {
 
+  // changeAStat(findUser) {
+  //   let changedUser = {
+  //     ...findUser,
+  //     friend: true
+  //   }
+  //   console.log(changedUser);
+  //
+  //   this.props.acceptFriend(changedUser);
+  // }
+
   render() {
 
     const userName = this.props.name;
-    const findUser = this.props.users.find( thisUser => thisUser.name === userName );
+    // const findUser = this.props.users.find( thisUser => thisUser.name === userName );
 
     return (
       <View>
@@ -43,11 +53,12 @@ class User extends Component {
             </View>
             <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity
+                onPress={() => this.props.denyFriend(userName)}
               >
                 <FontAwesome style={{ fontSize: 45, color: 'yellow' }}> {Icons.windowClose} </FontAwesome>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => this.props.acceptFriend(findUser)}
+                onPress={() => this.props.acceptFriend(userName)}
               >
                 <FontAwesome style={{ fontSize: 45, color: 'yellow' }}> {Icons.checkSquare} </FontAwesome>
               </TouchableOpacity>
@@ -66,4 +77,4 @@ const mapStateToProps = (state) => {
    };
 };
 
-export default connect(mapStateToProps, { acceptFriend })(User);
+export default connect(mapStateToProps, { acceptFriend, denyFriend })(User);

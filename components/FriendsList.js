@@ -24,12 +24,12 @@ class FriendsList extends Component {
     return friendsList.map((user) => {
       return (
         <User
-        key={user.name}
-        name={user.name}
-        lvl={user.level}
-        friend={user.friend}
-        navigation={this.props.navigation}
-      />
+          key={user.name}
+          name={user.name}
+          lvl={user.level}
+          friend={user.friend}
+          navigation={this.props.navigation}
+        />
       )
     })
 
@@ -46,12 +46,12 @@ class FriendsList extends Component {
     return friendsList.map((user) => {
       return (
         <User
-        key={user.name}
-        name={user.name}
-        lvl={user.level}
-        friend={user.friend}
-        navigation={this.props.navigation}
-      />
+          key={user.name}
+          name={user.name}
+          lvl={user.level}
+          friend={user.friend}
+          navigation={this.props.navigation}
+        />
       )
     })
   }

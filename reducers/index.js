@@ -29,7 +29,7 @@ const initialState = {
 const toursReducer = (oldArr = initialState.toursArr, action) => {
 
   switch (action.type) {
-    case  'TOURNAMENT_CREATED':
+    case 'TOURNAMENT_CREATED':
       let newArr = [...oldArr, action.payload]
       return newArr;
 
@@ -41,7 +41,7 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
 const particReducer = (oldArr = initialState.particArr, action) => {
 
   switch (action.type) {
-    case  'PLAYER_ADDED':
+    case 'PLAYER_ADDED':
       let newArr = [...oldArr, action.payload]
       return newArr;
 
@@ -53,14 +53,33 @@ const particReducer = (oldArr = initialState.particArr, action) => {
 const usersReducer = (oldArr = initialState.usersArr, action) => {
 
   switch (action.type) {
-    case  'FRIEND_ACCEPTED':
-      console.log(action.payload.friend);
-      return oldArr;
+    case 'FRIEND_ACCEPTED':
+      return oldArr.map((item, index) => {
+        if(item.name === action.payload) {
+          return {
+            ...item,
+            friend: true
+          }
+        }
+        return item;
+      });
 
-    default:
-      return oldArr;
+    case 'FRIEND_DENIED':
+      return oldArr.map((item, index) => {
+        if(item.name === action.payload) {
+          return {
+            ...item,
+            friend: ''
+          }
+        }
+        return item;
+      });
+
+  default:
+    return oldArr;
   }
 };
+
 
 export default combineReducers ({
   tours: toursReducer,

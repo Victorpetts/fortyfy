@@ -18,3 +18,10 @@ export const acceptFriend = user => {
     payload: user
   };
 };
+
+export const denyFriend = user => {
+  return {
+    type: 'FRIEND_DENIED',
+    payload: user
+  };
+};
