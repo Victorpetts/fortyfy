@@ -91,7 +91,7 @@ class UsersScreen extends Component {
                   />
                   {filteredPlayers.map((player) => {
                       return (
-                          this.state.search !== '' ? (
+                          this.state.search !== '' && (
                               <ScrollView
                                   key={player.name}
                                   contentContainerStyle={{
@@ -122,7 +122,7 @@ class UsersScreen extends Component {
                                     />
                                   )}
                               </ScrollView>
-                          ) : (null)
+                          )
                       )
                   })}
               </View>
