@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 class FinishedTour extends Component {
 
@@ -49,7 +49,7 @@ class FinishedTour extends Component {
             padding: '5%'
           }}>
             <Text style={style.yellowHeaderText}>{reverseArray[0].points}</Text>
-            <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+            <FontAwesome name="file-photo-o" size={75} color="white" />
           </View>
           <View style={{
             flexDirection: 'row',
@@ -61,14 +61,14 @@ class FinishedTour extends Component {
                 alignItems: 'center'
             }}>
               <Text style={style.yellowHeaderText}>{reverseArray[1].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
             <View style={{
               flexDirection: 'column',
               alignItems: 'center'
             }}>
               <Text style={style.yellowHeaderText}>{reverseArray[2].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
           </View>
           <View style={{
@@ -81,21 +81,21 @@ class FinishedTour extends Component {
                 alignItems: 'center'
             }}>
               <Text style={style.yellowHeaderText}>{reverseArray[3].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
             <View style={{
               flexDirection: 'column',
               alignItems: 'center'
             }}>
               <Text style={style.yellowHeaderText}>{reverseArray[4].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
             <View style={{
               flexDirection: 'column',
               alignItems: 'center'
             }}>
               <Text style={style.yellowHeaderText}>{reverseArray[5].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
           </View>
         </ScrollView>

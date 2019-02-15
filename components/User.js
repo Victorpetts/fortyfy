@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { acceptFriend, denyFriend } from '../actions/index.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome, Feather } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class User extends Component {
@@ -27,30 +27,30 @@ class User extends Component {
           >
             <View style={style.userContainer}>
               <View style={{ flexDirection: 'row' }}>
-                <FontAwesome style={{ fontSize: 50, color: 'yellow' }}> {Icons.meh} </FontAwesome>
+              <FontAwesome name="meh-o" size={50} color="yellow" style={{ paddingRight: '5%' }} />
                 <Text style={style.userText}>{this.props.name}</Text>
               </View>
               <Text style={style.userText}>
                 {this.props.lvl}
-                <FontAwesome style={{ fontSize: 20, color: 'yellow' }}> {Icons.award} </FontAwesome>
+                <Feather name="award" size={20} color="yellow" />
               </Text>
             </View>
           </TouchableOpacity>
           : <View style={style.userContainer}>
             <View style={{ flexDirection: 'row' }}>
-              <FontAwesome style={{ fontSize: 50, color: 'yellow' }}> {Icons.meh} </FontAwesome>
+            <FontAwesome name="meh-o" size={50} color="yellow" style={{ paddingRight: '5%' }} />
               <Text style={style.userText}>{this.props.name}</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity
                 onPress={() => this.props.denyFriend(userName)}
               >
-                <FontAwesome style={{ fontSize: 45, color: 'yellow' }}> {Icons.windowClose} </FontAwesome>
+                <FontAwesome name="minus-square" size={45} color="yellow" style={{ paddingRight: '5%' }} />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => this.props.acceptFriend(userName)}
               >
-                <FontAwesome style={{ fontSize: 45, color: 'yellow' }}> {Icons.checkSquare} </FontAwesome>
+                <FontAwesome name="check-square" size={45} color="yellow" />
               </TouchableOpacity>
             </View>
           </View>

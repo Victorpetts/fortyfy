@@ -21,15 +21,15 @@ export default class NewsScreen extends React.Component {
   static navigationOptions = {
     title: 'News',
     headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
       backgroundColor: 'black',
-      height: 90,
-      borderBottomWidth: 4,
-      borderColor: 'yellow'
+      height: 90
     },
     headerTitleStyle: {
       color: 'yellow',
-      fontSize: 34,
-      fontFamily: 'sans-serif'
+      fontSize: 34
     }
   };
 

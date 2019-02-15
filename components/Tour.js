@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 class Tour extends Component {
 
@@ -33,7 +33,7 @@ class Tour extends Component {
         {numberOfPartic} / {this.props.players}
         </Text>
         <View style={style.iconClass}>
-        <FontAwesome style={{ fontSize: 22, color: 'black', paddingLeft: '2%' }}>{Icons.userCircle}</FontAwesome>
+        <FontAwesome name="user-circle" size={22} color="black" style={{ paddingLeft: '2%' }} />
         </View>
       </View>
     </TouchableOpacity>

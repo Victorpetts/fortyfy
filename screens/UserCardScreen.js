@@ -7,7 +7,6 @@ import {
     StatusBar
 } from 'react-native';
 
-import FontAwesome, { Icons } from 'react-native-fontawesome';
 import style from '../assets/Style.js';
 
 class userCardScreen extends Component {

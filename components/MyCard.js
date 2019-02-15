@@ -5,7 +5,7 @@ import {
     Text
 } from 'react-native';
 
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class MyCard extends Component {
@@ -19,7 +19,7 @@ class MyCard extends Component {
                 alignItems: 'center',
                 paddingTop: '5%'
             }}>
-                <FontAwesome style={{ fontSize: 300, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                <FontAwesome name="file-photo-o" size={300} color="white" />
                 <Text style={style.yellowHeaderText}>Miranda's card</Text>
             </View>
         )

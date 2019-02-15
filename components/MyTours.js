@@ -8,7 +8,7 @@ import {
 import Tour from './Tour.js';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 
 class MyTours extends Component {
@@ -66,7 +66,7 @@ class MyTours extends Component {
           flexDirection: 'row',
           paddingLeft: '4%',
         }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessRook}</FontAwesome>
+          <MaterialCommunityIcons name="chess-rook" size={18} color="yellow" style={{ paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Ongoing</Text>
         </View>
         <ScrollView style={{ height: '100%' }}>
@@ -76,7 +76,7 @@ class MyTours extends Component {
           flexDirection: 'row',
           paddingLeft: '4%',
         }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessKing}</FontAwesome>
+          <MaterialCommunityIcons name="chess-king" size={18} color="yellow" style={{ paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Finished</Text>
         </View>
         <ScrollView style={{ height: '100%' }}>

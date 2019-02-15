@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 export class TourButton extends React.Component {
     render() {
@@ -51,7 +51,7 @@ export class RoundButton extends React.Component {
             accessibilityLabel="A button"
             style={style.roundButton}
           >
-            <FontAwesome style={{ fontSize: 30, color: 'black', textAlign: 'center', marginTop: 12 }}>{Icons.userCircle}</FontAwesome>
+            <FontAwesome name="user-circle" size={30} color="black" style={{ textAlign: 'center', marginTop: 15 }} />
           </TouchableOpacity>
         }
           <TouchableOpacity
@@ -59,7 +59,7 @@ export class RoundButton extends React.Component {
             accessibilityLabel="A button"
             style={style.roundButton}
           >
-            <FontAwesome style={{ fontSize: 35, color: 'black', textAlign: 'center', marginTop: 12 }}>{Icons.plus}</FontAwesome>
+            <FontAwesome name="plus" size={35} color="black" style={{ textAlign: 'center', marginTop: 15 }} />
           </TouchableOpacity>
         </View>
       )

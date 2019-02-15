@@ -11,7 +11,7 @@ import CardCollection from '../components/CardCollection.js';
 import MyCard from '../components/MyCard.js';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 
 class ProfileScreen extends Component {
@@ -24,23 +24,24 @@ class ProfileScreen extends Component {
   static navigationOptions = {
     title: 'Profile',
     headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
       backgroundColor: 'black',
       height: 90
     },
     headerTitleStyle: {
       color: 'yellow',
-      fontSize: 34,
-      fontFamily: 'sans-serif'
+      fontSize: 34
     },
     headerRight: (
       <TouchableOpacity>
-        <FontAwesome style={{
-          fontSize: 26,
-          color: 'yellow',
-          marginRight: 20
-        }}>
-          {Icons.cog}
-        </FontAwesome>
+        <FontAwesome
+        name="cog"
+        size={26}
+        color='yellow'
+        style={{marginRight: 20}}
+         />
       </TouchableOpacity>
     )
   };

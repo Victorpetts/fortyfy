@@ -8,7 +8,7 @@ import {
 
 import User from './User.js';
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 
 class FriendsList extends Component {
@@ -65,9 +65,9 @@ class FriendsList extends Component {
 
         <View style={{
           flexDirection: 'row',
-          paddingLeft: '4%',
+          paddingLeft: '2%',
         }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessPawn}</FontAwesome>
+          <MaterialCommunityIcons name="chess-pawn" size={18} color="yellow" style={{ fontSize: 18, paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Friend Requests</Text>
         </View>
 
@@ -84,14 +84,14 @@ class FriendsList extends Component {
             flexDirection: 'row',
             paddingLeft: '2%',
           }}>
-            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginRight: '5%' }}>{Icons.userCircle}</FontAwesome>
+            <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
             <Text style={style.smallText}>Friends</Text>
           </View>
           <View style={{
             flexDirection: 'row'
           }}>
             <Text style={style.smallText}>Level</Text>
-            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginLeft: '5%' }}>{Icons.gamepad}</FontAwesome>
+            <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
           </View>
         </View>
 

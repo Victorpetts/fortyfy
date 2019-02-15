@@ -5,8 +5,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class CardCollection extends Component {
@@ -24,7 +23,7 @@ class CardCollection extends Component {
                     })}
                     style={style.indvCardContainer}
                     >
-                    <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+                    <FontAwesome name="file-photo-o" size={90} color="white" />
                     <Text style={style.smallText}>{this.props.name}</Text>
                 </TouchableOpacity>
             </View>

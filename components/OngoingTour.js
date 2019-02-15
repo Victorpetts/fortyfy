@@ -9,7 +9,7 @@ import {
 import Participant from './Participant.js';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 class OngoingTour extends Component {
 
@@ -61,11 +61,11 @@ class OngoingTour extends Component {
     return (
       <View style={style.ongoingContainer}>
         <View style={style.titleRowContainer}>
-          <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleRight}</FontAwesome>
+        <FontAwesome name="angle-right" size={28} color="yellow" />
           <View style={{ }}>
             <Text style={style.yellowHeaderText}>{this.props.tourName}</Text>
           </View>
-          <FontAwesome style={{ fontSize: 28, color: 'yellow' }}>{Icons.angleLeft}</FontAwesome>
+          <FontAwesome name="angle-left" size={28} color="yellow" />
         </View>
         <Text style={style.headerText}>Win condition:</Text>
         <Text style={style.paragraphText}>{winconText}</Text>
@@ -77,14 +77,14 @@ class OngoingTour extends Component {
             flexDirection: 'row',
             paddingLeft: '2%',
           }}>
-            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginRight: '5%' }}>{Icons.userCircle}</FontAwesome>
+            <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
             <Text style={style.smallText}>Players</Text>
           </View>
           <View style={{
             flexDirection: 'row'
           }}>
             <Text style={style.smallText}>Matches</Text>
-            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginLeft: '5%' }}>{Icons.gamepad}</FontAwesome>
+            <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
           </View>
         </View>
         <ScrollView style={{ height: '100%' }}>

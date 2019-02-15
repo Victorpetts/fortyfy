@@ -6,7 +6,7 @@ import {
     ScrollView
 } from 'react-native';
 
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class Participant extends Component {
@@ -18,9 +18,7 @@ class Participant extends Component {
           {this.props.owner ?
             <Text style={style.itemText}>
                 {this.props.name} {' '}
-                <FontAwesome style={{ fontSize: 14 }}>
-                    {Icons.crown}
-                </FontAwesome>
+                <MaterialCommunityIcons name={'crown'} size={14} />
             </Text>
           :
             <Text style={style.itemText}>{this.props.name}</Text>
