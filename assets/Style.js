@@ -205,9 +205,8 @@ export default StyleSheet.create({
   buttonContainerCol: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '5%',
     width: '100%'
   },
 

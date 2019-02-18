@@ -12,6 +12,20 @@ export const addPlayer = partic => {
   };
 };
 
+export const selectPlayer = partic => {
+  return {
+    type: 'PLAYER_SELECTED',
+    payload: partic
+  };
+};
+
+export const confirmPlayer = partic => {
+  return {
+    type: 'PLAYER_CONFIRMED',
+    payload: partic
+  };
+};
+
 export const acceptFriend = user => {
   return {
     type: 'FRIEND_ACCEPTED',
