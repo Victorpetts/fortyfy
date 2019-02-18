@@ -202,6 +202,15 @@ export default StyleSheet.create({
     width: '100%'
   },
 
+  buttonContainerCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    padding: '5%',
+    width: '100%'
+  },
+
   titleContainer: {
     flexDirection: 'column',
     justifyContent: 'space-around',

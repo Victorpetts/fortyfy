@@ -11,6 +11,7 @@ import { Overlay } from 'react-native-elements';
 import { TourButton } from '../components/TourButton.js';
 import FinishedTour from '../components/FinishedTour.js';
 import OngoingTour from '../components/OngoingTour.js';
+import ManageTour from '../components/ManageTour.js';
 
 
 class TourIndvScreen extends Component {
@@ -55,39 +56,36 @@ class TourIndvScreen extends Component {
         }
         {this.state.isVisible && (
           <Overlay
-            height="auto"
-            isVisible={this.state.isVisible == true}
-            onBackdropPress={() => this.setState({ isVisible: false })}
-            overlayBackgroundColor={'black'}
-            overlayStyle={{
-              width: '90%',
+          height='auto'
+          isVisible={this.state.isVisible == true}
+          onBackdropPress={() => this.setState({ isVisible: false })}
+          overlayBackgroundColor={'black'}
+          overlayStyle={{
               borderColor: 'yellow',
               borderWidth: 2
-            }}
-          >
-            <View>
+          }}
+      >
+          <View>
               <ScrollView
-                contentContainerStyle={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                }}
-                style={{
-                  padding: 5
-                }}
+                  contentContainerStyle={{
+                      flexDirection: 'column',
+                      justifyContent: 'space-between'
+                  }}
+                  style={{
+                      padding: 5
+                  }}
               >
-                <View style={{
-                  flexDirection: 'column'
-                }}>
-                  <Text style={style.playerText}>
-                    Text
-                  </Text>
-                  <Text style={style.playerText}>
-                    Text
-                  </Text>
-                </View>
+                  <View style={style.buttonContainerCol}>
+                      <TourButton
+                      buttonTitle={'END TOURNAMENT'} />
+                      <TourButton
+                      buttonTitle={'REMOVE PLAYER'} />
+                      <TourButton
+                      buttonTitle={'PERMISSIONS'} />
+                      </View>
               </ScrollView>
-            </View>
-          </Overlay>
+          </View>
+      </Overlay>
         )}
       </ScrollView>
     )
