@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Image,
-  Platform,
   ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button
+  View
 } from 'react-native';
 
 import { TourButton } from '../components/TourButton.js';
@@ -43,38 +37,31 @@ export default class TournamentsScreen extends React.Component {
     }))
   }
 
-  // addTour = (newTour) => {
-  //   this.setState(prevState => ({
-  //     toggle: !prevState.toggle,
-  //     tours: [...prevState.tours, newTour]
-  //   }))
-  // }
-
   render() {
 
     return (
       <ScrollView style={style.mainContainer}>
-          {!this.state.toggle
-            ?
-            <View>
-              <MyTours
-                navigation={this.props.navigation}
-              />
-              <View style={style.buttonContainer}>
-                <TourButton
-                  buttonTitle={`CREATE TOURNAMENT`}
-                  buttonFunc={this.toggleTour}
-                />
-                <TourButton
-                  buttonTitle={'SEARCH TOURNAMENT'}
-                />
-              </View>
-            </View>
-            :
-            <CreateTour
-              buttonFunc={this.toggleTour}
+        {!this.state.toggle ?
+          <View>
+            <MyTours
+              navigation={this.props.navigation}
             />
-          }
+            <View style={style.buttonContainer}>
+              <TourButton
+                buttonTitle={`CREATE TOURNAMENT`}
+                buttonFunc={this.toggleTour}
+              />
+              <TourButton
+                buttonTitle={'SEARCH TOURNAMENT'}
+              />
+            </View>
+          </View>
+        :
+          <CreateTour
+            buttonFunc={this.toggleTour}
+            navigation={this.props.navigation}
+          />
+        }
       </ScrollView>
     )
   }

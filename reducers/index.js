@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 
 const initialState = {
   toursArr:[
-    { name: "Victors Turnering", players: "10", wincon: "1", totalMatches: "10", finished: false },
     { name: "Mirandas Turnering", players: "5", wincon: "2", totalMatches: "2", finished: true },
     { name: "Pinars Turnering", players: "5", wincon: "3", totalMatches: "5", finished: false },
+    { name: "Victors Turnering", players: "8", wincon: "1", totalMatches: "7", finished: false },
   ],
   particArr:[
     { name: "Victor", playedMatches: "2", points: "27"},
@@ -27,11 +27,10 @@ const initialState = {
 }
 
 const toursReducer = (oldArr = initialState.toursArr, action) => {
-
   switch (action.type) {
-    case 'TOURNAMENT_CREATED':
-      let newArr = [...oldArr, action.payload]
-      return newArr;
+    case'TOURNAMENT_CREATED':
+      let newToursArr = [...oldArr, action.payload]
+      return newToursArr;
 
     default:
       return oldArr;
