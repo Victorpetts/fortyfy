@@ -6,14 +6,26 @@ import {
     ScrollView
 } from 'react-native';
 
+import { CheckBox } from 'react-native-elements';
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class Participant extends Component {
 
+  state = {
+    checked: false
+  }
+
   render() {
     return (
       <View style={style.itemContainer}>
+      {this.props.checkBox === true &&
+      <CheckBox
+        checked={this.state.checked}
+        onPress={() => this.setState({checked: !this.state.checked})}
+      />
+      }
         <View style={{ flexDirection: 'row', flex: 1 }}>
           {this.props.owner ?
             <Text style={style.itemText}>

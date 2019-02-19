@@ -7,12 +7,12 @@ const initialState = {
     { name: "Victors Turnering", players: "8", wincon: "1", totalMatches: "7", finished: false },
   ],
   particArr:[
-    { name: "Victor", playedMatches: "2", points: "27"},
-    { name: "Miranda", playedMatches: "5", points: "13"},
-    { name: "Jesper", playedMatches: "1", points: "2"},
-    { name: "Robert", playedMatches: "2", points: "7"},
-    { name: "Pinar", playedMatches: "5", points: "99"},
-    { name: "Viktor", playedMatches: "1", points: "4"},
+    { name: "Victor", playedMatches: "2", points: "27", checkBox: false },
+    { name: "Miranda", playedMatches: "5", points: "13", checkBox: false },
+    { name: "Jesper", playedMatches: "1", points: "2", checkBox: false },
+    { name: "Robert", playedMatches: "2", points: "7", checkBox: false },
+    { name: "Pinar", playedMatches: "5", points: "99", checkBox: false },
+    { name: "Viktor", playedMatches: "1", points: "4", checkBox: false },
   ],
   usersArr:[
     { name: "Axel", level: "27", friend: true},
@@ -43,6 +43,24 @@ const particReducer = (oldArr = initialState.particArr, action) => {
     case 'PLAYER_ADDED':
       let newArr = [...oldArr, action.payload]
       return newArr;
+
+      case 'PLAYER_SELECTED':
+      return oldArr.map((item, index) => {
+          return {
+            ...item,
+            checkBox: true,
+          }
+
+      });
+
+      case 'PLAYER_CONFIRMED':
+      return oldArr.map((item, index) => {
+          return {
+            ...item,
+            checkBox: false,
+          }
+
+      });
 
     default:
       return oldArr;
