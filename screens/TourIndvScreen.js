@@ -23,10 +23,21 @@ class TourIndvScreen extends Component {
     buttonToggle: false
   }
 
-  static navigationOptions = {
-    header: null,
-    headerLeft: null,
-  };
+  static navigationOptions = ({ tourName }) => ({
+    title: this.props.tourName,
+    headerTintColor: 'white',
+    headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0,
+        backgroundColor: 'black',
+        height: 90
+    },
+    headerTitleStyle: {
+        color: 'yellow',
+        fontSize: 30
+    }
+  });
 
   toggleManage = () => {
     this.setState({
@@ -54,9 +65,7 @@ class TourIndvScreen extends Component {
     const numbPlayers = this.props.navigation.getParam('numbPlayers');
     const tourStatus = this.props.navigation.getParam('tourStatus');
     let partic = this.props.partic;
-
-
-
+ 
     return (
       <ScrollView style={style.mainContainer}>
 

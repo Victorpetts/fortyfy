@@ -13,14 +13,9 @@ import {
 
 import { TourButton } from '../components/TourButton.js';
 import MyTours from '../components/MyTours';
-import CreateTour from '../components/CreateTour.js';
 import style from '../assets/Style.js';
 
 export default class TournamentsScreen extends React.Component {
-
-  state = {
-    toggle: false
-  }
 
   static navigationOptions = {
     title: 'Tournaments',
@@ -37,12 +32,6 @@ export default class TournamentsScreen extends React.Component {
     }
   };
 
-  toggleTour = () => {
-    this.setState(prevState => ({
-      toggle: !prevState.toggle
-    }))
-  }
-
   // addTour = (newTour) => {
   //   this.setState(prevState => ({
   //     toggle: !prevState.toggle,
@@ -52,29 +41,24 @@ export default class TournamentsScreen extends React.Component {
 
   render() {
 
+    const { navigate } = this.props.navigation;
+
     return (
       <ScrollView style={style.mainContainer}>
-          {!this.state.toggle
-            ?
             <View>
               <MyTours
                 navigation={this.props.navigation}
               />
               <View style={style.buttonContainer}>
                 <TourButton
-                  buttonTitle={`CREATE TOURNAMENT`}
-                  buttonFunc={this.toggleTour}
+                  buttonTitle={'CREATE TOURNAMENT'}
+                  buttonFunc={() => navigate('TourCreate')}
                 />
                 <TourButton
                   buttonTitle={'SEARCH TOURNAMENT'}
                 />
               </View>
             </View>
-            :
-            <CreateTour
-              buttonFunc={this.toggleTour}
-            />
-          }
       </ScrollView>
     )
   }

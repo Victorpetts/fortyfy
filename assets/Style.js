@@ -1,5 +1,6 @@
 import {
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 import {
@@ -109,6 +110,12 @@ export default StyleSheet.create({
     marginVertical: 14,
   },
 
+  inputFieldText: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    color: 'white'
+   },
+
   itemNumber: {
     fontSize: 18,
     marginVertical: 10,
@@ -161,6 +168,13 @@ export default StyleSheet.create({
     borderBottomWidth: 2
   },
 
+  inputFieldContainer: {
+    width: '90%',
+    height: '100%',
+    marginLeft: '5%',
+    marginRight: '5%'
+  },
+
   userCard: {
     margin: 20,
     borderColor: 'white',
@@ -185,14 +199,8 @@ export default StyleSheet.create({
 
   container: {
     margin: 20,
-    borderRadius: 3,
     width: '90%',
     height: hp('54%')
-  },
-
-  ongoingContainer: {
-    margin: 20,
-    height: hp('70%')
   },
 
   buttonContainer: {
@@ -217,18 +225,22 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
 
-  titleRowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: '15%',
-    alignItems: 'center'
-  },
-
    inputField: {
      backgroundColor: 'white',
      borderRadius: 3,
      padding: 5,
-     fontSize: 16
+     fontSize: 16,
+     marginVertical: 10
+   },
+
+   pickerField: {
+    ...Platform.select({
+      android: {
+        backgroundColor: 'white',
+        borderRadius: 3,
+        marginVertical: 10
+      }
+    })
    },
 
    tabBackground: {

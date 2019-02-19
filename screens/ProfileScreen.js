@@ -19,9 +19,9 @@ class ProfileScreen extends Component {
   state = {
     toggleProfile: true,
     toggleCards: false
-  }
+  };
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Profile',
     headerStyle: {
       elevation: 0,
@@ -35,7 +35,9 @@ class ProfileScreen extends Component {
       fontSize: 34
     },
     headerRight: (
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress={() => navigation.navigate('ProfileSettings')}
+      >
         <FontAwesome
         name="cog"
         size={26}
@@ -44,7 +46,7 @@ class ProfileScreen extends Component {
          />
       </TouchableOpacity>
     )
-  };
+  });
 
   toggleProfile = () => {
     this.setState({
@@ -78,12 +80,12 @@ class ProfileScreen extends Component {
         navigation={this.props.navigation}
       />
       )
-    })
+    });
 
-  }
+  };
 
   render() {
-
+    
     return (
       <View style={{
         height: '100%'
@@ -176,8 +178,8 @@ class ProfileScreen extends Component {
         ) : null}
       </View>
     )
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => {
   return { users: state.users };

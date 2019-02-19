@@ -9,10 +9,15 @@ import TourIndvScreen from '../screens/TourIndvScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import UserCardScreen from '../screens/UserCardScreen';
+import ProfileSettingScreen from '../screens/ProfileSettingScreen';
+import CreateTourScreen from '../screens/CreateTourScreen';
+import FinishedScreen from '../screens/FinishedScreen';
+import OngoingScreen from '../screens/OngoingScreen';
 
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
-  IndvUserCard: UserCardScreen
+  IndvUserCard: UserCardScreen,
+  ProfileSettings: ProfileSettingScreen
 });
 
 ProfileStack.navigationOptions = {
@@ -55,7 +60,10 @@ UsersStack.navigationOptions = {
 
 const TournamentsStack = createStackNavigator({
   Tournaments: TournamentsScreen,
-  TourIndv: TourIndvScreen
+  TourIndv: TourIndvScreen,
+  TourCreate: CreateTourScreen,
+  Ongoing: OngoingScreen,
+  Finished: FinishedScreen
 });
 
 TournamentsStack.navigationOptions = {

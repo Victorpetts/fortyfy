@@ -18,26 +18,56 @@ class Tour extends Component {
     const tourName = this.props.name;
     const numbPlayers = this.props.players;
     const tourStatus = this.props.finished;
+    const { navigate } = this.props.navigation;
+    const totalMatches = this.props.totalMatches;
+    const wincon = this.props.wincon;
 
     return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('TourIndv',{
-          tourName: tourName,
-          numbPlayers: numbPlayers,
-          tourStatus: tourStatus
-        })}
-      >
-      <View style={style.itemContainer}>
-        <Text style={style.itemText}>{this.props.name}</Text>
-        <Text style={style.itemNumber}>
-        {numberOfPartic} / {this.props.players}
-        </Text>
-        <View style={style.iconClass}>
-        <FontAwesome name="user-circle" size={22} color="black" style={{ paddingLeft: '2%' }} />
-        </View>
-      </View>
-    </TouchableOpacity>
-  )}
+      tourStatus === false ? (
+        <TouchableOpacity
+          onPress={() => navigate('Ongoing', {
+            tourName: tourName,
+            numbPlayers: numbPlayers,
+            tourStatus: tourStatus,
+            totalMatches: totalMatches,
+            wincon: wincon
+          })}
+        >
+
+          <View style={style.itemContainer}>
+            <Text style={style.itemText}>{this.props.name}</Text>
+            <Text style={style.itemNumber}>
+              {numberOfPartic} / {this.props.players}
+            </Text>
+            <View style={style.iconClass}>
+              <FontAwesome name="user-circle" size={22} color="black" style={{ paddingLeft: '2%' }} />
+            </View>
+          </View>
+        </TouchableOpacity>
+      ) : (
+          <TouchableOpacity
+            onPress={() => navigate('Finished', {
+              tourName: tourName,
+              numbPlayers: numbPlayers,
+              tourStatus: tourStatus,
+              totalMatches: totalMatches,
+              wincon: wincon
+            })}
+          >
+
+            <View style={style.itemContainer}>
+              <Text style={style.itemText}>{this.props.name}</Text>
+              <Text style={style.itemNumber}>
+                {numberOfPartic} / {this.props.players}
+              </Text>
+              <View style={style.iconClass}>
+                <FontAwesome name="user-circle" size={22} color="black" style={{ paddingLeft: '2%' }} />
+              </View>
+            </View>
+          </TouchableOpacity>
+        )
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
