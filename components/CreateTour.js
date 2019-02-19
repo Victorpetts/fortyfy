@@ -11,7 +11,7 @@ import {
 
 import style from '../assets/Style.js';
 import { TourButton } from './TourButton.js';
-import { addTour } from '../services/AddTourService';
+// import { addTour } from '../services/AddTourService';
 
 class CreateTour extends Component {
 
@@ -22,30 +22,37 @@ class CreateTour extends Component {
     totalMatches: ''
   }
 
-  // createTour = () => {
-  //   if (this.state.name !== '') {
-  //     let newTour = {
-  //       'name': this.state.name,
-  //       'players': this.state.players,
-  //       'wincon': this.state.wincon,
-  //       'totalMatches': this.state.totalMatches
-  //     }
-  //     this.props.createTour(newTour)
-  //     this.props.buttonFunc()
-  //   }
+  createTour = () => {
+    if (this.state.name !== '') {
+      let newTour = {
+        'name': this.state.name,
+        'players': this.state.players,
+        'wincon': this.state.wincon,
+        'totalMatches': this.state.totalMatches,
+        'finished': false
+      }
+      this.props.createTour(newTour);
+      this.props.buttonFunc();
+    }
+  }
+
+  // handleSubmit = () => {
+  //   addTour(this.state.name, this.state.players, this.state.wincon, this.state.totalMatches);
+  //   this.props.buttonFunc();
   // }
 
-  handleSubmit = () => {
-    addTour(this.state.name, this.state.players, this.state.wincon, this.state.totalMatches);
-    this.props.buttonFunc();
+  bla = isFocused => {
+    console.log(isFocused);
   }
 
   render() {
 
     const { name, players, wincon, totalMatches } = this.state
+    let isFocused = this.props.navigation.isFocused();
 
     return (
       <View style={style.mainContainer}>
+        {this.bla(isFocused)}
         <View style={style.container}>
           <Text style={style.headerText}>Tournament name: </Text>
           <TextInput
@@ -101,14 +108,13 @@ class CreateTour extends Component {
           />
           <TourButton
             buttonTitle={'CREATE TOURNAMENT'}
-            buttonFunc={this.handleSubmit}
+            buttonFunc={this.createTour}
           />
         </View>
       </View>
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return { tours: state.tours };

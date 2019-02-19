@@ -1,14 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  Image,
-  Platform,
   ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button
+  View
 } from 'react-native';
 
 import { TourButton } from '../components/TourButton.js';
@@ -32,10 +26,9 @@ export default class TournamentsScreen extends React.Component {
     }
   };
 
-  // addTour = (newTour) => {
+  // toggleTour = () => {
   //   this.setState(prevState => ({
-  //     toggle: !prevState.toggle,
-  //     tours: [...prevState.tours, newTour]
+  //     toggle: !prevState.toggle
   //   }))
   // }
 

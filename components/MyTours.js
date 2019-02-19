@@ -31,7 +31,7 @@ class MyTours extends Component {
         totalMatches={tour.totalMatches}
         navigation={this.props.navigation}
         finished={tour.finished}
-      />
+        />
       )
     })
   }
@@ -54,7 +54,7 @@ class MyTours extends Component {
         totalMatches={tour.totalMatches}
         navigation={this.props.navigation}
         finished={tour.finished}
-      />
+        />
       )
     })
   }

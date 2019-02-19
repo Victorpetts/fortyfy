@@ -44,19 +44,26 @@ class UsersScreen extends Component {
 
   updateSearch = search => {
     this.setState({ search });
-};
-  
+  };
+
+  bla = isFocused => {
+    console.log(isFocused);
+  }
+
   render() {
 
     let filteredPlayers = this.props.users.filter(
       (player) => {
-          return player.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+        return player.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
-  );
-    
+    );
+
+    let isFocused = this.props.navigation.isFocused();
+
     return (
       <ScrollView style={style.mainContainer}>
         <View>
+          {this.bla(isFocused)}
           <FriendsList
             navigation={this.props.navigation}
           />
@@ -70,62 +77,62 @@ class UsersScreen extends Component {
         </View>
         {this.state.isVisible && (
           <Overlay
-          height="auto"
-          isVisible={this.state.isVisible == true}
-          onBackdropPress={() => this.setState({ isVisible: false })}
-          overlayBackgroundColor={'black'}
-          overlayStyle={{
-            width: '90%',
-            borderColor: 'yellow',
-            borderWidth: 2
-          }}
+            height='auto'
+            isVisible={this.state.isVisible == true}
+            onBackdropPress={() => this.setState({ isVisible: false })}
+            overlayBackgroundColor={'black'}
+            overlayStyle={{
+              width: '90%',
+              borderColor: 'yellow',
+              borderWidth: 2
+            }}
           >
-              <View>
-                  <SearchBar
-                      placeholder="Search..."
-                      onChangeText={this.updateSearch}
-                      value={this.state.search}
-                      containerStyle={{
-                          backgroundColor: 'transparent'
+            <View>
+              <SearchBar
+                placeholder="Search..."
+                onChangeText={this.updateSearch}
+                value={this.state.search}
+                containerStyle={{
+                  backgroundColor: 'transparent'
+                }}
+              />
+              {filteredPlayers.map((player) => {
+                return (
+                  this.state.search !== '' && (
+                    <ScrollView
+                      key={player.name}
+                      contentContainerStyle={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between'
                       }}
-                  />
-                  {filteredPlayers.map((player) => {
-                      return (
-                          this.state.search !== '' && (
-                              <ScrollView
-                                  key={player.name}
-                                  contentContainerStyle={{
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between'
-                                  }}
-                                  style={{
-                                    padding: 5
-                                  }}
-                              >
-                                  <View style={{
-                                      flexDirection: 'column'
-                                  }}>
-                                      <Text style={style.playerText}>
-                                          {player.name}
-                                      </Text>
-                                      <Text style={style.playerText}>
-                                          level: {player.level}
-                                      </Text>
-                                  </View>
-                                  {player.friend === false ? (
-                                  <TourButton
-                                      buttonTitle={'ADD FRIEND'}
-                                  />
-                                  ) : (
-                                    <DisabledButton
-                                    buttonTitle={'FRIEND'}
-                                    />
-                                  )}
-                              </ScrollView>
-                          )
-                      )
-                  })}
-              </View>
+                      style={{
+                        padding: 5
+                      }}
+                    >
+                      <View style={{
+                        flexDirection: 'column'
+                      }}>
+                        <Text style={style.playerText}>
+                          {player.name}
+                        </Text>
+                        <Text style={style.playerText}>
+                          level: {player.level}
+                        </Text>
+                      </View>
+                      {player.friend === false ? (
+                        <TourButton
+                          buttonTitle={'ADD FRIEND'}
+                        />
+                      ) : (
+                        <DisabledButton
+                          buttonTitle={'FRIEND'}
+                        />
+                      )}
+                    </ScrollView>
+                  )
+                )
+              })}
+            </View>
           </Overlay>
         )}
       </ScrollView>
@@ -135,7 +142,7 @@ class UsersScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     tours: state.tours,
     users: state.users
   };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import { connect } from 'react-redux';
 import {
     View,
@@ -16,11 +16,11 @@ class OngoingTour extends Component {
     headerText: ''
   }
 
-  componentDidMount() {
-    firebase.database().ref('tours/name').on('value', snapshot => {
-        this.setState({ headerText: snapshot.val() })
-    });
-  }
+  // componentDidMount() {
+  //   firebase.database().ref('tours/name').on('value', snapshot => {
+  //       this.setState({ headerText: snapshot.val() })
+  //   });
+  // }
 
   mapPartic(totalMatches) {
     return this.props.partic.map((player) => {
@@ -54,7 +54,7 @@ class OngoingTour extends Component {
         winconText = 'Most placements in top 5';
         break
       default:
-        winconText = '';
+        winconText = 'Most accumulated kills';
         break
     }
 
