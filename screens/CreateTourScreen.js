@@ -42,10 +42,19 @@ class CreateTourScreen extends Component {
     }
 };
 
-  handleSubmit = ({ navigation }) => {
-    addTour(this.state.name, this.state.players, this.state.wincon, this.state.totalMatches);
+createTour = () => {
+  if (this.state.name !== '') {
+    let newTour = {
+      'name': this.state.name,
+      'players': this.state.players,
+      'wincon': this.state.wincon,
+      'totalMatches': this.state.totalMatches,
+      'finished': false
+    }
+    this.props.createTour(newTour);
     this.props.navigation.navigate('Tournaments');
-  };
+  }
+}
 
   render() {
 
@@ -167,7 +176,7 @@ class CreateTourScreen extends Component {
         }}>
           <TourButton
             buttonTitle={'CREATE TOURNAMENT'}
-            buttonFunc={this.handleSubmit}
+            buttonFunc={this.createTour}
           />
         </View>
         </ScrollView>
