@@ -32,6 +32,17 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
       let newToursArr = [...oldArr, action.payload]
       return newToursArr;
 
+      case 'TOURNAMENT_ENDED':
+      return oldArr.map((item, index) => {
+        if(item.name === action.payload) {
+          return {
+            ...item,
+            finished: true
+          }
+        }
+        return item;
+      });
+
     default:
       return oldArr;
   }
@@ -53,6 +64,10 @@ const particReducer = (oldArr = initialState.particArr, action) => {
 
       });
 
+      case 'PLAYER_DELETED':
+      let filteredArr = oldArr.filter(player => player !== partic.checkBox.value);
+      return filteredArr;
+
       case 'PLAYER_CONFIRMED':
       return oldArr.map((item, index) => {
           return {
@@ -61,6 +76,8 @@ const particReducer = (oldArr = initialState.particArr, action) => {
           }
 
       });
+
+
 
     default:
       return oldArr;

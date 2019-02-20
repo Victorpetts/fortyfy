@@ -69,7 +69,7 @@ class MyTours extends Component {
           <MaterialCommunityIcons name="chess-rook" size={18} color="yellow" style={{ paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Ongoing</Text>
         </View>
-        <ScrollView style={{ height: '100%' }}>
+        <ScrollView>
           {this.mapOngoingTours()}
         </ScrollView>
         <View style={{
@@ -79,7 +79,7 @@ class MyTours extends Component {
           <MaterialCommunityIcons name="chess-king" size={18} color="yellow" style={{ paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Finished</Text>
         </View>
-        <ScrollView style={{ height: '100%' }}>
+        <ScrollView>
           {this.mapFinishedTours()}
         </ScrollView>
       </View>

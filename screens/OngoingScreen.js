@@ -11,7 +11,7 @@ import {
 import { Overlay } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { selectPlayer, confirmPlayer } from '../actions/index.js';
+import { selectPlayer, confirmPlayer, endTournament } from '../actions/index.js';
 import style from '../assets/Style.js';
 import { TourButton } from '../components/TourButton.js';
 import Participant from '../components/Participant.js';
@@ -20,7 +20,8 @@ class OngoingScreen extends Component {
 
     state = {
         isVisible: false,
-        buttonToggle: false
+        buttonToggle: false,
+
     }
 
     static navigationOptions = ({ navigation }) => ({
@@ -48,6 +49,7 @@ class OngoingScreen extends Component {
                     playedMatches={player.playedMatches}
                     totalMatches={totalMatches}
                     checkBox={player.checkBox}
+
                 />
             );
         });
@@ -67,12 +69,27 @@ class OngoingScreen extends Component {
         })
     };
 
+    deletePlayer = (partic) => {
+        console.log('clicked!');
+        selectPlayer(partic);
+        this.props.deletePlayer(partic);
+    }
+
     confirmPlayer = (partic) => {
         this.props.confirmPlayer(partic);
         this.setState({
             buttonToggle: false
         })
+
+
+
     };
+
+    endTournament = (tour) => {
+        this.props.endTournament(tour);
+        this.props.navigation.navigate('Tournaments');
+    };
+
 
     render() {
 
@@ -80,6 +97,7 @@ class OngoingScreen extends Component {
         const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
         const totalMatches = filter.totalMatches;
         let partic = this.props.navigation.getParam('partic');
+        let tours
         let winconText;
 
         switch (filter.wincon) {
@@ -125,7 +143,9 @@ class OngoingScreen extends Component {
                 {this.state.buttonToggle === true ?
                     <View style={style.buttonContainer}>
                         <TourButton
-                            buttonTitle={'GO BACK'} />
+                            buttonTitle={'CANCEL'}
+                            buttonFunc={() => this.confirmPlayer(partic)}
+                        />
                         <TourButton buttonTitle={'CONFIRM'}
                             buttonFunc={() => this.confirmPlayer(partic)}
                         />
@@ -161,10 +181,13 @@ class OngoingScreen extends Component {
                             >
                                 <View style={style.buttonContainerCol}>
                                     <TourButton
-                                        buttonTitle={'END TOURNAMENT'} />
+                                        buttonTitle={'END TOURNAMENT'}
+                                        buttonFunc={() => this.endTournament(thisToursName)}
+                                    />
                                     <TourButton
                                         buttonTitle={'DELETE PLAYER'}
-                                    />
+                                        buttonFunc={() => this.selectPlayer(partic)}
+                                        />
                                     <TourButton
                                         buttonTitle={'PERMISSIONS'}
                                         buttonFunc={() => this.selectPlayer(partic)}
@@ -187,4 +210,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { selectPlayer, confirmPlayer })(OngoingScreen);
+export default connect(mapStateToProps, { selectPlayer, confirmPlayer, endTournament })(OngoingScreen);

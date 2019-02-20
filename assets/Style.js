@@ -16,7 +16,8 @@ export default StyleSheet.create({
     borderRadius: 5,
     elevation: 4,
     shadowOffset: {width: 4, height: 4},
-    width: 150
+    width: 150,
+    marginTop: 10
   },
 
   roundButton: {

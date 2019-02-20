@@ -17,13 +17,21 @@ class Participant extends Component {
     checked: false
   }
 
+  blaFunc = () => {
+    this.setState(prevState =>({
+      checked: !prevState.checked
+    }))
+    this.blaBla(this.props.name);
+  }
+
   render() {
+
     return (
       <View style={style.itemContainer}>
       {this.props.checkBox === true &&
       <CheckBox
         checked={this.state.checked}
-        onPress={() => this.setState({checked: !this.state.checked})}
+        onPress={this.blaFunc}
       />
       }
         <View style={{ flexDirection: 'row', flex: 1 }}>

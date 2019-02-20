@@ -5,6 +5,13 @@ export const createTour = newTour => {
   };
 };
 
+export const endTournament = tour => {
+  return {
+    type: 'TOURNAMENT_ENDED',
+    payload: tour
+  };
+};
+
 export const addPlayer = partic => {
   return {
     type: 'PLAYER_ADDED',
@@ -22,6 +29,13 @@ export const selectPlayer = partic => {
 export const confirmPlayer = partic => {
   return {
     type: 'PLAYER_CONFIRMED',
+    payload: partic
+  };
+};
+
+export const deletePlayer = partic => {
+  return {
+    type: 'PLAYER_DELETED',
     payload: partic
   };
 };

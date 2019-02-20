@@ -7,6 +7,11 @@ import {
     StatusBar
 } from 'react-native';
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
 import style from '../assets/Style.js';
 
 class userCardScreen extends Component {
@@ -30,8 +35,7 @@ class userCardScreen extends Component {
 
     return (
       <View>
-        <ImageBackground source={require('../assets/images/sings.jpg')} style={{width: '100%', height: '100%'}}>
-          <View style={style.cardFrame} />
+        <ImageBackground source={require('../assets/images/playercard-gold-frame.png')} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
       </View>
