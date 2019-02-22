@@ -51,10 +51,9 @@ class UsersScreen extends Component {
     console.log(isFocused);
   }
 
-  showPlayerCard = (player) => {
-    this.props.navigation.navigate('UserCard',{
-      userName: player.name
-    })
+  goToPlayerProfile = (player) => {
+    this.props.navigation.navigate('PlayerProfile', {
+      tourName: player.name })
           this.setState({
             isVisible: false
           })
@@ -125,7 +124,7 @@ class UsersScreen extends Component {
                       }}
                     >
                     <TouchableOpacity
-                    onPress={() => this.showPlayerCard(player)}
+                    onPress={() => this.goToPlayerProfile(player)}
                     >
                       <View style={{
                         flexDirection: 'column'

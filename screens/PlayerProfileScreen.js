@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
-import MyCardProfile from '../components/MyCardProfile.js';
+import PlayerCardProfile from '../components/PlayerCardProfile.js';
 
 import style from '../assets/Style.js';
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 
-class ProfileScreen extends Component {
+class PlayerProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
@@ -22,7 +22,8 @@ class ProfileScreen extends Component {
   };
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'Profile',
+    title: navigation.getParam('tourName'),
+    headerTintColor: 'white',
     headerStyle: {
       elevation: 0,
       shadowOpacity: 0,
@@ -35,11 +36,9 @@ class ProfileScreen extends Component {
       fontSize: 34
     },
     headerRight: (
-      <TouchableOpacity
-      onPress={() => navigation.navigate('ProfileSettings')}
-      >
-        <FontAwesome
-        name="cog"
+      <TouchableOpacity>
+        <Ionicons
+        name="md-person-add"
         size={26}
         color='yellow'
         style={{marginRight: 20}}
@@ -107,7 +106,7 @@ class ProfileScreen extends Component {
                   <Text
                     style={style.enabledTabText}
                   >
-                    My Card
+                    Card
                     </Text>
                 </TouchableOpacity>
               </View>
@@ -129,7 +128,7 @@ class ProfileScreen extends Component {
             </View>
 
             <View style={style.mainContainer}>
-              <MyCardProfile
+              <PlayerCardProfile
               navigation={this.props.navigation}
               />
             </View>
@@ -150,7 +149,7 @@ class ProfileScreen extends Component {
                   <Text
                     style={style.disabledTabText}
                   >
-                    My Card
+                    Card
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -187,4 +186,4 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 };
 
-export default connect(mapStateToProps, null)(ProfileScreen);
+export default connect(mapStateToProps, null)(PlayerProfileScreen);
