@@ -101,7 +101,7 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 18,
     margin: 10,
-    // minWidth: 150
+    flex: 1
   },
 
   userText: {
@@ -120,7 +120,6 @@ export default StyleSheet.create({
   itemNumber: {
     fontSize: 18,
     marginVertical: 10,
-    marginLeft: 60,
     marginRight: 5
   },
 
@@ -156,7 +155,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     elevation: 2,
     backgroundColor: 'white',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-between'
   },
 
   userContainer: {

@@ -128,9 +128,11 @@ class ProfileScreen extends Component {
               </View>
             </View>
 
-            <ScrollView style={style.mainContainer}>
-              <MyCard />
-            </ScrollView>
+            <View style={style.mainContainer}>
+              <MyCard
+              navigation={this.props.navigation}
+              />
+            </View>
           </View>
         ) : this.state.toggleCards ? (
           <View>
@@ -169,7 +171,7 @@ class ProfileScreen extends Component {
               </View>
             </View>
             <ScrollView style={style.mainContainer}>
-            <View  style={style.cardsContainer}>
+            <View style={style.cardsContainer}>
             {this.mapCardCollection()}
             </View>
             </ScrollView>

@@ -17,8 +17,8 @@ class MyTours extends Component {
 
     ongoingTour = this.props.tours.filter(function(item){
       return item.finished === false;
-    }).map(function({name, players, wincon, totalMatches, finished}){
-      return {name, players, wincon, totalMatches, finished};
+    }).map(function({name, players, wincon, totalMatches, fromDate, toDate, finished}){
+      return {name, players, wincon, totalMatches, fromDate, toDate, finished};
     });
 
     return ongoingTour.map((tour) => {
@@ -29,8 +29,10 @@ class MyTours extends Component {
         players={tour.players}
         wincon={tour.wincon}
         totalMatches={tour.totalMatches}
-        navigation={this.props.navigation}
+        fromDate={tour.fromDate}
+        toDate={tour.toDate}
         finished={tour.finished}
+        navigation={this.props.navigation}
         />
       )
     })
@@ -40,8 +42,8 @@ class MyTours extends Component {
 
     finishedTour = this.props.tours.filter(function(item){
       return item.finished === true;
-    }).map(function({name, players, wincon, totalMatches, finished}){
-      return {name, players, wincon, totalMatches, finished};
+    }).map(function({name, players, wincon, totalMatches, fromDate, toDate, finished}){
+      return {name, players, wincon, totalMatches, fromDate, toDate, finished};
     });
 
     return finishedTour.map((tour) => {
@@ -52,8 +54,10 @@ class MyTours extends Component {
         players={tour.players}
         wincon={tour.wincon}
         totalMatches={tour.totalMatches}
-        navigation={this.props.navigation}
+        fromDate={tour.fromDate}
+        toDate={tour.toDate}
         finished={tour.finished}
+        navigation={this.props.navigation}
         />
       )
     })

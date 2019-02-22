@@ -22,7 +22,7 @@ class User extends Component {
         {this.props.friend
           ? <TouchableOpacity
             onPress={() => this.props.navigation.navigate('UserCard',{
-              userName:userName
+              userName: userName
             })}
           >
             <View style={style.userContainer}>

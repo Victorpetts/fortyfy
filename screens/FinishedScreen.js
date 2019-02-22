@@ -23,7 +23,7 @@ class FinishedScreen extends Component {
         },
         headerTitleStyle: {
             color: 'yellow',
-            fontSize: 28
+            fontSize: 24
         }
     });
 
@@ -55,6 +55,8 @@ class FinishedScreen extends Component {
     return (
       <View style={style.mainContainer}>
         <ScrollView>
+        <Text style={style.headerText}>Finished on:</Text>
+          <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
           <Text style={style.headerText}>Win condition:</Text>
           <Text style={style.paragraphText}>{winconText}</Text>
           <View style={{

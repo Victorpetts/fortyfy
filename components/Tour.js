@@ -21,7 +21,9 @@ class Tour extends Component {
     const { navigate } = this.props.navigation;
     const totalMatches = this.props.totalMatches;
     const wincon = this.props.wincon;
-
+    const fromDate = this.props.fromDate;
+    const toDate = this.props.toDate;
+    
     return (
       tourStatus === false ? (
         <TouchableOpacity
@@ -30,7 +32,9 @@ class Tour extends Component {
             numbPlayers: numbPlayers,
             tourStatus: tourStatus,
             totalMatches: totalMatches,
-            wincon: wincon
+            wincon: wincon,
+            fromDate: fromDate,
+            toDate: toDate
           })}
         >
 
@@ -51,7 +55,9 @@ class Tour extends Component {
               numbPlayers: numbPlayers,
               tourStatus: tourStatus,
               totalMatches: totalMatches,
-              wincon: wincon
+              wincon: wincon,
+              fromDate: fromDate,
+              toDate: toDate
             })}
           >
 

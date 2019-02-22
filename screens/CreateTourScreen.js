@@ -49,7 +49,9 @@ createTour = () => {
       'players': this.state.players,
       'wincon': this.state.wincon,
       'totalMatches': this.state.totalMatches,
-      'finished': false
+      'finished': false,
+      'fromDate': this.state.fromDate,
+      'toDate': this.state.toDate
     }
     this.props.createTour(newTour);
     this.props.navigation.navigate('Tournaments');
@@ -118,7 +120,7 @@ createTour = () => {
                     color: 'white'
                 }
               }}
-              onDateChange={(date) => { this.setState({ fromDate: date }) }}
+              onDateChange={(date) => { this.setState({ fromDate: date }), console.log('From date:', date) }}
             />
             <DatePicker
               showIcon={false}
@@ -143,7 +145,7 @@ createTour = () => {
                 }
                 // ... You can check the source to find the other keys.
               }}
-              onDateChange={(date) => { this.setState({ toDate: date }) }}
+              onDateChange={(date) => { this.setState({ toDate: date }), console.log('To date:', date)}}
             />
           </View>
           <Text style={style.inputFieldText}>Win condition: </Text>

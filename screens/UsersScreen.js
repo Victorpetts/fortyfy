@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {
   ScrollView,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 
 import { SearchBar, Overlay } from 'react-native-elements';
@@ -50,6 +51,15 @@ class UsersScreen extends Component {
     console.log(isFocused);
   }
 
+  showPlayerCard = (player) => {
+    this.props.navigation.navigate('UserCard',{
+      userName: player.name
+    })
+          this.setState({
+            isVisible: false
+          })
+  }
+
   render() {
 
     let filteredPlayers = this.props.users.filter(
@@ -72,7 +82,12 @@ class UsersScreen extends Component {
               buttonTitle={'SEARCH PLAYER'}
               buttonFunc={this.toggleSearch}
             />
+            <View style={{
+              paddingTop: '5%'
+            }}
+            >
             <RoundButton />
+          </View>
           </View>
         </View>
         {this.state.isVisible && (
@@ -109,6 +124,9 @@ class UsersScreen extends Component {
                         padding: 5
                       }}
                     >
+                    <TouchableOpacity
+                    onPress={() => this.showPlayerCard(player)}
+                    >
                       <View style={{
                         flexDirection: 'column'
                       }}>
@@ -119,6 +137,7 @@ class UsersScreen extends Component {
                           level: {player.level}
                         </Text>
                       </View>
+                      </TouchableOpacity>
                       {player.friend === false ? (
                         <TourButton
                           buttonTitle={'ADD FRIEND'}

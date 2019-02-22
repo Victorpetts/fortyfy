@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 
 const initialState = {
   toursArr:[
-    { name: "Mirandas Turnering", players: "5", wincon: "2", totalMatches: "2", finished: true },
-    { name: "Pinars Turnering", players: "5", wincon: "3", totalMatches: "5", finished: false },
-    { name: "Victors Turnering", players: "8", wincon: "1", totalMatches: "7", finished: false },
+    { name: "Miranda's Tournament", players: "5", wincon: "2", totalMatches: "2", fromDate: "January 15th 2019, 19:00", toDate: "January 18th 2019, 18:30", finished: true },
+    { name: "Pinar's Tournament", players: "5", wincon: "3", totalMatches: "5", fromDate: "February 21st 2019, 09:30", toDate: "February 24th 2019, 11:30", finished: false },
+    { name: "Victors Tournament", players: "8", wincon: "1", totalMatches: "7", fromDate: "February 13th 2019, 18:00", toDate: "February 22nd 2019, 12:00", finished: false },
   ],
   particArr:[
     { name: "Victor", playedMatches: "2", points: "27", checkBox: false },
