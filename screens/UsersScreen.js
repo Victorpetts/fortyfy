@@ -154,7 +154,7 @@ class UsersScreen extends Component {
                 return (
                   this.state.search !== '' && (
                     <ScrollView
-                      key={player.id}
+                      key={player.name}
                       contentContainerStyle={{
                         flexDirection: 'row',
                         justifyContent: 'space-between'
