@@ -51,7 +51,7 @@ export default StyleSheet.create({
 
   buttonTextDisabled: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
     color: 'white'
   },
@@ -106,9 +106,25 @@ export default StyleSheet.create({
 
   userText: {
     fontSize: 20,
-    textAlign: 'center',
     color: 'yellow',
     marginVertical: 14,
+    textAlign: 'center'
+  },
+
+  inviteListText: {
+    fontSize: 20,
+    color: 'yellow',
+    marginVertical: 14,
+    flex: 1
+  },
+
+  inviteMessageText: {
+    fontSize: 20,
+    color: 'yellow',
+    display: 'flex',
+    textAlign: 'center',
+    padding: 10,
+    width: '100%'
   },
 
   inputFieldText: {
@@ -162,10 +178,18 @@ export default StyleSheet.create({
     borderRadius: 3,
     marginVertical: 5,
     elevation: 2,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: 'white',
-    borderBottomWidth: 2
+  },
+
+  inviteListContainer: {
+      borderRadius: 3,
+      marginVertical: 5,
+      elevation: 2,
+      borderBottomColor: 'white',
+      borderBottomWidth: 2
   },
 
   inputFieldContainer: {

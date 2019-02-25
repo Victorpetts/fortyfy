@@ -60,10 +60,3 @@ export const sendRequest = user => {
     payload: user
   };
 };
-
-export const inviteFriend = user => {
-  return {
-    type: 'FRIEND_INVITED',
-    payload: user
-  };
-};

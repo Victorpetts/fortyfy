@@ -77,8 +77,6 @@ const particReducer = (oldArr = initialState.particArr, action) => {
 
       });
 
-
-
     default:
       return oldArr;
   }
@@ -120,16 +118,11 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
         return item;
       });
 
-      case 'FRIEND_INVITED':
-          let newUsersArr = oldArr.filter(item => item.name !== action.payload)
-          return newUsersArr;
-
   default:
     return oldArr;
   }
   
 };
-
 
 export default combineReducers ({
   tours: toursReducer,

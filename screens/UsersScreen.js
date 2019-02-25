@@ -90,9 +90,8 @@ class UsersScreen extends Component {
       );
       default:
       return (
-        <TourButton
-          buttonTitle={'ADD FRIEND'}
-          buttonFunc={this.props.sendRequest(player.name)}
+        <DisabledButton
+          buttonTitle={'FRIEND'}
       />
       );
     }
