@@ -15,12 +15,16 @@ import { selectPlayer, confirmPlayer, endTournament } from '../actions/index.js'
 import style from '../assets/Style.js';
 import { TourButton } from '../components/TourButton.js';
 import Participant from '../components/Participant.js';
+import InviteList from '../components/InviteList';
 
 class OngoingScreen extends Component {
 
     state = {
         isVisible: false,
         buttonToggle: false,
+        isManage: false,
+        isInvite: false,
+        invite: true
 
     }
 
@@ -57,7 +61,15 @@ class OngoingScreen extends Component {
 
     toggleManage = () => {
         this.setState({
-            isVisible: true
+            isVisible: true,
+            isManage: true
+        })
+    };
+
+    toggleInvite = () => {
+        this.setState({
+            isVisible: true,
+            isInvite: true
         })
     };
 
@@ -73,16 +85,13 @@ class OngoingScreen extends Component {
         console.log('clicked!');
         selectPlayer(partic);
         this.props.deletePlayer(partic);
-    }
+    };
 
     confirmPlayer = (partic) => {
         this.props.confirmPlayer(partic);
         this.setState({
             buttonToggle: false
         })
-
-
-
     };
 
     endTournament = (tour) => {
@@ -90,6 +99,28 @@ class OngoingScreen extends Component {
         this.props.navigation.navigate('Tournaments');
     };
 
+    mapInviteList() {
+
+        friendsList = this.props.users.filter(function(item){
+          return item.friend === true;
+        }).map(function({name, level, friend}){
+          return {name, level, friend};
+        });
+    
+        friendsList.sort((a, b) => b.level - a.level);
+    
+        return friendsList.map((user) => {
+          return (
+            <InviteList
+              key={user.name}
+              name={user.name}
+              friend={user.friend}
+              navigation={this.props.navigation}
+              invite={this.state.invite}
+            />
+          )
+        })
+      };
 
     render() {
 
@@ -157,14 +188,19 @@ class OngoingScreen extends Component {
                         <TourButton
                             buttonTitle={'MANAGE TOURNAMENT'}
                             buttonFunc={this.toggleManage} />
-                        <TourButton buttonTitle={'INVITE FRIENDS'} />
+                        <TourButton buttonTitle={'INVITE FRIENDS'}
+                            buttonFunc={this.toggleInvite} />
                     </View>
                 }
                 {this.state.isVisible && (
                     <Overlay
                         height='auto'
                         isVisible={this.state.isVisible == true}
-                        onBackdropPress={() => this.setState({ isVisible: false })}
+                        onBackdropPress={() => this.setState({ 
+                            isVisible: false, 
+                            isManage: false, 
+                            isInvite: false 
+                        })}
                         overlayBackgroundColor={'black'}
                         overlayStyle={{
                             borderColor: 'yellow',
@@ -181,20 +217,27 @@ class OngoingScreen extends Component {
                                     padding: 5
                                 }}
                             >
-                                <View style={style.buttonContainerCol}>
-                                    <TourButton
-                                        buttonTitle={'END TOURNAMENT'}
-                                        buttonFunc={() => this.endTournament(thisToursName)}
-                                    />
-                                    <TourButton
-                                        buttonTitle={'DELETE PLAYER'}
-                                        buttonFunc={() => this.selectPlayer(partic)}
+                                {this.state.isManage === true && (
+                                    <View style={style.buttonContainerCol}>
+                                        <TourButton
+                                            buttonTitle={'END TOURNAMENT'}
+                                            buttonFunc={() => this.endTournament(thisToursName)}
                                         />
-                                    <TourButton
-                                        buttonTitle={'PERMISSIONS'}
-                                        buttonFunc={() => this.selectPlayer(partic)}
-                                    />
-                                </View>
+                                        <TourButton
+                                            buttonTitle={'DELETE PLAYER'}
+                                            buttonFunc={() => this.selectPlayer(partic)}
+                                        />
+                                        <TourButton
+                                            buttonTitle={'PERMISSIONS'}
+                                            buttonFunc={() => this.selectPlayer(partic)}
+                                        />
+                                    </View>
+                                )}
+                                {this.state.isInvite === true && (
+                                    <View>
+                                        {this.mapInviteList()}
+                                    </View>
+                                )}
                             </ScrollView>
                         </View>
                     </Overlay>
@@ -208,7 +251,8 @@ class OngoingScreen extends Component {
 const mapStateToProps = (state) => {
     return {
         tours: state.tours,
-        partic: state.partic
+        partic: state.partic,
+        users: state.users
     };
 };
 

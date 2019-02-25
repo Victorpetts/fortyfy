@@ -9,8 +9,13 @@ import {
 import { acceptFriend, denyFriend } from '../actions/index.js';
 import { FontAwesome, Feather } from '@expo/vector-icons';
 import style from '../assets/Style.js';
+import { TourButton } from './TourButton.js';
 
 class User extends Component {
+
+  state = {
+    buttonTitle: 'SEND INVITE'
+  }
 
   render() {
 

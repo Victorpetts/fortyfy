@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 
 import { SearchBar, Overlay } from 'react-native-elements';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 import { TourButton, DisabledButton, RoundButton } from '../components/TourButton.js';
 import FriendsList from '../components/FriendsList.js';
 import style from '../assets/Style.js';
+import { sendRequest } from '../actions/index.js';
 
 
 class UsersScreen extends Component {
@@ -40,7 +42,7 @@ class UsersScreen extends Component {
   toggleSearch = () => {
     this.setState({
       isVisible: true
-      })
+    })
   };
 
   updateSearch = search => {
@@ -51,15 +53,53 @@ class UsersScreen extends Component {
     console.log(isFocused);
   }
 
-  goToPlayerProfile = (player) => {
-    this.props.navigation.navigate('PlayerProfile', {
-      tourName: player.name })
-          this.setState({
-            isVisible: false
-          })
+  goToUserProfile = (player) => {
+    this.props.navigation.navigate('UserProfile', {
+      tourName: player.name,
+      isFriend: player.friend
+    })
+    this.setState({
+      isVisible: false
+    })
   }
 
+  sendRequest = (player) => {
+    this.props.sendRequest(player.name)
+  }
+
+  buttonSwitch = (player) => {
+    switch (player.status) {
+      case "notFriend":
+      return (
+        <TourButton
+          buttonTitle={'ADD FRIEND'}
+          buttonFunc={() => this.sendRequest(player)}
+        />
+        );
+      case "friend":
+      return (
+        <DisabledButton
+          buttonTitle={'FRIEND'}
+      />
+      );
+      case "pending":
+      return (
+        <DisabledButton
+          buttonTitle={'REQUEST SENT'}
+        />
+      );
+      default:
+      return (
+        <TourButton
+          buttonTitle={'ADD FRIEND'}
+          buttonFunc={this.props.sendRequest(player.name)}
+      />
+      );
+    }
+  }
+  
   render() {
+    
 
     let filteredPlayers = this.props.users.filter(
       (player) => {
@@ -85,8 +125,8 @@ class UsersScreen extends Component {
               paddingTop: '5%'
             }}
             >
-            <RoundButton />
-          </View>
+              <RoundButton />
+            </View>
           </View>
         </View>
         {this.state.isVisible && (
@@ -114,7 +154,7 @@ class UsersScreen extends Component {
                 return (
                   this.state.search !== '' && (
                     <ScrollView
-                      key={player.name}
+                      key={player.id}
                       contentContainerStyle={{
                         flexDirection: 'row',
                         justifyContent: 'space-between'
@@ -123,29 +163,33 @@ class UsersScreen extends Component {
                         padding: 5
                       }}
                     >
-                    <TouchableOpacity
-                    onPress={() => this.goToPlayerProfile(player)}
-                    >
-                      <View style={{
-                        flexDirection: 'column'
-                      }}>
-                        <Text style={style.playerText}>
-                          {player.name}
-                        </Text>
-                        <Text style={style.playerText}>
-                          level: {player.level}
-                        </Text>
-                      </View>
+                      <TouchableOpacity
+                        onPress={() => this.goToUserProfile(player)}
+                      >
+                        <View style={{
+                          flexDirection: 'column'
+                        }}>
+                          <View style={{
+                            flexDirection: 'row',
+                            paddingLeft: '2%',
+                          }}>
+                            <Ionicons name="md-person" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '5%' }} />
+                            <Text style={style.playerText}>
+                              {player.name}
+                            </Text>
+                          </View>
+                          <View style={{
+                            flexDirection: 'row',
+                            paddingLeft: '2%',
+                          }}>
+                          <FontAwesome name="gamepad" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '5%' }} />
+                            <Text style={style.playerText}>
+                              {player.level}
+                            </Text>
+                          </View>
+                        </View>
                       </TouchableOpacity>
-                      {player.friend === false ? (
-                        <TourButton
-                          buttonTitle={'ADD FRIEND'}
-                        />
-                      ) : (
-                        <DisabledButton
-                          buttonTitle={'FRIEND'}
-                        />
-                      )}
+                      {this.buttonSwitch(player)}
                     </ScrollView>
                   )
                 )
@@ -166,4 +210,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(UsersScreen);
+export default connect(mapStateToProps, { sendRequest })(UsersScreen);

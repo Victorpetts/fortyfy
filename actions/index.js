@@ -53,3 +53,17 @@ export const denyFriend = user => {
     payload: user
   };
 };
+
+export const sendRequest = user => {
+  return {
+    type: 'FRIEND_REQUEST_SENT',
+    payload: user
+  };
+};
+
+export const inviteFriend = user => {
+  return {
+    type: 'FRIEND_INVITED',
+    payload: user
+  };
+};

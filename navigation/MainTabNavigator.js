@@ -8,7 +8,7 @@ import TournamentsScreen from '../screens/TournamentsScreen';
 import TourIndvScreen from '../screens/TourIndvScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import PlayerProfileScreen from '../screens/PlayerProfileScreen';
+import UserProfileScreen from '../screens/UserProfileScreen';
 import UserCardScreen from '../screens/UserCardScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 import CreateTourScreen from '../screens/CreateTourScreen';
@@ -41,7 +41,7 @@ ProfileStack.navigationOptions = {
 const UsersStack = createStackNavigator({
   Links: UsersScreen,
   UserCard: UserCardScreen,
-  PlayerProfile: PlayerProfileScreen
+  UserProfile: UserProfileScreen
 });
 
 UsersStack.navigationOptions = {

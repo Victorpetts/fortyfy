@@ -11,10 +11,10 @@ import CardCollection from '../components/CardCollection.js';
 import PlayerCardProfile from '../components/PlayerCardProfile.js';
 
 import style from '../assets/Style.js';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 
-class PlayerProfileScreen extends Component {
+class UserProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
@@ -36,14 +36,25 @@ class PlayerProfileScreen extends Component {
       fontSize: 34
     },
     headerRight: (
-      <TouchableOpacity>
-        <Ionicons
-        name="md-person-add"
-        size={26}
-        color='yellow'
-        style={{marginRight: 20}}
-         />
-      </TouchableOpacity>
+      <View>
+        {navigation.getParam('isFriend') === false ?
+          <TouchableOpacity>
+            <Feather
+              name="user-plus"
+              size={30}
+              color='yellow'
+              style={{ marginRight: 20 }}
+            />
+          </TouchableOpacity>
+          :
+            <Feather
+              name="user"
+              size={30}
+              color='yellow'
+              style={{ marginRight: 20 }}
+            />
+          }
+      </View>
     )
   });
 
@@ -63,28 +74,28 @@ class PlayerProfileScreen extends Component {
 
   mapCardCollection() {
 
-    cardCollection = this.props.users.filter(function(item){
+    cardCollection = this.props.users.filter(function (item) {
       return item.friend === true;
-    }).map(function({name, level, friend}){
-      return {name, level, friend};
+    }).map(function ({ name, level, friend }) {
+      return { name, level, friend };
     });
 
     return cardCollection.map((user) => {
       return (
         <CardCollection
-        key={user.name}
-        name={user.name}
-        lvl={user.level}
-        friend={user.friend}
-        navigation={this.props.navigation}
-      />
+          key={user.name}
+          name={user.name}
+          lvl={user.level}
+          friend={user.friend}
+          navigation={this.props.navigation}
+        />
       )
     });
 
   };
 
   render() {
-    
+
     return (
       <View style={{
         height: '100%'
@@ -129,7 +140,7 @@ class PlayerProfileScreen extends Component {
 
             <View style={style.mainContainer}>
               <PlayerCardProfile
-              navigation={this.props.navigation}
+                navigation={this.props.navigation}
               />
             </View>
           </View>
@@ -170,9 +181,9 @@ class PlayerProfileScreen extends Component {
               </View>
             </View>
             <ScrollView style={style.mainContainer}>
-            <View style={style.cardsContainer}>
-            {this.mapCardCollection()}
-            </View>
+              <View style={style.cardsContainer}>
+                {this.mapCardCollection()}
+              </View>
             </ScrollView>
           </View>
 
@@ -186,4 +197,4 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 };
 
-export default connect(mapStateToProps, null)(PlayerProfileScreen);
+export default connect(mapStateToProps, null)(UserProfileScreen);

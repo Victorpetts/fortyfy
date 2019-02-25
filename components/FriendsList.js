@@ -8,7 +8,7 @@ import {
 
 import User from './User.js';
 import style from '../assets/Style.js';
-import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 
 class FriendsList extends Component {
@@ -67,7 +67,7 @@ class FriendsList extends Component {
           flexDirection: 'row',
           paddingLeft: '2%',
         }}>
-          <MaterialCommunityIcons name="chess-pawn" size={18} color="yellow" style={{ fontSize: 18, paddingTop: 2, marginRight: '2%' }} />
+          <Ionicons name="md-person-add" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '2%' }} />
           <Text style={style.smallText}>Friend Requests</Text>
         </View>
 
@@ -84,14 +84,15 @@ class FriendsList extends Component {
             flexDirection: 'row',
             paddingLeft: '2%',
           }}>
-            <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
+            <Ionicons name="md-person" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '5%' }} />
             <Text style={style.smallText}>Friends</Text>
           </View>
           <View style={{
-            flexDirection: 'row'
+            flexDirection: 'row',
+            paddingLeft: '45%'
           }}>
             <Text style={style.smallText}>Level</Text>
-            <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
+            <FontAwesome name="gamepad" size={18} color="yellow" style={{ paddingTop: 3, marginLeft: '5%' }} />
           </View>
         </View>
 
