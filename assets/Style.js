@@ -63,6 +63,13 @@ export default StyleSheet.create({
     color: 'yellow'
   },
 
+  scoreText: {
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'white',
+    justifyContent: 'space-between'
+  },
+
   headerText: {
     fontWeight: 'bold',
     fontSize: 24,
@@ -87,6 +94,21 @@ export default StyleSheet.create({
 
   smallText: {
     fontSize: 18,
+    textAlign: 'center',
+    color: 'yellow',
+    letterSpacing: 0.5
+  },
+
+  italicText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    letterSpacing: 0.5,
+    fontStyle: 'italic'
+  },
+
+  mediumText: {
+    fontSize: 24,
     textAlign: 'center',
     color: 'yellow',
     letterSpacing: 0.5

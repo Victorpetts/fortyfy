@@ -65,7 +65,8 @@ const TournamentsStack = createStackNavigator({
   TourIndv: TourIndvScreen,
   TourCreate: CreateTourScreen,
   Ongoing: OngoingScreen,
-  Finished: FinishedScreen
+  Finished: FinishedScreen,
+  TopUserCard: UserCardScreen
 });
 
 TournamentsStack.navigationOptions = {

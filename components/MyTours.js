@@ -64,9 +64,10 @@ class MyTours extends Component {
   }
 
   render() {
+
     return (
       <View style={style.container}>
-        <View style={{
+      <View style={{
           flexDirection: 'row',
           paddingLeft: '4%',
         }}>
