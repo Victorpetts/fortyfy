@@ -33,10 +33,10 @@ export const confirmPlayer = partic => {
   };
 };
 
-export const deletePlayer = partic => {
+export const deletePlayer = participant => {
   return {
     type: 'PLAYER_DELETED',
-    payload: partic
+    payload: participant
   };
 };
 

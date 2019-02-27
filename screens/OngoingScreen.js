@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
 import { connect } from 'react-redux';
 import {
     View,
@@ -7,11 +6,9 @@ import {
     ScrollView
 } from 'react-native';
 
-
 import { Overlay } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
-
-import { selectPlayer, confirmPlayer, endTournament } from '../actions/index.js';
+import { selectPlayer, confirmPlayer, endTournament, deletePlayer } from '../actions/index.js';
 import style from '../assets/Style.js';
 import { TourButton } from '../components/TourButton.js';
 import Participant from '../components/Participant.js';
@@ -19,132 +16,159 @@ import InviteList from '../components/InviteList';
 
 class OngoingScreen extends Component {
 
-    state = {
-        isVisible: false,
-        buttonToggle: false,
-        isManage: false,
-        isInvite: false,
-        invite: true
+  state = {
+    isVisible: false,
+    buttonToggle: false,
+    isManage: false,
+    isInvite: false,
+    invite: true,
+    checkedPartic: '',
+    bla: false
+  }
 
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam('tourName'),
+    headerTintColor: 'white',
+    headerStyle: {
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
+      backgroundColor: 'black',
+      height: 90
+    },
+    headerTitleStyle: {
+      color: 'yellow',
+      fontSize: 24
     }
+  });
 
-    static navigationOptions = ({ navigation }) => ({
-        title: navigation.getParam('tourName'),
-        headerTintColor: 'white',
-        headerStyle: {
-            elevation: 0,
-            shadowOpacity: 0,
-            borderBottomWidth: 0,
-            backgroundColor: 'black',
-            height: 90
-        },
-        headerTitleStyle: {
-            color: 'yellow',
-            fontSize: 24
-        }
+  mapPartic(totalMatches) {
+    return this.props.partic.map((player) => {
+      return (
+        <Participant
+          key={player.name}
+          name={player.name}
+          playedMatches={player.playedMatches}
+          totalMatches={totalMatches}
+          checkBox={player.checkBox}
+          checkerFunc={this.checkerFunc}
+          bla={this.state.bla}
+        />
+      );
+    });
+  };
+
+  checkerFunc = (participant, checkedState) => {
+    {checkedState === false ?
+      this.setState({
+        checkedPartic: participant,
+        bla: false
+      })
+    :
+      this.setState({
+        checkedPartic: '',
+        bla: false
+      })
+    }
+  };
+
+  // uncheckAll = () => {
+  //   this.setState({
+  //     bla: true
+  //   })
+  // }
+
+  toggleManage = () => {
+    this.setState({
+      isVisible: true,
+      isManage: true
+    })
+  };
+
+  toggleInvite = () => {
+    this.setState({
+      isVisible: true,
+      isInvite: true
+    })
+  };
+
+  selectPlayer = (partic) => {
+    this.props.selectPlayer(partic);
+
+    this.setState({
+      isVisible: false,
+      buttonToggle: true
+    })
+  };
+
+  confirmFunc = (partic) => {
+    this.props.confirmPlayer(partic);
+    this.props.deletePlayer(this.state.checkedPartic);
+
+    this.setState({
+      buttonToggle: false
+    })
+  };
+
+  cancelFunc = (partic) => {
+    this.props.confirmPlayer(partic);
+
+    this.setState({
+      buttonToggle: false
+    })
+  };
+
+  endTournament = (tour) => {
+    this.props.endTournament(tour);
+    this.props.navigation.navigate('Tournaments');
+  };
+
+  mapInviteList() {
+
+    friendsList = this.props.users.filter(function(item){
+      return item.friend === true;
+    }).map(function({name, level, friend}){
+      return {name, level, friend};
     });
 
-    mapPartic(totalMatches) {
-        return this.props.partic.map((player) => {
-            return (
-                <Participant
-                    key={player.name}
-                    name={player.name}
-                    playedMatches={player.playedMatches}
-                    totalMatches={totalMatches}
-                    checkBox={player.checkBox}
+    friendsList.sort((a, b) => b.level - a.level);
 
-                />
-            );
-        });
-    };
-
-    toggleManage = () => {
-        this.setState({
-            isVisible: true,
-            isManage: true
-        })
-    };
-
-    toggleInvite = () => {
-        this.setState({
-            isVisible: true,
-            isInvite: true
-        })
-    };
-
-    selectPlayer = (partic) => {
-        this.props.selectPlayer(partic);
-        this.setState({
-            isVisible: false,
-            buttonToggle: true
-        })
-    };
-
-    deletePlayer = (partic) => {
-        console.log('clicked!');
-        selectPlayer(partic);
-        this.props.deletePlayer(partic);
-    };
-
-    confirmPlayer = (partic) => {
-        this.props.confirmPlayer(partic);
-        this.setState({
-            buttonToggle: false
-        })
-    };
-
-    endTournament = (tour) => {
-        this.props.endTournament(tour);
-        this.props.navigation.navigate('Tournaments');
-    };
-
-    mapInviteList() {
-
-        friendsList = this.props.users.filter(function(item){
-          return item.friend === true;
-        }).map(function({name, level, friend}){
-          return {name, level, friend};
-        });
-    
-        friendsList.sort((a, b) => b.level - a.level);
-    
-        return friendsList.map((user) => {
-          return (
-            <InviteList
-              key={user.name}
-              name={user.name}
-              friend={user.friend}
-              navigation={this.props.navigation}
-              invite={this.state.invite}
-            />
-          )
-        })
-      };
+    return friendsList.map((user) => {
+      return (
+        <InviteList
+          key={user.name}
+          name={user.name}
+          friend={user.friend}
+          navigation={this.props.navigation}
+          invite={this.state.invite}
+        />
+      )
+    })
+  };
 
     render() {
 
-        const thisToursName = this.props.navigation.getParam('tourName');
-        const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
-        const totalMatches = filter.totalMatches;
-        let partic = this.props.navigation.getParam('partic');
-        let tours
-        let winconText;
+      const thisToursName = this.props.navigation.getParam('tourName');
+      const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
+      const totalMatches = filter.totalMatches;
+      let partic = this.props.navigation.getParam('partic');
+      let tours;
+      let winconText;
 
-        switch (filter.wincon) {
-            case '1':
-                winconText = 'Survived most minutes';
-                break
-            case '2':
-                winconText = 'Most accumulated kills';
-                break
-            case '3':
-                winconText = 'Most placements in top 5';
-                break
-            default:
-                winconText = '';
-                break
-        };
+      switch (filter.wincon) {
+        case '1':
+          winconText = 'Survived most minutes';
+          break
+        case '2':
+          winconText = 'Most accumulated kills';
+          break
+        case '3':
+          winconText = 'Most placements in top 5';
+          break
+        default:
+          winconText = '';
+          break
+      };
 
         return (
             <View style={style.mainContainer}>
@@ -177,10 +201,10 @@ class OngoingScreen extends Component {
                     <View style={style.buttonContainer}>
                         <TourButton
                             buttonTitle={'CANCEL'}
-                            buttonFunc={() => this.confirmPlayer(partic)}
+                            buttonFunc={() => this.cancelFunc(partic)}
                         />
                         <TourButton buttonTitle={'CONFIRM'}
-                            buttonFunc={() => this.confirmPlayer(partic)}
+                            buttonFunc={() => this.confirmFunc(partic)}
                         />
                     </View>
                     :
@@ -196,10 +220,10 @@ class OngoingScreen extends Component {
                     <Overlay
                         height='auto'
                         isVisible={this.state.isVisible == true}
-                        onBackdropPress={() => this.setState({ 
-                            isVisible: false, 
-                            isManage: false, 
-                            isInvite: false 
+                        onBackdropPress={() => this.setState({
+                            isVisible: false,
+                            isManage: false,
+                            isInvite: false
                         })}
                         overlayBackgroundColor={'black'}
                         overlayStyle={{
@@ -224,7 +248,7 @@ class OngoingScreen extends Component {
                                             buttonFunc={() => this.endTournament(thisToursName)}
                                         />
                                         <TourButton
-                                            buttonTitle={'DELETE PLAYER'}
+                                            buttonTitle={'KICK A PLAYER'}
                                             buttonFunc={() => this.selectPlayer(partic)}
                                         />
                                         <TourButton
@@ -256,4 +280,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { selectPlayer, confirmPlayer, endTournament })(OngoingScreen);
+export default connect(mapStateToProps, { selectPlayer, confirmPlayer, endTournament, deletePlayer })(OngoingScreen);

@@ -49,10 +49,6 @@ class UsersScreen extends Component {
     this.setState({ search });
   };
 
-  bla = isFocused => {
-    console.log(isFocused);
-  }
-
   goToUserProfile = (player) => {
     this.props.navigation.navigate('UserProfile', {
       tourName: player.name,
@@ -97,9 +93,8 @@ class UsersScreen extends Component {
       );
     }
   }
-  
+
   render() {
-    
 
     let filteredPlayers = this.props.users.filter(
       (player) => {
@@ -107,12 +102,9 @@ class UsersScreen extends Component {
       }
     );
 
-    let isFocused = this.props.navigation.isFocused();
-
     return (
       <ScrollView style={style.mainContainer}>
         <View>
-          {this.bla(isFocused)}
           <FriendsList
             navigation={this.props.navigation}
           />
@@ -121,10 +113,7 @@ class UsersScreen extends Component {
               buttonTitle={'SEARCH PLAYER'}
               buttonFunc={this.toggleSearch}
             />
-            <View style={{
-              paddingTop: '5%'
-            }}
-            >
+            <View style={{ paddingTop: '5%' }}>
               <RoundButton />
             </View>
           </View>
@@ -159,9 +148,7 @@ class UsersScreen extends Component {
                         flexDirection: 'row',
                         justifyContent: 'space-between'
                       }}
-                      style={{
-                        padding: 5
-                      }}
+                      style={{ padding: 5 }}
                     >
                       <TouchableOpacity
                         onPress={() => this.goToUserProfile(player)}
