@@ -26,6 +26,7 @@ const initialState = {
   ]
 }
 
+
 const toursReducer = (oldArr = initialState.toursArr, action) => {
   switch (action.type) {
     case'TOURNAMENT_CREATED':
@@ -56,10 +57,10 @@ const particReducer = (oldArr = initialState.particArr, action) => {
 
     case 'PLAYER_SELECTED':
       return oldArr.map((item, index) => {
-          return {
-            ...item,
-            checkBox: true
-          }
+        return {
+          ...item,
+          checkBox: true
+        }
       });
 
     case 'PLAYER_CONFIRMED':
@@ -70,9 +71,16 @@ const particReducer = (oldArr = initialState.particArr, action) => {
         }
       });
 
-    case 'PLAYER_DELETED':
-      let newParticArr = oldArr.filter(item => item.name !== action.payload)
-      return newParticArr;
+    case 'PLAYERS_DELETED':
+      //let newParticArr = oldArr.filter(item => item.name !== action.payload)
+      for (let i in oldArr) {
+        for (let j of action.payload) {
+          if (oldArr[i].name === j) {
+            oldArr.splice(oldArr[i], 1);
+          }
+        }
+      }
+      return oldArr;
 
     default:
       return oldArr;
@@ -80,7 +88,6 @@ const particReducer = (oldArr = initialState.particArr, action) => {
 };
 
 const usersReducer = (oldArr = initialState.usersArr, action) => {
-
   switch (action.type) {
     case 'FRIEND_ACCEPTED':
       return oldArr.map((item, index) => {

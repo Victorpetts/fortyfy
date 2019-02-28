@@ -33,9 +33,9 @@ export const confirmPlayer = partic => {
   };
 };
 
-export const deletePlayer = participant => {
+export const deletePlayers = participant => {
   return {
-    type: 'PLAYER_DELETED',
+    type: 'PLAYERS_DELETED',
     payload: participant
   };
 };

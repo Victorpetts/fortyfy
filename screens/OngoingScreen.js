@@ -8,7 +8,7 @@ import {
 
 import { Overlay } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
-import { selectPlayer, confirmPlayer, endTournament, deletePlayer } from '../actions/index.js';
+import { selectPlayer, confirmPlayer, endTournament, deletePlayers } from '../actions/index.js';
 import style from '../assets/Style.js';
 import { TourButton } from '../components/TourButton.js';
 import Participant from '../components/Participant.js';
@@ -22,8 +22,7 @@ class OngoingScreen extends Component {
     isManage: false,
     isInvite: false,
     invite: true,
-    checkedPartic: '',
-    bla: false
+    checkedPartic: []
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -51,32 +50,28 @@ class OngoingScreen extends Component {
           playedMatches={player.playedMatches}
           totalMatches={totalMatches}
           checkBox={player.checkBox}
-          checkerFunc={this.checkerFunc}
-          bla={this.state.bla}
+          isChecked={player.isChecked}
+          outsideFunc={this.outsideFunc}
         />
       );
     });
   };
 
-  checkerFunc = (participant, checkedState) => {
+  outsideFunc = (participant, checkedState) => {
+
+    let oldArr = this.state.checkedPartic;
+
     {checkedState === false ?
       this.setState({
-        checkedPartic: participant,
-        bla: false
+        checkedPartic: [...oldArr, participant]
       })
     :
       this.setState({
-        checkedPartic: '',
-        bla: false
+        checkedPartic: oldArr.filter(item => item !== participant)
       })
     }
   };
 
-  // uncheckAll = () => {
-  //   this.setState({
-  //     bla: true
-  //   })
-  // }
 
   toggleManage = () => {
     this.setState({
@@ -101,17 +96,17 @@ class OngoingScreen extends Component {
     })
   };
 
-  confirmFunc = (partic) => {
-    this.props.confirmPlayer(partic);
-    this.props.deletePlayer(this.state.checkedPartic);
+  confirmFunc = () => {
+    this.props.confirmPlayer();
+    this.props.deletePlayers(this.state.checkedPartic);
 
     this.setState({
       buttonToggle: false
     })
   };
 
-  cancelFunc = (partic) => {
-    this.props.confirmPlayer(partic);
+  cancelFunc = () => {
+    this.props.confirmPlayer();
 
     this.setState({
       buttonToggle: false
@@ -146,130 +141,130 @@ class OngoingScreen extends Component {
     })
   };
 
-    render() {
+  render() {
 
-      const thisToursName = this.props.navigation.getParam('tourName');
-      const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
-      const totalMatches = filter.totalMatches;
-      let partic = this.props.navigation.getParam('partic');
-      let tours;
-      let winconText;
+    const thisToursName = this.props.navigation.getParam('tourName');
+    const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
+    const totalMatches = filter.totalMatches;
+    let partic = this.props.navigation.getParam('partic');
+    let tours;
+    let winconText;
 
-      switch (filter.wincon) {
-        case '1':
-          winconText = 'Survived most minutes';
-          break
-        case '2':
-          winconText = 'Most accumulated kills';
-          break
-        case '3':
-          winconText = 'Most placements in top 5';
-          break
-        default:
-          winconText = '';
-          break
-      };
-
-        return (
-            <View style={style.mainContainer}>
-                <Text style={style.headerText}>Ending on:</Text>
-                <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
-                <Text style={style.headerText}>Win condition:</Text>
-                <Text style={style.paragraphText}>{winconText}</Text>
-                <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between'
-                }}>
-                    <View style={{
-                        flexDirection: 'row',
-                        paddingLeft: '2%',
-                    }}>
-                        <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
-                        <Text style={style.smallText}>Players</Text>
-                    </View>
-                    <View style={{
-                        flexDirection: 'row'
-                    }}>
-                        <Text style={style.smallText}>Matches</Text>
-                        <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
-                    </View>
-                </View>
-                <ScrollView style={{ height: '100%', marginBottom: '5%' }}>
-                    {this.mapPartic(totalMatches)}
-                </ScrollView>
-                {this.state.buttonToggle === true ?
-                    <View style={style.buttonContainer}>
-                        <TourButton
-                            buttonTitle={'CANCEL'}
-                            buttonFunc={() => this.cancelFunc(partic)}
-                        />
-                        <TourButton buttonTitle={'CONFIRM'}
-                            buttonFunc={() => this.confirmFunc(partic)}
-                        />
-                    </View>
-                    :
-                    <View style={style.buttonContainer}>
-                        <TourButton
-                            buttonTitle={'MANAGE TOURNAMENT'}
-                            buttonFunc={this.toggleManage} />
-                        <TourButton buttonTitle={'INVITE FRIENDS'}
-                            buttonFunc={this.toggleInvite} />
-                    </View>
-                }
-                {this.state.isVisible && (
-                    <Overlay
-                        height='auto'
-                        isVisible={this.state.isVisible == true}
-                        onBackdropPress={() => this.setState({
-                            isVisible: false,
-                            isManage: false,
-                            isInvite: false
-                        })}
-                        overlayBackgroundColor={'black'}
-                        overlayStyle={{
-                            borderColor: 'yellow',
-                            borderWidth: 2
-                        }}
-                    >
-                        <View>
-                            <ScrollView
-                                contentContainerStyle={{
-                                    flexDirection: 'column',
-                                    justifyContent: 'space-between'
-                                }}
-                                style={{
-                                    padding: 5
-                                }}
-                            >
-                                {this.state.isManage === true && (
-                                    <View style={style.buttonContainerCol}>
-                                        <TourButton
-                                            buttonTitle={'END TOURNAMENT'}
-                                            buttonFunc={() => this.endTournament(thisToursName)}
-                                        />
-                                        <TourButton
-                                            buttonTitle={'KICK A PLAYER'}
-                                            buttonFunc={() => this.selectPlayer(partic)}
-                                        />
-                                        <TourButton
-                                            buttonTitle={'PERMISSIONS'}
-                                            buttonFunc={() => this.selectPlayer(partic)}
-                                        />
-                                    </View>
-                                )}
-                                {this.state.isInvite === true && (
-                                    <View>
-                                        {this.mapInviteList()}
-                                    </View>
-                                )}
-                            </ScrollView>
-                        </View>
-                    </Overlay>
-                )}
-            </View>
-        )
-
+    switch (filter.wincon) {
+      case '1':
+        winconText = 'Survived most minutes';
+        break
+      case '2':
+        winconText = 'Most accumulated kills';
+        break
+      case '3':
+        winconText = 'Most placements in top 5';
+        break
+      default:
+        winconText = '';
+        break
     };
+
+      return (
+          <View style={style.mainContainer}>
+              <Text style={style.headerText}>Ending on:</Text>
+              <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
+              <Text style={style.headerText}>Win condition:</Text>
+              <Text style={style.paragraphText}>{winconText}</Text>
+              <View style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
+              }}>
+                  <View style={{
+                      flexDirection: 'row',
+                      paddingLeft: '2%',
+                  }}>
+                      <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
+                      <Text style={style.smallText}>Players</Text>
+                  </View>
+                  <View style={{
+                      flexDirection: 'row'
+                  }}>
+                      <Text style={style.smallText}>Matches</Text>
+                      <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
+                  </View>
+              </View>
+              <ScrollView style={{ height: '100%', marginBottom: '5%' }}>
+                  {this.mapPartic(totalMatches)}
+              </ScrollView>
+              {this.state.buttonToggle === true ?
+                  <View style={style.buttonContainer}>
+                      <TourButton
+                          buttonTitle={'CANCEL'}
+                          buttonFunc={() => this.cancelFunc(partic)}
+                      />
+                      <TourButton buttonTitle={'CONFIRM'}
+                          buttonFunc={() => this.confirmFunc(partic)}
+                      />
+                  </View>
+                  :
+                  <View style={style.buttonContainer}>
+                      <TourButton
+                          buttonTitle={'MANAGE TOURNAMENT'}
+                          buttonFunc={this.toggleManage} />
+                      <TourButton buttonTitle={'INVITE FRIENDS'}
+                          buttonFunc={this.toggleInvite} />
+                  </View>
+              }
+              {this.state.isVisible && (
+                  <Overlay
+                      height='auto'
+                      isVisible={this.state.isVisible == true}
+                      onBackdropPress={() => this.setState({
+                          isVisible: false,
+                          isManage: false,
+                          isInvite: false
+                      })}
+                      overlayBackgroundColor={'black'}
+                      overlayStyle={{
+                          borderColor: 'yellow',
+                          borderWidth: 2
+                      }}
+                  >
+                      <View>
+                          <ScrollView
+                              contentContainerStyle={{
+                                  flexDirection: 'column',
+                                  justifyContent: 'space-between'
+                              }}
+                              style={{
+                                  padding: 5
+                              }}
+                          >
+                              {this.state.isManage === true && (
+                                  <View style={style.buttonContainerCol}>
+                                      <TourButton
+                                          buttonTitle={'END TOURNAMENT'}
+                                          buttonFunc={() => this.endTournament(thisToursName)}
+                                      />
+                                      <TourButton
+                                          buttonTitle={'KICK PLAYERS'}
+                                          buttonFunc={() => this.selectPlayer(partic)}
+                                      />
+                                      <TourButton
+                                          buttonTitle={'PERMISSIONS'}
+                                          buttonFunc={() => this.selectPlayer(partic)}
+                                      />
+                                  </View>
+                              )}
+                              {this.state.isInvite === true && (
+                                  <View>
+                                      {this.mapInviteList()}
+                                  </View>
+                              )}
+                          </ScrollView>
+                      </View>
+                  </Overlay>
+              )}
+          </View>
+      )
+
+  };
 };
 
 const mapStateToProps = (state) => {
@@ -280,4 +275,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { selectPlayer, confirmPlayer, endTournament, deletePlayer })(OngoingScreen);
+export default connect(mapStateToProps, { selectPlayer, confirmPlayer, endTournament, deletePlayers })(OngoingScreen);

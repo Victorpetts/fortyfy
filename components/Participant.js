@@ -6,8 +6,10 @@ import {
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements';
+import { uncheckOthers, checkPartic } from '../actions/index.js';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import style from '../assets/Style.js';
+
 
 class Participant extends Component {
 
@@ -16,6 +18,7 @@ class Participant extends Component {
   }
 
   insideFunc = () => {
+
     this.setState(prevState =>({
       checked: !prevState.checked
     }))
@@ -23,7 +26,7 @@ class Participant extends Component {
     let participant = this.props.name;
     let checkedState = this.state.checked;
 
-    this.props.checkerFunc(participant, checkedState);
+    this.props.outsideFunc(participant, checkedState);
   }
 
   render() {
@@ -65,4 +68,4 @@ const mapStateToProps = (state) => {
    };
 };
 
-export default connect(mapStateToProps, null)(Participant);
+export default connect(mapStateToProps, { uncheckOthers, checkPartic })(Participant);
