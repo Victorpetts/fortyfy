@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements';
-import { uncheckOthers, checkPartic } from '../actions/index.js';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
@@ -18,10 +17,9 @@ class Participant extends Component {
   }
 
   insideFunc = () => {
-
     this.setState(prevState =>({
       checked: !prevState.checked
-    }))
+    }));
 
     let participant = this.props.name;
     let checkedState = this.state.checked;
@@ -30,42 +28,24 @@ class Participant extends Component {
   }
 
   render() {
-
     return (
       <View style={style.itemContainer}>
-
         {this.props.checkBox === true &&
           <CheckBox
             checked={this.state.checked}
             onPress={this.insideFunc}
           />
         }
-
         <View style={{ flexDirection: 'row', flex: 1 }}>
-          {this.props.owner ?
-            <Text style={style.itemText}>
-              {this.props.name} {' '}
-              <MaterialCommunityIcons name={'crown'} size={14} />
-            </Text>
-          :
-            <Text style={style.itemText}>{this.props.name}</Text>
-          }
+          <Text style={style.itemText}>{this.props.name}</Text>
         </View>
-
         <Text style={style.itemNumber}>
           {this.props.playedMatches} / {this.props.totalMatches}
         </Text>
-
       </View>
     )
   }
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    partic: state.partic
-   };
-};
-
-export default connect(mapStateToProps, { uncheckOthers, checkPartic })(Participant);
+export default Participant;

@@ -14,6 +14,7 @@ import { TourButton } from '../components/TourButton.js';
 import Participant from '../components/Participant.js';
 import InviteList from '../components/InviteList';
 
+
 class OngoingScreen extends Component {
 
   state = {
@@ -42,15 +43,14 @@ class OngoingScreen extends Component {
   });
 
   mapPartic(totalMatches) {
-    return this.props.partic.map((player) => {
+    return this.props.partic.map((participant) => {
       return (
         <Participant
-          key={player.name}
-          name={player.name}
-          playedMatches={player.playedMatches}
+          key={participant.name}
+          name={participant.name}
+          playedMatches={participant.playedMatches}
           totalMatches={totalMatches}
-          checkBox={player.checkBox}
-          isChecked={player.isChecked}
+          checkBox={participant.checkBox}
           outsideFunc={this.outsideFunc}
         />
       );
@@ -58,7 +58,6 @@ class OngoingScreen extends Component {
   };
 
   outsideFunc = (participant, checkedState) => {
-
     let oldArr = this.state.checkedPartic;
 
     {checkedState === false ?
@@ -71,7 +70,6 @@ class OngoingScreen extends Component {
       })
     }
   };
-
 
   toggleManage = () => {
     this.setState({
@@ -87,8 +85,8 @@ class OngoingScreen extends Component {
     })
   };
 
-  selectPlayer = (partic) => {
-    this.props.selectPlayer(partic);
+  selectPlayer = () => {
+    this.props.selectPlayer();
 
     this.setState({
       isVisible: false,

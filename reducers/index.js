@@ -29,6 +29,7 @@ const initialState = {
 
 const toursReducer = (oldArr = initialState.toursArr, action) => {
   switch (action.type) {
+
     case'TOURNAMENT_CREATED':
       let newToursArr = [...oldArr, action.payload]
       return newToursArr;
@@ -51,6 +52,7 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
 
 const particReducer = (oldArr = initialState.particArr, action) => {
   switch (action.type) {
+
     case 'PLAYER_ADDED':
       let newArr = [...oldArr, action.payload]
       return newArr;
@@ -89,6 +91,7 @@ const particReducer = (oldArr = initialState.particArr, action) => {
 
 const usersReducer = (oldArr = initialState.usersArr, action) => {
   switch (action.type) {
+
     case 'FRIEND_ACCEPTED':
       return oldArr.map((item, index) => {
         if(item.name === action.payload) {
@@ -111,25 +114,24 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
         return item;
       });
 
-      case 'FRIEND_REQUEST_SENT':
-      return oldArr.map((item, index) => {
-        if(item.name === action.payload) {
-          return {
-            ...item,
-            status: 'pending'
-          }
+    case 'FRIEND_REQUEST_SENT':
+    return oldArr.map((item, index) => {
+      if(item.name === action.payload) {
+        return {
+          ...item,
+          status: 'pending'
         }
-        return item;
-      });
+      }
+      return item;
+    });
 
-      case 'FRIEND_INVITED':
-          let newUsersArr = oldArr.filter(item => item.name !== action.payload)
-          return newUsersArr;
+    case 'FRIEND_INVITED':
+      let newUsersArr = oldArr.filter(item => item.name !== action.payload)
+      return newUsersArr;
 
-  default:
-    return oldArr;
+    default:
+      return oldArr;
   }
-
 };
 
 
