@@ -1,7 +1,13 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import {
+  Platform,
+  View,
+  Text
+
+} from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
+import Colors from '../constants/Colors';
 import TabBarIcon from '../components/TabBarIcon';
 import NewsScreen from '../screens/NewsScreen';
 import TournamentsScreen from '../screens/TournamentsScreen';
@@ -15,25 +21,67 @@ import CreateTourScreen from '../screens/CreateTourScreen';
 import FinishedScreen from '../screens/FinishedScreen';
 import OngoingScreen from '../screens/OngoingScreen';
 
-const ProfileStack = createStackNavigator({
-  Home: ProfileScreen,
-  IndvUserCard: UserCardScreen,
-  ProfileSettings: ProfileSettingScreen
+const NewsStack = createStackNavigator({
+  News: NewsScreen,
 });
 
-ProfileStack.navigationOptions = {
-  tabBarLabel: 'Profile',
+NewsStack.navigationOptions = {
+  tabBarLabel: 'News',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
+      name={Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
     />
   ),
   tabBarOptions: {
-    activeTintColor: 'yellow',
+    activeTintColor: 'white',
+    activeBackgroundColor: Colors.activeBackgroundColor,
     style: {
-      backgroundColor: 'black',
+      backgroundColor: Colors.tabBarbackgroundColor,
+    },
+  }
+};
+
+const TournamentsStack = createStackNavigator({
+  Tournaments: TournamentsScreen,
+  TourIndv: TourIndvScreen,
+  TourCreate: CreateTourScreen,
+  Ongoing: OngoingScreen,
+  Finished: FinishedScreen,
+  TopUserCard: UserCardScreen
+});
+
+TournamentsStack.navigationOptions = {
+  tabBarLabel: 'Tournaments',
+  tabBarIcon: ({ focused }) => (
+    focused ?
+      <TabBarIcon
+        focused={focused}
+        name={Platform.OS === 'ios' ? 'ios-flag' : 'md-flag'}
+      />
+      :
+      <View>
+        <View style={{
+          borderRadius: 9,
+          width: 10,
+          height: 10,
+          backgroundColor: 'red',
+          position: 'absolute',
+          top: 0,
+          right: 10,
+          zIndex: 1000
+        }}>
+        </View>
+        <TabBarIcon
+          focused={focused}
+          name={Platform.OS === 'ios' ? 'ios-flag' : 'md-flag'} />
+      </View>
+  ),
+  tabBarOptions: {
+    activeTintColor: 'white',
+    activeBackgroundColor: Colors.activeBackgroundColor,
+    style: {
+      backgroundColor: Colors.tabBarbackgroundColor,
     },
   }
 };
@@ -53,54 +101,34 @@ UsersStack.navigationOptions = {
     />
   ),
   tabBarOptions: {
-    activeTintColor: 'yellow',
+    activeTintColor: 'white',
+    activeBackgroundColor: Colors.activeBackgroundColor,
     style: {
-      backgroundColor: 'black',
+      backgroundColor: Colors.tabBarbackgroundColor,
     },
   }
 };
 
-const TournamentsStack = createStackNavigator({
-  Tournaments: TournamentsScreen,
-  TourIndv: TourIndvScreen,
-  TourCreate: CreateTourScreen,
-  Ongoing: OngoingScreen,
-  Finished: FinishedScreen,
-  TopUserCard: UserCardScreen
+const ProfileStack = createStackNavigator({
+  Home: ProfileScreen,
+  IndvUserCard: UserCardScreen,
+  ProfileSettings: ProfileSettingScreen
 });
 
-TournamentsStack.navigationOptions = {
-  tabBarLabel: 'Tournaments',
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-flag' : 'md-flag'}
+      name={
+        Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
     />
   ),
   tabBarOptions: {
-    activeTintColor: 'yellow',
+    activeTintColor: 'white',
+    activeBackgroundColor: Colors.activeBackgroundColor,
     style: {
-      backgroundColor: 'black',
-    }
-  }
-};
-
-const NewsStack = createStackNavigator({
-  News: NewsScreen,
-});
-
-NewsStack.navigationOptions = {
-  tabBarLabel: 'News',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
-    />
-  ),
-  tabBarOptions: {
-    activeTintColor: 'yellow',
-    style: {
-      backgroundColor: 'black',
+      backgroundColor: Colors.tabBarbackgroundColor,
     },
   }
 };

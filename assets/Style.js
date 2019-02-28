@@ -8,6 +8,8 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+import Colors from '../constants/Colors.js';
+
 
 export default StyleSheet.create({
   buttonClass: {
@@ -164,8 +166,7 @@ export default StyleSheet.create({
   mainContainer: {
     width: '100%',
     height: '100%',
-    display: 'flex',
-    backgroundColor: 'black'
+    backgroundColor: Colors.appBackgroundColor
   },
 
   cardsContainer: {
@@ -294,13 +295,13 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 0,
-    backgroundColor: 'black'
+    backgroundColor: Colors.appBlackColor
   },
 
   enabledTab: {
     width: "50%",
     borderBottomWidth: 4,
-    borderColor: 'yellow'
+    borderColor: Colors.appBackgroundColor
   },
 
   disabledTab: {
