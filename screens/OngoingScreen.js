@@ -23,7 +23,8 @@ class OngoingScreen extends Component {
     isManage: false,
     isInvite: false,
     invite: true,
-    checkedPartic: []
+    checkedPartic: [],
+    toKick: false
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -85,7 +86,17 @@ class OngoingScreen extends Component {
     })
   };
 
-  selectPlayer = () => {
+  selectToKick = () => {
+    this.props.selectPlayer();
+
+    this.setState({
+      isVisible: false,
+      buttonToggle: true,
+      toKick: true
+    })
+  };
+
+  selectPermissions = () => {
     this.props.selectPlayer();
 
     this.setState({
@@ -99,7 +110,8 @@ class OngoingScreen extends Component {
     this.props.deletePlayers(this.state.checkedPartic);
 
     this.setState({
-      buttonToggle: false
+      buttonToggle: false,
+      toKick: false
     })
   };
 
@@ -107,7 +119,8 @@ class OngoingScreen extends Component {
     this.props.confirmPlayer();
 
     this.setState({
-      buttonToggle: false
+      buttonToggle: false,
+      toKick: false
     })
   };
 
@@ -163,114 +176,127 @@ class OngoingScreen extends Component {
         break
     };
 
-      return (
-          <View style={style.mainContainer}>
-              <Text style={style.headerText}>Ending on:</Text>
-              <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
-              <Text style={style.headerText}>Win condition:</Text>
-              <Text style={style.paragraphText}>{winconText}</Text>
-              <View style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-              }}>
-                  <View style={{
-                      flexDirection: 'row',
-                      paddingLeft: '2%',
-                  }}>
-                      <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
-                      <Text style={style.smallText}>Players</Text>
-                  </View>
-                  <View style={{
-                      flexDirection: 'row'
-                  }}>
-                      <Text style={style.smallText}>Matches</Text>
-                      <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
-                  </View>
-              </View>
-              <ScrollView style={{ height: '100%', marginBottom: '5%' }}>
-                  {this.mapPartic(totalMatches)}
-              </ScrollView>
-              {this.state.buttonToggle === true ?
-                  <View style={style.buttonContainer}>
-                      <TourButton
-                          buttonTitle={'CANCEL'}
-                          buttonFunc={() => this.cancelFunc(partic)}
-                      />
-                      <TourButton buttonTitle={'CONFIRM'}
-                          buttonFunc={() => this.confirmFunc(partic)}
-                      />
-                  </View>
-                  :
-                  <View style={style.buttonContainer}>
-                      <TourButton
-                          buttonTitle={'MANAGE TOURNAMENT'}
-                          buttonFunc={this.toggleManage} />
-                      <TourButton buttonTitle={'INVITE FRIENDS'}
-                          buttonFunc={this.toggleInvite} />
-                  </View>
-              }
-              {this.state.isVisible && (
-                  <Overlay
-                      height='auto'
-                      isVisible={this.state.isVisible == true}
-                      onBackdropPress={() => this.setState({
-                          isVisible: false,
-                          isManage: false,
-                          isInvite: false
-                      })}
-                      overlayBackgroundColor={'black'}
-                      overlayStyle={{
-                          borderColor: 'yellow',
-                          borderWidth: 2
-                      }}
-                  >
-                      <View>
-                          <ScrollView
-                              contentContainerStyle={{
-                                  flexDirection: 'column',
-                                  justifyContent: 'space-between'
-                              }}
-                              style={{
-                                  padding: 5
-                              }}
-                          >
-                              {this.state.isManage === true && (
-                                  <View style={style.buttonContainerCol}>
-                                      <TourButton
-                                          buttonTitle={'END TOURNAMENT'}
-                                          buttonFunc={() => this.endTournament(thisToursName)}
-                                      />
-                                      <TourButton
-                                          buttonTitle={'KICK PLAYERS'}
-                                          buttonFunc={() => this.selectPlayer(partic)}
-                                      />
-                                      <TourButton
-                                          buttonTitle={'PERMISSIONS'}
-                                          buttonFunc={() => this.selectPlayer(partic)}
-                                      />
-                                  </View>
-                              )}
-                              {this.state.isInvite === true && (
-                                  <View>
-                                      {this.mapInviteList()}
-                                  </View>
-                              )}
-                          </ScrollView>
-                      </View>
-                  </Overlay>
-              )}
-          </View>
-      )
+    return (
+        <View style={style.mainContainer}>
+            <Text style={style.headerText}>Ending on:</Text>
+            <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
+            <Text style={style.headerText}>Win condition:</Text>
+            <Text style={style.paragraphText}>{winconText}</Text>
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+            }}>
+                <View style={{
+                    flexDirection: 'row',
+                    paddingLeft: '2%',
+                }}>
+                    <FontAwesome name="user-circle" size={16} color="yellow" style={{ paddingTop: 5, marginRight: '5%' }} />
+                    <Text style={style.smallText}>Players</Text>
+                </View>
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <Text style={style.smallText}>Matches</Text>
+                    <FontAwesome name="gamepad" size={16} color="yellow" style={{ paddingTop: 5, marginLeft: '5%' }} />
+                </View>
+            </View>
+            <ScrollView style={{ height: '100%', marginBottom: '5%' }}>
+                {this.mapPartic(totalMatches)}
+            </ScrollView>
 
+            {this.state.buttonToggle === true && this.state.toKick === false &&
+              <View style={style.buttonContainer}>
+                <TourButton
+                  buttonTitle={'CANCEL'}
+                  buttonFunc={() => this.cancelFunc(partic)}
+                />
+                <TourButton buttonTitle={'CONFIRM'}
+                  buttonFunc={() => this.cancelFunc(partic)}
+                />
+              </View>
+            }
+            {this.state.buttonToggle === true && this.state.toKick === true &&
+              <View style={style.buttonContainer}>
+                <TourButton
+                  buttonTitle={'CANCEL'}
+                  buttonFunc={() => this.cancelFunc(partic)}
+                />
+                <TourButton buttonTitle={'CONFIRM'}
+                    buttonFunc={() => this.confirmFunc(partic)}
+                  />
+              </View>
+            }
+            {this.state.buttonToggle === false && this.state.toKick === false &&
+              <View style={style.buttonContainer}>
+                <TourButton
+                  buttonTitle={'MANAGE TOURNAMENT'}
+                  buttonFunc={this.toggleManage} />
+                <TourButton buttonTitle={'INVITE FRIENDS'}
+                  buttonFunc={this.toggleInvite} />
+              </View>
+            }
+
+            {this.state.isVisible && (
+                <Overlay
+                    height='auto'
+                    isVisible={this.state.isVisible == true}
+                    onBackdropPress={() => this.setState({
+                        isVisible: false,
+                        isManage: false,
+                        isInvite: false
+                    })}
+                    overlayBackgroundColor={'black'}
+                    overlayStyle={{
+                        borderColor: 'yellow',
+                        borderWidth: 2
+                    }}
+                >
+                    <View>
+                        <ScrollView
+                            contentContainerStyle={{
+                                flexDirection: 'column',
+                                justifyContent: 'space-between'
+                            }}
+                            style={{
+                                padding: 5
+                            }}
+                        >
+                            {this.state.isManage === true && (
+                                <View style={style.buttonContainerCol}>
+                                    <TourButton
+                                        buttonTitle={'END TOURNAMENT'}
+                                        buttonFunc={() => this.endTournament(thisToursName)}
+                                    />
+                                    <TourButton
+                                        buttonTitle={'KICK PLAYERS'}
+                                        buttonFunc={() => this.selectToKick(partic)}
+                                    />
+                                    <TourButton
+                                        buttonTitle={'PERMISSIONS'}
+                                        buttonFunc={() => this.selectPermissions(partic)}
+                                    />
+                                </View>
+                            )}
+                            {this.state.isInvite === true && (
+                                <View>
+                                    {this.mapInviteList()}
+                                </View>
+                            )}
+                        </ScrollView>
+                    </View>
+                </Overlay>
+            )}
+        </View>
+    )
   };
 };
 
 const mapStateToProps = (state) => {
-    return {
-        tours: state.tours,
-        partic: state.partic,
-        users: state.users
-    };
+  return {
+    tours: state.tours,
+    partic: state.partic,
+    users: state.users
+  };
 };
 
 export default connect(mapStateToProps, { selectPlayer, confirmPlayer, endTournament, deletePlayers })(OngoingScreen);
