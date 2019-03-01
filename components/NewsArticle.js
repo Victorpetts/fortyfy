@@ -5,54 +5,68 @@ import {
   Image,
   TouchableOpacity,
   Linking
- } from 'react-native';
- import {
-   widthPercentageToDP as wp,
-   heightPercentageToDP as hp
- } from 'react-native-responsive-screen';
+} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+import Colors from '../constants/Colors';
 
 export class NewsArticle extends React.Component {
   render() {
     return (
       <View style={{
-          width: '100%',
-          backgroundColor: 'black'
-         }}
-       >
+        width: '100%',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        marginBottom: '5%',
+        padding: '5%',
+        justifyContent: 'space-between'
+
+      }}
+      >
         <Image
-          style={{ height: hp('50%') }}
+          source={{ uri: this.props.img }}
+          style={{
+            height: 275,
+            width: 300,
+            alignSelf: 'center'
+          }}
           resizeMode='cover'
-          source={{uri: this.props.img }}
-         />
-         <TouchableOpacity
-           onPress={() => Linking.openURL(this.props.link)}
-           >
-       <View style={{
-           padding: 10
-         }}>
-         <Text style={{
-             fontSize: 30,
-             fontWeight: 'bold',
-             color: 'yellow'
-           }}>{this.props.title}</Text>
-         <Text style={{
-             fontSize: 12,
-             color: 'white',
-             fontWeight: 'bold'
-           }}>{this.props.date}</Text>
-         <View style={{
-           paddingTop: 20,
-           paddingBottom: 30
-         }}
-         >
-         <Text style={{
-           color: 'white',
-           fontWeight: 'bold',
-           fontSize: 20
-         }}>Read more...</Text>
-       </View>
-       </View>
-       </TouchableOpacity>
+        />
+        <View style={{
+          paddingTop: 20,
+          paddingHorizontal: 5
+        }}>
+          <Text style={{
+            fontSize: 20,
+            color: Colors.appBlackColor
+          }}>{
+              this.props.title}
+          </Text>
+          <Text style={{
+              fontSize: 10,
+              color: Colors.appBlackColor
+            }}>
+              {this.props.date}
+            </Text>
+          <TouchableOpacity
+            onPress={() => Linking.openURL(this.props.link)}
+            style={{
+              paddingVertical: 5,
+              alignSelf: 'flex-end'
+            }}
+          >
+            <Text style={{
+              textAlign: 'center',
+              color: Colors.appBlackColor,
+              fontSize: 10,
+              borderBottomWidth: 1.2,
+              width: 55,
+              borderColor: Colors.appBlackColor
+            }}>Read article</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

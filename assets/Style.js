@@ -8,6 +8,8 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+import Colors from '../constants/Colors.js';
+
 
 export default StyleSheet.create({
   buttonClass: {
@@ -51,7 +53,7 @@ export default StyleSheet.create({
 
   buttonTextDisabled: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
     color: 'white'
   },
@@ -61,6 +63,13 @@ export default StyleSheet.create({
     fontSize: 28,
     alignSelf: 'center',
     color: 'yellow'
+  },
+
+  scoreText: {
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'white',
+    justifyContent: 'space-between'
   },
 
   headerText: {
@@ -92,6 +101,21 @@ export default StyleSheet.create({
     letterSpacing: 0.5
   },
 
+  italicText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    letterSpacing: 0.5,
+    fontStyle: 'italic'
+  },
+
+  mediumText: {
+    fontSize: 24,
+    textAlign: 'center',
+    color: 'yellow',
+    letterSpacing: 0.5
+  },
+
   playerText: {
     fontSize: 18,
     color: 'yellow',
@@ -106,9 +130,25 @@ export default StyleSheet.create({
 
   userText: {
     fontSize: 20,
-    textAlign: 'center',
     color: 'yellow',
     marginVertical: 14,
+    textAlign: 'center'
+  },
+
+  inviteListText: {
+    fontSize: 20,
+    color: 'yellow',
+    marginVertical: 14,
+    flex: 1
+  },
+
+  inviteMessageText: {
+    fontSize: 20,
+    color: 'yellow',
+    display: 'flex',
+    textAlign: 'center',
+    padding: 10,
+    width: '100%'
   },
 
   inputFieldText: {
@@ -126,8 +166,7 @@ export default StyleSheet.create({
   mainContainer: {
     width: '100%',
     height: '100%',
-    display: 'flex',
-    backgroundColor: 'black'
+    backgroundColor: Colors.appBackgroundColor
   },
 
   cardsContainer: {
@@ -162,10 +201,18 @@ export default StyleSheet.create({
     borderRadius: 3,
     marginVertical: 5,
     elevation: 2,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: 'white',
-    borderBottomWidth: 2
+  },
+
+  inviteListContainer: {
+      borderRadius: 3,
+      marginVertical: 5,
+      elevation: 2,
+      borderBottomColor: 'white',
+      borderBottomWidth: 2
   },
 
   inputFieldContainer: {
@@ -248,13 +295,13 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 0,
-    backgroundColor: 'black'
+    backgroundColor: Colors.appBlackColor
   },
 
   enabledTab: {
     width: "50%",
     borderBottomWidth: 4,
-    borderColor: 'yellow'
+    borderColor: Colors.appBackgroundColor
   },
 
   disabledTab: {

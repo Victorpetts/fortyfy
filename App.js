@@ -8,6 +8,7 @@ import AppNavigator from './navigation/AppNavigator';
 import reducers from './reducers';
 
 export default class App extends React.Component {
+
   state = {
     isLoadingComplete: false,
   };
@@ -44,9 +45,8 @@ export default class App extends React.Component {
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-        'fa_solid_900': require('./assets/fonts/fontawesome.ttf')
-      }),
+        'luckiest-guy-regular': require('./assets/fonts/LuckiestGuy-Regular.ttf')
+        }),
     ]);
   };
 
