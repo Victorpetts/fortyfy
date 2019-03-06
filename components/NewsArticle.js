@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   Linking
 } from 'react-native';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
+
 import Colors from '../constants/Colors';
 
 export class NewsArticle extends React.Component {

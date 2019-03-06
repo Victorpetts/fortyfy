@@ -5,8 +5,8 @@ import {
   Text,
   ScrollView
 } from 'react-native';
-import Tour from './Tour.js';
 
+import Tour from './Tour.js';
 import style from '../assets/Style.js';
 import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
@@ -89,6 +89,7 @@ class MyTours extends Component {
         </ScrollView>
       </View>
     )
+
   }
 
 }

@@ -1,3 +1,6 @@
+
+// Används inte
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createTour } from '../actions';
@@ -10,7 +13,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import { TourButton } from './TourButton.js';
+import { TourButton } from './Buttons.js';
 // import { addTour } from '../services/AddTourService';
 
 class CreateTour extends Component {
@@ -36,15 +39,6 @@ class CreateTour extends Component {
     }
   }
 
-  // handleSubmit = () => {
-  //   addTour(this.state.name, this.state.players, this.state.wincon, this.state.totalMatches);
-  //   this.props.buttonFunc();
-  // }
-
-  bla = isFocused => {
-    console.log(isFocused);
-  }
-
   render() {
 
     const { name, players, wincon, totalMatches } = this.state
@@ -52,7 +46,6 @@ class CreateTour extends Component {
 
     return (
       <View style={style.mainContainer}>
-        {this.bla(isFocused)}
         <View style={style.container}>
           <Text style={style.headerText}>Tournament name: </Text>
           <TextInput

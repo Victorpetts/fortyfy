@@ -1,24 +1,23 @@
+
+// Används inte
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   ScrollView,
-  Text,
-  View,
-  TouchableOpacity
+  View
 } from 'react-native';
 
 import { selectPlayer, confirmPlayer } from '../actions/index.js';
-
 import style from '../assets/Style.js';
 import { Overlay } from 'react-native-elements';
-import { TourButton } from '../components/TourButton.js';
+import { TourButton } from '../components/Buttons.js';
 import FinishedTour from '../components/FinishedTour.js';
 import OngoingTour from '../components/OngoingTour.js';
 
 
 class TourIndvScreen extends Component {
   state = {
-    ongoing: false,
     isVisible: false,
     buttonToggle: false
   }
@@ -62,16 +61,16 @@ class TourIndvScreen extends Component {
 
   render() {
     const tourName = this.props.navigation.getParam('tourName');
-    const numbPlayers = this.props.navigation.getParam('numbPlayers');
     const tourStatus = this.props.navigation.getParam('tourStatus');
     let partic = this.props.partic;
- 
+
     return (
       <ScrollView style={style.mainContainer}>
 
         {!tourStatus
           ? <View>
             <OngoingTour tourName={tourName} />
+
             {this.state.buttonToggle === true ?
               <View style={style.buttonContainer}>
                 <TourButton
@@ -88,6 +87,7 @@ class TourIndvScreen extends Component {
                 <TourButton buttonTitle={'INVITE FRIENDS'} />
               </View>
             }
+
           </View>
           : <FinishedTour tourName={tourName} />
         }
@@ -108,9 +108,7 @@ class TourIndvScreen extends Component {
                   flexDirection: 'column',
                   justifyContent: 'space-between'
                 }}
-                style={{
-                  padding: 5
-                }}
+                style={{ padding: 5 }}
               >
                 <View style={style.buttonContainerCol}>
                   <TourButton
@@ -134,7 +132,6 @@ class TourIndvScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
     partic: state.partic
   };
 };

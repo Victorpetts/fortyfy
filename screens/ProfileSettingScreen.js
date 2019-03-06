@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-    Image,
     ScrollView,
     Text,
     TextInput,
-    TouchableOpacity,
     View,
     Switch,
     Keyboard
 } from 'react-native';
 
-import { TourButton } from '../components/TourButton.js';
-
+import { TourButton } from '../components/Buttons.js';
 import { FontAwesome } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class ProfileSettingScreen extends Component {
 
     state = {
-
         toggleSwitch: false
     };
 

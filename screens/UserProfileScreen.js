@@ -4,15 +4,13 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
 import PlayerCardProfile from '../components/PlayerCardProfile.js';
-
 import style from '../assets/Style.js';
 import { Feather } from '@expo/vector-icons';
-
 
 class UserProfileScreen extends Component {
 
@@ -97,10 +95,8 @@ class UserProfileScreen extends Component {
   render() {
 
     return (
-      <View style={{
-        height: '100%'
-      }}>
 
+      <View style={{ height: '100%' }}>
         {this.state.toggleProfile ? (
           <View>
             <View
@@ -187,7 +183,8 @@ class UserProfileScreen extends Component {
             </ScrollView>
           </View>
 
-        ) : null}
+        ) : null
+        }
       </View>
     )
   };

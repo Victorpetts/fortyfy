@@ -12,31 +12,24 @@ export const endTournament = tour => {
   };
 };
 
-export const addPlayer = partic => {
+export const selectPlayer = users => {
   return {
-    type: 'PLAYER_ADDED',
-    payload: partic
+    type: 'PLAYERS_SELECTED',
+    payload: users
   };
 };
 
-export const selectPlayer = partic => {
+export const confirmPlayer = users => {
   return {
-    type: 'PLAYER_SELECTED',
-    payload: partic
+    type: 'PLAYERS_CONFIRMED',
+    payload: users
   };
 };
 
-export const confirmPlayer = partic => {
-  return {
-    type: 'PLAYER_CONFIRMED',
-    payload: partic
-  };
-};
-
-export const deletePlayers = participant => {
+export const deletePlayers = users => {
   return {
     type: 'PLAYERS_DELETED',
-    payload: participant
+    payload: users
   };
 };
 

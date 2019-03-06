@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
     View,
-    Text
+    Text,
+    ImageBackground
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements';
@@ -37,6 +38,12 @@ class Participant extends Component {
           />
         }
         <View style={{ flexDirection: 'row', flex: 1 }}>
+          <ImageBackground
+            source={require('../assets/images/gold-badge.png')}
+            style={{ height: 30, width: 30 }}
+          >
+          <Text style={style.lvlText}>{this.props.lvl}</Text>
+          </ImageBackground>
           <Text style={style.itemText}>{this.props.name}</Text>
         </View>
         <Text style={style.itemNumber}>

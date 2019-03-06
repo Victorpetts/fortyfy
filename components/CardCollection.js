@@ -31,10 +31,4 @@ class CardCollection extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.users
-    };
-};
-
-export default connect(mapStateToProps, null)(CardCollection);
+export default CardCollection;

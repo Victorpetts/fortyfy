@@ -10,7 +10,7 @@ import { Overlay } from 'react-native-elements';
 import { FontAwesome } from '@expo/vector-icons';
 import { selectPlayer, confirmPlayer, endTournament, deletePlayers } from '../actions/index.js';
 import style from '../assets/Style.js';
-import { TourButton } from '../components/TourButton.js';
+import { TourButton } from '../components/Buttons.js';
 import Participant from '../components/Participant.js';
 import InviteList from '../components/InviteList';
 
@@ -43,15 +43,21 @@ class OngoingScreen extends Component {
     }
   });
 
-  mapPartic(totalMatches) {
-    return this.props.partic.map((participant) => {
+  mapPartic(totalMatches, thisTour) {
+
+    let particArr = thisTour.participants;
+    let allUsers = this.props.users;
+    let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
+
+    return thisToursPartic.map((partic) => {
       return (
         <Participant
-          key={participant.name}
-          name={participant.name}
-          playedMatches={participant.playedMatches}
+          key={partic.id}
+          name={partic.name}
+          playedMatches={partic.matchStatistics[0].matchesPlayed}
+          lvl={partic.lvl}
           totalMatches={totalMatches}
-          checkBox={participant.checkBox}
+          checkBox={partic.checkBox}
           outsideFunc={this.outsideFunc}
         />
       );
@@ -131,19 +137,20 @@ class OngoingScreen extends Component {
 
   mapInviteList() {
 
-    friendsList = this.props.users.filter(function(item){
-      return item.friend === true;
-    }).map(function({name, level, friend}){
-      return {name, level, friend};
+    friendsList = this.props.users.filter(function(user){
+      return user.friend === true;
+    }).map(function({id,name, lvl, friend}){
+      return {id, name, lvl, friend};
     });
 
-    friendsList.sort((a, b) => b.level - a.level);
+    friendsList.sort((a, b) => b.lvl - a.lvl);
 
     return friendsList.map((user) => {
       return (
         <InviteList
-          key={user.name}
+          key={user.id}
           name={user.name}
+          lvl={user.lvl}
           friend={user.friend}
           navigation={this.props.navigation}
           invite={this.state.invite}
@@ -154,14 +161,12 @@ class OngoingScreen extends Component {
 
   render() {
 
-    const thisToursName = this.props.navigation.getParam('tourName');
-    const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
-    const totalMatches = filter.totalMatches;
-    let partic = this.props.navigation.getParam('partic');
-    let tours;
+    const thisToursId = this.props.navigation.getParam('tourId');
+    const thisTour = this.props.tours.find(thisTour => thisTour.id === thisToursId);
+    const totalMatches = thisTour.totalMatches;
     let winconText;
 
-    switch (filter.wincon) {
+    switch (thisTour.wincon) {
       case '1':
         winconText = 'Survived most minutes';
         break
@@ -179,7 +184,7 @@ class OngoingScreen extends Component {
     return (
         <View style={style.mainContainer}>
             <Text style={style.headerText}>Ending on:</Text>
-            <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
+            <Text style={style.paragraphText}>{thisTour.toDate}</Text>
             <Text style={style.headerText}>Win condition:</Text>
             <Text style={style.paragraphText}>{winconText}</Text>
             <View style={{
@@ -201,17 +206,17 @@ class OngoingScreen extends Component {
                 </View>
             </View>
             <ScrollView style={{ height: '100%', marginBottom: '5%' }}>
-                {this.mapPartic(totalMatches)}
+                {this.mapPartic(totalMatches, thisTour)}
             </ScrollView>
 
             {this.state.buttonToggle === true && this.state.toKick === false &&
               <View style={style.buttonContainer}>
                 <TourButton
                   buttonTitle={'CANCEL'}
-                  buttonFunc={() => this.cancelFunc(partic)}
+                  buttonFunc={() => this.cancelFunc()}
                 />
                 <TourButton buttonTitle={'CONFIRM'}
-                  buttonFunc={() => this.cancelFunc(partic)}
+                  buttonFunc={() => this.cancelFunc()}
                 />
               </View>
             }
@@ -219,10 +224,10 @@ class OngoingScreen extends Component {
               <View style={style.buttonContainer}>
                 <TourButton
                   buttonTitle={'CANCEL'}
-                  buttonFunc={() => this.cancelFunc(partic)}
+                  buttonFunc={() => this.cancelFunc()}
                 />
                 <TourButton buttonTitle={'CONFIRM'}
-                    buttonFunc={() => this.confirmFunc(partic)}
+                    buttonFunc={() => this.confirmFunc()}
                   />
               </View>
             }
@@ -257,9 +262,7 @@ class OngoingScreen extends Component {
                                 flexDirection: 'column',
                                 justifyContent: 'space-between'
                             }}
-                            style={{
-                                padding: 5
-                            }}
+                            style={{ padding: 5 }}
                         >
                             {this.state.isManage === true && (
                                 <View style={style.buttonContainerCol}>
@@ -269,11 +272,11 @@ class OngoingScreen extends Component {
                                     />
                                     <TourButton
                                         buttonTitle={'KICK PLAYERS'}
-                                        buttonFunc={() => this.selectToKick(partic)}
+                                        buttonFunc={() => this.selectToKick()}
                                     />
                                     <TourButton
                                         buttonTitle={'PERMISSIONS'}
-                                        buttonFunc={() => this.selectPermissions(partic)}
+                                        buttonFunc={() => this.selectPermissions()}
                                     />
                                 </View>
                             )}
@@ -294,7 +297,6 @@ class OngoingScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     tours: state.tours,
-    partic: state.partic,
     users: state.users
   };
 };

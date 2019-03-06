@@ -4,12 +4,11 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
-
 import style from '../assets/Style.js';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -85,12 +84,9 @@ class ProfileScreen extends Component {
   };
 
   render() {
-    
     return (
-      <View style={{
-        height: '100%'
-      }}>
 
+      <View style={{ height: '100%' }}>
         {this.state.toggleProfile ? (
           <View>
             <View
@@ -179,6 +175,7 @@ class ProfileScreen extends Component {
 
         ) : null}
       </View>
+
     )
   };
 };

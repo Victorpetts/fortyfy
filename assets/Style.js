@@ -30,7 +30,7 @@ export default StyleSheet.create({
     width: 60,
     height: 60
   },
-  
+
   buttonDisabled: {
     borderColor: 'yellow',
     borderWidth: 2,
@@ -125,6 +125,13 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 18,
     margin: 10,
+    flex: 1
+  },
+
+  lvlText: {
+    fontSize: 12,
+    marginTop: 5,
+    marginLeft: 9,
     flex: 1
   },
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createTour } from '../actions';
 import {
   View,
   Text,
@@ -10,9 +9,9 @@ import {
   ScrollView
 } from 'react-native';
 
+import { createTour } from '../actions';
 import style from '../assets/Style.js';
-import { TourButton } from '../components/TourButton.js';
-import { addTour } from '../services/AddTourService';
+import { TourButton } from '../components/Buttons.js';
 import DatePicker from 'react-native-datepicker';
 
 class CreateTourScreen extends Component {
@@ -40,28 +39,29 @@ class CreateTourScreen extends Component {
         color: 'yellow',
         fontSize: 30
     }
-};
+  };
 
-createTour = () => {
-  if (this.state.name !== '') {
-    let newTour = {
-      'name': this.state.name,
-      'players': this.state.players,
-      'wincon': this.state.wincon,
-      'totalMatches': this.state.totalMatches,
-      'finished': false,
-      'fromDate': this.state.fromDate,
-      'toDate': this.state.toDate
+  createTour = () => {
+    if (this.state.name !== '') {
+      const newId = this.props.tours.length + 1;
+      let newTour = {
+        'id': newId,
+        'name': this.state.name,
+        'players': this.state.players,
+        'wincon': this.state.wincon,
+        'totalMatches': this.state.totalMatches,
+        'finished': false,
+        'fromDate': this.state.fromDate,
+        'toDate': this.state.toDate
+      }
+      this.props.createTour(newTour);
+      this.props.navigation.navigate('Tournaments');
     }
-    this.props.createTour(newTour);
-    this.props.navigation.navigate('Tournaments');
   }
-}
 
   render() {
 
     const { name, players, wincon, totalMatches } = this.state
-
 
     return (
       <View style={style.mainContainer}>
@@ -100,7 +100,7 @@ createTour = () => {
               is24Hour={true}
               mode="datetime"
               placeholder="select date"
-              format="MMMM Do YYYY, HH:mm"
+              format="Do MM, HH:mm"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={{
@@ -129,7 +129,7 @@ createTour = () => {
               is24Hour={true}
               mode="datetime"
               placeholder="select date"
-              format="MMMM Do YYYY, HH:mm"
+              format="Do MM, HH:mm"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               textStyle={{ color: 'white' }}
@@ -173,8 +173,8 @@ createTour = () => {
             keyboardType='numeric'
           />
         <View style={{
-               marginVertical: 10,
-               alignSelf: 'flex-end'
+           marginVertical: 10,
+           alignSelf: 'flex-end'
         }}>
           <TourButton
             buttonTitle={'CREATE TOURNAMENT'}

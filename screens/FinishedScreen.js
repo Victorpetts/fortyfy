@@ -29,27 +29,37 @@ class FinishedScreen extends Component {
   });
 
   render() {
-    const tourArray = this.props.partic
-    tourArray.sort((a, b) => a.points - b.points);
-
-    const reverseArray = tourArray.reverse()
     const thisToursName = this.props.navigation.getParam('tourName');
     const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
+    const particArr = this.props.tours[filter.id].participants;
+    const usersArr = this.props.users;
+    let WinnersArr = [];
+
+    for (let i in usersArr) {
+      for (let j of particArr) {
+        if (usersArr[i].id === j) {
+        let user = usersArr.splice(usersArr[i], 1);
+        WinnersArr.push(user);
+        }
+      }
+    }
+
+    WinnersArr.sort((a, b) => b.points - a.points);
 
     let winconText;
 
     switch (filter.wincon) {
       case '1':
-        winconText = 'Survived most minutes';
+        winconText = 'Survived longest';
         break
       case '2':
-        winconText = 'Most accumulated kills';
+        winconText = 'Most kills';
         break
       case '3':
-        winconText = 'Most placements in top 5';
+        winconText = 'Most top 5';
         break
       default:
-        winconText = 'Survived most minutes';
+        winconText = '';
         break
     }
 
@@ -63,14 +73,14 @@ class FinishedScreen extends Component {
           <View style={{
             alignSelf: 'center'
           }}>
-            <Text style={style.headerText}>{reverseArray[0].name}</Text>
+            <Text style={style.headerText}>{WinnersArr[0].name}</Text>
             <TouchableOpacity
             onPress={() => this.props.navigation.navigate('TopUserCard', {
-            userName: reverseArray[0].name})}
+            userName: WinnersArr[0].name})}
             >
               <FontAwesome name="file-photo-o" size={100} color="white" />
             </TouchableOpacity>
-            <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="gold" /> {reverseArray[0].points}</Text>
+            <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="gold" /> {WinnersArr[0].points}</Text>
           </View>
           <View style={{
             flexDirection: 'row',
@@ -81,27 +91,27 @@ class FinishedScreen extends Component {
               flexDirection: 'column',
               alignItems: 'center'
             }}>
-              <Text style={style.headerText}>{reverseArray[1].name}</Text>
+              <Text style={style.headerText}>{WinnersArr[1].name}</Text>
               <TouchableOpacity
             onPress={() => this.props.navigation.navigate('TopUserCard', {
-            userName: reverseArray[1].name})}
-            >                
+            userName: WinnersArr[1].name})}
+            >
             <FontAwesome name="file-photo-o" size={75} color="white" />
               </TouchableOpacity>
-              <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="silver" /> {reverseArray[1].points}</Text>
+              <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="silver" /> {WinnersArr[1].points}</Text>
             </View>
             <View style={{
               flexDirection: 'column',
               alignItems: 'center'
             }}>
-              <Text style={style.headerText}>{reverseArray[2].name}</Text>
+              <Text style={style.headerText}>{WinnersArr[2].name}</Text>
               <TouchableOpacity
             onPress={() => this.props.navigation.navigate('TopUserCard', {
-            userName: reverseArray[2].name})}
+            userName: WinnersArr[2].name})}
             >
                 <FontAwesome name="file-photo-o" size={75} color="white" />
               </TouchableOpacity>
-              <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="#cd7f32" /> {reverseArray[2].points}</Text>
+              <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="#cd7f32" /> {WinnersArr[2].points}</Text>
             </View>
           </View>
         </ScrollView>
@@ -113,7 +123,7 @@ class FinishedScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    partic: state.partic,
+    users: state.users,
     tours: state.tours
   };
 };

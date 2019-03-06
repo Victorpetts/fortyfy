@@ -9,8 +9,7 @@ import {
 
 import { SearchBar, Overlay } from 'react-native-elements';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-
-import { TourButton, DisabledButton, RoundButton } from '../components/TourButton.js';
+import { TourButton, DisabledButton, RoundButton } from '../components/Buttons.js';
 import FriendsList from '../components/FriendsList.js';
 import style from '../assets/Style.js';
 import { sendRequest } from '../actions/index.js';
@@ -19,7 +18,6 @@ import { sendRequest } from '../actions/index.js';
 class UsersScreen extends Component {
 
   state = {
-    toggle: false,
     search: '',
     isVisible: false
   }

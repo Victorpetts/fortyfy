@@ -9,23 +9,18 @@ import {
 import { acceptFriend, denyFriend } from '../actions/index.js';
 import { FontAwesome, Feather } from '@expo/vector-icons';
 import style from '../assets/Style.js';
-import { TourButton } from './TourButton.js';
+import { TourButton } from './Buttons.js';
 
 class User extends Component {
-
-  state = {
-    buttonTitle: 'SEND INVITE'
-  }
 
   render() {
 
     const userName = this.props.name;
-    // const findUser = this.props.users.find( thisUser => thisUser.name === userName );
 
     return (
       <View>
-        {this.props.friend
-          ? <TouchableOpacity
+        {this.props.friend ?
+          <TouchableOpacity
             onPress={() => this.props.navigation.navigate('UserCard',{
               userName: userName
             })}
@@ -41,7 +36,8 @@ class User extends Component {
               </Text>
             </View>
           </TouchableOpacity>
-          : <View style={style.userContainer}>
+          :
+          <View style={style.userContainer}>
             <View style={{ flexDirection: 'row' }}>
             <FontAwesome name="meh-o" size={50} color="yellow" style={{ paddingRight: '5%' }} />
               <Text style={style.userText}>{this.props.name}</Text>
@@ -62,6 +58,7 @@ class User extends Component {
         }
       </View>
     )
+
   }
 
 }

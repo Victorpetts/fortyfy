@@ -1,11 +1,14 @@
+
+// Används inte
+
 import React, { Component } from 'react';
-// import firebase from 'firebase';
 import { connect } from 'react-redux';
 import {
     View,
     Text,
     ScrollView
 } from 'react-native';
+
 import Participant from './Participant.js';
 import style from '../assets/Style.js';
 import { FontAwesome } from '@expo/vector-icons';

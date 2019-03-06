@@ -9,8 +9,7 @@ import {
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Overlay } from 'react-native-elements';
-
-import { TourButton } from '../components/TourButton.js';
+import { TourButton } from '../components/Buttons.js';
 import Tour from '../components/Tour.js';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
@@ -60,16 +59,18 @@ class TournamentsScreen extends Component {
 
     ongoingTour = this.props.tours.filter(function (item) {
       return item.finished === false;
-    }).map(function ({ name, players, wincon, totalMatches, fromDate, toDate, finished }) {
-      return { name, players, wincon, totalMatches, fromDate, toDate, finished };
+    }).map(function ({ id, name, players, participants, wincon, totalMatches, fromDate, toDate, finished }) {
+      return { id, name, players, participants, wincon, totalMatches, fromDate, toDate, finished };
     });
 
     return ongoingTour.map((tour) => {
       return (
         <Tour
-          key={tour.name}
+          key={tour.id}
+          id={tour.id}
           name={tour.name}
           players={tour.players}
+          participants={tour.participants}
           wincon={tour.wincon}
           totalMatches={tour.totalMatches}
           fromDate={tour.fromDate}
@@ -85,16 +86,17 @@ class TournamentsScreen extends Component {
 
     finishedTour = this.props.tours.filter(function (item) {
       return item.finished === true;
-    }).map(function ({ name, players, wincon, totalMatches, fromDate, toDate, finished }) {
-      return { name, players, wincon, totalMatches, fromDate, toDate, finished };
+    }).map(function ({ id, name, players, participants, wincon, totalMatches, fromDate, toDate, finished }) {
+      return { id, name, players, participants, wincon, totalMatches, fromDate, toDate, finished };
     });
 
     return finishedTour.map((tour) => {
       return (
         <Tour
-          key={tour.name}
+          key={tour.id}
           name={tour.name}
           players={tour.players}
+          participants={tour.participants}
           wincon={tour.wincon}
           totalMatches={tour.totalMatches}
           fromDate={tour.fromDate}
@@ -107,14 +109,11 @@ class TournamentsScreen extends Component {
   }
 
   render() {
-
     const { navigate } = this.props.navigation;
 
     return (
 
-      <View style={{
-        height: '100%'
-      }}>
+      <View style={{ height: '100%' }}>
 
         {this.state.toggleOngoing === true ? (
           <View>
@@ -133,7 +132,7 @@ class TournamentsScreen extends Component {
                     style={style.enabledTabText}
                   >
                     Ongoing
-                    </Text>
+                  </Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -148,13 +147,12 @@ class TournamentsScreen extends Component {
                     style={style.disabledTabText}
                   >
                     Finished
-                      </Text>
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
-
             <ScrollView style={style.mainContainer}>
-            {this.mapOngoingTours()}
+              {this.mapOngoingTours()}
             </ScrollView>
           </View>
         ) : this.state.toggleFinished === true ? (
@@ -197,8 +195,9 @@ class TournamentsScreen extends Component {
               {this.mapFinishedTours()}
             </ScrollView>
           </View>
+        ) : null
+        }
 
-        ) : null}
         <View style={style.buttonContainer}>
           <TourButton
             buttonTitle={'CREATE TOURNAMENT'}
@@ -208,6 +207,7 @@ class TournamentsScreen extends Component {
             buttonTitle={'SEARCH TOURNAMENT'}
           />
         </View>
+
       </View>
     )
   }
