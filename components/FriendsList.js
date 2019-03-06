@@ -71,7 +71,7 @@ class FriendsList extends Component {
           <Text style={style.smallText}>Friend Requests</Text>
         </View>
 
-        <ScrollView >
+        <ScrollView>
           {this.mapFriendRequests()}
         </ScrollView>
 

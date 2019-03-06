@@ -14,10 +14,12 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  activeBackgroundColor: '#0682b1',
   tabBarbackgroundColor: 'black',
 
   // APP
   appBackgroundColor: '#eeeeee',
-  appBlackColor: '#2a2a2a'
+  appBlackColor: '#2a2a2a',
+  appBlueColor: '#0682b1',
+  appBrightBlueColor: '#15c1fe',
+  appRedColor: '#b10606'
 };

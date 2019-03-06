@@ -6,7 +6,7 @@ import {
     Text,
     ScrollView
 } from 'react-native';
-import Participant from './Participant.js';
+import { Participant } from './Participant.js';
 import style from '../assets/Style.js';
 import { FontAwesome } from '@expo/vector-icons';
 

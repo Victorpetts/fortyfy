@@ -2,29 +2,37 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
-  Text,
   ScrollView,
-  TouchableOpacity
+  Text,
+  Image
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import { FontAwesome } from '@expo/vector-icons';
+import Colors from '../constants/Colors';
+import TourInfoSection from '../components/TourInfoSection.js';
+import { LeaderBoardPartic } from '../components/Participant';
+
 
 class FinishedScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam('tourName'),
+    title: 'Tournaments',
     headerTintColor: 'white',
     headerStyle: {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 0,
-      backgroundColor: 'black',
-      height: 90
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 24
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '75%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     }
   });
 
@@ -32,80 +40,116 @@ class FinishedScreen extends Component {
     const tourArray = this.props.partic
     tourArray.sort((a, b) => a.points - b.points);
 
-    const reverseArray = tourArray.reverse()
+    const numberOfPartic = this.props.partic.length;
     const thisToursName = this.props.navigation.getParam('tourName');
+    const thisToursMatches = this.props.navigation.getParam('totalMatches');
+    const thisMaxPartic = this.props.navigation.getParam('numbPlayers');
+    const reverseArray = tourArray.reverse()
     const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
+    let owner = this.props.navigation.getParam('owner')
 
     let winconText;
 
     switch (filter.wincon) {
       case '1':
-        winconText = 'Survived most minutes';
+        winconText = 'Survived longest';
         break
       case '2':
-        winconText = 'Most accumulated kills';
+        winconText = 'Most kills';
         break
       case '3':
-        winconText = 'Most placements in top 5';
+        winconText = 'Most top 5';
         break
       default:
-        winconText = 'Survived most minutes';
+        winconText = 'Survived longest';
         break
     }
 
+
     return (
-      <View style={style.mainContainer}>
-        <ScrollView>
-          <Text style={style.headerText}>Finished on:</Text>
-          <Text style={style.paragraphText}>{this.props.navigation.getParam('toDate')}</Text>
-          <Text style={style.headerText}>Win condition:</Text>
-          <Text style={style.paragraphText}>{winconText}</Text>
+      <ScrollView style={style.mainContainer}>
+        <View style={style.itemContainerNoBorder}>
+          <TourInfoSection
+            titleName={thisToursName}
+            titleMatches={thisToursMatches}
+            tourInfoWincon={winconText}
+            tourInfoPartic={numberOfPartic}
+            tourInfoMaxPartic={thisMaxPartic}
+            owner={owner}
+          />
+        </View>
+
+        <View style={{
+          flexDirection: 'row',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
           <View style={{
-            alignSelf: 'center'
+            flexDirection: 'column',
+            alignItems: 'center'
           }}>
-            <Text style={style.headerText}>{reverseArray[0].name}</Text>
-            <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TopUserCard', {
-            userName: reverseArray[0].name})}
-            >
-              <FontAwesome name="file-photo-o" size={100} color="white" />
-            </TouchableOpacity>
-            <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="gold" /> {reverseArray[0].points}</Text>
+            <Text style={style.subTitleText}>2:nd</Text>
+            <View style={{ paddingVertical: 5 }}>
+              <Image
+                source={require('../assets/images/frame-green-w-badge.png')}
+                style={{ height: 158, width: 106 }}
+              />
+            </View>
+            <Text style={style.subTitleText}>91 points</Text>
           </View>
+
           <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
+            flexDirection: 'column',
+            alignItems: 'center',
+            paddingBottom: '30%',
             padding: '5%'
           }}>
             <View style={{
-              flexDirection: 'column',
-              alignItems: 'center'
+              flexDirection: 'row'
             }}>
-              <Text style={style.headerText}>{reverseArray[1].name}</Text>
-              <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TopUserCard', {
-            userName: reverseArray[1].name})}
-            >                
-            <FontAwesome name="file-photo-o" size={75} color="white" />
-              </TouchableOpacity>
-              <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="silver" /> {reverseArray[1].points}</Text>
+              <Image
+                source={require('../assets/images/trophy.png')}
+                style={{ height: 17, width: 17.5, marginRight: 5 }}
+              />
+              <Text style={style.subTitleText}>Winner</Text>
             </View>
-            <View style={{
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}>
-              <Text style={style.headerText}>{reverseArray[2].name}</Text>
-              <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TopUserCard', {
-            userName: reverseArray[2].name})}
-            >
-                <FontAwesome name="file-photo-o" size={75} color="white" />
-              </TouchableOpacity>
-              <Text style={style.scoreText}> <FontAwesome name="trophy" size={20} color="#cd7f32" /> {reverseArray[2].points}</Text>
+            <View style={{ paddingVertical: 5 }}>
+              <Image
+                source={require('../assets/images/frame-gold-w-badge.png')}
+                style={{ height: 158, width: 106 }}
+              />
             </View>
+            <Text style={style.subTitleText}>99 points</Text>
           </View>
-        </ScrollView>
-      </View>
+
+          <View style={{
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}>
+            <Text style={style.subTitleText}>3:rd</Text>
+            <View style={{ paddingVertical: 5 }}>
+              <Image
+                source={require('../assets/images/frame-silver.png')}
+                style={{ height: 158, width: 106 }}
+              />
+            </View>
+            <Text style={style.subTitleText}>84 points</Text>
+          </View>
+        </View>
+
+        <LeaderBoardPartic
+        name={'Karolina Nordström'}
+        points={'79'}
+        placement={'4'}
+        />
+        <LeaderBoardPartic
+        name={'Victor Pettersson'}
+        points={'68'}
+        placement={'5'}
+        />
+
+      </ScrollView>
     )
 
   }

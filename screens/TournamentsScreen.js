@@ -4,13 +4,12 @@ import {
   ScrollView,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  Dimensions,
+  Platform
 } from 'react-native';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Overlay } from 'react-native-elements';
-
-import { TourButton } from '../components/TourButton.js';
+import { TourButton, RoundButton } from '../components/TourButton.js';
 import Tour from '../components/Tour.js';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
@@ -39,7 +38,8 @@ class TournamentsScreen extends Component {
 
   state = {
     toggleOngoing: true,
-    toggleFinished: false
+    toggleFinished: false,
+    show: false
   }
 
   toggleOngoing = () => {
@@ -106,15 +106,20 @@ class TournamentsScreen extends Component {
     })
   }
 
+  pressButton = () => {
+    this.setState({ show: !this.state.show })
+  }
+
+
   render() {
 
     const { navigate } = this.props.navigation;
 
     return (
 
-      <View style={{
-        height: '100%'
-      }}>
+      <View
+        style={{ height: '100%' }}
+      >
 
         {this.state.toggleOngoing === true ? (
           <View>
@@ -152,10 +157,71 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
+            <View style={{
+              paddingBottom: '12%'
+            }}>
+              {this.state.show === true ?
+                <View
+                  style={style.whiteOverlay}
+                >
+                  <ScrollView style={style.mainContainer}>
 
-            <ScrollView style={style.mainContainer}>
-            {this.mapOngoingTours()}
-            </ScrollView>
+                    <Text style={style.blueText}>Invites (number)</Text>
+
+                    <Text style={style.blueText}>Tournaments</Text>
+                    {this.mapOngoingTours()}
+                  </ScrollView>
+                </View>
+                :
+                <ScrollView style={style.mainContainer}>
+
+                  <Text style={style.blueText}>Invites (number)</Text>
+
+                  <Text style={style.blueText}>Tournaments</Text>
+                  {this.mapOngoingTours()}
+                </ScrollView>
+              }
+              <View style={{
+                position: 'absolute',
+                bottom: 75,
+                right: 10
+              }}>
+                <RoundButton
+                  id={'plus'}
+                  buttonFunc={this.pressButton}
+                  showing={this.state.show}
+                />
+              </View>
+              {this.state.show === true &&
+                <View>
+                  <View style={{
+                    position: 'absolute',
+                    bottom: 120,
+                    right: 15,
+                    flexDirection: 'row'
+                  }}>
+                    <Text style={style.buttonMediumText}>Create tournament</Text>
+                    <RoundButton
+                      id={'search'}
+                      showingSmall={this.state.show}
+                      thirdButtonFunc={() => navigate('TourCreate')}
+                    />
+                  </View>
+                  <View style={{
+                    position: 'absolute',
+                    bottom: 70,
+                    right: 15,
+                    flexDirection: 'row'
+                  }}>
+                    <Text style={style.buttonMediumText}>Find tournament</Text>
+                    <RoundButton
+                      id={'small plus'}
+                      showingSmall={this.state.show}
+                    />
+                  </View>
+                </View>
+              }
+            </View>
           </View>
         ) : this.state.toggleFinished === true ? (
           <View>
@@ -193,21 +259,14 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-            <ScrollView style={style.mainContainer}>
+            <ScrollView style={style.mainContainer}
+              automaticallyAdjustContentInsets={false}
+            >
               {this.mapFinishedTours()}
             </ScrollView>
           </View>
 
         ) : null}
-        <View style={style.buttonContainer}>
-          <TourButton
-            buttonTitle={'CREATE TOURNAMENT'}
-            buttonFunc={() => navigate('TourCreate')}
-          />
-          <TourButton
-            buttonTitle={'SEARCH TOURNAMENT'}
-          />
-        </View>
       </View>
     )
   }

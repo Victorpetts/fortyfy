@@ -40,13 +40,15 @@ export class NewsArticle extends React.Component {
         }}>
           <Text style={{
             fontSize: 20,
-            color: Colors.appBlackColor
+            color: Colors.appBlackColor,
+            fontFamily: 'alergia-normal-regular'
           }}>{
               this.props.title}
           </Text>
           <Text style={{
               fontSize: 10,
-              color: Colors.appBlackColor
+              color: Colors.appBlackColor,
+              fontFamily: 'alergia-normal-light'
             }}>
               {this.props.date}
             </Text>
@@ -63,7 +65,8 @@ export class NewsArticle extends React.Component {
               fontSize: 10,
               borderBottomWidth: 1.2,
               width: 55,
-              borderColor: Colors.appBlackColor
+              borderColor: Colors.appBlackColor,
+              fontFamily: 'alergia-normal-regular'
             }}>Read article</Text>
           </TouchableOpacity>
         </View>

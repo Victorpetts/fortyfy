@@ -129,9 +129,14 @@ class ProfileScreen extends Component {
             </View>
 
             <View style={style.mainContainer}>
+            <View style={{
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
               <MyCardProfile
               navigation={this.props.navigation}
               />
+              </View>
             </View>
           </View>
         ) : this.state.toggleCards ? (

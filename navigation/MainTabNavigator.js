@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Platform,
   View,
-  Text
+  Image
 
 } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
@@ -28,16 +28,23 @@ const NewsStack = createStackNavigator({
 NewsStack.navigationOptions = {
   tabBarLabel: 'News',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-list' : 'md-list'}
-    />
+    <View style={{
+      paddingTop: 10
+    }}>
+      <Image
+        focused={focused}
+        style={{ height: 25, width: 29 }}
+        resizeMode={'contain'}
+        source={require("../assets/images/news.png")} 
+      />
+    </View>
   ),
   tabBarOptions: {
+    labelStyle: 'alergia-condensed-regular',
     activeTintColor: 'white',
-    activeBackgroundColor: Colors.activeBackgroundColor,
+    activeBackgroundColor: Colors.appBlueColor,
     style: {
-      backgroundColor: Colors.tabBarbackgroundColor,
+      backgroundColor: Colors.tabBarbackgroundColor
     },
   }
 };
@@ -55,31 +62,45 @@ TournamentsStack.navigationOptions = {
   tabBarLabel: 'Tournaments',
   tabBarIcon: ({ focused }) => (
     focused ?
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? 'ios-flag' : 'md-flag'}
-      />
+    <View style={{
+      paddingTop: 10
+    }}>
+    <Image
+    focused={focused}
+    style={{ height: 25, width: 29 }}
+    resizeMode={'contain'}
+    source={require("../assets/images/tournament.png")} 
+  />
+  </View>
       :
-      <View>
+      <View style={{
+        paddingTop: 10
+      }}>
         <View style={{
           borderRadius: 9,
           width: 10,
           height: 10,
-          backgroundColor: 'red',
+          backgroundColor: '#b10606',
           position: 'absolute',
-          top: 0,
-          right: 10,
-          zIndex: 1000
+          top: 5,
+          right: -10,
+          zIndex: 1000,
+          borderWidth: .5,
+          borderColor: 'white'
         }}>
         </View>
-        <TabBarIcon
-          focused={focused}
-          name={Platform.OS === 'ios' ? 'ios-flag' : 'md-flag'} />
+        <Image
+      focused={focused}
+      style={{ height: 25, width: 29 }}
+      resizeMode={'contain'}
+      source={require("../assets/images/tournament.png")} 
+    />
       </View>
   ),
   tabBarOptions: {
+    labelStyle: 'alergia-condensed-regular',
     activeTintColor: 'white',
-    activeBackgroundColor: Colors.activeBackgroundColor,
+    activeBackgroundColor: Colors.appBlueColor,
     style: {
       backgroundColor: Colors.tabBarbackgroundColor,
     },
@@ -95,14 +116,21 @@ const UsersStack = createStackNavigator({
 UsersStack.navigationOptions = {
   tabBarLabel: 'Friends',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-people' : 'md-people'}
-    />
+    <View style={{
+      paddingTop: 10
+    }}>
+      <Image
+        focused={focused}
+        style={{ height: 25, width: 29 }}
+        resizeMode={'contain'}
+        source={require("../assets/images/friends.png")} 
+      />
+    </View>
   ),
-  tabBarOptions: {
+  tabBarOptions: {    
+    labelStyle: 'alergia-condensed-regular',
     activeTintColor: 'white',
-    activeBackgroundColor: Colors.activeBackgroundColor,
+    activeBackgroundColor: Colors.appBlueColor,
     style: {
       backgroundColor: Colors.tabBarbackgroundColor,
     },
@@ -118,15 +146,21 @@ const ProfileStack = createStackNavigator({
 ProfileStack.navigationOptions = {
   tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios' ? 'ios-person' : 'md-person'}
-    />
+    <View style={{
+      paddingTop: 10
+    }}>
+      <Image
+        focused={focused}
+        style={{ height: 25, width: 29 }}
+        resizeMode={'contain'}
+        source={require("../assets/images/profile.png")} 
+      />
+    </View>
   ),
   tabBarOptions: {
+    labelStyle: 'alergia-condensed-regular',
     activeTintColor: 'white',
-    activeBackgroundColor: Colors.activeBackgroundColor,
+    activeBackgroundColor: Colors.appBlueColor,
     style: {
       backgroundColor: Colors.tabBarbackgroundColor,
     },

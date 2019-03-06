@@ -1,63 +1,50 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
-    View,
-    Text,
-    ScrollView
+  View,
+  Text,
 } from 'react-native';
 
-import { CheckBox } from 'react-native-elements';
-
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
-class Participant extends Component {
-
-  state = {
-    checked: false
-  }
-
-  blaFunc = () => {
-    this.setState(prevState =>({
-      checked: !prevState.checked
-    }))
-    this.blaBla(this.props.name);
-  }
+export class Participant extends React.Component {
 
   render() {
 
     return (
-      <View style={style.itemContainer}>
-      {this.props.checkBox === true &&
-      <CheckBox
-        checked={this.state.checked}
-        onPress={this.blaFunc}
-      />
-      }
-        <View style={{ flexDirection: 'row', flex: 1 }}>
-          {this.props.owner ?
-            <Text style={style.itemText}>
-                {this.props.name} {' '}
-                <MaterialCommunityIcons name={'crown'} size={14} />
-            </Text>
-          :
-            <Text style={style.itemText}>{this.props.name}</Text>
-          }
+      <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
+        <View style={style.particContainer}>
+          <Text style={style.particText}>{this.props.name}</Text>
+          <Text style={style.particText}>
+            {this.props.playedMatches} / {this.props.totalMatches}
+          </Text>
         </View>
-        <Text style={style.itemNumber}>
-          {this.props.playedMatches} / {this.props.totalMatches}
-        </Text>
       </View>
     )
   }
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    partic: state.partic,
-    tours: state.tours
-   };
-};
+export class LeaderBoardPartic extends React.Component {
 
-export default connect(mapStateToProps, null)(Participant);
+  render() {
+
+    return (
+      <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
+        <View style={style.particContainer}>
+      <View style={style.placementSquare}>
+      <Text style={style.placementText}>{this.props.placement}</Text>
+      </View>
+      <View style={{ paddingLeft: '12%'}}>
+          <Text style={style.particText}>{this.props.name}</Text>
+          </View>
+          <View style={{ alignSelf: 'flex-end'}}>
+          <Text style={style.particText}>
+            {this.props.points} points
+          </Text>
+          </View>
+        </View>
+      </View>
+    )
+  }
+
+}

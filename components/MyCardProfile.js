@@ -24,12 +24,7 @@ class MyCardProfile extends Component {
         
         return (
 
-            <View
-                contentContainerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-                style={{
+            <View style={{
                     height: '100%',
                     width: '100%',
                     padding: '5%'
