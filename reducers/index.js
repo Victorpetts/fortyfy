@@ -224,15 +224,9 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
       });
 
     case 'PLAYERS_DELETED':
-      //let newParticArr = oldArr.filter(item => item.name !== action.payload)
-      for (let i in oldArr) {
-        for (let j of action.payload) {
-          if (oldArr[i].name === j) {
-            oldArr.splice(oldArr[i], 1);
-          }
-        }
-      }
-      return oldArr;
+      let playersToKick = action.payload;
+      let newArr = oldArr.filter(item => !playersToKick.includes(item.name));
+      return newArr;
 
     default:
       return oldArr;
