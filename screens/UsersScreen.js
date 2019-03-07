@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { SearchBar, Overlay } from 'react-native-elements';
-import { TourButtonSmall, DisabledButtonSmall, TourButtonFullWidth } from '../components/Buttons.js';
+import { TourButtonSmall, DisabledButtonSmall, TourButtonFullWidth, RoundButton } from '../components/Buttons.js';
 import FriendsList from '../components/FriendsList.js';
 
 import style from '../assets/Style.js';
@@ -53,7 +53,8 @@ class UsersScreen extends Component {
   state = {
     toggle: false,
     search: '',
-    isVisible: false
+    isVisible: false,
+    noPopUp: false
   };
 
   componentDidMount() {
@@ -123,6 +124,7 @@ class UsersScreen extends Component {
     );
 
     return (
+      <View>
       <ScrollView style={style.mainContainer}>
         <View>
           <FriendsList
@@ -219,6 +221,31 @@ class UsersScreen extends Component {
           </Overlay>
         )}
       </ScrollView>
+        <View style={{
+                position: 'absolute',
+                bottom: 10,
+                right: 10,
+                flexDirection: 'row'
+              }}>
+              {this.state.noPopUp === true &&
+              <View style={{
+                backgroundColor: Colors.appBlueColor,
+                height: 56,
+                width: 200,
+                marginRight: 5
+              }}>
+                <Text style={style.popUpText}>
+                Invite friends and recieve 
+                40000 YONYFY coins
+                </Text>
+              </View>
+              }
+                <RoundButton
+                  id={'plus'}
+                  buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
+                />
+              </View>
+              </View>
     )
 
   }

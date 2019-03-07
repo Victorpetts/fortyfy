@@ -6,11 +6,16 @@ import {
   TouchableOpacity,
   Text,
   Dimensions,
-  Platform
+  Platform,
+  Image,
+  TouchableHighlightBase
 } from 'react-native';
 
-import { TourButton, RoundButton } from '../components/Buttons.js';
+import { TourButton, RoundButton, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
 import Tour from '../components/Tour.js';
+import TourInfoSection from '../components/TourInfoSection.js';
+import SponsoredTours from '../components/SponsoredTours.js';
+
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 
@@ -39,7 +44,8 @@ class TournamentsScreen extends Component {
   state = {
     toggleOngoing: true,
     toggleFinished: false,
-    show: false
+    show: false,
+    acceptInvite: false
   }
 
   toggleOngoing = () => {
@@ -100,6 +106,9 @@ class TournamentsScreen extends Component {
       <View style={{ height: '100%' }}>
 
         {this.state.toggleOngoing === true ? (
+
+          // Renders ongoing tab as active and displays its content
+
           <View>
             <View
               style={style.tabBackground}
@@ -139,9 +148,11 @@ class TournamentsScreen extends Component {
               paddingBottom: '12%'
             }}>
 
-            {/* When + button is pressed */}
 
               {this.state.show === true ?
+
+                // White overlay is active
+
                 <View
                   style={style.whiteOverlay}
                 >
@@ -151,25 +162,114 @@ class TournamentsScreen extends Component {
                   >
                     <ScrollView style={style.mainContainer}>
 
-                      <Text style={style.blueText}>Invites (number)</Text>
+                      <Text style={style.blueText}>Sponsored</Text>
+                      <SponsoredTours />
+                    {this.state.acceptInvite === false ? 
+                      <View>
+                        <Text style={style.blueText}>Invites (1)</Text>
+                        <View style={style.itemContainer}>
+                          <TourInfoSection
+                            titleName={`Jesper's Tournament`}
+                            titleMatches={'10'}
+                            tourInfoWincon={'Most Top 5'}
+                            tourInfoPartic={'1'}
+                            tourInfoMaxPartic={'10'}
+                            owner={'Jesper'}
+                          />
+                          <View style={{
+                            padding: 10,
+                            flexDirection: 'row',
+                            justifyContent: 'space-around'
+                          }}>
+                            <TourButtonMedium
+                              buttonTitle={'Accept invitation'}
+                              buttonFunc={() => this.setState({ acceptInvite: true })}
+                            />
+                            <TourButtonMediumRed
+                              buttonTitle={'Decline invitation'}
+                            />
+                          </View>
+                        </View>
+                      </View>
+                      :
+                      <Text style={style.blueText}>Invites (0)</Text>
+                    }
 
                       <Text style={style.blueText}>Tournaments</Text>
                       {this.mapOngoingTours()}
                     </ScrollView>
                   </TouchableOpacity>
                 </View>
+
                 :
+
+                // White overlay is not active
+
                 <ScrollView style={style.mainContainer}>
 
-                  <Text style={style.blueText}>Invites (number)</Text>
+                  <Text style={style.blueText}>Sponsored</Text>
+                  <SponsoredTours />
+
+                  {this.state.acceptInvite === false ? 
+                      <View>
+                        <Text style={style.blueText}>Invites (1)</Text>
+                        <View style={style.itemContainer}>
+                          <TourInfoSection
+                            titleName={`Jesper's Tournament`}
+                            titleMatches={'10'}
+                            tourInfoWincon={'Most Top 5'}
+                            tourInfoPartic={'1'}
+                            tourInfoMaxPartic={'10'}
+                            owner={'Jesper'}
+                          />
+                          <View style={{
+                            padding: 10,
+                            flexDirection: 'row',
+                            justifyContent: 'space-around'
+                          }}>
+                            <TourButtonMedium
+                              buttonTitle={'Accept invitation'}
+                              buttonFunc={() => this.setState({ acceptInvite: true })}
+                            />
+                            <TourButtonMediumRed
+                              buttonTitle={'Decline invitation'}
+                            />
+                          </View>
+                        </View>
+                      </View>
+                      :
+                      <Text style={style.blueText}>Invites (0)</Text>
+                    }
 
                   <Text style={style.blueText}>Tournaments</Text>
                   {this.mapOngoingTours()}
+
+                  {this.state.acceptInvite === true &&
+                  <View style={style.itemContainer}>
+                  <TourInfoSection
+                    titleName={`Jesper's Tournament`}
+                    titleMatches={'10'}
+                    tourInfoWincon={'Most Top 5'}
+                    tourInfoPartic={'2'}
+                    tourInfoMaxPartic={'10'}
+                    owner={'Jesper'}
+                  />
+                  <View style={{
+                    padding: 5,
+                    flexDirection: 'row',
+                    justifyContent: 'space-around'
+                  }}>
+                    <TourButton
+                      buttonTitle={'View tournament'}
+                    />
+                  </View>
+                </View>
+                  }
                 </ScrollView>
               }
               <View style={{
                 position: 'absolute',
-                bottom: 75,
+                bottom: 80,
                 right: 10
               }}>
                 <RoundButton
@@ -179,14 +279,15 @@ class TournamentsScreen extends Component {
                 />
               </View>
 
-              {/* When the + button has been pressed and menu is showing */}
 
               {this.state.show === true &&
+
+                // + button menu is displayed
 
                 <View>
                   <View style={{
                     position: 'absolute',
-                    bottom: 120,
+                    bottom: 125,
                     right: 15,
                     flexDirection: 'row'
                   }}>
@@ -199,7 +300,7 @@ class TournamentsScreen extends Component {
                   </View>
                   <View style={{
                     position: 'absolute',
-                    bottom: 70,
+                    bottom: 75,
                     right: 15,
                     flexDirection: 'row'
                   }}>
@@ -214,6 +315,9 @@ class TournamentsScreen extends Component {
             </View>
           </View>
         ) : this.state.toggleFinished === true ? (
+
+          // Renders finished tab as active and displays its content
+
           <View>
             <View
               style={style.tabBackground}
