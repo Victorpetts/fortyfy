@@ -64,8 +64,7 @@ class FriendsList extends Component {
       <View style={style.friendsContainer}>
 
         <View style={{
-          flexDirection: 'row',
-          paddingLeft: '2%'
+          flexDirection: 'row'
           }}>
           <Text style={style.blueText}>Friend Requests</Text>
         </View>
@@ -75,8 +74,7 @@ class FriendsList extends Component {
         </ScrollView>
 
         <View style={{
-          flexDirection: 'row',
-          paddingLeft: '2%'
+          flexDirection: 'row'
         }}>
           <Text style={style.blueText}>Friends</Text>
         </View>

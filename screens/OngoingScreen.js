@@ -55,15 +55,14 @@ class OngoingScreen extends Component {
     )
   });
 
-
   state = {
     isVisible: false,
     buttonToggle: false,
     invite: true,
     isInfoWindow: false,
     isInviteList: false
-
   }
+
   componentDidMount() {
     this.props.navigation.setParams({ toggleInfoWindow: this.toggleInfoWindow })
   };

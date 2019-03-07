@@ -12,11 +12,33 @@ import Colors from '../constants/Colors.js';
 
 
 export default StyleSheet.create({
+
   buttonClass: {
     backgroundColor: Colors.appBlueColor,
     padding: 12,
     borderRadius: 2.5,
     width: 200
+  },
+
+  buttonClassRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 200
+  },
+
+  buttonMedium: {
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 130
+  },
+
+  buttonMediumRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 130
   },
 
   buttonFullWidth: {
@@ -264,11 +286,32 @@ export default StyleSheet.create({
     width: '100%'
   },
 
+  itemContainerSponsor: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 5,
+    paddingRight: 15,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appRedColor,
+    borderWidth: 1
+  },
+
+  itemContainerSponsorBlue: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 5,
+    paddingRight: 15,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
   itemContainer: {
     borderRadius: 3,
     margin: 10,
     padding: 5,
-    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderColor: Colors.appBlueColor,
@@ -294,6 +337,14 @@ export default StyleSheet.create({
     padding: 10
   },
 
+  popUpText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-light',
+    color: 'white',
+    textAlign: 'center',
+    padding: 5,
+    lineHeight: 20
+  },
 
   particText: {
     fontSize: 15,
@@ -469,7 +520,8 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-semibold',
     fontSize: 15,
     color: Colors.appBlueColor,
-    paddingTop: '5%'
+    paddingTop: '5%',
+    paddingLeft: '3%'
   },
 
   tourInfoTitle: {
@@ -514,4 +566,5 @@ export default StyleSheet.create({
     paddingTop: '20%',
     justifyContent: 'center'
   }
+
 });
