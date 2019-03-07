@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
-    View,
-    Text,
-    ImageBackground
+  View,
+  Text
 } from 'react-native';
 
-import { CheckBox } from 'react-native-elements';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
-
-class Participant extends Component {
+export class Participant extends Component {
 
   state = {
     checked: false
@@ -24,35 +19,44 @@ class Participant extends Component {
 
     let participant = this.props.name;
     let checkedState = this.state.checked;
-
     this.props.outsideFunc(participant, checkedState);
   }
 
   render() {
     return (
-      <View style={style.itemContainer}>
-        {this.props.checkBox === true &&
-          <CheckBox
-            checked={this.state.checked}
-            onPress={this.insideFunc}
-          />
-        }
-        <View style={{ flexDirection: 'row', flex: 1 }}>
-          <ImageBackground
-            source={require('../assets/images/gold-badge.png')}
-            style={{ height: 30, width: 30 }}
-          >
-          <Text style={style.lvlText}>{this.props.lvl}</Text>
-          </ImageBackground>
-          <Text style={style.itemText}>{this.props.name}</Text>
+      <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
+        <View style={style.particContainer}>
+          <Text style={style.particText}>{this.props.name}</Text>
+          <Text style={style.particText}>
+            {this.props.playedMatches} / {this.props.totalMatches}
+          </Text>
         </View>
-        <Text style={style.itemNumber}>
-          {this.props.playedMatches} / {this.props.totalMatches}
-        </Text>
       </View>
     )
   }
 
 }
 
-export default Participant;
+export class LeaderBoardPartic extends Component {
+
+  render() {
+    return (
+      <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
+        <View style={style.particContainer}>
+          <View style={style.placementSquare}>
+            <Text style={style.placementText}>{this.props.placement}</Text>
+          </View>
+          <View style={{ paddingLeft: '12%'}}>
+            <Text style={style.particText}>{this.props.name}</Text>
+          </View>
+          <View style={{ alignSelf: 'flex-end'}}>
+            <Text style={style.particText}>
+              {this.props.points} points
+            </Text>
+          </View>
+        </View>
+      </View>
+    )
+  }
+
+}

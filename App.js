@@ -45,7 +45,15 @@ export default class App extends React.Component {
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'luckiest-guy-regular': require('./assets/fonts/LuckiestGuy-Regular.ttf')
+        'luckiest-guy-regular': require('./assets/fonts/LuckiestGuy-Regular.ttf'),
+        'alergia-condensed-light': require('./assets/fonts/AlergiaCondensed-Light.ttf'),
+        'alergia-condensed-regular': require('./assets/fonts/AlergiaCondensed-Regular.ttf'),
+        'alergia-condensed-semibold': require('./assets/fonts/AlergiaCondensed-SemiBold.ttf'),
+        'alergia-normal-bold': require('./assets/fonts/AlergiaNormal-Bold.ttf'),
+        'alergia-normal-light': require('./assets/fonts/AlergiaNormal-Light.ttf'),
+        'alergia-normal-regular': require('./assets/fonts/AlergiaNormal-Regular.ttf'),
+        'alergia-normal-semibold': require('./assets/fonts/AlergiaNormal-SemiBold.ttf')
+
         }),
     ]);
   };

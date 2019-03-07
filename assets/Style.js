@@ -13,22 +13,76 @@ import Colors from '../constants/Colors.js';
 
 export default StyleSheet.create({
   buttonClass: {
-    backgroundColor: 'yellow',
-    padding: 20,
-    borderRadius: 5,
-    elevation: 4,
-    shadowOffset: {width: 4, height: 4},
-    width: 150,
-    marginTop: 10
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 200
   },
 
-  roundButton: {
-    backgroundColor: 'yellow',
+  buttonFullWidth: {
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: '100%'
+  },
+
+  buttonFullWidthRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: '100%'
+  },
+
+  buttonSmallBlue: {
+    backgroundColor: Colors.appBlueColor,
+    borderRadius: 2.5,
+    width: 80.5,
+    height: 30,
+    marginTop: '15%'
+  },
+
+  buttonSmallRed: {
+    backgroundColor: Colors.appRedColor,
+    borderRadius: 2.5,
+    width: 80.5,
+    height: 30,
+    marginTop: '15%'
+  },
+
+    buttonSmallDisabled: {
+    backgroundColor: Colors.appBrightBlueColor,
+    borderRadius: 2.5,
+    width: 80.5,
+    height: 30,
+    marginTop: '15%'
+  },
+
+  roundButtonLarge: {
+    backgroundColor: Colors.appBlueColor,
     borderRadius: 100,
     elevation: 4,
     shadowOffset: {width: 4, height: 4},
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50,
+    zIndex: 1000
+  },
+
+  roundButtonMedium: {
+    backgroundColor: Colors.appBlueColor,
+    borderRadius: 100,
+    elevation: 4,
+    shadowOffset: {width: 4, height: 4},
+    width: 38.5,
+    height: 38.5,
+    zIndex: 1000
+  },
+
+  buttonMediumText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    paddingTop: 5,
+    paddingRight: 10,
+    zIndex: 1000
   },
 
   buttonDisabled: {
@@ -46,9 +100,18 @@ export default StyleSheet.create({
   },
 
   buttonText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    textAlign: 'center'
+    fontSize: 13,
+    textAlign: 'center',
+    fontFamily: 'alergia-normal-semibold',
+    color: 'white'
+  },
+
+  buttonSmallText: {
+    fontSize: 11,
+    textAlign: 'center',
+    fontFamily: 'alergia-normal-semibold',
+    color: 'white',
+    paddingTop: '7%'
   },
 
   buttonTextDisabled: {
@@ -125,7 +188,19 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 18,
     margin: 10,
-    flex: 1
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  subTitleText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  paragraphText: {
+    fontSize: 13,
+    fontFamily: 'alergia-normal-light',
+    lineHeight: 18,
+    marginVertical: 5
   },
 
   lvlText: {
@@ -143,11 +218,15 @@ export default StyleSheet.create({
   },
 
   inviteListText: {
-    fontSize: 20,
-    color: 'yellow',
-    marginVertical: 14,
-    flex: 1
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    color: Colors.appBlackColor
   },
+  inviteListSmallText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-light',
+    color: Colors.appBlackColor
+    },
 
   inviteMessageText: {
     fontSize: 20,
@@ -159,9 +238,11 @@ export default StyleSheet.create({
   },
 
   inputFieldText: {
-    fontWeight: 'bold',
-    fontSize: 24,
-    color: 'white'
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    color: 'black',
+    paddingTop: 20,
+    paddingBottom: 5
    },
 
   itemNumber: {
@@ -195,13 +276,38 @@ export default StyleSheet.create({
 
   itemContainer: {
     borderRadius: 3,
-    margin: 5,
+    margin: 10,
     padding: 5,
     paddingRight: 15,
-    flexDirection: 'row',
-    elevation: 2,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
+  itemContainerNoBorder: {
+    borderRadius: 3,
+    margin: 15,
+    padding: 5,
+    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between'
+  },
+
+  particContainer: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 2.5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10
+  },
+
+
+  particText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-light'
   },
 
   userContainer: {
@@ -215,11 +321,12 @@ export default StyleSheet.create({
   },
 
   inviteListContainer: {
-      borderRadius: 3,
+      borderRadius: 2.5,
+      padding: 5,
       marginVertical: 5,
-      elevation: 2,
-      borderBottomColor: 'white',
-      borderBottomWidth: 2
+      borderColor: Colors.appBlueColor,
+      borderWidth: 1,
+      backgroundColor: 'white'
   },
 
   inputFieldContainer: {
@@ -280,19 +387,25 @@ export default StyleSheet.create({
   },
 
    inputField: {
+     fontSize: 15,
+     fontFamily: 'alergia-normal-light',
+     color: 'black',
+     borderRadius: 5,
+     height: 40,
+     width: '100%',
+     borderWidth: 1,
+     borderColor: Colors.appBlueColor,
      backgroundColor: 'white',
-     borderRadius: 3,
-     padding: 5,
-     fontSize: 16,
-     marginVertical: 10
+     padding: 10
    },
 
    pickerField: {
     ...Platform.select({
       android: {
         backgroundColor: 'white',
-        borderRadius: 3,
-        marginVertical: 10
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: Colors.appBlueColor,
       }
     })
    },
@@ -319,28 +432,77 @@ export default StyleSheet.create({
 
   enabledTabText: {
     color: "#fff",
-    fontWeight: "900",
     padding: 10,
     fontSize: 20,
     fontStyle: "normal",
     letterSpacing: 0.31,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: 'alergia-normal-semibold'
   },
 
   disabledTabText: {
     color: "#fff",
-    fontWeight: "900",
     padding: 10,
     fontSize: 20,
     opacity: 0.6,
     fontStyle: "normal",
     letterSpacing: 0.31,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: 'alergia-normal-semibold'
   },
 
   indvCardContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '5%'
+  },
+
+  blueText: {
+    fontFamily: 'alergia-normal-semibold',
+    fontSize: 15,
+    color: Colors.appBlueColor
+  },
+
+  tourInfoTitle: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-light',
+    paddingBottom: 5
+  },
+
+  tourInfoText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  tourContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    alignItems: 'center',
+    padding: 10
+  },
+
+  whiteOverlay: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'white',
+    opacity: .15
+  },
+
+  placementSquare: {
+    backgroundColor: Colors.appBlueColor,
+    width: 41,
+    height: 41,
+    borderRadius: 2.5,
+    position: 'absolute'
+  },
+
+  placementText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    color: 'white',
+    paddingLeft: '40%',
+    paddingTop: '20%',
+    justifyContent: 'center'
   }
 });

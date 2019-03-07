@@ -26,15 +26,20 @@ class TourIndvScreen extends Component {
     title: this.props.tourName,
     headerTintColor: 'white',
     headerStyle: {
-        elevation: 0,
-        shadowOpacity: 0,
-        borderBottomWidth: 0,
-        backgroundColor: 'black',
-        height: 90
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-        color: 'yellow',
-        fontSize: 30
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '90%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     }
   });
 
@@ -82,9 +87,9 @@ class TourIndvScreen extends Component {
               :
               <View style={style.buttonContainer}>
                 <TourButton
-                  buttonTitle={'MANAGE TOURNAMENT'}
+                  buttonTitle={'Manage tournament'}
                   buttonFunc={this.toggleManage} />
-                <TourButton buttonTitle={'INVITE FRIENDS'} />
+                <TourButton buttonTitle={'Invite friends'} />
               </View>
             }
 
