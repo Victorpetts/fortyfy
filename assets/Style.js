@@ -37,24 +37,21 @@ export default StyleSheet.create({
     backgroundColor: Colors.appBlueColor,
     borderRadius: 2.5,
     width: 80.5,
-    height: 30,
-    marginTop: '15%'
+    height: 30
   },
 
   buttonSmallRed: {
     backgroundColor: Colors.appRedColor,
     borderRadius: 2.5,
     width: 80.5,
-    height: 30,
-    marginTop: '15%'
+    height: 30
   },
 
     buttonSmallDisabled: {
     backgroundColor: Colors.appBrightBlueColor,
     borderRadius: 2.5,
     width: 80.5,
-    height: 30,
-    marginTop: '15%'
+    height: 30
   },
 
   roundButtonLarge: {
@@ -210,12 +207,12 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
 
-  inviteListText: {
+  listItemText: {
     fontSize: 15,
     fontFamily: 'alergia-normal-semibold',
     color: Colors.appBlackColor
   },
-  inviteListSmallText: {
+  listItemSmallText: {
     fontSize: 11,
     fontFamily: 'alergia-normal-light',
     color: Colors.appBlackColor
@@ -304,13 +301,25 @@ export default StyleSheet.create({
   },
 
   userContainer: {
-    borderRadius: 3,
+    borderRadius: 2.5,
     marginVertical: 5,
-    elevation: 2,
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
+    backgroundColor: 'white',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
+  },
+
+  friendContainer: {
+    borderRadius: 2.5,
+    marginVertical: 5,
+    backgroundColor: 'white',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 110,
+    height: '100%'
   },
 
   inviteListContainer: {
@@ -355,6 +364,12 @@ export default StyleSheet.create({
     margin: 20,
     width: '90%',
     height: hp('54%')
+  },
+
+  friendsContainer: {
+    width: '100%', 
+    height: '100%',
+    flex: 1 
   },
 
   buttonContainer: {
@@ -453,7 +468,8 @@ export default StyleSheet.create({
   blueText: {
     fontFamily: 'alergia-normal-semibold',
     fontSize: 15,
-    color: Colors.appBlueColor
+    color: Colors.appBlueColor,
+    paddingTop: '5%'
   },
 
   tourInfoTitle: {

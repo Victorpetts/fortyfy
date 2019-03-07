@@ -61,43 +61,30 @@ class FriendsList extends Component {
   render() {
     return (
 
-      <View style={style.container}>
+      <View style={style.friendsContainer}>
 
         <View style={{
           flexDirection: 'row',
-          paddingLeft: '2%',
-        }}>
-          <Ionicons name="md-person-add" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '2%' }} />
-          <Text style={style.smallText}>Friend Requests</Text>
+          paddingLeft: '2%'
+          }}>
+          <Text style={style.blueText}>Friend Requests</Text>
         </View>
 
-        <ScrollView>
+        <ScrollView style={{ height: '45%', marginHorizontal: 5 }}>
           {this.mapFriendRequests()}
         </ScrollView>
 
         <View style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: '5%'
+          paddingLeft: '2%'
         }}>
-          <View style={{
-            flexDirection: 'row',
-            paddingLeft: '2%',
-          }}>
-            <Ionicons name="md-person" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '5%' }} />
-            <Text style={style.smallText}>Friends</Text>
-          </View>
-          <View style={{
-            flexDirection: 'row',
-            paddingLeft: '45%'
-          }}>
-            <Text style={style.smallText}>Level</Text>
-            <FontAwesome name="gamepad" size={18} color="yellow" style={{ paddingTop: 3, marginLeft: '5%' }} />
-          </View>
+          <Text style={style.blueText}>Friends</Text>
         </View>
 
         <ScrollView style={{ height: '100%' }}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', paddingBottom: '5%' }}>
           {this.mapFriendsList()}
+          </View>
         </ScrollView>
 
       </View>

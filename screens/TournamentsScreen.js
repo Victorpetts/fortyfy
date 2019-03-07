@@ -160,17 +160,25 @@ class TournamentsScreen extends Component {
             <View style={{
               paddingBottom: '12%'
             }}>
+
+            {/* When + button is pressed */}
+
               {this.state.show === true ?
                 <View
                   style={style.whiteOverlay}
                 >
-                  <ScrollView style={style.mainContainer}>
+                  <TouchableOpacity
+                    onPress={this.pressButton}
+                    activeOpacity={1}
+                  >
+                    <ScrollView style={style.mainContainer}>
 
-                    <Text style={style.blueText}>Invites (number)</Text>
+                      <Text style={style.blueText}>Invites (number)</Text>
 
-                    <Text style={style.blueText}>Tournaments</Text>
-                    {this.mapOngoingTours()}
-                  </ScrollView>
+                      <Text style={style.blueText}>Tournaments</Text>
+                      {this.mapOngoingTours()}
+                    </ScrollView>
+                  </TouchableOpacity>
                 </View>
                 :
                 <ScrollView style={style.mainContainer}>
@@ -192,7 +200,11 @@ class TournamentsScreen extends Component {
                   showing={this.state.show}
                 />
               </View>
+
+              {/* When the + button has been pressed and menu is showing */}
+
               {this.state.show === true &&
+
                 <View>
                   <View style={{
                     position: 'absolute',

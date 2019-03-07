@@ -38,12 +38,13 @@ class User extends Component {
             style={{ height: 60, width: 40, marginRight: 5 }}
           />
           <View style={{ flexDirection: 'column', flex: 1 }}>
-            <Text style={style.inviteListText}>{this.props.name}</Text>
-            <Text style={style.inviteListSmallText}>Level {this.props.level}</Text>
+            <Text style={style.listItemText}>{this.props.name}</Text>
+            <Text style={style.listItemSmallText}>Level {this.props.level}</Text>
           </View>
           <TouchableOpacity
             onPress={this.sendInvitation}
           >
+              <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
             {this.state.buttonClicked === false ?
               <TourButtonSmall
                 buttonTitle={'Invite'}
@@ -52,8 +53,9 @@ class User extends Component {
               :
               <DisabledButtonSmall
                 buttonTitle={'Invited'}
-              />
-            }
+                />
+              }
+              </View>
           </TouchableOpacity>
         </View>
       </View>

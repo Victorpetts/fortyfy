@@ -11,6 +11,8 @@ import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
 
 import style from '../assets/Style.js';
+import Colors from '../constants/Colors';
+
 import { FontAwesome } from '@expo/vector-icons';
 
 
@@ -27,12 +29,17 @@ class ProfileScreen extends Component {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 0,
-      backgroundColor: 'black',
-      height: 90
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '100%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     },
     headerRight: (
       <TouchableOpacity
@@ -41,7 +48,7 @@ class ProfileScreen extends Component {
         <FontAwesome
         name="cog"
         size={26}
-        color='yellow'
+        color='white'
         style={{marginRight: 20}}
          />
       </TouchableOpacity>
