@@ -7,12 +7,10 @@ import {
   Image
 } from 'react-native';
 
-import { acceptFriend, denyFriend, inviteFriend } from '../actions/index.js';
-import { FontAwesome, Feather } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 import { TourButtonSmall, DisabledButtonSmall } from '../components/Buttons.js';
 
-class User extends Component {
+class InviteList extends Component {
 
   state = {
     buttonClicked: false
@@ -25,6 +23,12 @@ class User extends Component {
   }
 
   render() {
+
+    const userId = this.props.id;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userName = thisUser.name;
+    const userLvl = thisUser.lvl;
+
     return (
 
       <View style={style.inviteListContainer}>
@@ -34,12 +38,20 @@ class User extends Component {
         }}>
           <Image
             source={require('../assets/images/frame-blue.png')}
-            style={{ height: 60, width: 40, marginRight: 5 }}
+            style={{
+              height: 60,
+              width: 40,
+              marginRight: 5
+            }}
           />
-          <View style={{ flexDirection: 'column', flex: 1 }}>
-            <Text style={style.inviteListText}>{this.props.name}</Text>
-            <Text style={style.inviteListSmallText}>Level {this.props.lvl}</Text>
+          <View style={{
+            flexDirection: 'column',
+            flex: 1
+          }}>
+            <Text style={style.inviteListText}>{userName}</Text>
+            <Text style={style.inviteListSmallText}>Level {userLvl}</Text>
           </View>
+
           <TouchableOpacity
             onPress={this.sendInvitation}
           >
@@ -48,7 +60,7 @@ class User extends Component {
                 buttonTitle={'Invite'}
                 buttonFunc={this.sendInvitation}
               />
-              :
+            :
               <DisabledButtonSmall
                 buttonTitle={'Invited'}
               />
@@ -60,12 +72,8 @@ class User extends Component {
   }
 }
 
-// gör om propsen
-
 const mapStateToProps = (state) => {
-  return {
-    users: state.users
-  };
+  return { users: state.users };
 };
 
-export default connect(mapStateToProps, { acceptFriend, denyFriend, inviteFriend })(User);
+export default connect(mapStateToProps, null)(InviteList);

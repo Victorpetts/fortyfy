@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectPlayer, confirmPlayer, endTournament } from '../actions/index.js';
+import { selectPlayer, confirmPlayer, endTournament, deletePlayers } from '../actions/index.js';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import { Overlay } from 'react-native-elements';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import { TourButtonFullWidth, TourButtonSmallRed } from '../components/Buttons.js';
-import { Participant } from '../components/Participant.js';
+import Participant from '../components/Participant.js';
 import InviteList from '../components/InviteList';
 import TourInfoSection from '../components/TourInfoSection.js';
 
@@ -63,71 +63,43 @@ class OngoingScreen extends Component {
     this.props.navigation.setParams({ toggleInfoWindow: this.toggleInfoWindow })
   };
 
-  mapPartic(totalMatches, thisTour) {
-    let particArr = thisTour.participants;
-    let allUsers = this.props.users;
+  mapPartic(thisTour) {
+
+    const allUsers = this.props.users;
+    const particArr = thisTour.participants;
     let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
-    return thisToursPartic.map((player) => {
+    return thisToursPartic.map((user) => {
       return (
         <Participant
-          key={player.id}
-          id={partic.id}
-          outsideFunc={this.outsideFunc}
+          key={user.id}
+          id={user.id}
+          thisTour={thisTour}
         />
       );
     });
   };
 
-  selectPlayer = (partic) => {
-    this.props.selectPlayer(partic);
-    this.setState({
-      isVisible: false,
-      buttonToggle: true
-    })
-  };
-
-  deletePlayer = (partic) => {
-    console.log('clicked!');
-    selectPlayer(partic);
-    this.props.deletePlayer(partic);
-  };
-
-  confirmPlayer = (partic) => {
-    this.props.confirmPlayer(partic);
-    this.setState({
-      buttonToggle: false
-    })
-  };
-
-  endTournament = (tour) => {
-    this.props.endTournament(tour);
-    this.props.navigation.navigate('Tournaments');
-  };
-
   mapInviteList() {
 
-    friendsList = this.props.users.filter(function (item) {
-      return item.friend === true;
-    }).map(function ({ name, level, friend }) {
-      return { name, level, friend };
-    });
+    let friendsList = this.props.users.filter(user => user.status === "friend");
 
-    friendsList.sort((a, b) => b.level - a.level);
+    friendsList.sort((a, b) => b.lvl - a.lvl);
 
     return friendsList.map((user) => {
       return (
         <InviteList
-          key={user.name}
-          name={user.name}
-          level={user.level}
-          friend={user.friend}
-          navigation={this.props.navigation}
-          invite={this.state.invite}
+          key={user.id}
+          id={user.id}
         />
       )
     })
   };
+
+  // endTournament = (tour) => {
+  //   this.props.endTournament(tour);
+  //   this.props.navigation.navigate('Tournaments');
+  // };
 
   toggleOverlay = () => {
     this.setState({
@@ -148,113 +120,63 @@ class OngoingScreen extends Component {
     this.setState({
       isVisible: true,
       isInfoWindow: true
-  outsideFunc = (participant, checkedState) => {
-    let oldArr = this.state.checkedPartic;
-
-    {checkedState === false ?
-      this.setState({
-        checkedPartic: [...oldArr, participant]
-      })
-    :
-      this.setState({
-        checkedPartic: oldArr.filter(item => item !== participant)
-      })
-    }
-  };
-
-  toggleManage = () => {
-    this.setState({
-      isVisible: true,
-      isManage: true
     })
   };
 
-  toggleInvite = () => {
-    this.setState({
-      isVisible: true,
-      isInvite: true
-    })
-  };
+  // selectPlayer = (partic) => {
+  //   this.props.selectPlayer(partic);
+  //   this.setState({
+  //     isVisible: false,
+  //     buttonToggle: true
+  //   })
+  // };
 
-  selectToKick = () => {
-    this.props.selectPlayer();
+  // outsideFunc = (participant, checkedState) => {
+  //   let oldArr = this.state.checkedPartic;
+  //
+  //   {checkedState === false ?
+  //     this.setState({
+  //       checkedPartic: [...oldArr, participant]
+  //     })
+  //   :
+  //     this.setState({
+  //       checkedPartic: oldArr.filter(item => item !== participant)
+  //     })
+  //   }
+  // };
 
-    this.setState({
-      isVisible: false,
-      buttonToggle: true,
-      toKick: true
-    })
-  };
+  // toggleManage = () => {
+  //   this.setState({
+  //     isVisible: true,
+  //     isManage: true
+  //   })
+  // };
 
-  selectPermissions = () => {
-    this.props.selectPlayer();
+  // kickFunc = () => {
+  //   this.props.confirmPlayer();
+  //   this.props.deletePlayers(this.state.checkedPartic);
+  //
+  //   this.setState({
+  //     buttonToggle: false,
+  //     toKick: false
+  //   })
+  // };
 
-    this.setState({
-      isVisible: false,
-      buttonToggle: true
-    })
-  };
-
-  confirmFunc = () => {
-    this.props.confirmPlayer();
-    this.props.deletePlayers(this.state.checkedPartic);
-
-    this.setState({
-      buttonToggle: false,
-      toKick: false
-    })
-  };
-
-  cancelFunc = () => {
-    this.props.confirmPlayer();
-
-    this.setState({
-      buttonToggle: false,
-      toKick: false
-    })
-  };
-
-  endTournament = (tour) => {
-    this.props.endTournament(tour);
-    this.props.navigation.navigate('Tournaments');
-  };
-
-  mapInviteList() {
-
-    friendsList = this.props.users.filter(function(user){
-      return user.friend === true;
-    }).map(function({id,name, lvl, friend}){
-      return {id, name, lvl, friend};
-    });
-
-    friendsList.sort((a, b) => b.lvl - a.lvl);
-
-    return friendsList.map((user) => {
-      return (
-        <InviteList
-          key={user.id}
-          name={user.name}
-          lvl={user.lvl}
-          friend={user.friend}
-          navigation={this.props.navigation}
-          invite={this.state.invite}
-        />
-      )
-    })
-  };
+  // cancelFunc = () => {
+  //   this.props.confirmPlayer();
+  //
+  //   this.setState({
+  //     buttonToggle: false,
+  //     toKick: false
+  //   })
+  // };
 
   render() {
 
+    const owner = this.props.navigation.getParam('owner');
     const thisToursId = this.props.navigation.getParam('tourId');
     const thisTour = this.props.tours.find(thisTour => thisTour.id === thisToursId);
-    const numberOfPartic = thisTour.participants.length;
-    const thisToursName = thisTour.name);
-    const thisMaxPartic = thisTour.players;
-    const totalMatches = thisTour.totalMatches;
-    let partic = this.props.navigation.getParam('partic');
-    let tours;
     let winconText;
-    let owner = this.props.navigation.getParam('owner');
 
     switch (thisTour.wincon) {
       case '1':
@@ -276,14 +198,11 @@ class OngoingScreen extends Component {
         <ScrollView style={style.mainContainer}>
           <View style={style.itemContainer}>
             <TourInfoSection
-              titleName={thisToursName}
-              titleMatches={totalMatches}
-              tourInfoWincon={winconText}
-              tourInfoPartic={numberOfPartic}
-              tourInfoMaxPartic={thisMaxPartic}
+              id={thisToursId}
               owner={owner}
             />
           </View>
+
           <View style={{
             alignItems: 'center',
             flexDirection: 'column',
@@ -291,44 +210,15 @@ class OngoingScreen extends Component {
             paddingHorizontal: 10,
             height: '20%'
           }}>
-
-            {this.state.buttonToggle === true && this.state.toKick === false &&
-              <View>
-                <TourButtonFullWidth
-                  buttonTitle={'Cancel'}
-                  buttonFunc={() => this.cancelFunc()}
-                />
-                <TourButtonFullWidth
-                  buttonTitle={'Confirm'}
-                  buttonFunc={() => this.cancelFunc()}
-                />
-              </View>
-            }
-            {this.state.buttonToggle === true && this.state.toKick === true &&
-              <View>
-                <TourButtonFullWidth
-                  buttonTitle={'Cancel'}
-                  buttonFunc={() => this.cancelFunc()}
-                />
-                <TourButtonFullWidth
-                  buttonTitle={'Confirm'}
-                  buttonFunc={() => this.confirmFunc()}
-                />
-              </View>
-            }
-            {this.state.buttonToggle === false && this.state.toKick === false &&
-              <View>
-                <TourButtonFullWidth
-                  buttonTitle={'Invite friends'}
-                  buttonFunc={this.toggleInviteList}
-                />
-                <TourButtonFullWidth
-                  buttonTitle={'Manage tournament'}
-                  buttonFunc={this.toggleManage}
-                />
-              </View>
-            }
+              <TourButtonFullWidth
+                buttonTitle={'Invite friends'}
+                buttonFunc={this.toggleInviteList}
+              />
+              <TourButtonFullWidth
+                buttonTitle={'Manage tournament'}
+              />
           </View>
+
           <View style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -338,7 +228,7 @@ class OngoingScreen extends Component {
             <Text style={style.subTitleText}>Matches played</Text>
           </View>
           <View style={{ paddingBottom: '15%' }}>
-            {this.mapPartic(totalMatches)}
+            {this.mapPartic(thisTour)}
           </View>
 
           {this.state.isVisible &&
@@ -364,9 +254,7 @@ class OngoingScreen extends Component {
                   flexDirection: 'column',
                   justifyContent: 'space-between'
                 }}
-                style={{
-                  padding: 5
-                }}
+                style={{ padding: 5 }}
               >
 
                 {this.state.isInviteList === true &&

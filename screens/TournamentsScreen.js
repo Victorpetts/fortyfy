@@ -58,13 +58,10 @@ class TournamentsScreen extends Component {
 
   mapOngoingTours() {
 
-    ongoingTour = this.props.tours.filter(function (item) {
-      return item.finished === false;
-    }).map(function ({ id }) {
-      return { id };
-    });
+    let allTours = this.props.tours;
+    let ongoingTours = allTours.filter(tour => tour.finished === false);
 
-    return ongoingTour.map((tour) => {
+    return ongoingTours.map((tour) => {
       return (
         <Tour
           key={tour.id}
@@ -77,13 +74,10 @@ class TournamentsScreen extends Component {
 
   mapFinishedTours() {
 
-    finishedTour = this.props.tours.filter(function (item) {
-      return item.finished === true;
-    }).map(function ({ id }) {
-      return { id };
-    });
+    let allTours = this.props.tours;
+    let finishedTours = allTours.filter(tour => tour.finished === true);
 
-    return finishedTour.map((tour) => {
+    return finishedTours.map((tour) => {
       return (
         <Tour
           key={tour.id}

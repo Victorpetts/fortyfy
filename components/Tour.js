@@ -20,7 +20,12 @@ class Tour extends Component {
     const totalMatches = thisTour.totalMatches;
     const numberOfPartic = thisTour.participants.length;
     const maxPlayers = thisTour.players;
-    const owner = tourName.replace(`'s Tournament`, '' );
+
+    const ownersId = thisTour.owner;
+    const ownerObj = this.props.users.find(user => user.id === ownersId);
+    const owner = ownerObj.name;
+    const ownerLvl = ownerObj.lvl;
+
     const { navigate } = this.props.navigation;
     let winconText;
 
@@ -54,51 +59,47 @@ class Tour extends Component {
     }
 
     return (
-      <ScrollView contentContainerStyle={
-        tourStatus === false
-          ? style.itemContainer
-          : style.itemContainerNoBorder}
+
+      <ScrollView
+        contentContainerStyle={
+          tourStatus === false
+            ? style.itemContainer
+            : style.itemContainerNoBorder
+        }
         automaticallyAdjustContentInsets={false}
       >
-
         <TourInfoSection
-          titleName={tourName}
-          titleMatches={totalMatches}
-          tourInfoWincon={winconText}
-          tourInfoPartic={numberOfPartic}
-          tourInfoMaxPartic={maxPlayers}
+          id={tourId}
           owner={owner}
         />
-
-        {tourStatus === false ? (
-          <View style={{
-            alignItems: 'center',
-            padding: 10
-          }}>
+        <View style={{
+          alignItems: 'center',
+          padding: 10
+        }}>
+          {tourStatus === false ? (
             <TourButton
               buttonTitle={'View tournament'}
               buttonFunc={navigateToOngoing}
             />
-          </View>
-        ) : (
-            <View style={{
-              alignItems: 'center',
-              padding: 10
-            }}>
-              <TourButton
-                buttonTitle={'View tournament'}
-                buttonFunc={navigateToFinished}
-              />
-            </View>
+          ) : (
+            <TourButton
+              buttonTitle={'View tournament'}
+              buttonFunc={navigateToFinished}
+            />
           )}
+        </View>
       </ScrollView>
+
     )
 
   }
 }
 
 const mapStateToProps = (state) => {
-  return { tours: state.tours };
+  return {
+    tours: state.tours,
+    users: state.users,
+   };
 };
 
 export default connect(mapStateToProps, null)(Tour);

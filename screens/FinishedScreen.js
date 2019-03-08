@@ -10,7 +10,7 @@ import {
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import TourInfoSection from '../components/TourInfoSection.js';
-import { LeaderBoardPartic } from '../components/Participant';
+import LeaderBoardPartic from '../components/ParticipantLB';
 
 
 class FinishedScreen extends Component {
@@ -37,44 +37,18 @@ class FinishedScreen extends Component {
   });
 
   render() {
-    const tourArray = this.props.partic
-    tourArray.sort((a, b) => a.points - b.points);
 
-    const numberOfPartic = this.props.partic.length;
-    const thisToursName = this.props.navigation.getParam('tourName');
-    const thisToursMatches = this.props.navigation.getParam('totalMatches');
-    const thisMaxPartic = this.props.navigation.getParam('numbPlayers');
-    const reverseArray = tourArray.reverse()
-    const filter = this.props.tours.find(thisTour => thisTour.name === thisToursName);
-    let owner = this.props.navigation.getParam('owner')
+    const tourId = this.props.navigation.getParam('tourId');
+    const owner = this.props.navigation.getParam('owner')
+    // const thisTour = this.props.tours.find(tour => tour.id === tourId);
 
-    let winconText;
-
-    switch (filter.wincon) {
-      case '1':
-        winconText = 'Survived longest';
-        break
-      case '2':
-        winconText = 'Most kills';
-        break
-      case '3':
-        winconText = 'Most top 5';
-        break
-      default:
-        winconText = '';
-        break
-    }
 
 
     return (
       <ScrollView style={style.mainContainer}>
         <View style={style.itemContainerNoBorder}>
           <TourInfoSection
-            titleName={thisToursName}
-            titleMatches={thisToursMatches}
-            tourInfoWincon={winconText}
-            tourInfoPartic={numberOfPartic}
-            tourInfoMaxPartic={thisMaxPartic}
+            id={tourId}
             owner={owner}
           />
         </View>
@@ -139,14 +113,10 @@ class FinishedScreen extends Component {
         </View>
 
         <LeaderBoardPartic
-        name={'Karolina Nordström'}
-        points={'79'}
-        placement={'4'}
+          id={"5"}
         />
         <LeaderBoardPartic
-        name={'Victor Pettersson'}
-        points={'68'}
-        placement={'5'}
+          id={"10"}
         />
 
       </ScrollView>
@@ -163,3 +133,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(FinishedScreen);
+
+// let particArr = thisTour.participants;
+// let allUsers = this.props.users;
+// let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));

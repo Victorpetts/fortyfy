@@ -11,14 +11,47 @@ class match{
 
 const initialState = {
   toursArr:[
-    { id: 1, name: "Miranda's Tournament", participants: ["1","3","4","5","10"], players: "5", wincon: "2", totalMatches: "3", fromDate: "5th of March 10:30", toDate: "5th of March 13:00", finished: true },
-    { id: 2, name: "Pinar's Tournament", participants: ["5","6","7","9"], players: "4", wincon: "3", totalMatches: "5", fromDate: "7th of March 17:30", toDate: "8th of March 17:30", finished: false },
-    { id: 3, name: "Victor's Tournament", participants: ["1","2","3","4","7","8","10"], players: "8", wincon: "1", totalMatches: "7", fromDate: "9th of March 07:00", toDate: "9th of March 21:00", finished: false },
+    {
+      id: 1,
+      name: "Miranda's Tournament",
+      participants: ["1","3","4","5","10"],
+      players: "5",
+      wincon: "2",
+      totalMatches: "3",
+      fromDate: "5th of March 10:30",
+      toDate: "5th of March 13:00",
+      finished: true,
+      owner: "3"
+    },
+    {
+      id: 2,
+      name: "Pinar's Tournament",
+      participants: ["5","6","7","9"],
+      players: "4",
+      wincon: "3",
+      totalMatches: "5",
+      fromDate: "7th of March 17:30",
+      toDate: "8th of March 17:30",
+      finished: false,
+      owner: "5"
+    },
+    {
+      id: 3,
+      name: "Victor's Tournament",
+      participants: ["1","2","3","4","7","8","10"],
+      players: "8",
+      wincon: "1",
+      totalMatches: "7",
+      fromDate: "9th of March 07:00",
+      toDate: "9th of March 21:00",
+      finished: false,
+      owner: "1"
+    },
   ],
   usersArr:[
     {
       id: "1",
-      name: "Victor",
+      name: "Vicky",
       lvl: "27",
       matchStatistics: [new match(1,3,10), new match(3,7,56)],
       checkBox: false,
@@ -29,7 +62,7 @@ const initialState = {
     },
     {
       id: "2",
-      name: "Constantine",
+      name: "Antonius",
       lvl: "13",
       matchStatistics: [new match(3,6,43)],
       checkBox: false, friends: ["3","4","5","9"],
@@ -39,8 +72,8 @@ const initialState = {
     },
     {
       id: "3",
-      name: "Miranda",
-      lvl: "99",
+      name: "Michirisu",
+      lvl: "89",
       matchStatistics: [new match(1,3,40), new match(3,2,26)],
       checkBox: false,
       friends: ["1","2"],
@@ -50,7 +83,7 @@ const initialState = {
     },
     {
       id: "4",
-      name: "Jesper",
+      name: "J-Dawg",
       lvl: "1",
       matchStatistics: [new match(1,3,55), new match(3,6,75)],
       checkBox: false,
@@ -61,7 +94,7 @@ const initialState = {
      },
     {
       id: "5",
-      name: "Pinar",
+      name: "Petitepinita",
       lvl: "29",
       matchStatistics: [new match(1,3,0), new match(1,4,71)],
       checkBox: false,
@@ -72,7 +105,7 @@ const initialState = {
     },
     {
       id: "6",
-      name: "Robert",
+      name: "MrMister",
       lvl: "50",
       matchStatistics: [new match(2,1,2)],
       checkBox: false,
@@ -83,7 +116,7 @@ const initialState = {
     },
     {
       id: "7",
-      name: "Meaghan",
+      name: "Meagzter",
       lvl: "7",
       matchStatistics: [new match(2,2,11), new match(3,6,81)],
       checkBox: false,
@@ -94,7 +127,7 @@ const initialState = {
     },
     {
       id: "8",
-      name: "Bo",
+      name: "Viktorious",
       lvl: "96",
       matchStatistics: [new match(3,0,0)],
       checkBox: false,
@@ -105,7 +138,7 @@ const initialState = {
     },
     {
       id: "9",
-      name: "Fredrik",
+      name: "4ld3gr3n",
       lvl: "11",
       matchStatistics: [new match(2,2,8)],
       checkBox: false,
@@ -116,7 +149,7 @@ const initialState = {
     },
     {
       id: "10",
-      name: "Axel",
+      name: "The_Shoulder",
       lvl: "82",
       matchStatistics: [new match(1,3,5), new match(3,1,15)],
       checkBox: false,
@@ -124,6 +157,17 @@ const initialState = {
       friend: false,
       status: "notfriend",
       card: "3"
+    },
+    {
+      id: "11",
+      name: "SirYonyfy",
+      lvl: "99",
+      matchStatistics: [],
+      checkBox: false,
+      friends: [],
+      friend: false,
+      status: "notfriend",
+      card: "11"
     },
   ]
   // particArr:[

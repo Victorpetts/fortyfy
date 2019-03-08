@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Text
@@ -6,7 +7,7 @@ import {
 
 import style from '../assets/Style.js';
 
-export class Participant extends Component {
+class Participant extends Component {
 
   state = {
     checked: false
@@ -16,47 +17,35 @@ export class Participant extends Component {
     this.setState(prevState =>({
       checked: !prevState.checked
     }));
-
-    let participant = this.props.name;
-    let checkedState = this.state.checked;
-    this.props.outsideFunc(participant, checkedState);
   }
 
   render() {
+
+    const userId = this.props.id;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userName = thisUser.name;
+    const playedMatches = 2;
+
+    const thisTour = this.props.thisTour;
+    const totalMatches = thisTour.totalMatches;
+
     return (
-      <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
+      <View style={{
+        paddingHorizontal: 10,
+        paddingVertical: 5
+      }}>
         <View style={style.particContainer}>
-          <Text style={style.particText}>{this.props.name}</Text>
-          <Text style={style.particText}>
-            {this.props.playedMatches} / {this.props.totalMatches}
-          </Text>
+          <Text style={style.particText}>{userName}</Text>
+          <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
         </View>
       </View>
     )
-  }
 
+  }
 }
 
-export class LeaderBoardPartic extends Component {
+const mapStateToProps = (state) => {
+  return { users: state.users };
+};
 
-  render() {
-    return (
-      <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
-        <View style={style.particContainer}>
-          <View style={style.placementSquare}>
-            <Text style={style.placementText}>{this.props.placement}</Text>
-          </View>
-          <View style={{ paddingLeft: '12%'}}>
-            <Text style={style.particText}>{this.props.name}</Text>
-          </View>
-          <View style={{ alignSelf: 'flex-end'}}>
-            <Text style={style.particText}>
-              {this.props.points} points
-            </Text>
-          </View>
-        </View>
-      </View>
-    )
-  }
-
-}
+export default connect(mapStateToProps, null)(Participant);
