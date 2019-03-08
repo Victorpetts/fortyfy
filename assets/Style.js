@@ -297,7 +297,6 @@ export default StyleSheet.create({
     borderRadius: 5,
     margin: 10,
     padding: 5,
-    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderColor: Colors.appRedColor,
@@ -308,7 +307,6 @@ export default StyleSheet.create({
     borderRadius: 5,
     margin: 10,
     padding: 5,
-    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderColor: Colors.appBlueColor,
@@ -327,9 +325,8 @@ export default StyleSheet.create({
 
   itemContainerNoBorder: {
     borderRadius: 3,
-    margin: 15,
+    margin: 10,
     padding: 5,
-    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between'
   },

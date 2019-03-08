@@ -13,7 +13,7 @@ import {
 
 import { TourButton, RoundButton, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
 import Tour from '../components/Tour.js';
-import TourInfoSection from '../components/TourInfoSection.js';
+import TourInfoMockUp from '../components/TourInfoMockUp.js';
 import SponsoredTours from '../components/SponsoredTours.js';
 
 import style from '../assets/Style.js';
@@ -168,12 +168,12 @@ class TournamentsScreen extends Component {
                       <View>
                         <Text style={style.blueText}>Invites (1)</Text>
                         <View style={style.itemContainer}>
-                          <TourInfoSection
-                            titleName={`Jesper's Tournament`}
-                            titleMatches={'10'}
-                            tourInfoWincon={'Most Top 5'}
-                            tourInfoPartic={'1'}
-                            tourInfoMaxPartic={'10'}
+                          <TourInfoMockUp
+                            tourName={`Jesper's Tournament`}
+                            totalMatches={'10'}
+                            winconText={'Most Top 5'}
+                            numberOfPlayers={'1'}
+                            maxPlayers={'10'}
                             owner={'Jesper'}
                           />
                           <View style={{
@@ -214,12 +214,12 @@ class TournamentsScreen extends Component {
                       <View>
                         <Text style={style.blueText}>Invites (1)</Text>
                         <View style={style.itemContainer}>
-                          <TourInfoSection
-                            titleName={`Jesper's Tournament`}
-                            titleMatches={'10'}
-                            tourInfoWincon={'Most Top 5'}
-                            tourInfoPartic={'1'}
-                            tourInfoMaxPartic={'10'}
+                        <TourInfoMockUp
+                            tourName={`Jesper's Tournament`}
+                            totalMatches={'10'}
+                            winconText={'Most Top 5'}
+                            numberOfPlayers={'1'}
+                            maxPlayers={'10'}
                             owner={'Jesper'}
                           />
                           <View style={{
@@ -246,14 +246,14 @@ class TournamentsScreen extends Component {
 
                   {this.state.acceptInvite === true &&
                   <View style={style.itemContainer}>
-                  <TourInfoSection
-                    titleName={`Jesper's Tournament`}
-                    titleMatches={'10'}
-                    tourInfoWincon={'Most Top 5'}
-                    tourInfoPartic={'2'}
-                    tourInfoMaxPartic={'10'}
-                    owner={'Jesper'}
-                  />
+                  <TourInfoMockUp
+                            tourName={`Jesper's Tournament`}
+                            totalMatches={'10'}
+                            winconText={'Most Top 5'}
+                            numberOfPlayers={'2'}
+                            maxPlayers={'10'}
+                            owner={'Jesper'}
+                          />
                   <View style={{
                     padding: 5,
                     flexDirection: 'row',
