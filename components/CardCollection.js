@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
     View,
-    Text,
+    Image,
     TouchableOpacity
 } from 'react-native';
-
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 import style from '../assets/Style.js';
 
 class CardCollection extends Component {
@@ -24,18 +23,14 @@ class CardCollection extends Component {
                     })}
                     style={style.indvCardContainer}
                     >
-                    <FontAwesome style={{ fontSize: 90, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-                    <Text style={style.smallText}>{this.props.name}</Text>
+                    <Image
+                    source={require('../assets/images/frame-silver.png')}
+                    style={{ height: 180, width: 120 }}
+                    />
                 </TouchableOpacity>
             </View>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.users
-    };
-};
-
-export default connect(mapStateToProps, null)(CardCollection);
+export default CardCollection;

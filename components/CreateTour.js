@@ -1,3 +1,6 @@
+
+// Används inte
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createTour } from '../actions';
@@ -10,8 +13,8 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import { TourButton } from './TourButton.js';
-import { addTour } from '../services/AddTourService';
+import { TourButton } from './Buttons.js';
+// import { addTour } from '../services/AddTourService';
 
 class CreateTour extends Component {
 
@@ -22,27 +25,24 @@ class CreateTour extends Component {
     totalMatches: ''
   }
 
-  // createTour = () => {
-  //   if (this.state.name !== '') {
-  //     let newTour = {
-  //       'name': this.state.name,
-  //       'players': this.state.players,
-  //       'wincon': this.state.wincon,
-  //       'totalMatches': this.state.totalMatches
-  //     }
-  //     this.props.createTour(newTour)
-  //     this.props.buttonFunc()
-  //   }
-  // }
-
-  handleSubmit = () => {
-    addTour(this.state.name, this.state.players, this.state.wincon, this.state.totalMatches);
-    this.props.buttonFunc();
+  createTour = () => {
+    if (this.state.name !== '') {
+      let newTour = {
+        'name': this.state.name,
+        'players': this.state.players,
+        'wincon': this.state.wincon,
+        'totalMatches': this.state.totalMatches,
+        'finished': false
+      }
+      this.props.createTour(newTour);
+      this.props.buttonFunc();
+    }
   }
 
   render() {
 
     const { name, players, wincon, totalMatches } = this.state
+    let isFocused = this.props.navigation.isFocused();
 
     return (
       <View style={style.mainContainer}>
@@ -101,14 +101,13 @@ class CreateTour extends Component {
           />
           <TourButton
             buttonTitle={'CREATE TOURNAMENT'}
-            buttonFunc={this.handleSubmit}
+            buttonFunc={this.createTour}
           />
         </View>
       </View>
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return { tours: state.tours };

@@ -5,10 +5,10 @@ import {
   Text,
   ScrollView
 } from 'react-native';
-import Tour from './Tour.js';
 
+import Tour from './Tour.js';
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 
 class MyTours extends Component {
@@ -17,8 +17,8 @@ class MyTours extends Component {
 
     ongoingTour = this.props.tours.filter(function(item){
       return item.finished === false;
-    }).map(function({name, players, wincon, totalMatches, finished}){
-      return {name, players, wincon, totalMatches, finished};
+    }).map(function({name, players, wincon, totalMatches, fromDate, toDate, finished}){
+      return {name, players, wincon, totalMatches, fromDate, toDate, finished};
     });
 
     return ongoingTour.map((tour) => {
@@ -29,9 +29,11 @@ class MyTours extends Component {
         players={tour.players}
         wincon={tour.wincon}
         totalMatches={tour.totalMatches}
-        navigation={this.props.navigation}
+        fromDate={tour.fromDate}
+        toDate={tour.toDate}
         finished={tour.finished}
-      />
+        navigation={this.props.navigation}
+        />
       )
     })
   }
@@ -40,8 +42,8 @@ class MyTours extends Component {
 
     finishedTour = this.props.tours.filter(function(item){
       return item.finished === true;
-    }).map(function({name, players, wincon, totalMatches, finished}){
-      return {name, players, wincon, totalMatches, finished};
+    }).map(function({name, players, wincon, totalMatches, fromDate, toDate, finished}){
+      return {name, players, wincon, totalMatches, fromDate, toDate, finished};
     });
 
     return finishedTour.map((tour) => {
@@ -52,38 +54,42 @@ class MyTours extends Component {
         players={tour.players}
         wincon={tour.wincon}
         totalMatches={tour.totalMatches}
-        navigation={this.props.navigation}
+        fromDate={tour.fromDate}
+        toDate={tour.toDate}
         finished={tour.finished}
-      />
+        navigation={this.props.navigation}
+        />
       )
     })
   }
 
   render() {
+
     return (
       <View style={style.container}>
-        <View style={{
+      <View style={{
           flexDirection: 'row',
           paddingLeft: '4%',
         }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessRook}</FontAwesome>
+          <MaterialCommunityIcons name="chess-rook" size={18} color="yellow" style={{ paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Ongoing</Text>
         </View>
-        <ScrollView style={{ height: '100%' }}>
+        <ScrollView>
           {this.mapOngoingTours()}
         </ScrollView>
         <View style={{
           flexDirection: 'row',
           paddingLeft: '4%',
         }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessKing}</FontAwesome>
+          <MaterialCommunityIcons name="chess-king" size={18} color="yellow" style={{ paddingTop: 2, marginRight: '2%' }} />
           <Text style={style.smallText}>Finished</Text>
         </View>
-        <ScrollView style={{ height: '100%' }}>
+        <ScrollView>
           {this.mapFinishedTours()}
         </ScrollView>
       </View>
     )
+
   }
 
 }

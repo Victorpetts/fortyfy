@@ -1,17 +1,13 @@
 import React from 'react';
 import {
-  Image,
-  Platform,
   ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
-import {NewsArticle} from '../components/NewsArticle';
+import { NewsArticle } from '../components/NewsArticle';
 import output from '../output.json';
 import style from '../assets/Style.js';
+import Colors from '../constants/Colors';
 
 let data = output;
 
@@ -21,41 +17,51 @@ export default class NewsScreen extends React.Component {
   static navigationOptions = {
     title: 'News',
     headerStyle: {
-      backgroundColor: 'black',
-      height: 90,
-      borderBottomWidth: 4,
-      borderColor: 'yellow'
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34,
-      fontFamily: 'sans-serif'
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '90%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     }
   };
 
   render() {
-
     return (
-      <ScrollView style={style.mainContainer}>
-      <View style={{
-          alignItems: 'center'
-       }}>
+        <ScrollView
+          style={style.mainContainer}
+        >
+          <View style={{ padding: '2%' }} />
+          <View style={{
+            alignItems: 'center',
+            width: '90%',
+            marginLeft: '5%',
+            marginRight: '5%'
+          }}>
 
-       {data.slice(0, 10).map(item =>
-          <NewsArticle
-            key={item.title}
-            title={item.title}
-            date={item.date}
-            img={item.img}
-            link={item.link}
-          />
-        )
-      }
+            {data.slice(0, 10).map(item =>
+              <NewsArticle
+                key={item.title}
+                title={item.title}
+                date={item.date}
+                img={item.img}
+                link={item.link}
+              />
+            )
+            }
 
-      </View>
-      </ScrollView>
-    )
+          </View>
+          <View style={{ padding: '2%' }} />
+        </ScrollView>
+      )
   }
 }
 
-// <NewsArticle title={data.titles[2].value} />

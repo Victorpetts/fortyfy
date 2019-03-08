@@ -1,5 +1,6 @@
 import {
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 import {
@@ -7,26 +8,102 @@ import {
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 
+import Colors from '../constants/Colors.js';
+
 
 export default StyleSheet.create({
+
   buttonClass: {
-    backgroundColor: 'yellow',
-    padding: 20,
-    borderRadius: 5,
-    elevation: 4,
-    shadowOffset: {width: 4, height: 4},
-    width: 150
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 200
   },
 
-  roundButton: {
-    backgroundColor: 'yellow',
+  buttonClassRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 200
+  },
+
+  buttonMedium: {
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 130
+  },
+
+  buttonMediumRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 130
+  },
+
+  buttonFullWidth: {
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: '100%'
+  },
+
+  buttonFullWidthRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: '100%'
+  },
+
+  buttonSmallBlue: {
+    backgroundColor: Colors.appBlueColor,
+    borderRadius: 2.5,
+    width: 80.5,
+    height: 30
+  },
+
+  buttonSmallRed: {
+    backgroundColor: Colors.appRedColor,
+    borderRadius: 2.5,
+    width: 80.5,
+    height: 30
+  },
+
+    buttonSmallDisabled: {
+    backgroundColor: Colors.appBrightBlueColor,
+    borderRadius: 2.5,
+    width: 80.5,
+    height: 30
+  },
+
+  roundButtonLarge: {
+    backgroundColor: Colors.appBlueColor,
     borderRadius: 100,
     elevation: 4,
     shadowOffset: {width: 4, height: 4},
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50,
+    zIndex: 1000
   },
-  
+
+  roundButtonMedium: {
+    backgroundColor: Colors.appBlueColor,
+    borderRadius: 100,
+    elevation: 4,
+    shadowOffset: {width: 4, height: 4},
+    width: 38.5,
+    height: 38.5,
+    zIndex: 1000
+  },
+
+  buttonMediumText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    paddingTop: 5,
+    paddingRight: 10,
+    zIndex: 1000
+  },
+
   buttonDisabled: {
     borderColor: 'yellow',
     borderWidth: 2,
@@ -42,14 +119,23 @@ export default StyleSheet.create({
   },
 
   buttonText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    textAlign: 'center'
+    fontSize: 13,
+    textAlign: 'center',
+    fontFamily: 'alergia-normal-semibold',
+    color: 'white'
+  },
+
+  buttonSmallText: {
+    fontSize: 11,
+    textAlign: 'center',
+    fontFamily: 'alergia-normal-semibold',
+    color: 'white',
+    paddingTop: '7%'
   },
 
   buttonTextDisabled: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
     color: 'white'
   },
@@ -59,6 +145,13 @@ export default StyleSheet.create({
     fontSize: 28,
     alignSelf: 'center',
     color: 'yellow'
+  },
+
+  scoreText: {
+    fontSize: 24,
+    alignSelf: 'center',
+    color: 'white',
+    justifyContent: 'space-between'
   },
 
   headerText: {
@@ -90,6 +183,21 @@ export default StyleSheet.create({
     letterSpacing: 0.5
   },
 
+  italicText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    letterSpacing: 0.5,
+    fontStyle: 'italic'
+  },
+
+  mediumText: {
+    fontSize: 24,
+    textAlign: 'center',
+    color: 'yellow',
+    letterSpacing: 0.5
+  },
+
   playerText: {
     fontSize: 18,
     color: 'yellow',
@@ -99,28 +207,73 @@ export default StyleSheet.create({
   itemText: {
     fontSize: 18,
     margin: 10,
-    // minWidth: 150
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  subTitleText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  paragraphText: {
+    fontSize: 13,
+    fontFamily: 'alergia-normal-light',
+    lineHeight: 18,
+    marginVertical: 5
+  },
+
+  lvlText: {
+    fontSize: 12,
+    marginTop: 5,
+    marginLeft: 9,
+    flex: 1
   },
 
   userText: {
     fontSize: 20,
-    textAlign: 'center',
     color: 'yellow',
     marginVertical: 14,
+    textAlign: 'center'
   },
+
+  listItemText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    color: Colors.appBlackColor
+  },
+  listItemSmallText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-light',
+    color: Colors.appBlackColor
+    },
+
+  inviteMessageText: {
+    fontSize: 20,
+    color: 'yellow',
+    display: 'flex',
+    textAlign: 'center',
+    padding: 10,
+    width: '100%'
+  },
+
+  inputFieldText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    color: 'black',
+    paddingTop: 20,
+    paddingBottom: 5
+   },
 
   itemNumber: {
     fontSize: 18,
     marginVertical: 10,
-    marginLeft: 60,
     marginRight: 5
   },
 
   mainContainer: {
     width: '100%',
     height: '100%',
-    display: 'flex',
-    backgroundColor: 'black'
+    backgroundColor: Colors.appBackgroundColor
   },
 
   cardsContainer: {
@@ -140,25 +293,104 @@ export default StyleSheet.create({
     width: '100%'
   },
 
+  itemContainerSponsor: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appRedColor,
+    borderWidth: 1
+  },
+
+  itemContainerSponsorBlue: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
   itemContainer: {
     borderRadius: 3,
-    margin: 5,
+    margin: 10,
     padding: 5,
-    paddingRight: 15,
-    flexDirection: 'row',
-    elevation: 2,
     backgroundColor: 'white',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-between',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
+  itemContainerNoBorder: {
+    borderRadius: 3,
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    justifyContent: 'space-between'
+  },
+
+  particContainer: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 2.5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10
+  },
+
+  popUpText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-light',
+    color: 'white',
+    textAlign: 'center',
+    padding: 5,
+    lineHeight: 20
+  },
+
+  particText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-light'
   },
 
   userContainer: {
-    borderRadius: 3,
+    borderRadius: 2.5,
     marginVertical: 5,
-    elevation: 2,
+    backgroundColor: 'white',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomColor: 'white',
-    borderBottomWidth: 2
+    justifyContent: 'space-between'
+  },
+
+  friendContainer: {
+    borderRadius: 2.5,
+    marginVertical: 5,
+    backgroundColor: 'white',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 110,
+    height: '100%'
+  },
+
+  inviteListContainer: {
+      borderRadius: 2.5,
+      padding: 5,
+      marginVertical: 5,
+      borderColor: Colors.appBlueColor,
+      borderWidth: 1,
+      backgroundColor: 'white'
+  },
+
+  inputFieldContainer: {
+    width: '90%',
+    height: '100%',
+    marginLeft: '5%',
+    marginRight: '5%'
   },
 
   userCard: {
@@ -185,20 +417,28 @@ export default StyleSheet.create({
 
   container: {
     margin: 20,
-    borderRadius: 3,
     width: '90%',
     height: hp('54%')
   },
 
-  ongoingContainer: {
-    margin: 20,
-    height: hp('70%')
+  friendsContainer: {
+    width: '100%', 
+    height: '100%',
+    flex: 1 
   },
 
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    width: '100%'
+  },
+
+  buttonContainerCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
     width: '100%'
   },
 
@@ -209,18 +449,28 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
 
-  titleRowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: '15%',
-    alignItems: 'center'
-  },
-
    inputField: {
+     fontSize: 15,
+     fontFamily: 'alergia-normal-light',
+     color: 'black',
+     borderRadius: 5,
+     height: 40,
+     width: '100%',
+     borderWidth: 1,
+     borderColor: Colors.appBlueColor,
      backgroundColor: 'white',
-     borderRadius: 3,
-     padding: 5,
-     fontSize: 16
+     padding: 10
+   },
+
+   pickerField: {
+    ...Platform.select({
+      android: {
+        backgroundColor: 'white',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: Colors.appBlueColor,
+      }
+    })
    },
 
    tabBackground: {
@@ -228,13 +478,13 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 0,
-    backgroundColor: 'black'
+    backgroundColor: Colors.appBlackColor
   },
 
   enabledTab: {
     width: "50%",
     borderBottomWidth: 4,
-    borderColor: 'yellow'
+    borderColor: Colors.appBackgroundColor
   },
 
   disabledTab: {
@@ -245,28 +495,80 @@ export default StyleSheet.create({
 
   enabledTabText: {
     color: "#fff",
-    fontWeight: "900",
     padding: 10,
     fontSize: 20,
     fontStyle: "normal",
     letterSpacing: 0.31,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: 'alergia-normal-semibold'
   },
 
   disabledTabText: {
     color: "#fff",
-    fontWeight: "900",
     padding: 10,
     fontSize: 20,
     opacity: 0.6,
     fontStyle: "normal",
     letterSpacing: 0.31,
-    textAlign: "center"
+    textAlign: "center",
+    fontFamily: 'alergia-normal-semibold'
   },
 
   indvCardContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '5%'
+  },
+
+  blueText: {
+    fontFamily: 'alergia-normal-semibold',
+    fontSize: 15,
+    color: Colors.appBlueColor,
+    paddingTop: '5%',
+    paddingLeft: '3%'
+  },
+
+  tourInfoTitle: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-light',
+    paddingBottom: 5
+  },
+
+  tourInfoText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  tourContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    alignItems: 'center',
+    padding: 10
+  },
+
+  whiteOverlay: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'white',
+    opacity: .15
+  },
+
+  placementSquare: {
+    backgroundColor: Colors.appBlueColor,
+    width: 41,
+    height: 41,
+    borderRadius: 2.5,
+    position: 'absolute'
+  },
+
+  placementText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-semibold',
+    color: 'white',
+    paddingLeft: '40%',
+    paddingTop: '20%',
+    justifyContent: 'center'
   }
+
 });

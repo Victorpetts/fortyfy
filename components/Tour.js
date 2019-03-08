@@ -2,46 +2,104 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
-  Text,
-  TouchableOpacity
+  ScrollView
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { TourButton } from '../components/Buttons.js';
+import TourInfoSection from './TourInfoSection.js';
 
 class Tour extends Component {
 
-
   render() {
 
-    const numberOfPartic = this.props.partic.length;
-    const tourName = this.props.name;
-    const numbPlayers = this.props.players;
-    const tourStatus = this.props.finished;
+    const tourId = this.props.id;
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
+    const tourName = thisTour.name;
+    const tourStatus = thisTour.finished;
+    const totalMatches = thisTour.totalMatches;
+    const numberOfPartic = thisTour.participants.length;
+    const maxPlayers = thisTour.players;
+
+    const ownersId = thisTour.owner;
+    const ownerObj = this.props.users.find(user => user.id === ownersId);
+    const owner = ownerObj.name;
+    const ownerLvl = ownerObj.lvl;
+
+    const { navigate } = this.props.navigation;
+    let winconText;
+
+    switch (thisTour.wincon) {
+      case '1':
+        winconText = 'Survived longest';
+        break
+      case '2':
+        winconText = 'Most kills';
+        break
+      case '3':
+        winconText = 'Most top 5';
+        break
+      default:
+        winconText = '';
+        break
+    }
+
+    navigateToOngoing = () => {
+      navigate('Ongoing', {
+        tourId: tourId,
+        owner: owner
+      })
+    }
+
+    navigateToFinished = () => {
+      navigate('Finished', {
+        tourId: tourId,
+        owner: owner
+      })
+    }
 
     return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('TourIndv',{
-          tourName: tourName,
-          numbPlayers: numbPlayers,
-          tourStatus: tourStatus
-        })}
+
+      <ScrollView
+        contentContainerStyle={
+          tourStatus === false
+            ? style.itemContainer
+            : style.itemContainerNoBorder
+        }
+        automaticallyAdjustContentInsets={false}
       >
-      <View style={style.itemContainer}>
-        <Text style={style.itemText}>{this.props.name}</Text>
-        <Text style={style.itemNumber}>
-        {numberOfPartic} / {this.props.players}
-        </Text>
-        <View style={style.iconClass}>
-        <FontAwesome style={{ fontSize: 22, color: 'black', paddingLeft: '2%' }}>{Icons.userCircle}</FontAwesome>
+        <TourInfoSection
+          id={tourId}
+          owner={owner}
+        />
+        <View style={{
+          alignItems: 'center',
+          padding: 10
+        }}>
+          {tourStatus === false ? (
+            <TourButton
+              buttonTitle={'View tournament'}
+              buttonFunc={navigateToOngoing}
+            />
+          ) : (
+            <TourButton
+              buttonTitle={'View tournament'}
+              buttonFunc={navigateToFinished}
+            />
+          )}
         </View>
-      </View>
-    </TouchableOpacity>
-  )}
+      </ScrollView>
+
+    )
+
+  }
 }
 
 const mapStateToProps = (state) => {
-  return { partic: state.partic };
+  return {
+    tours: state.tours,
+    users: state.users,
+   };
 };
 
 export default connect(mapStateToProps, null)(Tour);

@@ -8,7 +8,7 @@ import {
 
 import User from './User.js';
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 
 class FriendsList extends Component {
@@ -61,42 +61,28 @@ class FriendsList extends Component {
   render() {
     return (
 
-      <View style={style.container}>
+      <View style={style.friendsContainer}>
 
         <View style={{
-          flexDirection: 'row',
-          paddingLeft: '4%',
-        }}>
-          <FontAwesome style={{ fontSize: 18, paddingTop: 2, color: 'yellow', marginRight: '2%' }}>{Icons.chessPawn}</FontAwesome>
-          <Text style={style.smallText}>Friend Requests</Text>
+          flexDirection: 'row'
+          }}>
+          <Text style={style.blueText}>Friend Requests</Text>
         </View>
 
-        <ScrollView >
+        <ScrollView style={{ height: '45%', marginHorizontal: 5 }}>
           {this.mapFriendRequests()}
         </ScrollView>
 
         <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: '5%'
+          flexDirection: 'row'
         }}>
-          <View style={{
-            flexDirection: 'row',
-            paddingLeft: '2%',
-          }}>
-            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginRight: '5%' }}>{Icons.userCircle}</FontAwesome>
-            <Text style={style.smallText}>Friends</Text>
-          </View>
-          <View style={{
-            flexDirection: 'row'
-          }}>
-            <Text style={style.smallText}>Level</Text>
-            <FontAwesome style={{ fontSize: 16, paddingTop: 5, color: 'yellow', marginLeft: '5%' }}>{Icons.gamepad}</FontAwesome>
-          </View>
+          <Text style={style.blueText}>Friends</Text>
         </View>
 
         <ScrollView style={{ height: '100%' }}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', paddingBottom: '5%' }}>
           {this.mapFriendsList()}
+          </View>
         </ScrollView>
 
       </View>

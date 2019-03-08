@@ -5,10 +5,31 @@ export const createTour = newTour => {
   };
 };
 
-export const addPlayer = partic => {
+export const endTournament = tour => {
   return {
-    type: 'PLAYER_ADDED',
-    payload: partic
+    type: 'TOURNAMENT_ENDED',
+    payload: tour
+  };
+};
+
+export const selectPlayer = users => {
+  return {
+    type: 'PLAYERS_SELECTED',
+    payload: users
+  };
+};
+
+export const confirmPlayer = users => {
+  return {
+    type: 'PLAYERS_CONFIRMED',
+    payload: users
+  };
+};
+
+export const deletePlayers = users => {
+  return {
+    type: 'PLAYERS_DELETED',
+    payload: users
   };
 };
 
@@ -22,6 +43,13 @@ export const acceptFriend = user => {
 export const denyFriend = user => {
   return {
     type: 'FRIEND_DENIED',
+    payload: user
+  };
+};
+
+export const sendRequest = user => {
+  return {
+    type: 'FRIEND_REQUEST_SENT',
     payload: user
   };
 };

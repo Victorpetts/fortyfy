@@ -4,14 +4,15 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
-import MyCard from '../components/MyCard.js';
-
+import MyCardProfile from '../components/MyCardProfile.js';
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import Colors from '../constants/Colors';
+
+import { FontAwesome } from '@expo/vector-icons';
 
 
 class ProfileScreen extends Component {
@@ -19,31 +20,39 @@ class ProfileScreen extends Component {
   state = {
     toggleProfile: true,
     toggleCards: false
-  }
+  };
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Profile',
     headerStyle: {
-      backgroundColor: 'black',
-      height: 90
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0,
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34,
-      fontFamily: 'sans-serif'
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '100%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     },
     headerRight: (
-      <TouchableOpacity>
-        <FontAwesome style={{
-          fontSize: 26,
-          color: 'yellow',
-          marginRight: 20
-        }}>
-          {Icons.cog}
-        </FontAwesome>
+      <TouchableOpacity
+      onPress={() => navigation.navigate('ProfileSettings')}
+      >
+        <FontAwesome
+        name="cog"
+        size={26}
+        color='white'
+        style={{marginRight: 20}}
+         />
       </TouchableOpacity>
     )
-  };
+  });
 
   toggleProfile = () => {
     this.setState({
@@ -77,17 +86,14 @@ class ProfileScreen extends Component {
         navigation={this.props.navigation}
       />
       )
-    })
+    });
 
-  }
+  };
 
   render() {
-
     return (
-      <View style={{
-        height: '100%'
-      }}>
 
+      <View style={{ height: '100%' }}>
         {this.state.toggleProfile ? (
           <View>
             <View
@@ -125,9 +131,16 @@ class ProfileScreen extends Component {
               </View>
             </View>
 
-            <ScrollView style={style.mainContainer}>
-              <MyCard />
-            </ScrollView>
+            <View style={style.mainContainer}>
+            <View style={{
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <MyCardProfile
+              navigation={this.props.navigation}
+              />
+              </View>
+            </View>
           </View>
         ) : this.state.toggleCards ? (
           <View>
@@ -166,7 +179,7 @@ class ProfileScreen extends Component {
               </View>
             </View>
             <ScrollView style={style.mainContainer}>
-            <View  style={style.cardsContainer}>
+            <View style={style.cardsContainer}>
             {this.mapCardCollection()}
             </View>
             </ScrollView>
@@ -174,9 +187,10 @@ class ProfileScreen extends Component {
 
         ) : null}
       </View>
+
     )
-  }
-}
+  };
+};
 
 const mapStateToProps = (state) => {
   return { users: state.users };

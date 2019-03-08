@@ -7,8 +7,11 @@ import {
     StatusBar
 } from 'react-native';
 
-import FontAwesome, { Icons } from 'react-native-fontawesome';
 import style from '../assets/Style.js';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
 
 class userCardScreen extends Component {
 
@@ -26,13 +29,13 @@ class userCardScreen extends Component {
   // funkar inte helt
 
   render() {
-
     const userName = this.props.navigation.getParam('userName');
+    const findUser = this.props.users.find( user => user.name === userName );
+    // const card = findUser.card;
 
     return (
       <View>
-        <ImageBackground source={require('../assets/images/sings.jpg')} style={{width: '100%', height: '100%'}}>
-          <View style={style.cardFrame} />
+        <ImageBackground source={require('../assets/images/playercard-gold-frame.png')} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
       </View>

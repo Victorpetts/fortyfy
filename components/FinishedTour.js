@@ -1,3 +1,6 @@
+
+// Används inte
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -7,15 +10,14 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 class FinishedTour extends Component {
 
   render() {
-    const tourArray = this.props.partic
-    tourArray.sort((a, b) => a.points - b.points);
+    const winnersArr = this.props.users
+    winnersArr.sort((a, b) => b.points - a.points);
 
-    const reverseArray = tourArray.reverse()
     const thisToursName = this.props.tourName;
     const filter = this.props.tours.find( thisTour => thisTour.name === thisToursName );
 
@@ -23,16 +25,16 @@ class FinishedTour extends Component {
 
     switch(filter.wincon) {
       case '1':
-        winconText = 'Survived most minutes';
+        winconText = 'Survived longest';
         break
       case '2':
-        winconText = 'Most accumulated kills';
+        winconText = 'Most kills';
         break
       case '3':
-        winconText = 'Most placements in top 5';
+        winconText = 'Most top 5';
         break
       default:
-        winconText = 'Survived most minutes';
+        winconText = '';
         break
     }
 
@@ -48,8 +50,8 @@ class FinishedTour extends Component {
             alignSelf: 'center',
             padding: '5%'
           }}>
-            <Text style={style.yellowHeaderText}>{reverseArray[0].points}</Text>
-            <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+            <Text style={style.yellowHeaderText}>{winnersArr[0].points}</Text>
+            <FontAwesome name="file-photo-o" size={75} color="white" />
           </View>
           <View style={{
             flexDirection: 'row',
@@ -60,42 +62,15 @@ class FinishedTour extends Component {
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
-              <Text style={style.yellowHeaderText}>{reverseArray[1].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <Text style={style.yellowHeaderText}>{winnersArr[1].points}</Text>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
             <View style={{
               flexDirection: 'column',
               alignItems: 'center'
             }}>
-              <Text style={style.yellowHeaderText}>{reverseArray[2].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-            </View>
-          </View>
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            padding: '5%'
-          }}>
-            <View style={{
-                flexDirection: 'column',
-                alignItems: 'center'
-            }}>
-              <Text style={style.yellowHeaderText}>{reverseArray[3].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-            </View>
-            <View style={{
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}>
-              <Text style={style.yellowHeaderText}>{reverseArray[4].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
-            </View>
-            <View style={{
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}>
-              <Text style={style.yellowHeaderText}>{reverseArray[5].points}</Text>
-              <FontAwesome style={{ fontSize: 75, color: 'white' }}>{Icons.fileImage}</FontAwesome>
+              <Text style={style.yellowHeaderText}>{winnersArr[2].points}</Text>
+              <FontAwesome name="file-photo-o" size={75} color="white" />
             </View>
           </View>
         </ScrollView>
@@ -107,7 +82,7 @@ class FinishedTour extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    partic: state.partic,
+    users: state.users,
     tours: state.tours
   };
 };
