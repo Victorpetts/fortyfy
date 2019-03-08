@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import TourInfoSection from '../components/TourInfoSection.js';
-import { TourButton, TourButtonRed } from '../components/TourButton.js';
+import { TourButton, TourButtonRed } from '../components/Buttons.js';
 
 import style from '../assets/Style.js';
 
