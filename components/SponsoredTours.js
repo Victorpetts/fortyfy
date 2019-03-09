@@ -20,21 +20,21 @@ class SponsoredTours extends Component {
 
     return (
 
-      <View style={style.itemContainerNoBorder}>
+      <View style={style.itemContainerRedBorder}>
         <ImageBackground
           source={require('../assets/images/redbullsponsorbg.png')}
-          style={{ width: '100%', padding: 0 }}
+          style={{ width: '100%', margin: 0, padding: 0 }}
           resizeMode={'cover'}
         >
           <Image
             source={require('../assets/images/redbull.png')}
-            style={{ height: 50, width: 87, position: 'absolute', top: 15, left: 20 }}
+            style={{ height: 50, width: 100, position: 'absolute', top: 10, left: 20 }}
           />
           <TourInfoMockUp
             totalMatches={'10'}
             winconText={'Most kills'}
-            numberOfPlayers={this.state.pressed === false ? '6' : '7'}
-            maxPlayers={'100'}
+            numberOfPlayers={this.state.pressed === false ? '166' : '167'}
+            maxPlayers={'400'}
             owner={'Red Bull'}
           />
           <View style={{ width: '100%', alignItems: 'center', padding: 10 }}>

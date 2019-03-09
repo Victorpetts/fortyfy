@@ -164,17 +164,18 @@ class TournamentsScreen extends Component {
 
                       <Text style={style.blueText}>Sponsored</Text>
                       <SponsoredTours />
-                    {this.state.acceptInvite === false ? 
+
+                    {this.state.acceptInvite === false ?
                       <View>
                         <Text style={style.blueText}>Invites (1)</Text>
                         <View style={style.itemContainer}>
                           <TourInfoMockUp
                             tourName={`Jesper's Tournament`}
-                            totalMatches={'10'}
+                            totalMatches={'8'}
                             winconText={'Most Top 5'}
                             numberOfPlayers={'1'}
                             maxPlayers={'10'}
-                            owner={'Jesper'}
+                            owner={'J-Dawg'}
                           />
                           <View style={{
                             padding: 10,
@@ -210,18 +211,18 @@ class TournamentsScreen extends Component {
                   <Text style={style.blueText}>Sponsored</Text>
                   <SponsoredTours />
 
-                  {this.state.acceptInvite === false ? 
+                  {this.state.acceptInvite === false ?
                       <View>
                         <Text style={style.blueText}>Invites (1)</Text>
                         <View style={style.itemContainer}>
                         <TourInfoMockUp
                             tourName={`Jesper's Tournament`}
-                            totalMatches={'10'}
+                            totalMatches={'8'}
                             winconText={'Most Top 5'}
                             numberOfPlayers={'1'}
                             maxPlayers={'10'}
-                            owner={'Jesper'}
-                          />
+                            owner={'J-Dawg'}
+                        />
                           <View style={{
                             padding: 10,
                             flexDirection: 'row',
@@ -247,13 +248,13 @@ class TournamentsScreen extends Component {
                   {this.state.acceptInvite === true &&
                   <View style={style.itemContainer}>
                   <TourInfoMockUp
-                            tourName={`Jesper's Tournament`}
-                            totalMatches={'10'}
-                            winconText={'Most Top 5'}
-                            numberOfPlayers={'2'}
-                            maxPlayers={'10'}
-                            owner={'Jesper'}
-                          />
+                      tourName={`Jesper's Tournament`}
+                      totalMatches={'8'}
+                      winconText={'Most Top 5'}
+                      numberOfPlayers={'2'}
+                      maxPlayers={'10'}
+                      owner={'J-Dawg'}
+                  />
                   <View style={{
                     padding: 5,
                     flexDirection: 'row',

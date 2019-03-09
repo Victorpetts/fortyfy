@@ -45,7 +45,7 @@ class CreateTourScreen extends Component {
   state = {
     name: '',
     players: '',
-    wincon: '',
+    wincon: "1",
     totalMatches: '',
     fromDate: '',
     toDate: '',
@@ -56,12 +56,14 @@ class CreateTourScreen extends Component {
     if (this.state.name !== '') {
       let newTour = {
         'name': this.state.name,
+        'participants': ["9"],
         'players': this.state.players,
         'wincon': this.state.wincon,
         'totalMatches': this.state.totalMatches,
         'finished': false,
         'fromDate': this.state.fromDate,
-        'toDate': this.state.toDate
+        'toDate': this.state.toDate,
+        'owner': "9"
       }
       this.props.createTour(newTour);
       this.props.navigation.navigate('Tournaments');
@@ -76,23 +78,15 @@ class CreateTourScreen extends Component {
 
   mapInviteList() {
 
-    friendsList = this.props.users.filter(function (item) {
-      return item.friend === true;
-    }).map(function ({ name, level, friend }) {
-      return { name, level, friend };
-    });
+    let friendsList = this.props.users.filter(user => user.status === "friend");
 
-    friendsList.sort((a, b) => b.level - a.level);
+    friendsList.sort((a, b) => b.lvl - a.lvl);
 
     return friendsList.map((user) => {
       return (
         <InviteList
-          key={user.name}
-          name={user.name}
-          level={user.level}
-          friend={user.friend}
-          navigation={this.props.navigation}
-          invite={this.state.invite}
+          key={user.id}
+          id={user.id}
         />
       )
     })
@@ -134,7 +128,7 @@ class CreateTourScreen extends Component {
             marginVertical: 10
           }}>
             <DatePicker
-              style={{ 
+              style={{
                 width: 170
               }}
               date={this.state.fromDate}
@@ -197,15 +191,16 @@ class CreateTourScreen extends Component {
               onDateChange={(date) => { this.setState({ toDate: date }) }}
             />
           </View>
-          <Text style={style.inputFieldText}>Victory conditions</Text>
+
+          <Text style={style.inputFieldText}>Victory condition</Text>
           <View style={style.pickerField}>
             <Picker
               selectedValue={this.state.wincon}
               onValueChange={(itemValue) => this.setState({ wincon: itemValue })}
             >
-              <Picker.Item label="Survived most minutes" value="1" />
-              <Picker.Item label="Most accumulated kills" value="2" />
-              <Picker.Item label="Most placements in top 5" value="3" />
+              <Picker.Item label="Survived longest" value="1" />
+              <Picker.Item label="Most kills" value="2" />
+              <Picker.Item label="Most top 5" value="3" />
             </Picker>
           </View>
 
@@ -226,14 +221,15 @@ class CreateTourScreen extends Component {
             alignItems: 'center',
             flexDirection: 'column',
             justifyContent: 'space-evenly',
-            height: '25%'
+            height: '25%',
+            marginBottom: 80
           }}>
             <TourButtonFullWidth
               buttonTitle={'Invite friends'}
               buttonFunc={this.toggleOverlay}
             />
             <TourButtonFullWidth
-              buttonTitle={'Handle tournament'}
+              buttonTitle={'Create tournament!'}
               buttonFunc={this.createTour}
             />
           </View>

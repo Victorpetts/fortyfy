@@ -320,7 +320,17 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderColor: Colors.appBlueColor,
-    borderWidth: 1
+    borderWidth: 2
+  },
+
+  itemContainerRedBorder: {
+    borderRadius: 3,
+    margin: 10,
+    padding: 0,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appRedColor,
+    borderWidth: 2
   },
 
   itemContainerNoBorder: {
@@ -339,6 +349,18 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     padding: 10
+  },
+
+  particContainerBorder: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 2.5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10,
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
   },
 
   popUpText: {

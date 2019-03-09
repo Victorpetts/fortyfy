@@ -21,20 +21,20 @@ export class TourButton extends React.Component {
     )
   }
 }
-  
-  export class TourButtonRed extends React.Component {
-    render() {
-      return (
-        <TouchableOpacity
-          onPress={this.props.buttonFunc}
-          accessibilityLabel="Button"
-          style={style.buttonClassRed}
-        >
-          <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
-        </TouchableOpacity>
-      )
-    }
+
+export class TourButtonRed extends React.Component {
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={this.props.buttonFunc}
+        accessibilityLabel="Button"
+        style={style.buttonClassRed}
+      >
+        <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
+      </TouchableOpacity>
+    )
   }
+}
 
 export class TourButtonMedium extends React.Component {
   render() {
@@ -148,7 +148,7 @@ export class DisabledButtonSmall extends React.Component {
 }
 
 export class RoundButton extends React.Component {
-    
+
   state = {
     show: false
   }
@@ -160,7 +160,7 @@ export class RoundButton extends React.Component {
 
         {this.props.id === 'plus' &&
         <View>
-          
+
           <TouchableOpacity
             onPress={this.props.buttonFunc}
             accessibilityLabel="A button"
@@ -168,12 +168,12 @@ export class RoundButton extends React.Component {
           >
 
           {this.props.showing === true
-          ? <Image 
+          ? <Image
           source={require('../assets/images/cross.png')}
           style={{ height: 20, width: 20, alignSelf: 'center', marginTop: '30%' }}
           resizeMode={'contain'}
             />
-          : <Image 
+          : <Image
             source={require('../assets/images/plus.png')}
             style={{ height: 25, width: 25, alignSelf: 'center', marginTop: '25%' }}
             resizeMode={'contain'}
@@ -189,7 +189,7 @@ export class RoundButton extends React.Component {
             accessibilityLabel="A button"
             style={style.roundButtonMedium}
           >
-            <Image 
+            <Image
             testID={'search'}
             source={require('../assets/images/search.png')}
             style={{ height: 17.5, width: 18, alignSelf: 'center', marginTop: '25%' }}
@@ -206,7 +206,7 @@ export class RoundButton extends React.Component {
             accessibilityLabel="A button"
             style={style.roundButtonMedium}
           >
-            <Image 
+            <Image
             testID={'search'}
             source={require('../assets/images/plus.png')}
             style={{ height: 20.5, width: 20, alignSelf: 'center', marginTop: '25%' }}
@@ -219,4 +219,3 @@ export class RoundButton extends React.Component {
     )
   }
 }
-  

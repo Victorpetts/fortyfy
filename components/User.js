@@ -22,7 +22,7 @@ class User extends Component {
     return (
       <View>
         {this.props.friend
-          ? 
+          ?
           <View style={{ flexDirection: 'row', width: '100%', flex: 1, padding: 5 }}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('UserCard', {
@@ -31,7 +31,7 @@ class User extends Component {
           >
             <View style={style.friendContainer}>
             <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
-            <Image 
+            <Image
               source={require('../assets/images/frame-silver.png')}
               style={{ height: 150, width: 100 }}
             />
@@ -45,7 +45,7 @@ class User extends Component {
             </View>
           : <View style={style.userContainer}>
           <View style={{ padding: 5, alignSelf: 'center' }}>
-            <Image 
+            <Image
               source={require('../assets/images/frame-silver.png')}
               style={{ height: 76, width: 50 }}
             />
@@ -61,7 +61,7 @@ class User extends Component {
                 />
                 <TourButtonSmallRed
                   buttonTitle={'Decline'}
-                  buttonFunc={() => this.props.acceptFriend(userName)}
+                  buttonFunc={() => this.props.denyFriend(userName)}
                 />
             </View>
           </View>

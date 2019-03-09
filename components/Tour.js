@@ -27,22 +27,6 @@ class Tour extends Component {
     const ownerLvl = ownerObj.lvl;
 
     const { navigate } = this.props.navigation;
-    let winconText;
-
-    switch (thisTour.wincon) {
-      case '1':
-        winconText = 'Survived longest';
-        break
-      case '2':
-        winconText = 'Most kills';
-        break
-      case '3':
-        winconText = 'Most top 5';
-        break
-      default:
-        winconText = '';
-        break
-    }
 
     navigateToOngoing = () => {
       navigate('Ongoing', {
@@ -64,7 +48,7 @@ class Tour extends Component {
         contentContainerStyle={
           tourStatus === false
             ? style.itemContainer
-            : style.itemContainerNoBorder
+            : style.itemContainer
         }
         automaticallyAdjustContentInsets={false}
       >
