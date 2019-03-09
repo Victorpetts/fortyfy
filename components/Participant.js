@@ -21,23 +21,34 @@ class Participant extends Component {
 
   render() {
 
+    const thisTour = this.props.thisTour;
+    const totalMatches = thisTour.totalMatches;
+    const tourId = thisTour.id;
+
     const userId = this.props.id;
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
-    const playedMatches = 2;
 
-    const thisTour = this.props.thisTour;
-    const totalMatches = thisTour.totalMatches;
+    const allStats = thisUser.matchStatistics;
+    const thisToursStats = allStats.filter(stats => stats.matchId === tourId);
+    const playedMatches = thisToursStats[0].playedMatches;
 
     return (
       <View style={{
         paddingHorizontal: 10,
         paddingVertical: 5
       }}>
-        <View style={style.particContainer}>
-          <Text style={style.particText}>{userName}</Text>
-          <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
-        </View>
+        {playedMatches === totalMatches ?
+          <View style={style.particContainerBorder}>
+            <Text style={style.particText}>{userName}</Text>
+            <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
+          </View>
+        :
+          <View style={style.particContainer}>
+            <Text style={style.particText}>{userName}</Text>
+            <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
+          </View>
+        }
       </View>
     )
 

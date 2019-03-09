@@ -49,7 +49,7 @@ export default StyleSheet.create({
     marginTop: '15%'
   },
 
-    buttonSmallDisabled: {
+  buttonSmallDisabled: {
     backgroundColor: Colors.appBrightBlueColor,
     borderRadius: 2.5,
     width: 80.5,
@@ -304,6 +304,17 @@ export default StyleSheet.create({
     padding: 10
   },
 
+  particContainerBorder: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 2.5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10,
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
 
   particText: {
     fontSize: 15,

@@ -36,13 +36,24 @@ class FinishedScreen extends Component {
     }
   });
 
+  mapLeaderboard(tourId) {
+    return (
+      <View>
+        <LeaderBoardPartic
+          id={"5"}
+        />
+        <LeaderBoardPartic
+          id={"10"}
+        />
+      </View>
+    )
+  };
+
   render() {
 
     const tourId = this.props.navigation.getParam('tourId');
     const owner = this.props.navigation.getParam('owner')
-    // const thisTour = this.props.tours.find(tour => tour.id === tourId);
-
-
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
 
     return (
       <ScrollView style={style.mainContainer}>
@@ -112,12 +123,7 @@ class FinishedScreen extends Component {
           </View>
         </View>
 
-        <LeaderBoardPartic
-          id={"5"}
-        />
-        <LeaderBoardPartic
-          id={"10"}
-        />
+        {this.mapLeaderboard(tourId)}
 
       </ScrollView>
     )

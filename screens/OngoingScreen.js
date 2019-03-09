@@ -69,6 +69,8 @@ class OngoingScreen extends Component {
     const particArr = thisTour.participants;
     let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
+    thisToursPartic.sort((a, b) => b.lvl - a.lvl);
+
     return thisToursPartic.map((user) => {
       return (
         <Participant
@@ -174,31 +176,15 @@ class OngoingScreen extends Component {
   render() {
 
     const owner = this.props.navigation.getParam('owner');
-    const thisToursId = this.props.navigation.getParam('tourId');
-    const thisTour = this.props.tours.find(thisTour => thisTour.id === thisToursId);
-    let winconText;
-
-    switch (thisTour.wincon) {
-      case '1':
-        winconText = 'Survived longest';
-        break
-      case '2':
-        winconText = 'Most kills';
-        break
-      case '3':
-        winconText = 'Most top 5';
-        break
-      default:
-        winconText = '';
-        break
-    };
+    const tourId = this.props.navigation.getParam('tourId');
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
 
     return (
       <View>
         <ScrollView style={style.mainContainer}>
           <View style={style.itemContainer}>
             <TourInfoSection
-              id={thisToursId}
+              id={tourId}
               owner={owner}
             />
           </View>
@@ -210,13 +196,13 @@ class OngoingScreen extends Component {
             paddingHorizontal: 10,
             height: '20%'
           }}>
-              <TourButtonFullWidth
-                buttonTitle={'Invite friends'}
-                buttonFunc={this.toggleInviteList}
-              />
-              <TourButtonFullWidth
-                buttonTitle={'Manage tournament'}
-              />
+            <TourButtonFullWidth
+              buttonTitle={'Invite friends'}
+              buttonFunc={this.toggleInviteList}
+            />
+            <TourButtonFullWidth
+              buttonTitle={'Manage tournament'}
+            />
           </View>
 
           <View style={{
@@ -227,7 +213,7 @@ class OngoingScreen extends Component {
             <Text style={style.subTitleText}>Player</Text>
             <Text style={style.subTitleText}>Matches played</Text>
           </View>
-          <View style={{ paddingBottom: '15%' }}>
+          <View style={{ paddingBottom: '20%' }}>
             {this.mapPartic(thisTour)}
           </View>
 

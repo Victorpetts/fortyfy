@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 
 //Create a class for matchStatistics maybe dont need to be a component
 class match{
-  constructor(tourId,playedMatches, points){
-    this.tourId = tourId;
-    this.matchesPlayed = playedMatches;
+  constructor(matchId, playedMatches, points){
+    this.matchId = matchId;
+    this.playedMatches = playedMatches;
     this.points = points;
   }
 }
@@ -17,7 +17,7 @@ const initialState = {
       participants: ["1","3","4","5","10"],
       players: "5",
       wincon: "2",
-      totalMatches: "3",
+      totalMatches: 3,
       fromDate: "5th of March 10:30",
       toDate: "5th of March 13:00",
       finished: true,
@@ -29,7 +29,7 @@ const initialState = {
       participants: ["5","6","7","9"],
       players: "4",
       wincon: "3",
-      totalMatches: "5",
+      totalMatches: 5,
       fromDate: "7th of March 17:30",
       toDate: "8th of March 17:30",
       finished: false,
@@ -41,7 +41,7 @@ const initialState = {
       participants: ["1","2","3","4","7","8","10"],
       players: "8",
       wincon: "1",
-      totalMatches: "7",
+      totalMatches: 7,
       fromDate: "9th of March 07:00",
       toDate: "9th of March 21:00",
       finished: false,
@@ -53,7 +53,7 @@ const initialState = {
       id: "1",
       name: "Vicky",
       lvl: "27",
-      matchStatistics: [new match(1,3,10), new match(3,7,56)],
+      matchStatistics: [new match(1,3,10), new match(3,7,55)],
       checkBox: false,
       friends: ["3","5","6","8","9","10"],
       friend: true,
@@ -85,7 +85,7 @@ const initialState = {
       id: "4",
       name: "J-Dawg",
       lvl: "1",
-      matchStatistics: [new match(1,3,55), new match(3,6,75)],
+      matchStatistics: [new match(1,3,55), new match(3,7,75)],
       checkBox: false,
       friends: ["2"],
       friend: true,
@@ -96,7 +96,7 @@ const initialState = {
       id: "5",
       name: "Petitepinita",
       lvl: "29",
-      matchStatistics: [new match(1,3,0), new match(1,4,71)],
+      matchStatistics: [new match(1,3,0), new match(2,4,71)],
       checkBox: false,
       friends: ["1","2","7","8"],
       friend: true,

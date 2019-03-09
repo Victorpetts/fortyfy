@@ -26,7 +26,7 @@ class LeaderBoardPartic extends Component {
           </View>
           <View style={{ alignSelf: 'flex-end'}}>
             <Text style={style.particText}>
-              {userId} points
+              72 points
             </Text>
           </View>
         </View>
