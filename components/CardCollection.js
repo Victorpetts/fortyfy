@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
     View,
-    Text,
+    Image,
     TouchableOpacity
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
@@ -23,8 +23,10 @@ class CardCollection extends Component {
                     })}
                     style={style.indvCardContainer}
                     >
-                    <FontAwesome name="file-photo-o" size={90} color="white" />
-                    <Text style={style.smallText}>{this.props.name}</Text>
+                    <Image
+                    source={require('../assets/images/frame-silver.png')}
+                    style={{ height: 180, width: 120 }}
+                    />
                 </TouchableOpacity>
             </View>
         )

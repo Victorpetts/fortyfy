@@ -12,11 +12,33 @@ import Colors from '../constants/Colors.js';
 
 
 export default StyleSheet.create({
+
   buttonClass: {
     backgroundColor: Colors.appBlueColor,
     padding: 12,
     borderRadius: 2.5,
     width: 200
+  },
+
+  buttonClassRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 200
+  },
+
+  buttonMedium: {
+    backgroundColor: Colors.appBlueColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 130
+  },
+
+  buttonMediumRed: {
+    backgroundColor: Colors.appRedColor,
+    padding: 12,
+    borderRadius: 2.5,
+    width: 130
   },
 
   buttonFullWidth: {
@@ -37,24 +59,21 @@ export default StyleSheet.create({
     backgroundColor: Colors.appBlueColor,
     borderRadius: 2.5,
     width: 80.5,
-    height: 30,
-    marginTop: '15%'
+    height: 30
   },
 
   buttonSmallRed: {
     backgroundColor: Colors.appRedColor,
     borderRadius: 2.5,
     width: 80.5,
-    height: 30,
-    marginTop: '15%'
+    height: 30
   },
 
   buttonSmallDisabled: {
     backgroundColor: Colors.appBrightBlueColor,
     borderRadius: 2.5,
     width: 80.5,
-    height: 30,
-    marginTop: '15%'
+    height: 30
   },
 
   roundButtonLarge: {
@@ -217,12 +236,12 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
 
-  inviteListText: {
+  listItemText: {
     fontSize: 15,
     fontFamily: 'alergia-normal-semibold',
     color: Colors.appBlackColor
   },
-  inviteListSmallText: {
+  listItemSmallText: {
     fontSize: 11,
     fontFamily: 'alergia-normal-light',
     color: Colors.appBlackColor
@@ -274,11 +293,30 @@ export default StyleSheet.create({
     width: '100%'
   },
 
+  itemContainerSponsor: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appRedColor,
+    borderWidth: 1
+  },
+
+  itemContainerSponsorBlue: {
+    borderRadius: 5,
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
   itemContainer: {
     borderRadius: 3,
     margin: 10,
     padding: 5,
-    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderColor: Colors.appBlueColor,
@@ -287,9 +325,8 @@ export default StyleSheet.create({
 
   itemContainerNoBorder: {
     borderRadius: 3,
-    margin: 15,
+    margin: 10,
     padding: 5,
-    paddingRight: 15,
     backgroundColor: 'white',
     justifyContent: 'space-between'
   },
@@ -304,16 +341,13 @@ export default StyleSheet.create({
     padding: 10
   },
 
-  particContainerBorder: {
-    backgroundColor: 'white',
-    width: '100%',
-    borderRadius: 2.5,
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-between',
-    padding: 10,
-    borderColor: Colors.appBlueColor,
-    borderWidth: 1
+  popUpText: {
+    fontSize: 15,
+    fontFamily: 'alergia-normal-light',
+    color: 'white',
+    textAlign: 'center',
+    padding: 5,
+    lineHeight: 20
   },
 
   particText: {
@@ -322,13 +356,25 @@ export default StyleSheet.create({
   },
 
   userContainer: {
-    borderRadius: 3,
+    borderRadius: 2.5,
     marginVertical: 5,
-    elevation: 2,
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
+    backgroundColor: 'white',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
+  },
+
+  friendContainer: {
+    borderRadius: 2.5,
+    marginVertical: 5,
+    backgroundColor: 'white',
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 110,
+    height: '100%'
   },
 
   inviteListContainer: {
@@ -373,6 +419,12 @@ export default StyleSheet.create({
     margin: 20,
     width: '90%',
     height: hp('54%')
+  },
+
+  friendsContainer: {
+    width: '100%',
+    height: '100%',
+    flex: 1
   },
 
   buttonContainer: {
@@ -471,7 +523,9 @@ export default StyleSheet.create({
   blueText: {
     fontFamily: 'alergia-normal-semibold',
     fontSize: 15,
-    color: Colors.appBlueColor
+    color: Colors.appBlueColor,
+    paddingTop: '5%',
+    paddingLeft: '3%'
   },
 
   tourInfoTitle: {
@@ -516,4 +570,5 @@ export default StyleSheet.create({
     paddingTop: '20%',
     justifyContent: 'center'
   }
+
 });

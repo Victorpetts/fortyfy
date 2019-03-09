@@ -4,42 +4,66 @@ import {
   ScrollView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import { SearchBar, Overlay } from 'react-native-elements';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { TourButton, DisabledButton, RoundButton } from '../components/Buttons.js';
+import { TourButtonSmall, DisabledButtonSmall, TourButtonFullWidth, RoundButton } from '../components/Buttons.js';
 import FriendsList from '../components/FriendsList.js';
+
 import style from '../assets/Style.js';
+import Colors from '../constants/Colors';
+
 import { sendRequest } from '../actions/index.js';
 
 
 class UsersScreen extends Component {
 
-  state = {
-    search: '',
-    isVisible: false
-  }
-
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Friends',
     headerStyle: {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 0,
-      backgroundColor: 'black',
-      height: 90
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34
-    }
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '100%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
+    },
+    headerRight: (
+      <TouchableOpacity
+        onPress={navigation.getParam('toggleSearch')}
+      >
+        <Image
+          source={require('../assets/images/search.png')}
+          style={{ height: 18, width: 17, marginRight: 15 }}
+        />
+      </TouchableOpacity>
+    )
+  });
+
+  state = {
+    toggle: false,
+    search: '',
+    isVisible: false,
+    noPopUp: false
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({ toggleSearch: this.toggleSearch })
   };
 
   toggleSearch = () => {
     this.setState({
-      isVisible: true
+      isVisible: !this.state.isVisible
     })
   };
 
@@ -64,30 +88,30 @@ class UsersScreen extends Component {
   buttonSwitch = (player) => {
     switch (player.status) {
       case "notFriend":
-      return (
-        <TourButton
-          buttonTitle={'ADD FRIEND'}
-          buttonFunc={() => this.sendRequest(player)}
-        />
+        return (
+          <TourButtonSmall
+            buttonTitle={'ADD FRIEND'}
+            buttonFunc={() => this.sendRequest(player)}
+          />
         );
       case "friend":
-      return (
-        <DisabledButton
-          buttonTitle={'FRIEND'}
-      />
-      );
+        return (
+          <DisabledButtonSmall
+            buttonTitle={'FRIEND'}
+          />
+        );
       case "pending":
-      return (
-        <DisabledButton
-          buttonTitle={'REQUEST SENT'}
-        />
-      );
+        return (
+          <DisabledButtonSmall
+            buttonTitle={'REQUEST SENT'}
+          />
+        );
       default:
-      return (
-        <DisabledButton
-          buttonTitle={'FRIEND'}
-      />
-      );
+        return (
+          <DisabledButtonSmall
+            buttonTitle={'FRIEND'}
+          />
+        );
     }
   }
 
@@ -100,31 +124,25 @@ class UsersScreen extends Component {
     );
 
     return (
+      <View>
       <ScrollView style={style.mainContainer}>
         <View>
           <FriendsList
             navigation={this.props.navigation}
           />
-          <View style={style.buttonContainer}>
-            <TourButton
-              buttonTitle={'SEARCH PLAYER'}
-              buttonFunc={this.toggleSearch}
-            />
-            <View style={{ paddingTop: '5%' }}>
-              <RoundButton />
-            </View>
-          </View>
         </View>
         {this.state.isVisible && (
           <Overlay
             height='auto'
+            width='90%'
             isVisible={this.state.isVisible == true}
             onBackdropPress={() => this.setState({ isVisible: false })}
             overlayBackgroundColor={'black'}
             overlayStyle={{
-              width: '90%',
-              borderColor: 'yellow',
-              borderWidth: 2
+              borderColor: Colors.appBlueColor,
+              borderWidth: 2.5,
+              borderRadius: 2.5,
+              backgroundColor: Colors.appBackgroundColor
             }}
           >
             <View>
@@ -133,7 +151,18 @@ class UsersScreen extends Component {
                 onChangeText={this.updateSearch}
                 value={this.state.search}
                 containerStyle={{
-                  backgroundColor: 'transparent'
+                  backgroundColor: Colors.appBackgroundColor,
+                  borderBottomColor: Colors.appBackgroundColor,
+                  borderTopColor: Colors.appBackgroundColor,
+                  paddingHorizontal: 0,
+                  paddingVertical: 10,
+                }}
+                inputContainerStyle={{
+                  margin: 0,
+                  borderRadius: 5,
+                  backgroundColor: 'white',
+                  borderColor: Colors.appBlueColor,
+                  borderWidth: 1
                 }}
               />
               {filteredPlayers.map((player) => {
@@ -142,46 +171,81 @@ class UsersScreen extends Component {
                     <ScrollView
                       key={player.name}
                       contentContainerStyle={{
-                        flexDirection: 'row',
+                        flexDirection: 'column',
                         justifyContent: 'space-between'
                       }}
-                      style={{ padding: 5 }}
                     >
-                      <TouchableOpacity
-                        onPress={() => this.goToUserProfile(player)}
-                      >
-                        <View style={{
-                          flexDirection: 'column'
-                        }}>
-                          <View style={{
+                      <View style={style.inviteListContainer}>
+                        <View
+                          style={{
                             flexDirection: 'row',
-                            paddingLeft: '2%',
-                          }}>
-                            <Ionicons name="md-person" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '5%' }} />
-                            <Text style={style.playerText}>
+                            justifyContent: 'space-between'
+                          }}
+                        >
+                          <Image
+                            source={require('../assets/images/frame-blue.png')}
+                            style={{ height: 60, width: 40, marginRight: 5 }}
+                          />
+                          <TouchableOpacity
+                            onPress={() => this.goToUserProfile(player)}
+                            style={{
+                              flexDirection: 'column',
+                              flex: 1
+                            }}
+                          >
+                            <Text style={style.listItemText}>
                               {player.name}
                             </Text>
-                          </View>
-                          <View style={{
-                            flexDirection: 'row',
-                            paddingLeft: '2%',
-                          }}>
-                          <FontAwesome name="gamepad" size={18} color="yellow" style={{ paddingTop: 3, marginRight: '5%' }} />
-                            <Text style={style.playerText}>
-                              {player.level}
+                            <Text style={style.listItemSmallText}>
+                              Level {player.level}
                             </Text>
+                          </TouchableOpacity>
+                          <View style={{
+                            flexDirection: 'column',
+                            justifyContent: 'center'
+                          }}>
+                            {this.buttonSwitch(player)}
                           </View>
                         </View>
-                      </TouchableOpacity>
-                      {this.buttonSwitch(player)}
+                      </View>
+
                     </ScrollView>
                   )
                 )
               })}
+              <TourButtonFullWidth
+                buttonTitle={'Done'}
+                buttonFunc={this.toggleSearch}
+              />
             </View>
           </Overlay>
         )}
       </ScrollView>
+        <View style={{
+                position: 'absolute',
+                bottom: 10,
+                right: 10,
+                flexDirection: 'row'
+              }}>
+              {this.state.noPopUp === true &&
+              <View style={{
+                backgroundColor: Colors.appBlueColor,
+                height: 56,
+                width: 200,
+                marginRight: 5
+              }}>
+                <Text style={style.popUpText}>
+                Invite friends and recieve 
+                40000 YONYFY coins
+                </Text>
+              </View>
+              }
+                <RoundButton
+                  id={'plus'}
+                  buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
+                />
+              </View>
+              </View>
     )
 
   }

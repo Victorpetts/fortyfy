@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   View,
-  Text
+  Text,
+  Image
 } from 'react-native';
 
 import style from '../assets/Style.js';

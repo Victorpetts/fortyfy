@@ -48,13 +48,14 @@ class InviteList extends Component {
             flexDirection: 'column',
             flex: 1
           }}>
-            <Text style={style.inviteListText}>{userName}</Text>
-            <Text style={style.inviteListSmallText}>Level {userLvl}</Text>
+            <Text style={style.listItemText}>{userName}</Text>
+            <Text style={style.listItemSmallText}>Level {userLvl}</Text>
           </View>
 
           <TouchableOpacity
             onPress={this.sendInvitation}
           >
+              <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
             {this.state.buttonClicked === false ?
               <TourButtonSmall
                 buttonTitle={'Invite'}
@@ -63,8 +64,9 @@ class InviteList extends Component {
             :
               <DisabledButtonSmall
                 buttonTitle={'Invited'}
-              />
-            }
+                />
+              }
+              </View>
           </TouchableOpacity>
         </View>
       </View>

@@ -21,6 +21,48 @@ export class TourButton extends React.Component {
     )
   }
 }
+  
+  export class TourButtonRed extends React.Component {
+    render() {
+      return (
+        <TouchableOpacity
+          onPress={this.props.buttonFunc}
+          accessibilityLabel="Button"
+          style={style.buttonClassRed}
+        >
+          <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
+export class TourButtonMedium extends React.Component {
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={this.props.buttonFunc}
+        accessibilityLabel="Button"
+        style={style.buttonMedium}
+      >
+        <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
+      </TouchableOpacity>
+    )
+  }
+}
+
+export class TourButtonMediumRed extends React.Component {
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={this.props.buttonFunc}
+        accessibilityLabel="Button"
+        style={style.buttonMediumRed}
+      >
+        <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
+      </TouchableOpacity>
+    )
+  }
+}
 
 export class TourButtonFullWidth extends React.Component {
   render() {

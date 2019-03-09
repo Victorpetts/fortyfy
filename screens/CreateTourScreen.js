@@ -134,7 +134,9 @@ class CreateTourScreen extends Component {
             marginVertical: 10
           }}>
             <DatePicker
-              style={{ width: 150 }}
+              style={{ 
+                width: 170
+              }}
               date={this.state.fromDate}
               is24Hour={true}
               mode="datetime"
@@ -150,16 +152,20 @@ class CreateTourScreen extends Component {
                   marginLeft: 0
                 },
                 dateInput: {
-                  marginLeft: 36,
+                  marginLeft: 35,
+                  borderRadius: 5,
+                  borderColor: Colors.appBlueColor,
+                  backgroundColor: 'white',
+                  height: 'auto',
+                  padding: 5
                 },
                 dateText: {
-                  marginLeft: '5%',
-                  marginRight: '5%',
-                  width: '90%',
-                  color: 'white'
+                  color: Colors.appBlackColor,
+                  fontFamily: 'alergia-normal-light',
+                  fontSize: 15
                 }
               }}
-              onDateChange={(date) => { this.setState({ fromDate: date }), console.log('From date:', date) }}
+              onDateChange={(date) => { this.setState({ fromDate: date }) }}
             />
             <DatePicker
               showIcon={false}
@@ -171,20 +177,24 @@ class CreateTourScreen extends Component {
               format="Do MM, HH:mm"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
-              textStyle={{ color: 'white' }}
+              textStyle={{ color: Colors.appBlackColor }}
               customStyles={{
                 dateInput: {
-                  marginLeft: 36,
+                  marginLeft: 10,
+                  borderRadius: 5,
+                  borderColor: Colors.appBlueColor,
+                  backgroundColor: 'white',
+                  height: 'auto',
+                  padding: 5
                 },
                 dateText: {
-                  marginLeft: '5%',
-                  marginRight: '5%',
-                  width: '90%',
-                  color: 'white'
+                  color: Colors.appBlackColor,
+                  fontFamily: 'alergia-normal-light',
+                  fontSize: 15
                 }
                 // ... You can check the source to find the other keys.
               }}
-              onDateChange={(date) => { this.setState({ toDate: date }), console.log('To date:', date) }}
+              onDateChange={(date) => { this.setState({ toDate: date }) }}
             />
           </View>
           <Text style={style.inputFieldText}>Victory conditions</Text>
