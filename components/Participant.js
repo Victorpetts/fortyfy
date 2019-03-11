@@ -15,7 +15,7 @@ class Participant extends Component {
   }
 
   insideFunc = () => {
-    this.setState(prevState =>({
+    this.setState(prevState => ({
       checked: !prevState.checked
     }));
   }
@@ -25,6 +25,7 @@ class Participant extends Component {
     const thisTour = this.props.thisTour;
     const totalMatches = thisTour.totalMatches;
     const tourId = thisTour.id;
+    const owner = thisTour.owner
 
     const userId = this.props.id;
     const thisUser = this.props.users.find(user => user.id === userId);
@@ -41,12 +42,44 @@ class Participant extends Component {
       }}>
         {playedMatches === totalMatches ?
           <View style={style.particContainerBorder}>
-            <Text style={style.particText}>{userName}</Text>
+            {owner === userId ?
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={style.particText}>
+                  {userName}
+                </Text>
+                <View style={{ marginLeft: 5, flexDirection: 'column', justifyContent: 'center' }}>
+                  <Image
+                    source={require('../assets/images/crown.png')}
+                    style={{ width: 25, height: 17 }}
+                  />
+                </View>
+              </View>
+              :
+              <Text style={style.particText}>
+                {userName}
+              </Text>
+            }
             <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
           </View>
-        :
+          :
           <View style={style.particContainer}>
-            <Text style={style.particText}>{userName}</Text>
+            {owner === userId ?
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={style.particText}>
+                  {userName}
+                </Text>
+                <View style={{ marginLeft: 5, flexDirection: 'column', justifyContent: 'center' }}>
+                  <Image
+                    source={require('../assets/images/crown.png')}
+                    style={{ width: 25, height: 17 }}
+                  />
+                </View>
+              </View>
+              :
+              <Text style={style.particText}>
+                {userName}
+              </Text>
+            }
             <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
           </View>
         }
