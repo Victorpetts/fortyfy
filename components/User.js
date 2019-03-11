@@ -17,11 +17,15 @@ class User extends Component {
 
   render() {
 
-    const userName = this.props.name;
+    const userId = this.props.id;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userName = thisUser.name;
+    const userLvl = thisUser.lvl;
+    const isFriend = thisUser.friend;
 
     return (
       <View>
-        {this.props.friend
+        {isFriend
           ?
           <View style={{ flexDirection: 'row', width: '100%', flex: 1, padding: 5 }}>
           <TouchableOpacity
@@ -37,8 +41,8 @@ class User extends Component {
             />
           </View>
             <View style={{ flexDirection: 'column', flex: 1, alignItems: 'center', paddingBottom: 5 }}>
-              <Text style={style.listItemText}>{this.props.name}</Text>
-              <Text style={style.listItemSmallText}>Level {this.props.lvl}</Text>
+              <Text style={style.listItemText}>{userName}</Text>
+              <Text style={style.listItemSmallText}>Level {userLvl}</Text>
             </View>
             </View>
           </TouchableOpacity>
@@ -51,8 +55,8 @@ class User extends Component {
             />
           </View>
             <View style={{ flexDirection: 'column', flex: 1, paddingTop: 5 }}>
-              <Text style={style.listItemText}>{this.props.name}</Text>
-              <Text style={style.listItemSmallText}>Level {this.props.lvl}</Text>
+              <Text style={style.listItemText}>{userName}</Text>
+              <Text style={style.listItemSmallText}>Level {userLvl}</Text>
             </View>
             <View style={{ flexDirection: 'column', padding: 5, justifyContent: 'space-around' }}>
                 <TourButtonSmall

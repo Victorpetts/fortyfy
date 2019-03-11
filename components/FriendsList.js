@@ -15,48 +15,77 @@ class FriendsList extends Component {
 
   mapFriendsList() {
 
-    friendsList = this.props.users.filter(function(item){
-      return item.friend === true;
-    }).map(function({name, level, friend}){
-      return {name, level, friend};
-    });
+    let friendsList = this.props.users.filter(user => user.friend === true);
 
-    friendsList.sort((a, b) => b.level - a.level);
+    friendsList.sort((a, b) => b.name - a.name);
 
     return friendsList.map((user) => {
       return (
         <User
-          key={user.name}
-          name={user.name}
-          lvl={user.level}
-          friend={user.friend}
+          key={user.id}
+          id={user.id}
           navigation={this.props.navigation}
         />
-      )
-    })
 
+      )}
+    )
+
+    
   }
+      // friendsList = this.props.users.filter(function(item){
+      //   return item.friend === true;
+      // }).map(function({name, level, friend}){
+      //   return {name, level, friend};
+      // });
+  
+      // friendsList.sort((a, b) => b.level - a.level);
+  
+      // return friendsList.map((user) => {
+      //   return (
+      //     <User
+      //       key={user.name}
+      //       name={user.name}
+      //       lvl={user.level}
+      //       friend={user.friend}
+      //       navigation={this.props.navigation}
+      //     />
+      //   )
+      // })
 
-  mapFriendRequests() {
+  mapFriendRequests = () => {
 
-    friendsList = this.props.users.filter(function(item){
-      return item.friend === false;
-    }).map(function({name, level, friend}){
-      return {name, level, friend};
-    });
+    let friendsList = this.props.users.filter(user => user.friend === false);
+
+    friendsList.sort((a, b) => b.name - a.name);
 
     return friendsList.map((user) => {
       return (
         <User
-          key={user.name}
-          name={user.name}
-          lvl={user.level}
-          friend={user.friend}
+          key={user.id}
+          id={user.id}
           navigation={this.props.navigation}
         />
-      )
-    })
+
+      )}
+    )
   }
+      // friendsList = this.props.users.filter(function(item){
+      //   return item.friend === false;
+      // }).map(function({name, level, friend}){
+      //   return {name, level, friend};
+      // });
+  
+      // return friendsList.map((user) => {
+      //   return (
+      //     <User
+      //       key={user.name}
+      //       name={user.name}
+      //       lvl={user.level}
+      //       friend={user.friend}
+      //       navigation={this.props.navigation}
+      //     />
+      //   )
+      // })
 
   render() {
     return (
@@ -79,11 +108,11 @@ class FriendsList extends Component {
           <Text style={style.blueText}>Friends</Text>
         </View>
 
-        <ScrollView style={{ height: '100%' }}>
+        <View style={{ height: '100%', flex: 1 }}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', paddingBottom: '5%' }}>
           {this.mapFriendsList()}
           </View>
-        </ScrollView>
+        </View>
 
       </View>
 

@@ -133,7 +133,7 @@ const initialState = {
       checkBox: false,
       friends: ["1","5"],
       friend: false,
-      status: "notfriend",
+      status: "notFriend",
       card: "8"
     },
     {
@@ -144,7 +144,7 @@ const initialState = {
       checkBox: false,
       friends: ["1","2","6","7"],
       friend: false,
-      status: "notfriend",
+      status: "notFriend",
       card: "9"
     },
     {
@@ -155,7 +155,7 @@ const initialState = {
       checkBox: false,
       friends: ["1","6","7"],
       friend: false,
-      status: "notfriend",
+      status: "notFriend",
       card: "3"
     },
     {

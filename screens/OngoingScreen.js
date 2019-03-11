@@ -114,14 +114,16 @@ class OngoingScreen extends Component {
   toggleInviteList = () => {
     this.setState({
       isVisible: true,
-      isInviteList: true
+      isInviteList: true,
+      isInfoWindow: false
     })
   };
 
   toggleInfoWindow = () => {
     this.setState({
       isVisible: true,
-      isInfoWindow: true
+      isInfoWindow: true,
+      isInviteList: false
     })
   };
 

@@ -20,7 +20,12 @@ class SponsoredTours extends Component {
 
     return (
 
-      <View style={style.itemContainerRedBorder}>
+      <View style={
+        this.state.pressed === false 
+        ? style.itemContainerRedBorder
+        : style.itemContainer
+        }
+        >
         <ImageBackground
           source={require('../assets/images/redbullsponsorbg.png')}
           style={{ width: '100%', margin: 0, padding: 0 }}
