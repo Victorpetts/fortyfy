@@ -197,7 +197,7 @@ class UsersScreen extends Component {
                               {player.name}
                             </Text>
                             <Text style={style.listItemSmallText}>
-                              Level {player.level}
+                              Level {player.lvl}
                             </Text>
                           </TouchableOpacity>
                           <View style={{

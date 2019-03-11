@@ -10,6 +10,8 @@ import {
 import CardCollection from '../components/CardCollection.js';
 import PlayerCardProfile from '../components/PlayerCardProfile.js';
 import style from '../assets/Style.js';
+import Colors from '../constants/Colors';
+
 import { Feather } from '@expo/vector-icons';
 
 class UserProfileScreen extends Component {
@@ -26,12 +28,17 @@ class UserProfileScreen extends Component {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 0,
-      backgroundColor: 'black',
-      height: 90
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '80%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     },
     headerRight: (
       <View>
@@ -40,7 +47,7 @@ class UserProfileScreen extends Component {
             <Feather
               name="user-plus"
               size={30}
-              color='yellow'
+              color='white'
               style={{ marginRight: 20 }}
             />
           </TouchableOpacity>
@@ -48,7 +55,7 @@ class UserProfileScreen extends Component {
             <Feather
               name="user"
               size={30}
-              color='yellow'
+              color='white'
               style={{ marginRight: 20 }}
             />
           }
