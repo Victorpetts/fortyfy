@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 import User from './User.js';
@@ -65,7 +66,6 @@ class FriendsList extends Component {
           id={user.id}
           navigation={this.props.navigation}
         />
-
       )}
     )
   }
