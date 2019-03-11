@@ -42,14 +42,14 @@ class ProfileScreen extends Component {
     },
     headerRight: (
       <TouchableOpacity
-      onPress={() => navigation.navigate('ProfileSettings')}
+        onPress={() => navigation.navigate('ProfileSettings')}
       >
         <FontAwesome
-        name="cog"
-        size={26}
-        color='white'
-        style={{marginRight: 20}}
-         />
+          name="cog"
+          size={26}
+          color='white'
+          style={{ marginRight: 20 }}
+        />
       </TouchableOpacity>
     )
   });
@@ -70,21 +70,21 @@ class ProfileScreen extends Component {
 
   mapCardCollection() {
 
-    cardCollection = this.props.users.filter(function(item){
+    cardCollection = this.props.users.filter(function (item) {
       return item.friend === true;
-    }).map(function({name, level, friend}){
-      return {name, level, friend};
+    }).map(function ({ name, level, friend }) {
+      return { name, level, friend };
     });
 
     return cardCollection.map((user) => {
       return (
         <CardCollection
-        key={user.name}
-        name={user.name}
-        lvl={user.level}
-        friend={user.friend}
-        navigation={this.props.navigation}
-      />
+          key={user.name}
+          name={user.name}
+          lvl={user.level}
+          friend={user.friend}
+          navigation={this.props.navigation}
+        />
       )
     });
 
@@ -132,13 +132,13 @@ class ProfileScreen extends Component {
             </View>
 
             <View style={style.mainContainer}>
-            <View style={{
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <MyCardProfile
-              navigation={this.props.navigation}
-              />
+              <View style={{
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <MyCardProfile
+                  navigation={this.props.navigation}
+                />
               </View>
             </View>
           </View>
@@ -179,9 +179,9 @@ class ProfileScreen extends Component {
               </View>
             </View>
             <ScrollView style={style.mainContainer}>
-            <View style={style.cardsContainer}>
-            {this.mapCardCollection()}
-            </View>
+              <View style={style.cardsContainer}>
+                {this.mapCardCollection()}
+              </View>
             </ScrollView>
           </View>
 

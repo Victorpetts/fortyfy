@@ -125,127 +125,127 @@ class UsersScreen extends Component {
 
     return (
       <View>
-      <ScrollView style={style.mainContainer}>
-        <View>
-          <FriendsList
-            navigation={this.props.navigation}
-          />
-        </View>
-        {this.state.isVisible && (
-          <Overlay
-            height='auto'
-            width='90%'
-            isVisible={this.state.isVisible == true}
-            onBackdropPress={() => this.setState({ isVisible: false })}
-            overlayBackgroundColor={'black'}
-            overlayStyle={{
-              borderColor: Colors.appBlueColor,
-              borderWidth: 2.5,
-              borderRadius: 2.5,
-              backgroundColor: Colors.appBackgroundColor
-            }}
-          >
-            <View>
-              <SearchBar
-                placeholder="Search..."
-                onChangeText={this.updateSearch}
-                value={this.state.search}
-                containerStyle={{
-                  backgroundColor: Colors.appBackgroundColor,
-                  borderBottomColor: Colors.appBackgroundColor,
-                  borderTopColor: Colors.appBackgroundColor,
-                  paddingHorizontal: 0,
-                  paddingVertical: 10,
-                }}
-                inputContainerStyle={{
-                  margin: 0,
-                  borderRadius: 5,
-                  backgroundColor: 'white',
-                  borderColor: Colors.appBlueColor,
-                  borderWidth: 1
-                }}
-              />
-              {filteredPlayers.map((player) => {
-                return (
-                  this.state.search !== '' && (
-                    <ScrollView
-                      key={player.name}
-                      contentContainerStyle={{
-                        flexDirection: 'column',
-                        justifyContent: 'space-between'
-                      }}
-                    >
-                      <View style={style.inviteListContainer}>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            justifyContent: 'space-between'
-                          }}
-                        >
-                          <Image
-                            source={require('../assets/images/frame-blue.png')}
-                            style={{ height: 60, width: 40, marginRight: 5 }}
-                          />
-                          <TouchableOpacity
-                            onPress={() => this.goToUserProfile(player)}
+        <ScrollView style={style.mainContainer}>
+          <View>
+            <FriendsList
+              navigation={this.props.navigation}
+            />
+          </View>
+          {this.state.isVisible && (
+            <Overlay
+              height='auto'
+              width='90%'
+              isVisible={this.state.isVisible == true}
+              onBackdropPress={() => this.setState({ isVisible: false })}
+              overlayBackgroundColor={'black'}
+              overlayStyle={{
+                borderColor: Colors.appBlueColor,
+                borderWidth: 2.5,
+                borderRadius: 2.5,
+                backgroundColor: Colors.appBackgroundColor
+              }}
+            >
+              <View>
+                <SearchBar
+                  placeholder="Search..."
+                  onChangeText={this.updateSearch}
+                  value={this.state.search}
+                  containerStyle={{
+                    backgroundColor: Colors.appBackgroundColor,
+                    borderBottomColor: Colors.appBackgroundColor,
+                    borderTopColor: Colors.appBackgroundColor,
+                    paddingHorizontal: 0,
+                    paddingVertical: 10,
+                  }}
+                  inputContainerStyle={{
+                    margin: 0,
+                    borderRadius: 5,
+                    backgroundColor: 'white',
+                    borderColor: Colors.appBlueColor,
+                    borderWidth: 1
+                  }}
+                />
+                {filteredPlayers.map((player) => {
+                  return (
+                    this.state.search !== '' && (
+                      <ScrollView
+                        key={player.name}
+                        contentContainerStyle={{
+                          flexDirection: 'column',
+                          justifyContent: 'space-between'
+                        }}
+                      >
+                        <View style={style.inviteListContainer}>
+                          <View
                             style={{
-                              flexDirection: 'column',
-                              flex: 1
+                              flexDirection: 'row',
+                              justifyContent: 'space-between'
                             }}
                           >
-                            <Text style={style.listItemText}>
-                              {player.name}
-                            </Text>
-                            <Text style={style.listItemSmallText}>
-                              Level {player.lvl}
-                            </Text>
-                          </TouchableOpacity>
-                          <View style={{
-                            flexDirection: 'column',
-                            justifyContent: 'center'
-                          }}>
-                            {this.buttonSwitch(player)}
+                            <Image
+                              source={require('../assets/images/frame-blue.png')}
+                              style={{ height: 60, width: 40, marginRight: 5 }}
+                            />
+                            <TouchableOpacity
+                              onPress={() => this.goToUserProfile(player)}
+                              style={{
+                                flexDirection: 'column',
+                                flex: 1
+                              }}
+                            >
+                              <Text style={style.listItemText}>
+                                {player.name}
+                              </Text>
+                              <Text style={style.listItemSmallText}>
+                                Level {player.lvl}
+                              </Text>
+                            </TouchableOpacity>
+                            <View style={{
+                              flexDirection: 'column',
+                              justifyContent: 'center'
+                            }}>
+                              {this.buttonSwitch(player)}
+                            </View>
                           </View>
                         </View>
-                      </View>
 
-                    </ScrollView>
+                      </ScrollView>
+                    )
                   )
-                )
-              })}
-              <TourButtonFullWidth
-                buttonTitle={'Done'}
-                buttonFunc={this.toggleSearch}
-              />
-            </View>
-          </Overlay>
-        )}
-      </ScrollView>
+                })}
+                <TourButtonFullWidth
+                  buttonTitle={'Done'}
+                  buttonFunc={this.toggleSearch}
+                />
+              </View>
+            </Overlay>
+          )}
+        </ScrollView>
         <View style={{
-                position: 'absolute',
-                bottom: 10,
-                right: 10,
-                flexDirection: 'row'
-              }}>
-              {this.state.noPopUp === true &&
-              <View style={{
-                backgroundColor: Colors.appBlueColor,
-                height: 56,
-                width: 200,
-                marginRight: 5
-              }}>
-                <Text style={style.popUpText}>
+          position: 'absolute',
+          bottom: 10,
+          right: 10,
+          flexDirection: 'row'
+        }}>
+          {this.state.noPopUp === true &&
+            <View style={{
+              backgroundColor: Colors.appBlueColor,
+              height: 56,
+              width: 200,
+              marginRight: 5
+            }}>
+              <Text style={style.popUpText}>
                 Invite friends and recieve
                 40000 YONYFY coins
                 </Text>
-              </View>
-              }
-                <RoundButton
-                  id={'plus'}
-                  buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
-                />
-              </View>
-              </View>
+            </View>
+          }
+          <RoundButton
+            id={'plus'}
+            buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
+          />
+        </View>
+      </View>
     )
 
   }

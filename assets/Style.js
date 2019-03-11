@@ -16,34 +16,39 @@ export default StyleSheet.create({
   buttonClass: {
     backgroundColor: Colors.appBlueColor,
     padding: 12,
-    borderRadius: 2.5,
+    paddingBottom: 15,
+    borderRadius: 5,
     width: 200
   },
 
-  buttonClassRed: {
-    backgroundColor: Colors.appRedColor,
+  buttonClassGold: {
+    backgroundColor: Colors.appGoldColor,
     padding: 12,
-    borderRadius: 2.5,
+    paddingBottom: 15,
+    borderRadius: 5,
     width: 200
   },
 
   buttonMedium: {
     backgroundColor: Colors.appBlueColor,
     padding: 12,
-    borderRadius: 2.5,
+    paddingBottom: 15,
+    borderRadius: 5,
     width: 130
   },
 
   buttonMediumRed: {
     backgroundColor: Colors.appRedColor,
     padding: 12,
-    borderRadius: 2.5,
+    paddingBottom: 15,
+    borderRadius: 5,
     width: 130
   },
 
   buttonFullWidth: {
     backgroundColor: Colors.appBlueColor,
     padding: 12,
+    paddingBottom: 15,
     borderRadius: 2.5,
     width: '100%'
   },
@@ -51,6 +56,7 @@ export default StyleSheet.create({
   buttonFullWidthRed: {
     backgroundColor: Colors.appRedColor,
     padding: 12,
+    paddingBottom: 15,
     borderRadius: 2.5,
     width: '100%'
   },
@@ -277,15 +283,13 @@ export default StyleSheet.create({
   },
 
   cardsContainer: {
-    maxWidth: '100%',
-    justifyContent: 'space-evenly',
-    alignSelf: 'center',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
     height: '100%',
     display: 'flex',
-    flex: 1,
-    paddingBottom: '10%'
+    padding: '2%',
+    paddingBottom: '15%'
   },
 
   cardContainer: {
@@ -293,52 +297,24 @@ export default StyleSheet.create({
     width: '100%'
   },
 
-  itemContainerSponsor: {
-    borderRadius: 5,
-    margin: 10,
-    padding: 5,
-    backgroundColor: 'white',
-    justifyContent: 'space-between',
-    borderColor: Colors.appRedColor,
-    borderWidth: 1
-  },
-
-  itemContainerSponsorBlue: {
-    borderRadius: 5,
-    margin: 10,
-    padding: 5,
-    backgroundColor: 'white',
-    justifyContent: 'space-between',
-    borderColor: Colors.appBlueColor,
-    borderWidth: 1
-  },
-
   itemContainer: {
-    borderRadius: 3,
+    borderRadius: 5,
     margin: 10,
-    padding: 5,
+    paddingBottom: 10,
     backgroundColor: 'white',
     justifyContent: 'space-between',
     borderColor: Colors.appBlueColor,
     borderWidth: 2
   },
 
-  itemContainerRedBorder: {
-    borderRadius: 3,
+  itemContainerGoldBorder: {
+    borderRadius: 5,
     margin: 10,
-    padding: 0,
+    paddingBottom: 10,
     backgroundColor: 'white',
     justifyContent: 'space-between',
-    borderColor: Colors.appRedColor,
+    borderColor: Colors.appGoldColor,
     borderWidth: 2
-  },
-
-  itemContainerNoBorder: {
-    borderRadius: 3,
-    margin: 10,
-    padding: 5,
-    backgroundColor: 'white',
-    justifyContent: 'space-between'
   },
 
   particContainer: {
@@ -537,15 +513,22 @@ export default StyleSheet.create({
   },
 
   indvCardContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '5%'
+    paddingVertical: '5%',
+    paddingHorizontal: '2%'
   },
 
   blueText: {
     fontFamily: 'alergia-normal-semibold',
     fontSize: 15,
     color: Colors.appBlueColor,
+    paddingTop: '5%',
+    paddingLeft: '3%'
+  },
+
+  goldenText: {
+    fontFamily: 'alergia-normal-semibold',
+    fontSize: 20,
+    color: Colors.appGoldColor,
     paddingTop: '5%',
     paddingLeft: '3%'
   },

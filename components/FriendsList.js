@@ -18,7 +18,9 @@ class FriendsList extends Component {
 
     let friendsList = this.props.users.filter(user => user.friend === true);
 
-    friendsList.sort((a, b) => b.name - a.name);
+    friendsList.sort(function(a,b){
+      return a.name.localeCompare(b.name);
+  })
 
     return friendsList.map((user) => {
       return (
@@ -56,8 +58,6 @@ class FriendsList extends Component {
   mapFriendRequests = () => {
 
     let friendsList = this.props.users.filter(user => user.friend === false);
-
-    friendsList.sort((a, b) => b.name - a.name);
 
     return friendsList.map((user) => {
       return (

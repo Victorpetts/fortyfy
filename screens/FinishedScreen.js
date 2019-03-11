@@ -103,7 +103,7 @@ class FinishedScreen extends Component {
 
     return (
       <ScrollView style={style.mainContainer}>
-        <View style={style.itemContainerNoBorder}>
+        <View style={style.itemContainer}>
           <TourInfoSection
             tourId={tourId}
           />

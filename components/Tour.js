@@ -32,14 +32,7 @@ class Tour extends Component {
 
     return (
 
-      <ScrollView
-        contentContainerStyle={
-          tourStatus === false
-            ? style.itemContainer
-            : style.itemContainer
-        }
-        automaticallyAdjustContentInsets={false}
-      >
+      <ScrollView contentContainerStyle={style.itemContainer}>
         <TourInfoSection
           tourId={tourId}
         />

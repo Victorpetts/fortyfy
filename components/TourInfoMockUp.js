@@ -26,7 +26,7 @@ class TourInfoMockUp extends Component {
         <View style={style.tourContainer}>
           <View style={{
             alignItems: 'center',
-            padding: 15
+            paddingVertical: 15
           }}>
             <Text style={style.tourInfoTitle}>Owner</Text>
             <Image

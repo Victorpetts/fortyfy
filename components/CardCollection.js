@@ -16,16 +16,15 @@ class CardCollection extends Component {
 
         return (
 
-            <View>
+            <View style={style.indvCardContainer}>
                 <TouchableOpacity
                     onPress={() => this.props.navigation.navigate('IndvUserCard', {
                         userName:userName
                     })}
-                    style={style.indvCardContainer}
                     >
                     <Image
                     source={require('../assets/images/frame-silver.png')}
-                    style={{ height: 180, width: 120 }}
+                    style={{ height: 150, width: 100 }}
                     />
                 </TouchableOpacity>
             </View>
