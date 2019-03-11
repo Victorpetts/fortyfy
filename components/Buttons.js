@@ -22,13 +22,13 @@ export class TourButton extends React.Component {
   }
 }
 
-export class TourButtonRed extends React.Component {
+export class TourButtonGold extends React.Component {
   render() {
     return (
       <TouchableOpacity
         onPress={this.props.buttonFunc}
         accessibilityLabel="Button"
-        style={style.buttonClassRed}
+        style={style.buttonClassGold}
       >
         <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
       </TouchableOpacity>

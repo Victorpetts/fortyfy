@@ -4,11 +4,7 @@ import {
   ScrollView,
   View,
   TouchableOpacity,
-  Text,
-  Dimensions,
-  Platform,
-  Image,
-  TouchableHighlightBase
+  Text
 } from 'react-native';
 
 import { TourButton, RoundButton, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
@@ -62,10 +58,26 @@ class TournamentsScreen extends Component {
     });
   };
 
+  mapSponsoredTours() {
+
+    let allTours = this.props.tours;
+    let sponsoredTours = allTours.filter(tour => tour.finished === false && tour.sponsor === true);
+
+    return sponsoredTours.map((tour) => {
+      return (
+        <SponsoredTours
+          key={tour.id}
+          id={tour.id}
+          navigation={this.props.navigation}
+        />
+      )
+    })
+  }
+
   mapOngoingTours() {
 
     let allTours = this.props.tours;
-    let ongoingTours = allTours.filter(tour => tour.finished === false);
+    let ongoingTours = allTours.filter(tour => tour.finished === false && !tour.sponsor);
 
     return ongoingTours.map((tour) => {
       return (
@@ -144,9 +156,7 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{
-              paddingBottom: '12%'
-            }}>
+            <View style={{ paddingBottom: '12%' }}>
 
 
               {this.state.show === true ?
@@ -163,7 +173,7 @@ class TournamentsScreen extends Component {
                     <ScrollView style={style.mainContainer}>
 
                       <Text style={style.blueText}>Sponsored</Text>
-                      <SponsoredTours />
+                      {this.mapSponsoredTours()}
 
                     {this.state.acceptInvite === false ?
                       <View>
@@ -208,8 +218,17 @@ class TournamentsScreen extends Component {
 
                 <ScrollView style={style.mainContainer}>
 
-                  <Text style={style.blueText}>Sponsored</Text>
-                  <SponsoredTours />
+                  <Text style={style.goldenText}>Sponsored</Text>
+                  {this.mapSponsoredTours()}
+
+                  <View style={{ 
+                    padding: 10,
+                    margin: 10,
+                    alignSelf: 'center',
+                    borderBottomWidth: 1,
+                    borderBottomColor: Colors.appGoldColor,
+                    width: '80%'
+                  }} />
 
                   {this.state.acceptInvite === false ?
                       <View>

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Image,
   ImageBackground
 } from 'react-native';
 
-import TourInfoMockUp from '../components/TourInfoMockUp';
-import { TourButton, TourButtonRed } from '../components/Buttons.js';
+import { TourButton, TourButtonGold } from './Buttons.js';
 
 import style from '../assets/Style.js';
+import TourInfoSection from './TourInfoSection.js';
 
 class SponsoredTours extends Component {
 
@@ -18,46 +19,56 @@ class SponsoredTours extends Component {
 
   render() {
 
+    const tourId = this.props.id;
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
+    const ownersId = thisTour.owner;
+    const ownerObj = this.props.users.find(user => user.id === ownersId);
+    const owner = ownerObj.name;
+
     return (
 
       <View style={
         this.state.pressed === false 
-        ? style.itemContainerRedBorder
+        ? style.itemContainerGoldBorder
         : style.itemContainer
         }
         >
-        <ImageBackground
-          source={require('../assets/images/redbullsponsorbg.png')}
-          style={{ width: '100%', margin: 0, padding: 0 }}
-          resizeMode={'cover'}
-        >
           <Image
-            source={require('../assets/images/redbull.png')}
-            style={{ height: 50, width: 100, position: 'absolute', top: 10, left: 20 }}
+            source={require('../assets/images/redbullcom-logo.png')}
+            style={{ 
+              height: 30, 
+              width: 150, 
+              position: 'absolute', 
+              top: 10, 
+              left: 20
+          }}/>
+          <TourInfoSection
+            id={tourId}
+            owner={owner}
           />
-          <TourInfoMockUp
-            totalMatches={'10'}
-            winconText={'Most kills'}
-            numberOfPlayers={this.state.pressed === false ? '166' : '167'}
-            maxPlayers={'400'}
-            owner={'Red Bull'}
-          />
-          <View style={{ width: '100%', alignItems: 'center', padding: 10 }}>
+          <View style={{ 
+            width: '100%', 
+            alignItems: 'center', 
+            padding: 10 
+          }}>
             {this.state.pressed === false ?
-              <TourButtonRed
+              <TourButtonGold
                 buttonTitle={'Join tournament'}
                 buttonFunc={() => this.setState({ pressed: true })}
               />
               :
-              <TourButton
-                buttonTitle={'View tournament'}
-              />
+              <TourButton buttonTitle={'View tournament'} />
             }
           </View>
-        </ImageBackground>
       </View>
     )
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    tours: state.tours,
+    users: state.users
+   };
+};
 
-export default SponsoredTours;
+export default connect(mapStateToProps, null)(SponsoredTours);

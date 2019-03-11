@@ -21,5 +21,6 @@ export default {
   appBlackColor: '#2a2a2a',
   appBlueColor: '#0682b1',
   appBrightBlueColor: '#15c1fe',
-  appRedColor: '#b10606'
+  appRedColor: '#b10606',
+  appGoldColor: '#EBC268'
 };
