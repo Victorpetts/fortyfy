@@ -28,45 +28,53 @@ class User extends Component {
         {isFriend
           ?
           <View style={{ flexDirection: 'row', width: '100%', flex: 1, padding: 5 }}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('UserCard', {
-              userName: userName
-            })}
-          >
-            <View style={style.friendContainer}>
-            <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
-            <Image
-              source={require('../assets/images/frame-silver.png')}
-              style={{ height: 150, width: 100 }}
-            />
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('UserCard', {
+                userName: userName
+              })}
+            >
+              <View style={style.friendContainer}>
+                <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
+                  <Image
+                    source={require('../assets/images/frame-silver.png')}
+                    style={{ height: 150, width: 100 }}
+                  />
+                </View>
+                <View style={{ flexDirection: 'column', flex: 1, alignItems: 'center', paddingBottom: 5 }}>
+                  <Text style={style.listItemText}>{userName}</Text>
+                  <Text style={style.listItemSmallText}>Level {userLvl}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
-            <View style={{ flexDirection: 'column', flex: 1, alignItems: 'center', paddingBottom: 5 }}>
-              <Text style={style.listItemText}>{userName}</Text>
-              <Text style={style.listItemSmallText}>Level {userLvl}</Text>
+          :
+          <View style={style.userContainer}>
+            <View style={{ padding: 5, alignSelf: 'center' }}>
+              <Image
+                source={require('../assets/images/frame-silver.png')}
+                style={{ height: 76, width: 50 }}
+              />
             </View>
-            </View>
-          </TouchableOpacity>
-            </View>
-          : <View style={style.userContainer}>
-          <View style={{ padding: 5, alignSelf: 'center' }}>
-            <Image
-              source={require('../assets/images/frame-silver.png')}
-              style={{ height: 76, width: 50 }}
-            />
-          </View>
             <View style={{ flexDirection: 'column', flex: 1, paddingTop: 5 }}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('UserProfile', {
+                tourName: userName,
+                isFriend: thisUser.friend
+              })}
+            >
               <Text style={style.listItemText}>{userName}</Text>
+            </TouchableOpacity>
               <Text style={style.listItemSmallText}>Level {userLvl}</Text>
-            </View>
+              </View>
             <View style={{ flexDirection: 'column', padding: 5, justifyContent: 'space-around' }}>
-                <TourButtonSmall
-                  buttonTitle={'Accept'}
-                  buttonFunc={() => this.props.acceptFriend(userName)}
-                />
-                <TourButtonSmallRed
-                  buttonTitle={'Decline'}
-                  buttonFunc={() => this.props.denyFriend(userName)}
-                />
+              <TourButtonSmall
+                buttonTitle={'Accept'}
+                buttonFunc={() => this.props.acceptFriend(userName)}
+              />
+              <TourButtonSmallRed
+                buttonTitle={'Decline'}
+                buttonFunc={() => this.props.denyFriend(userName)}
+              />
             </View>
           </View>
         }
