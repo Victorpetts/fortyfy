@@ -52,18 +52,19 @@ class CreateTourScreen extends Component {
     isVisible: false
   };
 
-  createTour = () => {
+  createTourFunc = () => {
     if (this.state.name !== '') {
       let newTour = {
+        'id': 4,
         'name': this.state.name,
-        'participants': ["9"],
+        'participants': ["11"],
         'players': this.state.players,
         'wincon': this.state.wincon,
         'totalMatches': this.state.totalMatches,
         'finished': false,
         'fromDate': this.state.fromDate,
         'toDate': this.state.toDate,
-        'owner': "9"
+        'owner': "11"
       }
       this.props.createTour(newTour);
       this.props.navigation.navigate('Tournaments');
@@ -94,6 +95,9 @@ class CreateTourScreen extends Component {
 
   render() {
 
+    const bla = this.props.tours.length;
+    const blah = bla + 1;
+
     const { name, players, wincon, totalMatches } = this.state
 
     return (
@@ -104,10 +108,9 @@ class CreateTourScreen extends Component {
             id='name'
             value={name}
             style={style.inputField}
-            placeholder={'Enter a tournament name'}
+            placeholder={'Choose a tournament name'}
             maxLength={20}
-            onChangeText={(event) =>
-              this.setState({ name: event })}
+            onChangeText={(event) => this.setState({ name: event })}
             onSubmitEditing={Keyboard.dismiss}
           />
           <Text style={style.inputFieldText}>Max number of players</Text>
@@ -115,10 +118,9 @@ class CreateTourScreen extends Component {
             id='players'
             value={players}
             style={style.inputField}
-            placeholder={'Enter a number between 5-100'}
+            placeholder={'2-100 players'}
             maxLength={3}
-            onChangeText={(event) =>
-              this.setState({ players: event })}
+            onChangeText={(event) => this.setState({ players: event })}
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
@@ -128,9 +130,7 @@ class CreateTourScreen extends Component {
             marginVertical: 10
           }}>
             <DatePicker
-              style={{
-                width: 170
-              }}
+              style={{ width: 170 }}
               date={this.state.fromDate}
               is24Hour={true}
               mode="datetime"
@@ -209,11 +209,9 @@ class CreateTourScreen extends Component {
             id='totalMatches'
             value={totalMatches}
             style={style.inputField}
-            placeholder={'Enter a number between 5-100'}
+            placeholder={'2-100 matches'}
             maxLength={3}
-            onChangeText={(event) =>
-              this.setState({ totalMatches: event })
-            }
+            onChangeText={(event) => this.setState({ totalMatches: event })}
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
@@ -230,7 +228,7 @@ class CreateTourScreen extends Component {
             />
             <TourButtonFullWidth
               buttonTitle={'Create tournament!'}
-              buttonFunc={this.createTour}
+              buttonFunc={this.createTourFunc}
             />
           </View>
         </ScrollView>
