@@ -75,8 +75,8 @@ class OngoingScreen extends Component {
       return (
         <Participant
           key={user.id}
-          id={user.id}
-          thisTour={thisTour}
+          userId={user.id}
+          tourId={thisTour.id}
         />
       );
     });
@@ -177,7 +177,6 @@ class OngoingScreen extends Component {
 
   render() {
 
-    const owner = this.props.navigation.getParam('owner');
     const tourId = this.props.navigation.getParam('tourId');
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
 
@@ -186,8 +185,7 @@ class OngoingScreen extends Component {
         <ScrollView style={style.mainContainer}>
           <View style={style.itemContainer}>
             <TourInfoSection
-              id={tourId}
-              owner={owner}
+              tourId={tourId}
             />
           </View>
 
@@ -294,8 +292,8 @@ class OngoingScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
-    users: state.users
+    users: state.users,
+    tours: state.tours
   };
 };
 
