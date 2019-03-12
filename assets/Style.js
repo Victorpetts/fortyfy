@@ -552,7 +552,7 @@ export default StyleSheet.create({
   enabledTab: {
     width: "50%",
     borderBottomWidth: 4,
-    borderColor: Colors.appBackgroundColor
+    borderColor: Colors.appBlueColor
   },
 
   disabledTab: {
@@ -616,10 +616,10 @@ export default StyleSheet.create({
 
   tourContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     width: '100%',
     alignItems: 'center',
-    padding: 10
+    paddingVertical: 10
   },
 
   whiteOverlay: {
