@@ -22,12 +22,12 @@ class Participant extends Component {
 
   render() {
 
-    const thisTour = this.props.thisTour;
+    const { tourId, userId } = this.props;
+
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const totalMatches = thisTour.totalMatches;
-    const tourId = thisTour.id;
     const owner = thisTour.owner
 
-    const userId = this.props.id;
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
 
@@ -90,7 +90,10 @@ class Participant extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { users: state.users };
+  return {
+    users: state.users,
+    tours: state.tours
+  };
 };
 
 export default connect(mapStateToProps, null)(Participant);

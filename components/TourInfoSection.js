@@ -12,13 +12,17 @@ class TourInfoSection extends Component {
 
   render() {
 
-    const tourId = this.props.id;
+    const tourId = this.props.tourId;
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const tourName = thisTour.name;
     const totalMatches = thisTour.totalMatches;
     const numberOfPlayers = thisTour.participants.length;
     const maxPlayers = thisTour.players;
-    const owner = this.props.owner;
+
+    const ownerId = thisTour.owner;
+    const thisOwner = this.props.users.find(user => user.id === ownerId);
+    const owner = thisOwner.name;
+
     let winconText;
 
     switch (thisTour.wincon) {
@@ -89,7 +93,10 @@ class TourInfoSection extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { tours: state.tours };
+  return {
+    tours: state.tours,
+    users: state.users
+  };
 };
 
 export default connect(mapStateToProps, null)(TourInfoSection);

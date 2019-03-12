@@ -15,30 +15,18 @@ class Tour extends Component {
 
     const tourId = this.props.id;
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
-    const tourName = thisTour.name;
     const tourStatus = thisTour.finished;
-    const totalMatches = thisTour.totalMatches;
-    const numberOfPartic = thisTour.participants.length;
-    const maxPlayers = thisTour.players;
-
-    const ownersId = thisTour.owner;
-    const ownerObj = this.props.users.find(user => user.id === ownersId);
-    const owner = ownerObj.name;
-    const ownerLvl = ownerObj.lvl;
-
     const { navigate } = this.props.navigation;
 
     navigateToOngoing = () => {
       navigate('Ongoing', {
-        tourId: tourId,
-        owner: owner
+        tourId: tourId
       })
     }
 
     navigateToFinished = () => {
       navigate('Finished', {
-        tourId: tourId,
-        owner: owner
+        tourId: tourId
       })
     }
 
@@ -46,8 +34,7 @@ class Tour extends Component {
 
       <ScrollView contentContainerStyle={style.itemContainer}>
         <TourInfoSection
-          id={tourId}
-          owner={owner}
+          tourId={tourId}
         />
         <View style={style.singleButtonContainer}>
           {tourStatus === false ? (
@@ -71,8 +58,7 @@ class Tour extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
-    users: state.users,
+    tours: state.tours
    };
 };
 

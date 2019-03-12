@@ -11,9 +11,18 @@ class LeaderBoardPartic extends Component {
 
   render() {
 
-    const userId = this.props.id;
+    const { tourId, userId } = this.props;
+
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
+    const totalMatches = thisTour.totalMatches;
+    const owner = thisTour.owner
+
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
+
+    const allStats = thisUser.matchStatistics;
+    const thisToursStats = allStats.filter(stats => stats.matchId === tourId);
+    const points = thisToursStats[0].points;
 
     return (
       <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
@@ -26,7 +35,7 @@ class LeaderBoardPartic extends Component {
           </View>
           <View style={{ alignSelf: 'flex-end'}}>
             <Text style={style.particText}>
-              72 points
+              {points} points
             </Text>
           </View>
         </View>
@@ -37,7 +46,10 @@ class LeaderBoardPartic extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { users: state.users };
+  return {
+    users: state.users,
+    tours: state.tours
+  };
 };
 
 export default connect(mapStateToProps, null)(LeaderBoardPartic);

@@ -36,31 +36,34 @@ class FinishedScreen extends Component {
     }
   });
 
-  mapLeaderboard(tourId) {
-    return (
-      <View>
+  mapLeaderboard(list, tourId) {
+    return list.map((user) => {
+      return (
         <LeaderBoardPartic
-          id={"5"}
+          key={user.id}
+          userId={user.id}
+          tourId={tourId}
         />
-        <LeaderBoardPartic
-          id={"10"}
-        />
-      </View>
-    )
+      );
+    });
   };
 
   render() {
 
     const tourId = this.props.navigation.getParam('tourId');
-    const owner = this.props.navigation.getParam('owner')
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
+    const particArr = thisTour.participants;
+    const allUsers = this.props.users;
+    const thesePartic = allUsers.filter(user => particArr.includes(user.id));
+
+    const list = thesePartic.slice(3);
+    const winners = thesePartic.slice(0, 3);
 
     return (
       <ScrollView style={style.mainContainer}>
         <View style={style.itemContainer}>
           <TourInfoSection
-            id={tourId}
-            owner={owner}
+            tourId={tourId}
           />
         </View>
 
@@ -123,7 +126,7 @@ class FinishedScreen extends Component {
           </View>
         </View>
 
-        {this.mapLeaderboard(tourId)}
+        {this.mapLeaderboard(list, tourId)}
 
       </ScrollView>
     )
@@ -139,7 +142,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(FinishedScreen);
-
-// let particArr = thisTour.participants;
-// let allUsers = this.props.users;
-// let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));

@@ -173,20 +173,20 @@ const initialState = {
       card: "3"
     },
     {
+      id: "11",
+      name: "SirYonyfy",
+      lvl: "99",
+      matchStatistics: [new match(4,"0",0)],
+      checkBox: false,
+      friends: [],
+      friend: '',
+      status: '',
+      card: "11"
+    },
+    {
       id: "12",
       name: "Red Bull"
-    },
-    // {
-    //   id: "11",
-    //   name: "SirYonyfy",
-    //   lvl: "99",
-    //   matchStatistics: [],
-    //   checkBox: false,
-    //   friends: [],
-    //   friend: false,
-    //   status: "notfriend",
-    //   card: "11"
-    // },
+    }
   ]
 
 // ändra status till friendStatus som är antingen friend, notFriend eller request
