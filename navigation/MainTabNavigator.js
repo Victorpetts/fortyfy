@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Platform,
+  Text,
   View,
   Image
 
@@ -88,6 +88,14 @@ TournamentsStack.navigationOptions = {
           borderWidth: .5,
           borderColor: 'white'
         }}>
+        <Text style={{
+          color: 'white',
+          fontSize: 8,
+          fontFamily: 'alergia-normal-semibold',
+          position: 'absolute',
+          bottom: 0,
+          alignSelf: 'center'
+        }}>1</Text>
         </View>
         <Image
       focused={focused}

@@ -20,23 +20,17 @@ class SponsoredTours extends Component {
   render() {
 
     const tourId = this.props.id;
-    const thisTour = this.props.tours.find(tour => tour.id === tourId);
-    const ownersId = thisTour.owner;
-    const ownerObj = this.props.users.find(user => user.id === ownersId);
-    const owner = ownerObj.name;
+    const { navigate } = this.props.navigation;
+
+    navigateToOngoing = () => {
+      navigate('Ongoing', {
+        tourId: tourId
+      })
+    }
 
     return (
 
       <View style={style.itemContainerGoldBorder}>
-          <Image
-            source={require('../assets/images/redbullcom-logo.png')}
-            style={{ 
-              height: 30, 
-              width: 150, 
-              position: 'absolute', 
-              top: 10, 
-              left: 20
-          }}/>
           <TourInfoSection
             tourId={tourId}
           />
@@ -47,7 +41,11 @@ class SponsoredTours extends Component {
                 buttonFunc={() => this.setState({ pressed: true })}
               />
               :
-              <TourButton buttonTitle={'View tournament'} />
+              <TourButton 
+              buttonTitle={'View tournament'}
+              buttonFunc={navigateToOngoing}
+               />
+              
             }
           </View>
       </View>
