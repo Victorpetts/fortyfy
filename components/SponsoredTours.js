@@ -27,12 +27,7 @@ class SponsoredTours extends Component {
 
     return (
 
-      <View style={
-        this.state.pressed === false 
-        ? style.itemContainerGoldBorder
-        : style.itemContainer
-        }
-        >
+      <View style={style.itemContainerGoldBorder}>
           <Image
             source={require('../assets/images/redbullcom-logo.png')}
             style={{ 
@@ -46,11 +41,7 @@ class SponsoredTours extends Component {
             id={tourId}
             owner={owner}
           />
-          <View style={{ 
-            width: '100%', 
-            alignItems: 'center', 
-            padding: 10 
-          }}>
+          <View style={style.singleButtonContainer}>
             {this.state.pressed === false ?
               <TourButtonGold
                 buttonTitle={'Join tournament'}

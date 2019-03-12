@@ -101,6 +101,26 @@ export default StyleSheet.create({
     height: 38.5,
     zIndex: 1000
   },
+  
+  roundButtonPos: {
+    position: 'absolute',
+    bottom: 120,
+    right: 10
+  },
+
+  buttonMenuItem2: {
+    position: 'absolute',
+    bottom: 125,
+    right: 15,
+    flexDirection: 'row'
+  },
+
+  buttonMenuItem1: {
+    position: 'absolute',
+    bottom: 80,
+    right: 15,
+    flexDirection: 'row'
+  },
 
   buttonMediumText: {
     fontSize: 15,
@@ -270,6 +290,28 @@ export default StyleSheet.create({
     paddingBottom: 5
    },
 
+   articleTitle: {
+    fontSize: 20,
+    fontFamily: 'alergia-normal-regular',
+    color: Colors.appBlackColor,
+  },
+
+  articleDate: {
+    fontSize: 10,
+    fontFamily: 'alergia-normal-light',
+    color: Colors.appBlackColor,
+  },
+  
+  articleLink: {
+    textAlign: 'center',
+    fontFamily: 'alergia-normal-regular',
+    color: Colors.appBlackColor,
+    fontSize: 10,
+    borderBottomWidth: 1.2,
+    width: 55,
+    borderColor: Colors.appBlackColor,
+  },
+
   itemNumber: {
     fontSize: 18,
     marginVertical: 10,
@@ -280,6 +322,22 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: Colors.appBackgroundColor
+  },
+
+  articleContainer: {
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginBottom: '5%',
+    justifyContent: 'space-between',
+    ...Platform.select({
+      android: {
+        padding: '5%'
+      },
+      ios: {
+        padding: 20
+      }
+    })
   },
 
   cardsContainer: {
@@ -440,6 +498,18 @@ export default StyleSheet.create({
     width: '100%'
   },
 
+  singleButtonContainer: { 
+    width: '100%', 
+    alignItems: 'center', 
+    padding: 10 
+  },
+
+  doubleButtonContainer: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+
   titleContainer: {
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -574,6 +644,15 @@ export default StyleSheet.create({
     paddingLeft: '40%',
     paddingTop: '20%',
     justifyContent: 'center'
-  }
+  },
+
+  divider: { 
+    padding: 10,
+    margin: 10,
+    alignSelf: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.appGoldColor,
+    width: '80%'
+  },
 
 });

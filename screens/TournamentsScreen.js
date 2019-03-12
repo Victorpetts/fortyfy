@@ -156,7 +156,7 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{ paddingBottom: '12%' }}>
+            <View style={{ paddingBottom: 100 }}>
 
 
               {this.state.show === true ?
@@ -172,8 +172,10 @@ class TournamentsScreen extends Component {
                   >
                     <ScrollView style={style.mainContainer}>
 
-                      <Text style={style.blueText}>Sponsored</Text>
+                      <Text style={style.goldenText}>Sponsored</Text>
                       {this.mapSponsoredTours()}
+
+                      <View style={style.divider} />
 
                     {this.state.acceptInvite === false ?
                       <View>
@@ -221,14 +223,7 @@ class TournamentsScreen extends Component {
                   <Text style={style.goldenText}>Sponsored</Text>
                   {this.mapSponsoredTours()}
 
-                  <View style={{ 
-                    padding: 10,
-                    margin: 10,
-                    alignSelf: 'center',
-                    borderBottomWidth: 1,
-                    borderBottomColor: Colors.appGoldColor,
-                    width: '80%'
-                  }} />
+                  <View style={style.divider} />
 
                   {this.state.acceptInvite === false ?
                       <View>
@@ -242,11 +237,7 @@ class TournamentsScreen extends Component {
                             maxPlayers={'10'}
                             owner={'J-Dawg'}
                         />
-                          <View style={{
-                            padding: 10,
-                            flexDirection: 'row',
-                            justifyContent: 'space-around'
-                          }}>
+                          <View style={style.doubleButtonContainer}>
                             <TourButtonMedium
                               buttonTitle={'Accept invitation'}
                               buttonFunc={() => this.setState({ acceptInvite: true })}
@@ -287,11 +278,7 @@ class TournamentsScreen extends Component {
                   }
                 </ScrollView>
               }
-              <View style={{
-                position: 'absolute',
-                bottom: 80,
-                right: 10
-              }}>
+              <View style={style.roundButtonPos}>
                 <RoundButton
                   id={'plus'}
                   buttonFunc={this.pressButton}
@@ -305,12 +292,7 @@ class TournamentsScreen extends Component {
                 // + button menu is displayed
 
                 <View>
-                  <View style={{
-                    position: 'absolute',
-                    bottom: 125,
-                    right: 15,
-                    flexDirection: 'row'
-                  }}>
+                  <View style={style.buttonMenuItem2}>
                     <Text style={style.buttonMediumText}>Create tournament</Text>
                     <RoundButton
                       id={'search'}
@@ -318,12 +300,7 @@ class TournamentsScreen extends Component {
                       thirdButtonFunc={() => navigate('TourCreate')}
                     />
                   </View>
-                  <View style={{
-                    position: 'absolute',
-                    bottom: 75,
-                    right: 15,
-                    flexDirection: 'row'
-                  }}>
+                  <View style={style.buttonMenuItem1}>
                     <Text style={style.buttonMediumText}>Find tournament</Text>
                     <RoundButton
                       id={'small plus'}
