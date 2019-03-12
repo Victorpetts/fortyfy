@@ -18,6 +18,7 @@ class TourInfoSection extends Component {
     const totalMatches = thisTour.totalMatches;
     const numberOfPlayers = thisTour.participants.length;
     const maxPlayers = thisTour.players;
+    const sponsorTour = thisTour.sponsor
 
     const ownerId = thisTour.owner;
     const thisOwner = this.props.users.find(user => user.id === ownerId);
@@ -41,53 +42,65 @@ class TourInfoSection extends Component {
     }
 
     return (
-        <View>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between'
-            }}>
-                <Text style={style.itemText}>{tourName}</Text>
-                <Text style={style.itemText}>
-                    {totalMatches} matches
+      <View>
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }}>
+          {sponsorTour === true ?
+          <View style={{ margin: 10 }}>
+            <Image
+              source={require('../assets/images/redbullcom-logo.png')}
+              style={{
+                height: 30,
+                width: 150,
+                position: 'absolute'
+              }} />
+              </View>
+            :
+            <Text style={style.itemText}>{tourName}</Text>
+          }
+          <Text style={style.itemText}>
+            {totalMatches} matches
                 </Text>
-            </View>
-            <View style={style.tourContainer}>
-                <View style={{
-                    alignItems: 'center',
-                    paddingVertical: 15,
-                    width: '33%'
-                }}>
-                    <Text style={style.tourInfoTitle}>Owner</Text>
-                    <Image
-                        source={require('../assets/images/crown.png')}
-                        style={{ width: 25, height: 17 }}
-                    />
-                    <Text style={style.tourInfoText}>{owner}</Text>
-                </View>
-                <View style={{
-                    alignItems: 'center',
-                    width: '33%'
-                }}>
-                    <Text style={style.tourInfoTitle}>Victory Conditions</Text>
-                    <Image
-                        source={require('../assets/images/trophy.png')}
-                        style={{ width: 17, height: 17 }}
-                    />
-                    <Text style={style.tourInfoText}>{winconText}</Text>
-                </View>
-                <View style={{
-                    alignItems: 'center',
-                    width: '33%'
-                }}>
-                    <Text style={style.tourInfoTitle}>Participants</Text>
-                    <Image
-                        source={require('../assets/images/group.png')}
-                        style={{ width: 24, height: 17 }}
-                    />
-                    <Text style={style.tourInfoText}>{numberOfPlayers} / {maxPlayers}</Text>
-                </View>
-            </View>
         </View>
+        <View style={style.tourContainer}>
+          <View style={{
+            alignItems: 'center',
+            paddingVertical: 15,
+            width: '33%'
+          }}>
+            <Text style={style.tourInfoTitle}>Owner</Text>
+            <Image
+              source={require('../assets/images/crown.png')}
+              style={{ width: 25, height: 17 }}
+            />
+            <Text style={style.tourInfoText}>{owner}</Text>
+          </View>
+          <View style={{
+            alignItems: 'center',
+            width: '33%'
+          }}>
+            <Text style={style.tourInfoTitle}>Victory Conditions</Text>
+            <Image
+              source={require('../assets/images/trophy.png')}
+              style={{ width: 17, height: 17 }}
+            />
+            <Text style={style.tourInfoText}>{winconText}</Text>
+          </View>
+          <View style={{
+            alignItems: 'center',
+            width: '33%'
+          }}>
+            <Text style={style.tourInfoTitle}>Participants</Text>
+            <Image
+              source={require('../assets/images/group.png')}
+              style={{ width: 24, height: 17 }}
+            />
+            <Text style={style.tourInfoText}>{numberOfPlayers} / {maxPlayers}</Text>
+          </View>
+        </View>
+      </View>
     )
   }
 }

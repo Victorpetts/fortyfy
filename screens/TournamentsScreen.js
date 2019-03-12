@@ -133,7 +133,7 @@ class TournamentsScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={{ height: '100%' }}>
+      <View style={{ height: '100%', paddingBottom: 5 }}>
 
         {this.state.toggleOngoing === true ? (
 

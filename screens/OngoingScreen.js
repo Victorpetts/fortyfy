@@ -213,7 +213,7 @@ class OngoingScreen extends Component {
             <Text style={style.subTitleText}>Player</Text>
             <Text style={style.subTitleText}>Matches played</Text>
           </View>
-          <View style={{ paddingBottom: '20%' }}>
+          <View style={{ paddingBottom: 105 }}>
             {this.mapPartic(thisTour)}
           </View>
 
