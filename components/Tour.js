@@ -36,10 +36,7 @@ class Tour extends Component {
         <TourInfoSection
           tourId={tourId}
         />
-        <View style={{
-          alignItems: 'center',
-          padding: 10
-        }}>
+        <View style={style.singleButtonContainer}>
           {tourStatus === false ? (
             <TourButton
               buttonTitle={'View tournament'}
