@@ -46,19 +46,20 @@ class TournamentsScreen extends Component {
   }
 
   inviteTour = () => {
-      let newTour = {
-        'name': "Jesper's Tournament",
-        'participants': ["10"],
-        'players': "10",
-        'wincon': "3",
-        'totalMatches': "8",
-        'finished': false,
-        'fromDate': "12th of March 13:37",
-        'toDate': "15th of March 18:00",
-        'owner': "4"
-      }
-      this.props.createTour(newTour);
-      this.setState({ inviteClicked: true })
+    let newTour = {
+      'id': 6,
+      'name': "Jesper's Tournament",
+      'participants': ["4", "11"],
+      'players': "10",
+      'wincon': "3",
+      'totalMatches': "8",
+      'finished': false,
+      'fromDate': "12th of March 13:37",
+      'toDate': "15th of March 18:00",
+      'owner': "4"
+    }
+    this.props.createTour(newTour);
+    this.setState({ inviteClicked: true })
   };
 
   toggleOngoing = () => {
@@ -194,37 +195,37 @@ class TournamentsScreen extends Component {
 
                       <View style={style.divider} />
 
-                    {this.state.inviteClicked === false ?
-                      <View>
-                        <Text style={style.blueText}>Invites (1)</Text>
-                        <View style={style.itemContainer}>
-                          <TourInfoMockUp
-                            tourName={`Jesper's Tournament`}
-                            totalMatches={'8'}
-                            winconText={'Most Top 5'}
-                            numberOfPlayers={'1'}
-                            maxPlayers={'10'}
-                            owner={'J-Dawg'}
-                          />
-                          <View style={{
-                            padding: 10,
-                            flexDirection: 'row',
-                            justifyContent: 'space-around'
-                          }}>
-                            <TourButtonMedium
-                              buttonTitle={'Accept invitation'}
-                              buttonFunc={this.inviteTour}
+                      {this.state.inviteClicked === false ?
+                        <View>
+                          <Text style={style.blueText}>Invites (1)</Text>
+                          <View style={style.itemContainer}>
+                            <TourInfoMockUp
+                              tourName={`Jesper's Tournament`}
+                              totalMatches={'8'}
+                              winconText={'Most Top 5'}
+                              numberOfPlayers={'1'}
+                              maxPlayers={'10'}
+                              owner={'J-Dawg'}
                             />
-                            <TourButtonMediumRed
-                              buttonTitle={'Decline invitation'}
-                              buttonFunc={() => this.setState({ inviteClicked: true })}
-                            />
+                            <View style={{
+                              padding: 10,
+                              flexDirection: 'row',
+                              justifyContent: 'space-around'
+                            }}>
+                              <TourButtonMedium
+                                buttonTitle={'Accept invitation'}
+                                buttonFunc={this.inviteTour}
+                              />
+                              <TourButtonMediumRed
+                                buttonTitle={'Decline invitation'}
+                                buttonFunc={() => this.setState({ inviteClicked: true })}
+                              />
+                            </View>
                           </View>
                         </View>
-                      </View>
-                      :
-                      <Text style={style.blueText}>Invites (0)</Text>
-                    }
+                        :
+                        <Text style={style.blueText}>Invites (0)</Text>
+                      }
 
                       <Text style={style.blueText}>Tournaments</Text>
                       {this.mapOngoingTours()}
@@ -244,32 +245,32 @@ class TournamentsScreen extends Component {
                   <View style={style.divider} />
 
                   {this.state.inviteClicked === false ?
-                      <View>
-                        <Text style={style.blueText}>Invites (1)</Text>
-                        <View style={style.itemContainer}>
+                    <View>
+                      <Text style={style.blueText}>Invites (1)</Text>
+                      <View style={style.itemContainer}>
                         <TourInfoMockUp
-                            tourName={`Jesper's Tournament`}
-                            totalMatches={'8'}
-                            winconText={'Most Top 5'}
-                            numberOfPlayers={'0'}
-                            maxPlayers={'10'}
-                            owner={'J-Dawg'}
+                          tourName={`Jesper's Tournament`}
+                          totalMatches={'8'}
+                          winconText={'Most Top 5'}
+                          numberOfPlayers={'0'}
+                          maxPlayers={'10'}
+                          owner={'J-Dawg'}
                         />
-                          <View style={style.doubleButtonContainer}>
-                            <TourButtonMedium
-                              buttonTitle={'Accept invitation'}
-                              buttonFunc={this.inviteTour}
-                            />
-                            <TourButtonMediumRed
-                              buttonTitle={'Decline invitation'}
-                              buttonFunc={() => this.setState({ inviteClicked: true })}
-                            />
-                          </View>
+                        <View style={style.doubleButtonContainer}>
+                          <TourButtonMedium
+                            buttonTitle={'Accept invitation'}
+                            buttonFunc={this.inviteTour}
+                          />
+                          <TourButtonMediumRed
+                            buttonTitle={'Decline invitation'}
+                            buttonFunc={() => this.setState({ inviteClicked: true })}
+                          />
                         </View>
                       </View>
-                      :
-                      <Text style={style.blueText}>Invites (0)</Text>
-                    }
+                    </View>
+                    :
+                    <Text style={style.blueText}>Invites (0)</Text>
+                  }
 
                   <Text style={style.blueText}>Tournaments</Text>
                   {this.mapOngoingTours()}

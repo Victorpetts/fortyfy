@@ -38,8 +38,7 @@ class SponsoredTours extends Component {
               left: 20
           }}/>
           <TourInfoSection
-            id={tourId}
-            owner={owner}
+            tourId={tourId}
           />
           <View style={style.singleButtonContainer}>
             {this.state.pressed === false ?
