@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createTour } from '../actions';
 import {
   ScrollView,
   View,
@@ -41,8 +42,24 @@ class TournamentsScreen extends Component {
     toggleOngoing: true,
     toggleFinished: false,
     show: false,
-    acceptInvite: false
+    inviteClicked: false
   }
+
+  inviteTour = () => {
+      let newTour = {
+        'name': "Jesper's Tournament",
+        'participants': ["10"],
+        'players': "10",
+        'wincon': "3",
+        'totalMatches': "8",
+        'finished': false,
+        'fromDate': "12th of March 13:37",
+        'toDate': "15th of March 18:00",
+        'owner': "4"
+      }
+      this.props.createTour(newTour);
+      this.setState({ inviteClicked: true })
+  };
 
   toggleOngoing = () => {
     this.setState({
@@ -177,7 +194,7 @@ class TournamentsScreen extends Component {
 
                       <View style={style.divider} />
 
-                    {this.state.acceptInvite === false ?
+                    {this.state.inviteClicked === false ?
                       <View>
                         <Text style={style.blueText}>Invites (1)</Text>
                         <View style={style.itemContainer}>
@@ -196,10 +213,11 @@ class TournamentsScreen extends Component {
                           }}>
                             <TourButtonMedium
                               buttonTitle={'Accept invitation'}
-                              buttonFunc={() => this.setState({ acceptInvite: true })}
+                              buttonFunc={this.inviteTour}
                             />
                             <TourButtonMediumRed
                               buttonTitle={'Decline invitation'}
+                              buttonFunc={() => this.setState({ inviteClicked: true })}
                             />
                           </View>
                         </View>
@@ -225,7 +243,7 @@ class TournamentsScreen extends Component {
 
                   <View style={style.divider} />
 
-                  {this.state.acceptInvite === false ?
+                  {this.state.inviteClicked === false ?
                       <View>
                         <Text style={style.blueText}>Invites (1)</Text>
                         <View style={style.itemContainer}>
@@ -233,17 +251,18 @@ class TournamentsScreen extends Component {
                             tourName={`Jesper's Tournament`}
                             totalMatches={'8'}
                             winconText={'Most Top 5'}
-                            numberOfPlayers={'1'}
+                            numberOfPlayers={'0'}
                             maxPlayers={'10'}
                             owner={'J-Dawg'}
                         />
                           <View style={style.doubleButtonContainer}>
                             <TourButtonMedium
                               buttonTitle={'Accept invitation'}
-                              buttonFunc={() => this.setState({ acceptInvite: true })}
+                              buttonFunc={this.inviteTour}
                             />
                             <TourButtonMediumRed
                               buttonTitle={'Decline invitation'}
+                              buttonFunc={() => this.setState({ inviteClicked: true })}
                             />
                           </View>
                         </View>
@@ -254,28 +273,6 @@ class TournamentsScreen extends Component {
 
                   <Text style={style.blueText}>Tournaments</Text>
                   {this.mapOngoingTours()}
-
-                  {this.state.acceptInvite === true &&
-                  <View style={style.itemContainer}>
-                  <TourInfoMockUp
-                      tourName={`Jesper's Tournament`}
-                      totalMatches={'8'}
-                      winconText={'Most Top 5'}
-                      numberOfPlayers={'2'}
-                      maxPlayers={'10'}
-                      owner={'J-Dawg'}
-                  />
-                  <View style={{
-                    padding: 5,
-                    flexDirection: 'row',
-                    justifyContent: 'space-around'
-                  }}>
-                    <TourButton
-                      buttonTitle={'View tournament'}
-                    />
-                  </View>
-                </View>
-                  }
                 </ScrollView>
               }
               <View style={style.roundButtonPos}>
@@ -368,4 +365,4 @@ const mapStateToProps = (state) => {
   return { tours: state.tours };
 };
 
-export default connect(mapStateToProps, null)(TournamentsScreen);
+export default connect(mapStateToProps, { createTour })(TournamentsScreen);

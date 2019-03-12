@@ -54,7 +54,8 @@ class TourInfoSection extends Component {
             <View style={style.tourContainer}>
                 <View style={{
                     alignItems: 'center',
-                    paddingVertical: 15
+                    paddingVertical: 15,
+                    width: '33%'
                 }}>
                     <Text style={style.tourInfoTitle}>Owner</Text>
                     <Image
@@ -64,7 +65,8 @@ class TourInfoSection extends Component {
                     <Text style={style.tourInfoText}>{owner}</Text>
                 </View>
                 <View style={{
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    width: '33%'
                 }}>
                     <Text style={style.tourInfoTitle}>Victory Conditions</Text>
                     <Image
@@ -74,7 +76,8 @@ class TourInfoSection extends Component {
                     <Text style={style.tourInfoText}>{winconText}</Text>
                 </View>
                 <View style={{
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    width: '33%'
                 }}>
                     <Text style={style.tourInfoTitle}>Participants</Text>
                     <Image
