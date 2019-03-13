@@ -44,7 +44,7 @@ class OngoingScreen extends Component {
         onPress={navigation.getParam('toggleInfoWindow')}
       >
         <Image
-          source={require('../assets/images/information.png')}
+          source={require('../assets/images/menuicons/information.png')}
           style={{ height: 25, width: 25, marginRight: 15 }}
         />
       </TouchableOpacity>
@@ -190,21 +190,21 @@ class OngoingScreen extends Component {
           </View>
 
           {thisTour.owner === "11" &&
-          <View style={{
-            alignItems: 'center',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            paddingHorizontal: 10,
-            height: 130
-          }}>
-            <TourButtonFullWidth
-              buttonTitle={'Invite friends'}
-              buttonFunc={this.toggleInviteList}
-            />
-            <TourButtonFullWidth
-              buttonTitle={'Manage tournament'}
-            />
-          </View>
+            <View style={{
+              alignItems: 'center',
+              flexDirection: 'column',
+              justifyContent: 'space-evenly',
+              paddingHorizontal: 10,
+              height: 130
+            }}>
+              <TourButtonFullWidth
+                buttonTitle={'Invite friends'}
+                buttonFunc={this.toggleInviteList}
+              />
+              <TourButtonFullWidth
+                buttonTitle={'Manage tournament'}
+              />
+            </View>
           }
 
           <View style={{
@@ -215,7 +215,7 @@ class OngoingScreen extends Component {
             <Text style={style.subTitleText}>Player</Text>
             <Text style={style.subTitleText}>Matches played</Text>
           </View>
-            {this.mapPartic(thisTour)}
+          {this.mapPartic(thisTour)}
 
           {this.state.isVisible && this.state.isInviteList === true &&
             <Overlay
@@ -234,63 +234,63 @@ class OngoingScreen extends Component {
                 backgroundColor: Colors.appBackgroundColor
               }}
             >
-                <View style={{ height: '100%'}}>
-                  <ScrollView
+              <View style={{ height: '100%' }}>
+                <ScrollView
                   contentContainerStyle={{
                     flexDirection: 'column',
                     justifyContent: 'space-between'
                   }}
                 >
-                      {this.mapInviteList()}
-                    </ScrollView>
+                  {this.mapInviteList()}
+                </ScrollView>
 
-            <View style={{ padding: 5 }} />
-                    <TourButtonFullWidth
-                      buttonTitle={'Done'}
-                      buttonFunc={this.toggleOverlay}
-                    />
-                    </View>
-                    </Overlay>
-                }
+                <View style={{ padding: 5 }} />
+                <TourButtonFullWidth
+                  buttonTitle={'Done'}
+                  buttonFunc={this.toggleOverlay}
+                />
+              </View>
+            </Overlay>
+          }
 
-                {this.state.isVisible && this.state.isInfoWindow === true &&
-                <Overlay
-                height='auto'
-                width='90%'
-                isVisible={this.state.isVisible == true}
-                onBackdropPress={() => this.setState({
-                  isVisible: false,
-                  isInfoWindow: false
-                })}
-                overlayBackgroundColor={'black'}
-                overlayStyle={{
-                  borderColor: Colors.appBlueColor,
-                  borderWidth: 2,
-                  borderRadius: 2.5,
-                  backgroundColor: Colors.appBackgroundColor
-                }}
-              >
-                  <View>
-                    <Text style={style.subTitleText}>Tournament rules</Text>
-                    <Text style={style.paragraphText}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure
-                      dolor in reprehenderit in voluptate velit esse cillum
-                      dolore eu fugiat nulla pariatur. Excepteur sint
-                      occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
+          {this.state.isVisible && this.state.isInfoWindow === true &&
+            <Overlay
+              height='auto'
+              width='90%'
+              isVisible={this.state.isVisible == true}
+              onBackdropPress={() => this.setState({
+                isVisible: false,
+                isInfoWindow: false
+              })}
+              overlayBackgroundColor={'black'}
+              overlayStyle={{
+                borderColor: Colors.appBlueColor,
+                borderWidth: 2,
+                borderRadius: 2.5,
+                backgroundColor: Colors.appBackgroundColor
+              }}
+            >
+              <View>
+                <Text style={style.subTitleText}>Tournament rules</Text>
+                <Text style={style.paragraphText}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat. Duis aute irure
+                  dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint
+                  occaecat cupidatat non proident, sunt in culpa qui
+                  officia deserunt mollit anim id est laborum.
                     </Text>
-                    <View style={{ paddingBottom: '50%' }} />
-                    <View style={{ alignSelf: 'center' }}>
-                      <TourButtonSmallRed
-                        buttonTitle={'Close'}
-                        buttonFunc={this.toggleOverlay}
-                      />
-                    </View>
-                  </View>
+                <View style={{ paddingBottom: '50%' }} />
+                <View style={{ alignSelf: 'center' }}>
+                  <TourButtonSmallRed
+                    buttonTitle={'Close'}
+                    buttonFunc={this.toggleOverlay}
+                  />
+                </View>
+              </View>
             </Overlay>
           }
 

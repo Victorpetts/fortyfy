@@ -49,7 +49,7 @@ class Participant extends Component {
                 </Text>
                 <View style={{ marginLeft: 5, flexDirection: 'column', justifyContent: 'center' }}>
                   <Image
-                    source={require('../assets/images/crown.png')}
+                    source={require('../assets/images/tourinfoicons/crown.png')}
                     style={{ width: 25, height: 17 }}
                   />
                 </View>
@@ -70,7 +70,7 @@ class Participant extends Component {
                 </Text>
                 <View style={{ marginLeft: 5, flexDirection: 'column', justifyContent: 'center' }}>
                   <Image
-                    source={require('../assets/images/crown.png')}
+                    source={require('../assets/images/tourinfoicons/crown.png')}
                     style={{ width: 25, height: 17 }}
                   />
                 </View>

@@ -27,7 +27,7 @@ class MyCardProfile extends Component {
                     onPress={() => this.props.navigation.navigate('IndvUserCard')}
                 >
                     <ImageBackground
-                        source={require('../assets/images/playercard-gold-frame.png')}
+                        source={require('../assets/images/playercards/playercard-gold-frame.png')}
                         resizeMode={'contain'}
                         style={{ height: '90%' }}
                     >

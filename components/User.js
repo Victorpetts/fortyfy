@@ -36,7 +36,7 @@ class User extends Component {
               <View style={style.friendContainer}>
                 <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
                   <Image
-                    source={require('../assets/images/frame-silver.png')}
+                    source={require('../assets/images/playercards/playercard-silver-frame.png')}
                     style={{ height: 150, width: 100 }}
                   />
                 </View>
@@ -51,7 +51,7 @@ class User extends Component {
           <View style={style.userContainer}>
             <View style={{ padding: 5, alignSelf: 'center' }}>
               <Image
-                source={require('../assets/images/frame-silver.png')}
+                source={require('../assets/images/playercards/playercard-silver-frame.png')}
                 style={{ height: 76, width: 50 }}
               />
             </View>

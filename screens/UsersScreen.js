@@ -43,7 +43,7 @@ class UsersScreen extends Component {
         onPress={navigation.getParam('toggleSearch')}
       >
         <Image
-          source={require('../assets/images/search.png')}
+          source={require('../assets/images/menuicons/search.png')}
           style={{ height: 18, width: 17, marginRight: 15 }}
         />
       </TouchableOpacity>
@@ -54,7 +54,7 @@ class UsersScreen extends Component {
     toggle: false,
     search: '',
     isVisible: false,
-    noPopUp: false
+    noPopUp: true
   };
 
   componentDidMount() {
@@ -183,7 +183,7 @@ class UsersScreen extends Component {
                             }}
                           >
                             <Image
-                              source={require('../assets/images/frame-blue.png')}
+                              source={require('../assets/images/playercards/playercard-blue-frame.png')}
                               style={{ height: 60, width: 40, marginRight: 5 }}
                             />
                             <TouchableOpacity
@@ -230,7 +230,6 @@ class UsersScreen extends Component {
           {this.state.noPopUp === true &&
             <View style={{
               backgroundColor: Colors.appBlueColor,
-              height: 56,
               width: 200,
               marginRight: 5
             }}>

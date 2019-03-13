@@ -35,7 +35,7 @@ class userCardScreen extends Component {
 
     return (
       <View>
-        <ImageBackground source={require('../assets/images/playercard-gold-frame.png')} style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={require('../assets/images/playercards/playercard-gold-frame.png')} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
       </View>

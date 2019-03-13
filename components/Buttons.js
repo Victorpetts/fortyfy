@@ -169,12 +169,12 @@ export class RoundButton extends React.Component {
 
           {this.props.showing === true
           ? <Image
-          source={require('../assets/images/cross.png')}
+          source={require('../assets/images/menuicons/cross.png')}
           style={{ height: 20, width: 20, alignSelf: 'center', marginTop: '30%' }}
           resizeMode={'contain'}
             />
           : <Image
-            source={require('../assets/images/plus.png')}
+            source={require('../assets/images/menuicons/plus.png')}
             style={{ height: 25, width: 25, alignSelf: 'center', marginTop: '25%' }}
             resizeMode={'contain'}
               />
@@ -191,7 +191,7 @@ export class RoundButton extends React.Component {
           >
             <Image
             testID={'search'}
-            source={require('../assets/images/search.png')}
+            source={require('../assets/images/menuicons/search.png')}
             style={{ height: 17.5, width: 18, alignSelf: 'center', marginTop: '25%' }}
             resizeMode={'contain'}
             />
@@ -208,7 +208,7 @@ export class RoundButton extends React.Component {
           >
             <Image
             testID={'search'}
-            source={require('../assets/images/plus.png')}
+            source={require('../assets/images/menuicons/plus.png')}
             style={{ height: 20.5, width: 20, alignSelf: 'center', marginTop: '25%' }}
             resizeMode={'contain'}
             />
