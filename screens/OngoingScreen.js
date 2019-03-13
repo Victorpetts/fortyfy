@@ -189,12 +189,13 @@ class OngoingScreen extends Component {
             />
           </View>
 
+          {thisTour.owner === "11" &&
           <View style={{
             alignItems: 'center',
             flexDirection: 'column',
             justifyContent: 'space-evenly',
             paddingHorizontal: 10,
-            height: '20%'
+            height: 130
           }}>
             <TourButtonFullWidth
               buttonTitle={'Invite friends'}
@@ -204,6 +205,7 @@ class OngoingScreen extends Component {
               buttonTitle={'Manage tournament'}
             />
           </View>
+          }
 
           <View style={{
             flexDirection: 'row',
@@ -213,19 +215,16 @@ class OngoingScreen extends Component {
             <Text style={style.subTitleText}>Player</Text>
             <Text style={style.subTitleText}>Matches played</Text>
           </View>
-          <View style={{ paddingBottom: 105 }}>
             {this.mapPartic(thisTour)}
-          </View>
 
-          {this.state.isVisible &&
+          {this.state.isVisible && this.state.isInviteList === true &&
             <Overlay
-              height='auto'
+              height='90%'
               width='90%'
               isVisible={this.state.isVisible == true}
               onBackdropPress={() => this.setState({
                 isVisible: false,
-                isFriendList: false,
-                isInfoWindow: false
+                isInviteList: false,
               })}
               overlayBackgroundColor={'black'}
               overlayStyle={{
@@ -235,27 +234,42 @@ class OngoingScreen extends Component {
                 backgroundColor: Colors.appBackgroundColor
               }}
             >
-              <ScrollView
-                contentContainerStyle={{
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}
-                style={{ padding: 5 }}
-              >
-
-                {this.state.isInviteList === true &&
-                  <View>
-                    <View>
+                <View style={{ height: '100%'}}>
+                  <ScrollView
+                  contentContainerStyle={{
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
+                  }}
+                >
                       {this.mapInviteList()}
-                    </View>
+                    </ScrollView>
+
+            <View style={{ padding: 5 }} />
                     <TourButtonFullWidth
                       buttonTitle={'Done'}
                       buttonFunc={this.toggleOverlay}
                     />
-                  </View>
+                    </View>
+                    </Overlay>
                 }
 
-                {this.state.isInfoWindow === true &&
+                {this.state.isVisible && this.state.isInfoWindow === true &&
+                <Overlay
+                height='auto'
+                width='90%'
+                isVisible={this.state.isVisible == true}
+                onBackdropPress={() => this.setState({
+                  isVisible: false,
+                  isInfoWindow: false
+                })}
+                overlayBackgroundColor={'black'}
+                overlayStyle={{
+                  borderColor: Colors.appBlueColor,
+                  borderWidth: 2,
+                  borderRadius: 2.5,
+                  backgroundColor: Colors.appBackgroundColor
+                }}
+              >
                   <View>
                     <Text style={style.subTitleText}>Tournament rules</Text>
                     <Text style={style.paragraphText}>
@@ -277,9 +291,6 @@ class OngoingScreen extends Component {
                       />
                     </View>
                   </View>
-                }
-
-              </ScrollView>
             </Overlay>
           }
 

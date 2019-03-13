@@ -1,7 +1,9 @@
 import React from 'react';
 import {
   ScrollView,
-  View
+  View,
+  FlatList,
+  ActivityIndicator
 } from 'react-native';
 
 import { NewsArticle } from '../components/NewsArticle';
@@ -36,32 +38,28 @@ export default class NewsScreen extends React.Component {
 
   render() {
     return (
-        <ScrollView
-          style={style.mainContainer}
-        >
-          <View style={{ padding: '2%' }} />
-          <View style={{
-            alignItems: 'center',
-            width: '90%',
-            marginLeft: '5%',
-            marginRight: '5%'
-          }}>
-
-            {data.slice(0, 10).map(item =>
-              <NewsArticle
-                key={item.title}
-                title={item.title}
-                date={item.date}
-                img={item.img}
-                link={item.link}
-              />
-            )
-            }
-
-          </View>
-          <View style={{ padding: '2%' }} />
-        </ScrollView>
-      )
+      <View style={style.mainContainer}>
+        <FlatList
+          data={data.slice(0, 10)}
+          renderItem={({ item }) => (
+            <NewsArticle
+              title={item.title}
+              date={item.date}
+              img={item.img}
+              link={item.link}
+            />
+          )}
+          contentContainerStyle={{ alignItems: 'center' }}
+          style={{
+            width: '100%',
+            paddingVertical: 10
+          }}
+          keyExtractor={item => item.title}
+          ListHeaderComponent={<View style={{ padding: 5 }} />}
+          ListFooterComponent={<View style={{ height: 690 }} />}
+        />
+      </View>
+    )
   }
 }
 

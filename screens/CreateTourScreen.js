@@ -215,13 +215,7 @@ class CreateTourScreen extends Component {
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
-          <View style={{
-            alignItems: 'center',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            height: '25%',
-            marginBottom: 80
-          }}>
+          <View style={style.buttonContainerFullCol}>
             <TourButtonFullWidth
               buttonTitle={'Invite friends'}
               buttonFunc={this.toggleOverlay}
@@ -234,7 +228,7 @@ class CreateTourScreen extends Component {
         </ScrollView>
         {this.state.isVisible &&
           <Overlay
-            height='auto'
+            height='90%'
             width='90%'
             isVisible={this.state.isVisible == true}
             onBackdropPress={() => this.setState({
@@ -255,18 +249,16 @@ class CreateTourScreen extends Component {
                 flexDirection: 'column',
                 justifyContent: 'space-between'
               }}
-              style={{
-                padding: 5
-              }}
             >
               <View>
                 {this.mapInviteList()}
               </View>
+            </ScrollView>
+            <View style={{ padding: 5 }} />
               <TourButtonFullWidth
                 buttonTitle={'Done'}
                 buttonFunc={this.toggleOverlay}
               />
-            </ScrollView>
           </Overlay>
         }
       </ScrollView>

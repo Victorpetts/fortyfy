@@ -8,7 +8,8 @@ import {
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
-import TabBarIcon from '../components/TabBarIcon';
+import style from '../assets/Style.js';
+
 import NewsScreen from '../screens/NewsScreen';
 import TournamentsScreen from '../screens/TournamentsScreen';
 import TourIndvScreen from '../screens/TourIndvScreen';
@@ -76,26 +77,8 @@ TournamentsStack.navigationOptions = {
       <View style={{
         paddingTop: 10
       }}>
-        <View style={{
-          borderRadius: 9,
-          width: 10,
-          height: 10,
-          backgroundColor: '#b10606',
-          position: 'absolute',
-          top: 5,
-          right: -10,
-          zIndex: 1000,
-          borderWidth: .5,
-          borderColor: 'white'
-        }}>
-        <Text style={{
-          color: 'white',
-          fontSize: 8,
-          fontFamily: 'alergia-normal-semibold',
-          position: 'absolute',
-          bottom: 0,
-          alignSelf: 'center'
-        }}>1</Text>
+        <View style={style.notificationCircle}>
+        <Text style={style.notificationText}>1</Text>
         </View>
         <Image
       focused={focused}
