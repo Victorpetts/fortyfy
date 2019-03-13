@@ -23,7 +23,7 @@ class CardCollection extends Component {
                     })}
                     >
                     <Image
-                    source={require('../assets/images/frame-silver.png')}
+                    source={require('../assets/images/playercards/playercard-silver-frame.png')}
                     style={{ height: 150, width: 100 }}
                     />
                 </TouchableOpacity>

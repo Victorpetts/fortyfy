@@ -80,7 +80,7 @@ class FinishedScreen extends Component {
             <Text style={style.subTitleText}>2:nd</Text>
             <View style={{ paddingVertical: 5 }}>
               <Image
-                source={require('../assets/images/frame-green-w-badge.png')}
+                source={require('../assets/images/playercards/playercard-green-frame-badge.png')}
                 style={{ height: 158, width: 106 }}
               />
             </View>
@@ -97,14 +97,14 @@ class FinishedScreen extends Component {
               flexDirection: 'row'
             }}>
               <Image
-                source={require('../assets/images/trophy.png')}
+                source={require('../assets/images/tourinfoicons/trophy.png')}
                 style={{ height: 17, width: 17.5, marginRight: 5 }}
               />
               <Text style={style.subTitleText}>Winner</Text>
             </View>
             <View style={{ paddingVertical: 5 }}>
               <Image
-                source={require('../assets/images/frame-gold-w-badge.png')}
+                source={require('../assets/images/playercards/playercard-gold-frame-badge.png')}
                 style={{ height: 158, width: 106 }}
               />
             </View>
@@ -118,7 +118,7 @@ class FinishedScreen extends Component {
             <Text style={style.subTitleText}>3:rd</Text>
             <View style={{ paddingVertical: 5 }}>
               <Image
-                source={require('../assets/images/frame-silver.png')}
+                source={require('../assets/images/playercards/playercard-silver-frame.png')}
                 style={{ height: 158, width: 106 }}
               />
             </View>

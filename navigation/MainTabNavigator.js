@@ -36,7 +36,7 @@ NewsStack.navigationOptions = {
         focused={focused}
         style={{ height: 25, width: 29 }}
         resizeMode={'contain'}
-        source={require("../assets/images/news.png")} 
+        source={require("../assets/images/tabicons/news.png")} 
       />
     </View>
   ),
@@ -70,7 +70,7 @@ TournamentsStack.navigationOptions = {
     focused={focused}
     style={{ height: 25, width: 29 }}
     resizeMode={'contain'}
-    source={require("../assets/images/tournament.png")} 
+    source={require("../assets/images/tabicons/tournament.png")} 
   />
   </View>
       :
@@ -84,7 +84,7 @@ TournamentsStack.navigationOptions = {
       focused={focused}
       style={{ height: 25, width: 29 }}
       resizeMode={'contain'}
-      source={require("../assets/images/tournament.png")} 
+      source={require("../assets/images/tabicons/tournament.png")} 
     />
       </View>
   ),
@@ -114,7 +114,7 @@ UsersStack.navigationOptions = {
         focused={focused}
         style={{ height: 25, width: 29 }}
         resizeMode={'contain'}
-        source={require("../assets/images/friends.png")} 
+        source={require("../assets/images/tabicons/friends.png")} 
       />
     </View>
   ),
@@ -144,7 +144,7 @@ ProfileStack.navigationOptions = {
         focused={focused}
         style={{ height: 25, width: 29 }}
         resizeMode={'contain'}
-        source={require("../assets/images/profile.png")} 
+        source={require("../assets/images/tabicons/profile.png")} 
       />
     </View>
   ),

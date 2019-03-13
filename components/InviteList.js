@@ -37,7 +37,7 @@ class InviteList extends Component {
           justifyContent: 'space-between'
         }}>
           <Image
-            source={require('../assets/images/frame-blue.png')}
+            source={require('../assets/images/playercards/playercard-blue-frame.png')}
             style={{
               height: 60,
               width: 40,
