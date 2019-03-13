@@ -12,8 +12,7 @@ import style from '../assets/Style.js';
 export class NewsArticle extends React.Component {
   render() {
     return (
-      <View style={style.articleContainer}
-      >
+      <View style={style.articleContainer}>
         <Image
           source={{ uri: this.props.img }}
           style={{

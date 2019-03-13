@@ -147,6 +147,8 @@ export default StyleSheet.create({
   buttonText: {
     fontSize: 13,
     textAlign: 'center',
+    flexDirection: 'column',
+    alignSelf: 'center',
     fontFamily: 'alergia-normal-semibold',
     color: 'white'
   },
@@ -205,8 +207,8 @@ export default StyleSheet.create({
   smallText: {
     fontSize: 18,
     textAlign: 'center',
-    color: 'yellow',
-    letterSpacing: 0.5
+    color: Colors.appBlackColor,
+    fontFamily: 'alergia-normal-light'
   },
 
   italicText: {
@@ -498,6 +500,14 @@ export default StyleSheet.create({
     width: '100%'
   },
 
+  buttonContainerFullCol: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    height: '25%',
+    marginBottom: 80
+  },
+
   singleButtonContainer: { 
     width: '100%', 
     alignItems: 'center', 
@@ -653,6 +663,28 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.appGoldColor,
     width: '80%'
+  },
+
+  notificationCircle: {
+    borderRadius: 9,
+    width: 10,
+    height: 10,
+    backgroundColor: '#b10606',
+    position: 'absolute',
+    top: 5,
+    right: -10,
+    zIndex: 1000,
+    borderWidth: .5,
+    borderColor: 'white'
+  },
+
+  notificationText: {
+    color: 'white',
+    fontSize: 8,
+    fontFamily: 'alergia-normal-semibold',
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: 'center'
   },
 
 });
