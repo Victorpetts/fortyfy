@@ -13,7 +13,8 @@ import { TourButtonSmall, DisabledButtonSmall } from '../components/Buttons.js';
 class InviteList extends Component {
 
   state = {
-    buttonClicked: false
+    buttonClicked: false,
+    image: this.props.card
   }
 
   sendInvitation = () => {
@@ -37,7 +38,7 @@ class InviteList extends Component {
           justifyContent: 'space-between'
         }}>
           <Image
-            source={require('../assets/images/playercards/playercard-blue-frame.png')}
+            source={this.state.image}
             style={{
               height: 60,
               width: 40,

@@ -72,7 +72,7 @@ const initialState = {
       friends: ["3","5","6","8","9","10"],
       friend: true,
       status: "friend",
-      card: "1"
+      card: require("../assets/images/playercards/playercard-special-unicorns-rainbows.png")
     },
     {
       id: "2",
@@ -82,7 +82,7 @@ const initialState = {
       checkBox: false, friends: ["3","4","5","9"],
       friend: true,
       status: "friend",
-      card: "2"
+      card: require("../assets/images/playercards/playercard-special-gems.png")
     },
     {
       id: "3",
@@ -93,18 +93,18 @@ const initialState = {
       friends: ["1","2"],
       friend: true,
       status: "friend",
-      card: "3"
+      card: require("../assets/images/playercards/playercard-special-magic.png")
     },
     {
       id: "4",
       name: "J-Dawg",
-      lvl: "1",
+      lvl: "15",
       matchStatistics: [new match(1,"3",55), new match(3,"7",75), new match(5,"7",75), new match(6,"0",0)],
       checkBox: false,
       friends: ["2"],
       friend: true,
       status: "friend",
-      card: "4"
+      card: require("../assets/images/playercards/playercard-gold-frame-badge.png")
      },
     {
       id: "5",
@@ -115,18 +115,18 @@ const initialState = {
       friends: ["1","2","7","8"],
       friend: true,
       status: "friend",
-      card: "5"
+      card: require("../assets/images/playercards/playercard-special-cheeta.png")
     },
     {
       id: "6",
       name: "MrMister",
-      lvl: "50",
+      lvl: "3",
       matchStatistics: [new match(2,"1",2), new match(5,"10",100)],
       checkBox: false,
       friends: ["1","9","10"],
       friend: true,
       status: "friend",
-      card: "6"
+      card: require("../assets/images/playercards/playercard-green-frame-badge.png")
     },
     {
       id: "7",
@@ -137,7 +137,7 @@ const initialState = {
       friends: ["5","9","10"],
       friend: true,
       status: "friend",
-      card: "7"
+      card: require("../assets/images/playercards/playercard-silver-frame-bg.png")
     },
     {
       id: "8",
@@ -148,7 +148,7 @@ const initialState = {
       friends: ["1","5"],
       friend: false,
       status: "notFriend",
-      card: "8"
+      card: require("../assets/images/playercards/playercard-silver-frame.png")
     },
     {
       id: "9",
@@ -159,7 +159,7 @@ const initialState = {
       friends: ["1","2","6","7"],
       friend: false,
       status: "notFriend",
-      card: "9"
+      card: require("../assets/images/playercards/playercard-special-mr-roboto.png")
     },
     {
       id: "10",
@@ -170,7 +170,7 @@ const initialState = {
       friends: ["1","6","7"],
       friend: false,
       status: "notFriend",
-      card: "3"
+      card: require("../assets/images/playercards/playercard-special-scary.png")
     },
     {
       id: "11",
@@ -181,7 +181,7 @@ const initialState = {
       friends: [],
       friend: '',
       status: '',
-      card: "11"
+      card: require("../assets/images/playercards/playercard-special-gold.png")
     },
     {
       id: "12",

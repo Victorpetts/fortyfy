@@ -70,19 +70,14 @@ class ProfileScreen extends Component {
 
   mapCardCollection() {
 
-    cardCollection = this.props.users.filter(function (item) {
-      return item.friend === true;
-    }).map(function ({ name, level, friend }) {
-      return { name, level, friend };
-    });
+    let cardList = this.props.users.filter(user => user.friend === true);
 
-    return cardCollection.map((user) => {
+    return cardList.map((user) => {
       return (
         <CardCollection
-          key={user.name}
+          key={user.id}
           name={user.name}
-          lvl={user.level}
-          friend={user.friend}
+          card={user.card}
           navigation={this.props.navigation}
         />
       )
@@ -91,6 +86,10 @@ class ProfileScreen extends Component {
   };
 
   render() {
+
+    const myId = this.props.users.find(user => user.id === "11");
+    const myCard = myId.card;
+
     return (
 
       <View style={{ height: '100%' }}>
@@ -137,6 +136,7 @@ class ProfileScreen extends Component {
                 alignItems: 'center'
               }}>
                 <MyCardProfile
+                  card={myCard}
                   navigation={this.props.navigation}
                 />
               </View>

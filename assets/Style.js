@@ -92,7 +92,7 @@ export default StyleSheet.create({
     zIndex: 1000
   },
 
-  roundButtonMedium: {
+  roundButtonSmall: {
     backgroundColor: Colors.appBlueColor,
     borderRadius: 100,
     elevation: 4,
@@ -168,13 +168,6 @@ export default StyleSheet.create({
     color: 'white'
   },
 
-  yellowHeaderText: {
-    fontWeight: 'bold',
-    fontSize: 28,
-    alignSelf: 'center',
-    color: 'yellow'
-  },
-
   scoreText: {
     fontSize: 24,
     alignSelf: 'center',
@@ -219,19 +212,6 @@ export default StyleSheet.create({
     fontStyle: 'italic'
   },
 
-  mediumText: {
-    fontSize: 24,
-    textAlign: 'center',
-    color: 'yellow',
-    letterSpacing: 0.5
-  },
-
-  playerText: {
-    fontSize: 18,
-    color: 'yellow',
-    letterSpacing: 0.5
-  },
-
   itemText: {
     fontSize: 18,
     margin: 10,
@@ -257,32 +237,17 @@ export default StyleSheet.create({
     flex: 1
   },
 
-  userText: {
-    fontSize: 20,
-    color: 'yellow',
-    marginVertical: 14,
-    textAlign: 'center'
-  },
-
   listItemText: {
     fontSize: 15,
     fontFamily: 'alergia-normal-semibold',
     color: Colors.appBlackColor
   },
+
   listItemSmallText: {
     fontSize: 11,
     fontFamily: 'alergia-normal-light',
     color: Colors.appBlackColor
     },
-
-  inviteMessageText: {
-    fontSize: 20,
-    color: 'yellow',
-    display: 'flex',
-    textAlign: 'center',
-    padding: 10,
-    width: '100%'
-  },
 
   inputFieldText: {
     fontSize: 15,
@@ -622,6 +587,12 @@ export default StyleSheet.create({
   tourInfoText: {
     fontSize: 11,
     fontFamily: 'alergia-normal-semibold'
+  },
+
+  overlayTitle: {
+    fontFamily: 'alergia-normal-semibold',
+    fontSize: 22,
+    color: Colors.appBlueColor,
   },
 
   tourContainer: {

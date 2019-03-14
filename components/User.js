@@ -15,11 +15,16 @@ import { TourButtonSmall, TourButtonSmallRed } from './Buttons.js';
 
 class User extends Component {
 
+  state = {
+    image: this.props.card
+  };
+
   render() {
 
     const userId = this.props.id;
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
+    const userCard = this.state.image;
     const userLvl = thisUser.lvl;
     const isFriend = thisUser.friend;
 
@@ -30,13 +35,14 @@ class User extends Component {
           <View style={{ flexDirection: 'row', width: '100%', flex: 1, padding: 5 }}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('UserCard', {
-                userName: userName
+                userName: userName,
+                userCard: userCard
               })}
             >
               <View style={style.friendContainer}>
                 <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
                   <Image
-                    source={require('../assets/images/playercards/playercard-silver-frame.png')}
+                    source={this.state.image}
                     style={{ height: 150, width: 100 }}
                   />
                 </View>
@@ -51,7 +57,7 @@ class User extends Component {
           <View style={style.userContainer}>
             <View style={{ padding: 5, alignSelf: 'center' }}>
               <Image
-                source={require('../assets/images/playercards/playercard-silver-frame.png')}
+                source={this.state.image}
                 style={{ height: 76, width: 50 }}
               />
             </View>
@@ -59,6 +65,7 @@ class User extends Component {
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('UserProfile', {
                 tourName: userName,
+                userCard: userCard,
                 isFriend: thisUser.friend
               })}
             >

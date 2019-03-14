@@ -183,7 +183,7 @@ class UsersScreen extends Component {
                             }}
                           >
                             <Image
-                              source={require('../assets/images/playercards/playercard-blue-frame.png')}
+                              source={player.card}
                               style={{ height: 60, width: 40, marginRight: 5 }}
                             />
                             <TouchableOpacity
@@ -240,7 +240,6 @@ class UsersScreen extends Component {
             </View>
           }
           <RoundButton
-            id={'plus'}
             buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
           />
         </View>
