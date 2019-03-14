@@ -30,12 +30,13 @@ class userCardScreen extends Component {
 
   render() {
     const userName = this.props.navigation.getParam('userName');
+    const userCard = this.props.navigation.getParam('userCard');
     const findUser = this.props.users.find( user => user.name === userName );
     // const card = findUser.card;
 
     return (
       <View>
-        <ImageBackground source={require('../assets/images/playercards/playercard-gold-frame.png')} style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={userCard} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
       </View>

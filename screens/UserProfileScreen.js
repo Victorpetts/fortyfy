@@ -79,19 +79,14 @@ class UserProfileScreen extends Component {
 
   mapCardCollection() {
 
-    cardCollection = this.props.users.filter(function (item) {
-      return item.friend === true;
-    }).map(function ({ name, level, friend }) {
-      return { name, level, friend };
-    });
+    let cardList = this.props.users.filter(user => user.friend === true);
 
-    return cardCollection.map((user) => {
+    return cardList.map((user) => {
       return (
         <CardCollection
-          key={user.name}
+          key={user.id}
           name={user.name}
-          lvl={user.level}
-          friend={user.friend}
+          card={user.card}
           navigation={this.props.navigation}
         />
       )
@@ -100,6 +95,8 @@ class UserProfileScreen extends Component {
   };
 
   render() {
+
+    const userCard = this.props.navigation.getParam('userCard');
 
     return (
 
@@ -143,6 +140,7 @@ class UserProfileScreen extends Component {
 
             <View style={style.mainContainer}>
               <PlayerCardProfile
+                card={userCard}
                 navigation={this.props.navigation}
               />
             </View>

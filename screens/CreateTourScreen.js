@@ -88,6 +88,7 @@ class CreateTourScreen extends Component {
         <InviteList
           key={user.id}
           id={user.id}
+          card={user.card}
         />
       )
     })

@@ -27,13 +27,12 @@ class FriendsList extends Component {
         <User
           key={user.id}
           id={user.id}
+          card={user.card}
           navigation={this.props.navigation}
         />
 
       )}
     )
-
-    
   }
       // friendsList = this.props.users.filter(function(item){
       //   return item.friend === true;
@@ -64,6 +63,7 @@ class FriendsList extends Component {
         <User
           key={user.id}
           id={user.id}
+          card={user.card}
           navigation={this.props.navigation}
         />
       )}

@@ -93,6 +93,7 @@ class OngoingScreen extends Component {
         <InviteList
           key={user.id}
           id={user.id}
+          card={user.card}
         />
       )
     })

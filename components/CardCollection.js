@@ -1,35 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-    View,
-    Image,
-    TouchableOpacity
+  View,
+  Image,
+  TouchableOpacity
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+
 import style from '../assets/Style.js';
 
 class CardCollection extends Component {
 
-    render() {
+  state = {
+    image: this.props.card
+  }
 
-        const userName = this.props.name;
+  render() {
 
-        return (
+    const userName = this.props.name;
+    const userCard = this.state.image;
 
-            <View style={style.indvCardContainer}>
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('IndvUserCard', {
-                        userName:userName
-                    })}
-                    >
-                    <Image
-                    source={require('../assets/images/playercards/playercard-silver-frame.png')}
-                    style={{ height: 150, width: 100 }}
-                    />
-                </TouchableOpacity>
-            </View>
-        )
-    }
+    return (
+
+      <View style={style.indvCardContainer}>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('IndvUserCard', {
+            userName: userName,
+            userCard: userCard
+          })}
+        >
+          <Image
+            source={this.state.image}
+            style={{ height: 150, width: 100 }}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
 }
 
-export default CardCollection;
+const mapStateToProps = (state) => {
+  return { users: state.users };
+};
+
+export default connect(mapStateToProps, null)(CardCollection);

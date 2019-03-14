@@ -8,7 +8,7 @@ import {
   Text
 } from 'react-native';
 
-import { TourButton, RoundButton, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
+import { RoundButton, RoundButtonSmall, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
 import Tour from '../components/Tour.js';
 import TourInfoMockUp from '../components/TourInfoMockUp.js';
 import SponsoredTours from '../components/SponsoredTours.js';
@@ -133,7 +133,7 @@ class TournamentsScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={{ height: '100%', paddingBottom: 5 }}>
+      <View style={{ height: '100%' }}>
 
         {this.state.toggleOngoing === true ? (
 
@@ -292,17 +292,15 @@ class TournamentsScreen extends Component {
                 <View>
                   <View style={style.buttonMenuItem2}>
                     <Text style={style.buttonMediumText}>Create tournament</Text>
-                    <RoundButton
-                      id={'search'}
-                      showingSmall={this.state.show}
-                      thirdButtonFunc={() => navigate('TourCreate')}
+                    <RoundButtonSmall
+                      buttonImg={require('../assets/images/menuicons/plus.png')}
+                      buttonFunc={() => navigate('TourCreate')}
                     />
                   </View>
                   <View style={style.buttonMenuItem1}>
                     <Text style={style.buttonMediumText}>Find tournament</Text>
-                    <RoundButton
-                      id={'small plus'}
-                      showingSmall={this.state.show}
+                    <RoundButtonSmall
+                      buttonImg={require('../assets/images/menuicons/search.png')}
                     />
                   </View>
                 </View>
