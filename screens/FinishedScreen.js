@@ -36,16 +36,29 @@ class FinishedScreen extends Component {
     }
   });
 
-  mapLeaderboard(list, tourId) {
-    return list.map((user) => {
+  mapLeaderboard(thisToursPartic, tourId) {
+
+    thisToursPartic.sort((a, b) => b.currentPoints - a.currentPoints);
+
+    const theRest = thisToursPartic.slice(3);
+    const topThree = thisToursPartic.slice(0, 3);
+
+    return theRest.map((user, index) => {
+      userStats = user.matchStatistics.filter(stats => stats.matchId === tourId);
+      userPoints = userStats[0].points;
+
       return (
         <LeaderBoardPartic
           key={user.id}
           userId={user.id}
           tourId={tourId}
+          userPoints={userPoints}
+          placement={index + 4}
         />
       );
+
     });
+
   };
 
   render() {
@@ -54,10 +67,18 @@ class FinishedScreen extends Component {
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const particArr = thisTour.participants;
     const allUsers = this.props.users;
-    const thesePartic = allUsers.filter(user => particArr.includes(user.id));
+    const thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
-    const list = thesePartic.slice(3);
-    const winners = thesePartic.slice(0, 3);
+    // const list = thesePartic.slice(3);
+    // const winners = thesePartic.slice(0, 3);
+
+    // const first = winners[0];
+    // const firstStats = first.matchStatistics.filter(stats => stats.matchId === tourId);
+    // const firstPoints = firstStats[0].points;
+
+    // const arrr = [3, 5, 1];
+    // arrr.sort((a, b) => b - a);
+    // console.log(arrr);
 
     return (
       <ScrollView style={style.mainContainer}>
@@ -77,56 +98,65 @@ class FinishedScreen extends Component {
             flexDirection: 'column',
             alignItems: 'center'
           }}>
-            <Text style={style.subTitleText}>2:nd</Text>
-            <View style={{ paddingVertical: 5 }}>
+            <Image
+              source={require('../assets/images/silver.png')}
+              style={{ height: 20, width: 50 }}
+            />
+            <Text style={style.subTitleText}>Michirisu</Text>
+            <View style={{ paddingVertical: 3 }}>
               <Image
                 source={require('../assets/images/frame-green-w-badge.png')}
                 style={{ height: 158, width: 106 }}
               />
             </View>
-            <Text style={style.subTitleText}>91 points</Text>
+            <Text style={style.subTitleText}>79 points</Text>
           </View>
 
           <View style={{
             flexDirection: 'column',
             alignItems: 'center',
-            paddingBottom: '30%',
-            padding: '5%'
+            paddingBottom: '20%',
+            paddingHorizontal: '4%'
           }}>
             <View style={{
-              flexDirection: 'row'
+              flexDirection: 'column',
+              alignItems: 'center'
             }}>
               <Image
-                source={require('../assets/images/trophy.png')}
-                style={{ height: 17, width: 17.5, marginRight: 5 }}
+                source={require('../assets/images/gold.png')}
+                style={{ height: 55, width: 90 }}
               />
-              <Text style={style.subTitleText}>Winner</Text>
+              <Text style={style.subTitleText}>Vicky</Text>
             </View>
-            <View style={{ paddingVertical: 5 }}>
+            <View style={{ paddingVertical: 3 }}>
               <Image
                 source={require('../assets/images/frame-gold-w-badge.png')}
                 style={{ height: 158, width: 106 }}
               />
             </View>
-            <Text style={style.subTitleText}>99 points</Text>
+            <Text style={style.subTitleText}>92 points</Text>
           </View>
 
           <View style={{
             flexDirection: 'column',
             alignItems: 'center'
           }}>
-            <Text style={style.subTitleText}>3:rd</Text>
-            <View style={{ paddingVertical: 5 }}>
+            <Image
+              source={require('../assets/images/bronze.png')}
+              style={{ height: 20, width: 50 }}
+            />
+            <Text style={style.subTitleText}>J-Dawg</Text>
+            <View style={{ paddingVertical: 3 }}>
               <Image
                 source={require('../assets/images/frame-silver.png')}
                 style={{ height: 158, width: 106 }}
               />
             </View>
-            <Text style={style.subTitleText}>84 points</Text>
+            <Text style={style.subTitleText}>70 points</Text>
           </View>
         </View>
 
-        {this.mapLeaderboard(list, tourId)}
+        {this.mapLeaderboard(thisToursPartic, tourId)}
 
       </ScrollView>
     )

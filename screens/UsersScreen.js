@@ -235,7 +235,7 @@ class UsersScreen extends Component {
                 marginRight: 5
               }}>
                 <Text style={style.popUpText}>
-                Invite friends and recieve 
+                Invite friends and recieve
                 40000 YONYFY coins
                 </Text>
               </View>

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 //Create a class for matchStatistics maybe dont need to be a component
-class match{
+class match {
   constructor(matchId, playedMatches, points){
     this.matchId = matchId;
     this.playedMatches = playedMatches;
@@ -37,7 +37,7 @@ const initialState = {
     },
     {
       id: 3,
-      name: "Victor's Tournament",
+      name: "Kool kidz tour",
       participants: ["1","2","3","4","7","8","10"],
       players: "8",
       wincon: "1",
@@ -58,7 +58,8 @@ const initialState = {
       friends: ["3","5","6","8","9","10"],
       friend: true,
       status: "friend",
-      card: "1"
+      card: "1",
+      currentPoints: 0
     },
     {
       id: "2",
@@ -68,7 +69,8 @@ const initialState = {
       checkBox: false, friends: ["3","4","5","9"],
       friend: true,
       status: "friend",
-      card: "2"
+      card: "2",
+      currentPoints: 0
     },
     {
       id: "3",
@@ -79,7 +81,8 @@ const initialState = {
       friends: ["1","2"],
       friend: true,
       status: "friend",
-      card: "3"
+      card: "3",
+      currentPoints: 0
     },
     {
       id: "4",
@@ -90,7 +93,8 @@ const initialState = {
       friends: ["2"],
       friend: true,
       status: "friend",
-      card: "4"
+      card: "4",
+      currentPoints: 0
      },
     {
       id: "5",
@@ -101,7 +105,8 @@ const initialState = {
       friends: ["1","2","7","8"],
       friend: true,
       status: "friend",
-      card: "5"
+      card: "5",
+      currentPoints: 0
     },
     {
       id: "6",
@@ -112,7 +117,8 @@ const initialState = {
       friends: ["1","9","10"],
       friend: true,
       status: "friend",
-      card: "6"
+      card: "6",
+      currentPoints: 0
     },
     {
       id: "7",
@@ -123,7 +129,8 @@ const initialState = {
       friends: ["5","9","10"],
       friend: true,
       status: "friend",
-      card: "7"
+      card: "7",
+      currentPoints: 0
     },
     {
       id: "8",
@@ -134,7 +141,8 @@ const initialState = {
       friends: ["1","5"],
       friend: false,
       status: "notFriend",
-      card: "8"
+      card: "8",
+      currentPoints: 0
     },
     {
       id: "9",
@@ -145,7 +153,8 @@ const initialState = {
       friends: ["1","2","6","7"],
       friend: false,
       status: "notFriend",
-      card: "9"
+      card: "9",
+      currentPoints: 0
     },
     {
       id: "10",
@@ -156,7 +165,8 @@ const initialState = {
       friends: ["1","6","7"],
       friend: false,
       status: "notFriend",
-      card: "3"
+      card: "3",
+      currentPoints: 0
     },
     {
       id: "11",
@@ -167,7 +177,8 @@ const initialState = {
       friends: [],
       friend: '',
       status: '',
-      card: "11"
+      card: "11",
+      currentPoints: 0
     },
   ]
 
@@ -256,6 +267,17 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
       let playersToKick = action.payload;
       let newArr = oldArr.filter(item => !playersToKick.includes(item.name));
       return newArr;
+
+    case 'SCORE_RETRIEVED':
+      return oldArr.map((item, index) => {
+        if(item.id === action.payload.userId) {
+          return {
+            ...item,
+            currentPoints: action.payload.points
+          }
+        }
+        return item;
+      });
 
     default:
       return oldArr;

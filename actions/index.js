@@ -53,3 +53,13 @@ export const sendRequest = user => {
     payload: user
   };
 };
+
+export const scoreAction = (points, userId) => {
+  return {
+    type: 'SCORE_RETRIEVED',
+    payload: {
+      points: points,
+      userId: userId
+    }
+  };
+};
