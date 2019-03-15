@@ -352,15 +352,51 @@ export default StyleSheet.create({
     padding: 10
   },
 
-  particContainerBorder: {
+  particContainerBlueBorder: {
     backgroundColor: 'white',
     width: '100%',
-    borderRadius: 2.5,
+    borderRadius: 5,
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
     padding: 10,
     borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
+  particContainerGoldBorder: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10,
+    borderColor: Colors.appGoldColor,
+    borderWidth: 1
+  },
+
+  particCardBlueBorder: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10,
+    borderColor: Colors.appBlueColor,
+    borderWidth: 1
+  },
+
+  particCardGoldBorder: {
+    backgroundColor: 'white',
+    width: '100%',
+    borderRadius: 5,
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10,
+    borderColor: Colors.appGoldColor,
     borderWidth: 1
   },
 
@@ -378,7 +414,32 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-light'
   },
 
-  userContainer: {
+  particCardText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-light'
+  },
+
+  particCardTextBold: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  badgeText: { 
+    position: 'absolute', 
+    top: 2, 
+    fontSize: 8, 
+    color: Colors.appWhiteColor, 
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  userBigContainer: { 
+    flexDirection: 'row', 
+    width: '100%', 
+    flex: 1, 
+    padding: 5
+  },
+
+  userSmallContainer: {
     borderRadius: 2.5,
     marginVertical: 5,
     backgroundColor: 'white',
@@ -388,7 +449,30 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  friendContainer: {
+  bigImageContainer: { 
+    padding: 5,
+    alignSelf: 'center'
+  },
+
+  smallImageContainer: {
+      padding: 5, 
+      alignSelf: 'center'
+  },
+
+  bigListItemContainer: { 
+    flexDirection: 'column', 
+    flex: 1, 
+    alignItems: 'center', 
+    paddingBottom: 5 
+  },
+
+  smallListItemContainer: { 
+    flexDirection: 'column', 
+    flex: 1, 
+    paddingTop: 5 
+  },
+
+  userSquareContainer: {
     borderRadius: 2.5,
     marginVertical: 5,
     backgroundColor: 'white',
@@ -398,6 +482,25 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 110,
     height: '100%'
+  },
+
+  userSquareGoldContainer: {
+    borderRadius: 2.5,
+    marginVertical: 5,
+    backgroundColor: 'white',
+    borderColor: Colors.appGoldColor,
+    borderWidth: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: 110,
+    height: '100%'
+  },
+
+  friendsListContainer: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly', 
+    paddingBottom: '5%'
   },
 
   inviteListContainer: {
@@ -414,6 +517,14 @@ export default StyleSheet.create({
     height: '100%',
     marginLeft: '5%',
     marginRight: '5%'
+  },
+
+  crownContainer: { 
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    zIndex: 100, 
+    transform: [{ rotate: '340deg'}]
   },
 
   userCard: {
@@ -469,8 +580,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    height: '25%',
-    marginBottom: 80
+    height: 130
   },
 
   singleButtonContainer: { 
@@ -485,11 +595,23 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
 
+  smallButtonContainer: { 
+    flexDirection: 'column', 
+    padding: 5, 
+    justifyContent: 'space-around'
+  },
+
   titleContainer: {
     flexDirection: 'column',
     justifyContent: 'space-around',
     marginTop: '15%',
     alignItems: 'center'
+  },
+
+  subTitleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10
   },
 
    inputField: {

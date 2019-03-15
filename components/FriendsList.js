@@ -108,8 +108,11 @@ class FriendsList extends Component {
           <Text style={style.blueText}>Friends</Text>
         </View>
 
-        <View style={{ height: '100%', flex: 1 }}>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', paddingBottom: '5%' }}>
+        <View style={{ 
+          height: '100%', 
+          flex: 1
+        }}>
+        <View style={style.friendsListContainer}>
           {this.mapFriendsList()}
           </View>
         </View>

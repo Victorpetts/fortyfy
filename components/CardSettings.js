@@ -161,6 +161,12 @@ class CardSettings extends Component {
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Image
+                      source={require('../assets/images/playercards/playercard-special-pirate.png')}
+                      style={{ height: 250, width: 170, margin: 5 }}
+                    />
+                  </TouchableOpacity>
                   <Image
                     source={require('../assets/images/playercards/playercard-special-mr-roboto.png')}
                     style={{ height: 250, width: 170, margin: 5, opacity: .3 }}

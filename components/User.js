@@ -32,21 +32,21 @@ class User extends Component {
       <View>
         {isFriend
           ?
-          <View style={{ flexDirection: 'row', width: '100%', flex: 1, padding: 5 }}>
+          <View style={style.userBigContainer}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('UserCard', {
                 userName: userName,
                 userCard: userCard
               })}
             >
-              <View style={style.friendContainer}>
-                <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
+              <View style={style.userSquareContainer}>
+                <View style={style.bigImageContainer}>
                   <Image
                     source={this.state.image}
-                    style={{ height: 150, width: 100 }}
+                    style={{ height: 140, width: 90 }}
                   />
                 </View>
-                <View style={{ flexDirection: 'column', flex: 1, alignItems: 'center', paddingBottom: 5 }}>
+                <View style={style.bigListItemContainer}>
                   <Text style={style.listItemText}>{userName}</Text>
                   <Text style={style.listItemSmallText}>Level {userLvl}</Text>
                 </View>
@@ -54,14 +54,14 @@ class User extends Component {
             </TouchableOpacity>
           </View>
           :
-          <View style={style.userContainer}>
-            <View style={{ padding: 5, alignSelf: 'center' }}>
+          <View style={style.userSmallContainer}>
+            <View style={style.smallImageContainer}>
               <Image
                 source={this.state.image}
                 style={{ height: 76, width: 50 }}
               />
             </View>
-            <View style={{ flexDirection: 'column', flex: 1, paddingTop: 5 }}>
+            <View style={style.smallListItemContainer}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('UserProfile', {
                 tourName: userName,
@@ -73,7 +73,7 @@ class User extends Component {
             </TouchableOpacity>
               <Text style={style.listItemSmallText}>Level {userLvl}</Text>
               </View>
-            <View style={{ flexDirection: 'column', padding: 5, justifyContent: 'space-around' }}>
+            <View style={style.smallButtonContainer}>
               <TourButtonSmall
                 buttonTitle={'Accept'}
                 buttonFunc={() => this.props.acceptFriend(userName)}
