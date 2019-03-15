@@ -107,7 +107,7 @@ const initialState = {
       friends: ["2"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-gold-frame-badge.png"),
+      card: require("../assets/images/playercards/playercard-special-go-bananas.png"),
       currentPoints: 0
      },
     {

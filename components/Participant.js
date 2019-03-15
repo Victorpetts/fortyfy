@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
+import Colors from '../constants/Colors.js';
 
 class Participant extends Component {
 
@@ -41,9 +42,16 @@ class Participant extends Component {
         paddingVertical: 5
       }}>
         {playedMatches === totalMatches ?
-          <View style={style.particContainerBorder}>
+          <View style={style.particContainerGoldBorder}>
+            <View style={{ alignItems: 'center' }}>
+              <Image
+                source={require('../assets/images/badges/badge-bluegold.png')}
+                style={{ height: 20, width: 20, opacity: .6 }}
+              />
+              <Text style={style.badgeText}>{thisUser.lvl}</Text>
+            </View>
             {owner === userId ?
-              <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row', flex: 1, paddingLeft: 5 }}>
                 <Text style={style.particText}>
                   {userName}
                 </Text>
@@ -55,16 +63,25 @@ class Participant extends Component {
                 </View>
               </View>
               :
-              <Text style={style.particText}>
-                {userName}
-              </Text>
+              <View style={{ flex: 1, paddingLeft: 5 }}>
+                <Text style={style.particText}>
+                  {userName}
+                </Text>
+              </View>
             }
             <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
           </View>
           :
-          <View style={style.particContainer}>
+          <View style={style.particContainerBlueBorder}>
+            <View style={{ alignItems: 'center' }}>
+              <Image
+                source={require('../assets/images/badges/badge-bluegold.png')}
+                style={{ height: 20, width: 20, opacity: .6 }}
+              />
+              <Text style={style.badgeText}>{thisUser.lvl}</Text>
+            </View>
             {owner === userId ?
-              <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row', flex: 1, paddingLeft: 5 }}>
                 <Text style={style.particText}>
                   {userName}
                 </Text>
@@ -76,9 +93,11 @@ class Participant extends Component {
                 </View>
               </View>
               :
-              <Text style={style.particText}>
-                {userName}
-              </Text>
+              <View style={{ flex: 1, paddingLeft: 5 }}>
+                <Text style={style.particText}>
+                  {userName}
+                </Text>
+              </View>
             }
             <Text style={style.particText}>{playedMatches} / {totalMatches}</Text>
           </View>

@@ -216,6 +216,7 @@ class CreateTourScreen extends Component {
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
+          <View style={{ paddingVertical: 10 }}>
           <View style={style.buttonContainerFullCol}>
             <TourButtonFullWidth
               buttonTitle={'Invite friends'}
@@ -225,6 +226,7 @@ class CreateTourScreen extends Component {
               buttonTitle={'Create tournament!'}
               buttonFunc={this.createTourFunc}
             />
+          </View>
           </View>
         </ScrollView>
         {this.state.isVisible &&

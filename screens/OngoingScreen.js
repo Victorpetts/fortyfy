@@ -14,6 +14,7 @@ import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import { TourButtonFullWidth, TourButtonSmallRed } from '../components/Buttons.js';
 import Participant from '../components/Participant.js';
+import ParticipantCard from '../components/ParticipantCards.js';
 import InviteList from '../components/InviteList';
 import TourInfoSection from '../components/TourInfoSection.js';
 
@@ -56,7 +57,9 @@ class OngoingScreen extends Component {
     buttonToggle: false,
     invite: true,
     isInfoWindow: false,
-    isInviteList: false
+    isInviteList: false,
+    activeColor1: Colors.appBlueColor,
+    activeColor2: Colors.appWhiteColor
   }
 
   componentDidMount() {
@@ -77,6 +80,27 @@ class OngoingScreen extends Component {
           key={user.id}
           userId={user.id}
           tourId={thisTour.id}
+        />
+      );
+    });
+  };
+
+  mapParticCard(thisTour) {
+
+    const allUsers = this.props.users;
+    const particArr = thisTour.participants;
+    let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
+
+    thisToursPartic.sort((a, b) => b.lvl - a.lvl);
+
+    return thisToursPartic.map((user) => {
+      return (
+        <ParticipantCard
+          key={user.id}
+          userId={user.id}
+          tourId={thisTour.id}
+          card={user.card}
+          navigation={this.props.navigation}
         />
       );
     });
@@ -191,32 +215,67 @@ class OngoingScreen extends Component {
           </View>
 
           {thisTour.owner === "11" &&
-            <View style={{
-              alignItems: 'center',
-              flexDirection: 'column',
-              justifyContent: 'space-evenly',
-              paddingHorizontal: 10,
-              height: 130
-            }}>
-              <TourButtonFullWidth
-                buttonTitle={'Invite friends'}
-                buttonFunc={this.toggleInviteList}
-              />
-              <TourButtonFullWidth
-                buttonTitle={'Manage tournament'}
-              />
+            <View style={{ padding: 10 }}>
+              <View style={style.buttonContainerFullCol}>
+                <TourButtonFullWidth
+                  buttonTitle={'Invite friends'}
+                  buttonFunc={this.toggleInviteList}
+                />
+                <TourButtonFullWidth
+                  buttonTitle={'Manage tournament'}
+                />
+              </View>
             </View>
           }
-
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 10
-          }}>
-            <Text style={style.subTitleText}>Player</Text>
-            <Text style={style.subTitleText}>Matches played</Text>
+          <View style={{ justifyContent: 'flex-end', flexDirection: 'row', paddingRight: 10 }}>
+            <TouchableOpacity
+              style={{
+                height: 25,
+                width: 37,
+                backgroundColor: this.state.activeColor1,
+                borderRadius: 2.5
+              }}
+              onPress={() => this.setState({ activeColor1: Colors.appBlueColor, activeColor2: Colors.appWhiteColor })}
+            >
+              <Image
+                source={require('../assets/images/menuicons/dashes.png')}
+                style={{ height: 12.5, width: 15, alignSelf: 'center', marginTop: 6 }}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: 25,
+                width: 37,
+                backgroundColor: this.state.activeColor2,
+                borderRadius: 2.5
+              }}
+              onPress={() => this.setState({ activeColor2: Colors.appBlueColor, activeColor1: Colors.appWhiteColor })}
+            >
+              <Image
+                source={require('../assets/images/menuicons/squares.png')}
+                style={{ height: 14.5, width: 15, alignSelf: 'center', marginTop: 5 }}
+              />
+            </TouchableOpacity>
           </View>
-          {this.mapPartic(thisTour)}
+          {this.state.activeColor1 === Colors.appBlueColor &&
+            <View>
+              <View style={style.subTitleContainer}>
+                <Text style={style.subTitleText}>Players</Text>
+                <Text style={style.subTitleText}>Matches played</Text>
+              </View>
+              {this.mapPartic(thisTour)}
+            </View>
+          }
+          {this.state.activeColor2 === Colors.appBlueColor &&
+            <View>
+              <View style={style.subTitleContainer}>
+                <Text style={style.subTitleText}>Players</Text>
+              </View>
+              <View style={style.friendsListContainer}>
+                {this.mapParticCard(thisTour)}
+              </View>
+            </View>
+          }
 
           {this.state.isVisible && this.state.isInviteList === true &&
             <Overlay
