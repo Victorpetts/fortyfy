@@ -134,27 +134,42 @@ const UsersStack = createStackNavigator({
   UserProfile: UserProfileScreen
 });
 
-UsersStack.navigationOptions = {
-  tabBarLabel: 'Friends',
-  tabBarIcon: ({ focused }) => (
-    <View style={{
-      paddingTop: 10
-    }}>
-      <Image
-        focused={focused}
-        style={{ height: 25, width: 29 }}
-        resizeMode={'contain'}
-        source={require("../assets/images/tabicons/friends.png")}
-      />
-    </View>
-  ),
-  tabBarOptions: {
-    labelStyle: 'alergia-condensed-regular',
-    activeTintColor: 'white',
-    activeBackgroundColor: Colors.appBlueColor,
-    style: {
-      backgroundColor: Colors.tabBarbackgroundColor,
+UsersStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Friends',
+    tabBarOnPress: () => {
+      // Scroll to top
+      if (navigation.state.index === 0) {
+        const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
+
+        if (!!navigationInRoute && navigationInRoute.isFocused() && !!navigationInRoute.state.params && !!navigationInRoute.state.params.scrollToTop) {
+          navigationInRoute.state.params.scrollToTop();
+        }
+        else {
+          navigation.navigate(navigation.state.key)
+        }
+      }
     },
+    tabBarIcon: ({ focused }) => (
+      <View style={{
+        paddingTop: 10
+      }}>
+        <Image
+          focused={focused}
+          style={{ height: 25, width: 29 }}
+          resizeMode={'contain'}
+          source={require("../assets/images/tabicons/friends.png")}
+        />
+      </View>
+    ),
+    tabBarOptions: {
+      labelStyle: 'alergia-condensed-regular',
+      activeTintColor: 'white',
+      activeBackgroundColor: Colors.appBlueColor,
+      style: {
+        backgroundColor: Colors.tabBarbackgroundColor,
+      },
+    }
   }
 };
 
