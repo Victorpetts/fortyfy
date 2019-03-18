@@ -11,23 +11,15 @@ import style from '../assets/Style.js';
 class LeaderBoardPartic extends Component {
 
   state = {
-    runOnce: true,
     userId: this.props.userId,
     points: this.props.userPoints
   }
 
   componentDidMount() {
-    this.scoreFunc();
-  }
-
-  scoreFunc = () => {
-
     const points = this.state.points;
     const userId = this.state.userId;
 
     this.props.scoreAction(points, userId);
-
-    console.log(userId, points);
   }
 
   render() {

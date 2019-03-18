@@ -14,7 +14,7 @@ const initialState = {
     {
       id: 1,
       name: "Miranda's Tournament",
-      participants: ["1","3","4","5","10"],
+      participants: ["10","4","5","1","3"],
       players: "5",
       wincon: "2",
       totalMatches: "3",
