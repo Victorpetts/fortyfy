@@ -16,30 +16,41 @@ let data = output;
 // const scraper = 'https://evening-taiga-62440.herokuapp.com/';
 
 export default class NewsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'News',
-    headerStyle: {
-      elevation: 0,
-      shadowOpacity: 0,
-      borderBottomWidth: 0,
-      backgroundColor: Colors.appBlackColor,
-      height: 60,
-    },
-    headerTitleStyle: {
-      color: 'white',
-      fontSize: 20,
-      alignSelf: 'center',
-      textAlign: 'center',
-      width: '90%',
-      fontFamily: 'luckiest-guy-regular',
-      fontWeight: '200'
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'News',
+      headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0,
+        backgroundColor: Colors.appBlackColor,
+        height: 60,
+      },
+      headerTitleStyle: {
+        color: 'white',
+        fontSize: 20,
+        alignSelf: 'center',
+        textAlign: 'center',
+        width: '90%',
+        fontFamily: 'luckiest-guy-regular',
+        fontWeight: '200'
+      },
     }
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({
+      scrollToTop: () => {
+        this.flatListRef.scrollToOffset({ animated: true, offset: 0 });
+      }
+    })
   };
 
   render() {
     return (
       <View style={style.mainContainer}>
         <FlatList
+          ref={(ref) => { this.flatListRef = ref; }}
           data={data.slice(0, 10)}
           renderItem={({ item }) => (
             <NewsArticle

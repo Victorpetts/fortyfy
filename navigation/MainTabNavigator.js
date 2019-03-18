@@ -23,30 +23,45 @@ import FinishedScreen from '../screens/FinishedScreen';
 import OngoingScreen from '../screens/OngoingScreen';
 
 const NewsStack = createStackNavigator({
-  News: NewsScreen,
+  News: NewsScreen
 });
 
-NewsStack.navigationOptions = {
-  tabBarLabel: 'News',
-  tabBarIcon: ({ focused }) => (
-    <View style={{
-      paddingTop: 10
-    }}>
-      <Image
-        focused={focused}
-        style={{ height: 25, width: 29 }}
-        resizeMode={'contain'}
-        source={require("../assets/images/tabicons/news.png")} 
-      />
-    </View>
-  ),
-  tabBarOptions: {
-    labelStyle: 'alergia-condensed-regular',
-    activeTintColor: 'white',
-    activeBackgroundColor: Colors.appBlueColor,
-    style: {
-      backgroundColor: Colors.tabBarbackgroundColor
+NewsStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'News',
+    tabBarOnPress: () => {
+      // Scroll to top
+      if (navigation.state.index === 0) {
+        const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
+
+        if (!!navigationInRoute && navigationInRoute.isFocused() && !!navigationInRoute.state.params && !!navigationInRoute.state.params.scrollToTop) {
+          navigationInRoute.state.params.scrollToTop();
+        }
+        else {
+          navigation.navigate(navigation.state.key)
+        }
+      }
     },
+    tabBarIcon: ({ focused }) => (
+      <View style={{
+        paddingTop: 10
+      }}>
+        <Image
+          focused={focused}
+          style={{ height: 25, width: 29 }}
+          resizeMode={'contain'}
+          source={require("../assets/images/tabicons/news.png")}
+        />
+      </View>
+    ),
+    tabBarOptions: {
+      labelStyle: 'alergia-condensed-regular',
+      activeTintColor: 'white',
+      activeBackgroundColor: Colors.appBlueColor,
+      style: {
+        backgroundColor: Colors.tabBarbackgroundColor
+      },
+    }
   }
 };
 
@@ -59,42 +74,57 @@ const TournamentsStack = createStackNavigator({
   TopUserCard: UserCardScreen
 });
 
-TournamentsStack.navigationOptions = {
-  tabBarLabel: 'Tournaments',
-  tabBarIcon: ({ focused }) => (
-    focused ?
-    <View style={{
-      paddingTop: 10
-    }}>
-    <Image
-    focused={focused}
-    style={{ height: 25, width: 29 }}
-    resizeMode={'contain'}
-    source={require("../assets/images/tabicons/tournament.png")} 
-  />
-  </View>
-      :
-      <View style={{
-        paddingTop: 10
-      }}>
-        <View style={style.notificationCircle}>
-        <Text style={style.notificationText}>1</Text>
-        </View>
-        <Image
-      focused={focused}
-      style={{ height: 25, width: 29 }}
-      resizeMode={'contain'}
-      source={require("../assets/images/tabicons/tournament.png")} 
-    />
-      </View>
-  ),
-  tabBarOptions: {
-    labelStyle: 'alergia-condensed-regular',
-    activeTintColor: 'white',
-    activeBackgroundColor: Colors.appBlueColor,
-    style: {
-      backgroundColor: Colors.tabBarbackgroundColor,
+TournamentsStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Tournaments',
+    tabBarOnPress: () => {
+      // Scroll to top
+      if (navigation.state.index === 0) {
+        const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
+
+        if (!!navigationInRoute && navigationInRoute.isFocused() && !!navigationInRoute.state.params && !!navigationInRoute.state.params.scrollToTop) {
+          navigationInRoute.state.params.scrollToTop();
+        }
+        else {
+          navigation.navigate(navigation.state.key)
+        }
+      }
     },
+    tabBarIcon: ({ focused }) => (
+      focused ?
+        <View style={{
+          paddingTop: 10
+        }}>
+          <Image
+            focused={focused}
+            style={{ height: 25, width: 29 }}
+            resizeMode={'contain'}
+            source={require("../assets/images/tabicons/tournament.png")}
+          />
+        </View>
+        :
+        <View style={{
+          paddingTop: 10
+        }}>
+          <View style={style.notificationCircle}>
+            <Text style={style.notificationText}>1</Text>
+          </View>
+          <Image
+            focused={focused}
+            style={{ height: 25, width: 29 }}
+            resizeMode={'contain'}
+            source={require("../assets/images/tabicons/tournament.png")}
+          />
+        </View>
+    ),
+    tabBarOptions: {
+      labelStyle: 'alergia-condensed-regular',
+      activeTintColor: 'white',
+      activeBackgroundColor: Colors.appBlueColor,
+      style: {
+        backgroundColor: Colors.tabBarbackgroundColor,
+      },
+    }
   }
 };
 
@@ -114,11 +144,11 @@ UsersStack.navigationOptions = {
         focused={focused}
         style={{ height: 25, width: 29 }}
         resizeMode={'contain'}
-        source={require("../assets/images/tabicons/friends.png")} 
+        source={require("../assets/images/tabicons/friends.png")}
       />
     </View>
   ),
-  tabBarOptions: {    
+  tabBarOptions: {
     labelStyle: 'alergia-condensed-regular',
     activeTintColor: 'white',
     activeBackgroundColor: Colors.appBlueColor,
@@ -144,7 +174,7 @@ ProfileStack.navigationOptions = {
         focused={focused}
         style={{ height: 25, width: 29 }}
         resizeMode={'contain'}
-        source={require("../assets/images/tabicons/profile.png")} 
+        source={require("../assets/images/tabicons/profile.png")}
       />
     </View>
   ),
