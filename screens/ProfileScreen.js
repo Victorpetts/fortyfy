@@ -11,15 +11,18 @@ import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
-
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'
 
 
 class ProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
-    toggleCards: false
+    toggleCards: false,
+    name: '',
+    someStats: '',
+    someMoreStats: '',
+    loading: false
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -85,10 +88,35 @@ class ProfileScreen extends Component {
 
   };
 
+  componentDidMount = async() => {
+    this.setState({ loading: true });
+
+      const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/Ninja`, {
+        headers:{
+          "TRN-Api-Key": '6d6c58f4-a58f-463c-a049-751ef918f9d1'
+        }
+      });
+
+      const data = await api_call.json();
+      console.log(data);
+
+      if (data.epicUserHandle) {
+        this.setState({
+          name: data.epicUserHandle,
+          someStats: data.lifeTimeStats[1].value,
+          someMoreStats: data.lifeTimeStats[10].value,
+          loading: false
+        });
+      }
+
+  }
+
   render() {
 
     const myId = this.props.users.find(user => user.id === "11");
     const myCard = myId.card;
+
+    const {name, someStats, someMoreStats, loading} = this.state;
 
     return (
 
@@ -106,11 +134,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa mina kort'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    My Card
-                    </Text>
+                  <Text style={style.enabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -121,16 +145,25 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    Card Collection
-                      </Text>
+                  <Text style={style.disabledTabText}>Card Collection</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
             <View style={style.mainContainer}>
+
+              {loading ?
+                <Text style={style.listItemText}>Loading...</Text>
+                :
+                <View>
+                  <Text style={style.listItemText}>{name}</Text>
+                  <Text style={style.listItemText}>Top 3s:</Text>
+                  <Text style={style.listItemText}>{someStats}</Text>
+                  <Text style={style.listItemText}>Kills:</Text>
+                  <Text style={style.listItemText}>{someMoreStats}</Text>
+                </View>
+              }
+
               <View style={{
                 justifyContent: 'center',
                 alignItems: 'center'
@@ -155,11 +188,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa mina kort'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    My Card
-                  </Text>
+                  <Text style={style.disabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -170,11 +199,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    Card Collection
-                    </Text>
+                  <Text style={style.enabledTabText}>Card Collection</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -184,8 +209,8 @@ class ProfileScreen extends Component {
               </View>
             </ScrollView>
           </View>
-
-        ) : null}
+        )
+        : null}
       </View>
 
     )
