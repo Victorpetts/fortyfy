@@ -5,7 +5,8 @@ import {
   ScrollView,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  StatusBar
 } from 'react-native';
 
 import { RoundButton, RoundButtonSmall, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
@@ -46,6 +47,8 @@ class TournamentsScreen extends Component {
   }
 
   componentDidMount(){
+    StatusBar.setHidden(false);
+
     this.props.navigation.setParams({
       scrollToTop: () => {
         this.scrollListReftop.scrollTo({x: 0, y: 0, animated: true})
@@ -136,8 +139,13 @@ class TournamentsScreen extends Component {
     this.setState({ show: !this.state.show })
   }
 
-
   render() {
+
+    const didBlurSubscription = this.props.navigation.addListener(
+      'didFocus',
+      StatusBar.setHidden(false);
+    );
+
     const { navigate } = this.props.navigation;
 
     return (
@@ -148,42 +156,27 @@ class TournamentsScreen extends Component {
           // Renders ongoing tab as active and displays its content
 
           <View>
-            <View
-              style={style.tabBackground}
-            >
-              <View
-                style={style.enabledTab}
-              >
+            <View style={style.tabBackground}>
+              <View style={style.enabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleOngoing()}
                   accessible={true}
                   accessibilityLabel={'Button - Show ongoing tournaments'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    Ongoing
-                  </Text>
+                  <Text style={style.enabledTabText}>Ongoing</Text>
                 </TouchableOpacity>
               </View>
-              <View
-                style={style.disabledTab}
-              >
+              <View style={style.disabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleFinished()}
                   accessible={true}
                   accessibilityLabel={'Button - Show finished tournaments'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    Finished
-                  </Text>
+                  <Text style={style.disabledTabText}>Finished</Text>
                 </TouchableOpacity>
               </View>
             </View>
             <View style={{ paddingBottom: 100 }}>
-
 
               {this.state.show === true ?
 
@@ -245,7 +238,7 @@ class TournamentsScreen extends Component {
 
                 // White overlay is not active
 
-                <ScrollView 
+                <ScrollView
                 ref={(ref) => { this.scrollListReftop = ref; }}
                 style={style.mainContainer}>
 
@@ -322,37 +315,23 @@ class TournamentsScreen extends Component {
           // Renders finished tab as active and displays its content
 
           <View>
-            <View
-              style={style.tabBackground}
-            >
-              <View
-                style={style.disabledTab}
-              >
+            <View style={style.tabBackground}>
+              <View style={style.disabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleOngoing()}
                   accessible={true}
                   accessibilityLabel={'Button - Show ongoing tournaments'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    Ongoing
-                  </Text>
+                  <Text style={style.disabledTabText}>Ongoing</Text>
                 </TouchableOpacity>
               </View>
-              <View
-                style={style.enabledTab}
-              >
+              <View style={style.enabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleFinished()}
                   accessible={true}
                   accessibilityLabel={'Button - Show finished tournaments'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    Finished
-                    </Text>
+                  <Text style={style.enabledTabText}>Finished</Text>
                 </TouchableOpacity>
               </View>
             </View>

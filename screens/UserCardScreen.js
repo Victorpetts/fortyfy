@@ -8,10 +8,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
+
 
 class userCardScreen extends Component {
 
@@ -26,13 +23,11 @@ class userCardScreen extends Component {
   componentWillUnmount() {
     StatusBar.setHidden(false);
   }
-  // funkar inte helt
 
   render() {
+
     const userName = this.props.navigation.getParam('userName');
     const userCard = this.props.navigation.getParam('userCard');
-    const findUser = this.props.users.find( user => user.name === userName );
-    // const card = findUser.card;
 
     return (
       <View>

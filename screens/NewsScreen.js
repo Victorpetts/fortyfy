@@ -3,7 +3,8 @@ import {
   ScrollView,
   View,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  StatusBar
 } from 'react-native';
 
 import { NewsArticle } from '../components/NewsArticle';
@@ -39,6 +40,8 @@ export default class NewsScreen extends React.Component {
   };
 
   componentDidMount() {
+    StatusBar.setHidden(false);
+
     this.props.navigation.setParams({
       scrollToTop: () => {
         this.flatListRef.scrollToOffset({ animated: true, offset: 0 });
@@ -73,4 +76,3 @@ export default class NewsScreen extends React.Component {
     )
   }
 }
-
