@@ -80,6 +80,7 @@ class FinishedScreen extends Component {
           tourId={tourId}
           userPoints={userPoints}
           placement={index + 1}
+          card={user.card}
         />
       )
 
@@ -112,7 +113,10 @@ class FinishedScreen extends Component {
         <View style={{
           flexDirection: 'row',
           width: '100%',
-          justifyContent: 'center'
+          justifyContent: 'space-around',
+          display: 'flex',
+          flexWrap: 'wrap',
+          paddingBottom: 30
         }}>
           {this.mapTop(thisToursPartic, tourId)}
         </View>

@@ -30,7 +30,10 @@ class TopThree extends Component {
         return (
           <View style={{
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            order: 2,
+            flex: 1,
+            width: 300
           }}>
             <Image
               source={require('../assets/images/gold.png')}
@@ -39,7 +42,7 @@ class TopThree extends Component {
             <Text style={style.subTitleText}>{userName}</Text>
             <View style={{ paddingVertical: 3 }}>
               <Image
-                source={require('../assets/images/frame-gold-w-badge.png')}
+                source={this.props.card}
                 style={{ height: 158, width: 106 }}
               />
             </View>
@@ -51,8 +54,7 @@ class TopThree extends Component {
           <View style={{
             flexDirection: 'column',
             alignItems: 'center',
-            paddingTop: 50,
-            paddingHorizontal: 10
+            paddingLeft: 10
           }}>
             <Image
               source={require('../assets/images/silver.png')}
@@ -61,7 +63,7 @@ class TopThree extends Component {
             <Text style={style.subTitleText}>{userName}</Text>
             <View style={{ paddingVertical: 3 }}>
               <Image
-                source={require('../assets/images/frame-green-w-badge.png')}
+                source={this.props.card}
                 style={{ height: 158, width: 106 }}
               />
             </View>
@@ -73,7 +75,8 @@ class TopThree extends Component {
           <View style={{
             flexDirection: 'column',
             alignItems: 'center',
-            paddingTop: 50
+            paddingRight: 10,
+            order: 2
           }}>
             <Image
               source={require('../assets/images/bronze.png')}
@@ -82,7 +85,7 @@ class TopThree extends Component {
             <Text style={style.subTitleText}>{userName}</Text>
             <View style={{ paddingVertical: 3 }}>
               <Image
-                source={require('../assets/images/frame-silver.png')}
+                source={this.props.card}
                 style={{ height: 158, width: 106 }}
               />
             </View>
@@ -111,7 +114,7 @@ class TopThree extends Component {
 
     return (
       <View>
-        {this.topSwitch(placement, userName, newPoints)}
+          {this.topSwitch(placement, userName, newPoints)}
       </View>
     )
   }
@@ -125,4 +128,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {scoreAction})(TopThree);
+export default connect(mapStateToProps, { scoreAction })(TopThree);
