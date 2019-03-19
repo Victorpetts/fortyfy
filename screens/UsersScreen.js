@@ -56,15 +56,6 @@ class UsersScreen extends Component {
     isVisible: false,
     noPopUp: true
   };
-  
-  componentDidMount() {
-    this.props.navigation.setParams({ toggleSearch: this.toggleSearch })
-      this.props.navigation.setParams({
-        scrollToTop: () => {
-          this.scrollListReftop.scrollTo({x: 0, y: 0, animated: true})
-        }
-      })
-  };
 
   toggleSearch = () => {
     this.setState({
@@ -130,9 +121,7 @@ class UsersScreen extends Component {
 
     return (
       <View>
-        <ScrollView
-           ref={(ref) => { this.scrollListReftop = ref; }}
-          style={style.mainContainer}>
+        <ScrollView style={style.mainContainer}>
           <View>
             <FriendsList
               navigation={this.props.navigation}

@@ -77,19 +77,6 @@ const TournamentsStack = createStackNavigator({
 TournamentsStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Tournaments',
-    tabBarOnPress: () => {
-      // Scroll to top
-      if (navigation.state.index === 0) {
-        const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
-
-        if (!!navigationInRoute && navigationInRoute.isFocused() && !!navigationInRoute.state.params && !!navigationInRoute.state.params.scrollToTop) {
-          navigationInRoute.state.params.scrollToTop();
-        }
-        else {
-          navigation.navigate(navigation.state.key)
-        }
-      }
-    },
     tabBarIcon: ({ focused }) => (
       focused ?
         <View style={{
@@ -137,19 +124,6 @@ const UsersStack = createStackNavigator({
 UsersStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: 'Friends',
-    tabBarOnPress: () => {
-      // Scroll to top
-      if (navigation.state.index === 0) {
-        const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
-
-        if (!!navigationInRoute && navigationInRoute.isFocused() && !!navigationInRoute.state.params && !!navigationInRoute.state.params.scrollToTop) {
-          navigationInRoute.state.params.scrollToTop();
-        }
-        else {
-          navigation.navigate(navigation.state.key)
-        }
-      }
-    },
     tabBarIcon: ({ focused }) => (
       <View style={{
         paddingTop: 10

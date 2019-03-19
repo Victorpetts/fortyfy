@@ -45,14 +45,6 @@ class TournamentsScreen extends Component {
     inviteClicked: false
   }
 
-  componentDidMount(){
-    this.props.navigation.setParams({
-      scrollToTop: () => {
-        this.scrollListReftop.scrollTo({x: 0, y: 0, animated: true})
-      }
-    })
-  }
-
   inviteTour = () => {
     let newTour = {
       'id': 6,
@@ -245,9 +237,7 @@ class TournamentsScreen extends Component {
 
                 // White overlay is not active
 
-                <ScrollView 
-                ref={(ref) => { this.scrollListReftop = ref; }}
-                style={style.mainContainer}>
+                <ScrollView style={style.mainContainer}>
 
                   <Text style={style.goldenText}>Sponsored</Text>
                   {this.mapSponsoredTours()}
