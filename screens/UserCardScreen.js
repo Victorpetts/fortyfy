@@ -18,12 +18,17 @@ class userCardScreen extends Component {
   };
 
   componentDidMount() {
-    StatusBar.setHidden(true);
+    this.subs = [
+      this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
+      this.props.navigation.addListener('didBlur', () => StatusBar.setHidden(false)),
+    ];
   }
 
   componentWillUnmount() {
-    StatusBar.setHidden(false);
-  }
+    this.subs.forEach((sub) => {
+      sub.remove();
+    });
+  } 
 
   render() {
 

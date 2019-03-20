@@ -56,14 +56,9 @@ class UsersScreen extends Component {
     isVisible: false,
     noPopUp: true
   };
-  
+
   componentDidMount() {
     this.props.navigation.setParams({ toggleSearch: this.toggleSearch })
-      this.props.navigation.setParams({
-        scrollToTop: () => {
-          this.scrollListReftop.scrollTo({x: 0, y: 0, animated: true})
-        }
-      })
   };
 
   toggleSearch = () => {

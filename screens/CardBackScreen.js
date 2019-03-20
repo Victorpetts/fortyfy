@@ -31,14 +31,18 @@ class cardBackScreen extends Component {
 
   componentDidMount = async() => {
 
-    StatusBar.setHidden(true);
+    this.subs = [
+      this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
+      this.props.navigation.addListener('didBlur', () => StatusBar.setHidden(false)),
+    ];
+
     this.setState({ loading: true });
 
     const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/Ninja`, {
       headers:{
         "TRN-Api-Key": '6d6c58f4-a58f-463c-a049-751ef918f9d1'
       }
-    });
+  });
 
     const data = await api_call.json();
     console.log(data);
@@ -59,7 +63,9 @@ class cardBackScreen extends Component {
   }
 
   componentWillUnmount() {
-    StatusBar.setHidden(false);
+    this.subs.forEach((sub) => {
+      sub.remove();
+    });
   }
 
   render() {

@@ -46,15 +46,20 @@ class TournamentsScreen extends Component {
     inviteClicked: false
   }
 
-  componentDidMount(){
-    StatusBar.setHidden(false);
 
-    this.props.navigation.setParams({
-      scrollToTop: () => {
-        this.scrollListReftop.scrollTo({x: 0, y: 0, animated: true})
-      }
-    })
-  }
+  // componentDidMount() {
+  //   this.subs = [
+  //     this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
+  //     this.props.navigation.addListener('didBlur', () => StatusBar.setHidden(false)),
+  //   ];
+  // }
+  //
+  // componentWillUnmount() {
+  //   this.subs.forEach((sub) => {
+  //     sub.remove();
+  //   });
+  // }
+
 
   inviteTour = () => {
     let newTour = {
@@ -145,7 +150,6 @@ class TournamentsScreen extends Component {
     //   'didFocus',
     //   StatusBar.setHidden(false);
     // );
-    // work in progress
 
     const { navigate } = this.props.navigation;
 
