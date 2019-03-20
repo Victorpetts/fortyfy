@@ -4,22 +4,26 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
-
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'
 
 
 class ProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
-    toggleCards: false
+    toggleCards: false,
+    name: '',
+    someStats: '',
+    someMoreStats: '',
+    loading: false
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -107,11 +111,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa mina kort'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    My Card
-                    </Text>
+                  <Text style={style.enabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -122,16 +122,13 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    Card Collection
-                      </Text>
+                  <Text style={style.disabledTabText}>Card Collection</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
             <View style={style.mainContainer}>
+
               <View style={{
                 justifyContent: 'center',
                 alignItems: 'center'
@@ -156,11 +153,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa mina kort'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    My Card
-                  </Text>
+                  <Text style={style.disabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -171,11 +164,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    Card Collection
-                    </Text>
+                  <Text style={style.enabledTabText}>Card Collection</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -185,8 +174,8 @@ class ProfileScreen extends Component {
               </View>
             </ScrollView>
           </View>
-
-        ) : null}
+        )
+        : null}
       </View>
 
     )

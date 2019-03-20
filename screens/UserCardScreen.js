@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  View,
   Text,
   ImageBackground,
   StatusBar,
   Animated,
-  TouchableWithoutFeedback
+  TouchableOpacity
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -23,13 +22,17 @@ class userCardScreen extends Component {
   }
 
   componentDidMount() {
-    StatusBar.setHidden(true);
+    this.subs = [
+      this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
+      this.props.navigation.addListener('didBlur', () => StatusBar.setHidden(false)),
+    ];
   }
 
   componentWillUnmount() {
-    StatusBar.setHidden(false);
-  }
-  // funkar inte helt
+    this.subs.forEach((sub) => {
+      sub.remove();
+    });
+  } 
 
   startAnimation = () => {
     Animated.timing(this.state.animation, {
@@ -52,27 +55,20 @@ class userCardScreen extends Component {
       ]
     }
 
-    const userName = this.props.navigation.getParam('userName');
+    const userId = this.props.navigation.getParam('userId');
     const userCard = this.props.navigation.getParam('userCard');
-    const findUser = this.props.users.find(user => user.name === userName);
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userName = thisUser.name;
     // const card = findUser.card;
 
     return (
-      <TouchableWithoutFeedback
-        onPress={this.startAnimation}
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('CardBack', { userId: userId })}
       >
-        <Animated.View style={animatedStyles}>
-          <ImageBackground 
-          
-          source={
-            this.state.flip === false ?
-            userCard
-          : require('../assets/images/playercards/playercard-blue-frame.png')
-          } style={{ width: '100%', height: '100%' }}>
-            <Text style={style.cardText}>{userName}</Text>
-          </ImageBackground>
-        </Animated.View>
-      </TouchableWithoutFeedback>
+        <ImageBackground source={userCard} style={{width: '100%', height: '100%'}}>
+          <Text style={style.cardText}>{userName}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
     )
   }
 

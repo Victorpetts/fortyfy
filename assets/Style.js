@@ -101,7 +101,7 @@ export default StyleSheet.create({
     height: 38.5,
     zIndex: 1000
   },
-  
+
   roundButtonPos: {
     position: 'absolute',
     bottom: 120,
@@ -268,7 +268,7 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-light',
     color: Colors.appBlackColor,
   },
-  
+
   articleLink: {
     textAlign: 'center',
     fontFamily: 'alergia-normal-regular',
@@ -424,18 +424,18 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-semibold'
   },
 
-  badgeText: { 
-    position: 'absolute', 
-    top: 2, 
-    fontSize: 8, 
-    color: Colors.appWhiteColor, 
+  badgeText: {
+    position: 'absolute',
+    top: 2,
+    fontSize: 8,
+    color: Colors.appWhiteColor,
     fontFamily: 'alergia-normal-semibold'
   },
 
-  userBigContainer: { 
-    flexDirection: 'row', 
-    width: '100%', 
-    flex: 1, 
+  userBigContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    flex: 1,
     padding: 5
   },
 
@@ -449,27 +449,27 @@ export default StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  bigImageContainer: { 
+  bigImageContainer: {
     padding: 5,
     alignSelf: 'center'
   },
 
   smallImageContainer: {
-      padding: 5, 
+      padding: 5,
       alignSelf: 'center'
   },
 
-  bigListItemContainer: { 
-    flexDirection: 'column', 
-    flex: 1, 
-    alignItems: 'center', 
-    paddingBottom: 5 
+  bigListItemContainer: {
+    flexDirection: 'column',
+    flex: 1,
+    alignItems: 'center',
+    paddingBottom: 5
   },
 
-  smallListItemContainer: { 
-    flexDirection: 'column', 
-    flex: 1, 
-    paddingTop: 5 
+  smallListItemContainer: {
+    flexDirection: 'column',
+    flex: 1,
+    paddingTop: 5
   },
 
   userSquareContainer: {
@@ -496,10 +496,10 @@ export default StyleSheet.create({
     height: '100%'
   },
 
-  friendsListContainer: { 
-    flexDirection: 'row', 
+  friendsListContainer: {
+    flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-evenly', 
+    justifyContent: 'space-evenly',
     paddingBottom: '5%'
   },
 
@@ -519,11 +519,11 @@ export default StyleSheet.create({
     marginRight: '5%'
   },
 
-  crownContainer: { 
-    position: 'absolute', 
-    top: 0, 
-    left: 0, 
-    zIndex: 100, 
+  crownContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 100,
     transform: [{ rotate: '340deg'}]
   },
 
@@ -583,10 +583,10 @@ export default StyleSheet.create({
     height: 130
   },
 
-  singleButtonContainer: { 
-    width: '100%', 
-    alignItems: 'center', 
-    padding: 10 
+  singleButtonContainer: {
+    width: '100%',
+    alignItems: 'center',
+    padding: 10
   },
 
   doubleButtonContainer: {
@@ -595,9 +595,9 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
 
-  smallButtonContainer: { 
-    flexDirection: 'column', 
-    padding: 5, 
+  smallButtonContainer: {
+    flexDirection: 'column',
+    padding: 5,
     justifyContent: 'space-around'
   },
 
@@ -660,8 +660,8 @@ export default StyleSheet.create({
 
   enabledTabText: {
     color: "#fff",
-    padding: 10,
-    fontSize: 20,
+    paddingBottom: 10,
+    fontSize: 18,
     fontStyle: "normal",
     letterSpacing: 0.31,
     textAlign: "center",
@@ -670,8 +670,8 @@ export default StyleSheet.create({
 
   disabledTabText: {
     color: "#fff",
-    padding: 10,
-    fontSize: 20,
+    paddingBottom: 10,
+    fontSize: 18,
     opacity: 0.6,
     fontStyle: "normal",
     letterSpacing: 0.31,
@@ -749,7 +749,7 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
 
-  divider: { 
+  divider: {
     padding: 10,
     margin: 10,
     alignSelf: 'center',

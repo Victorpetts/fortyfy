@@ -57,6 +57,10 @@ class UsersScreen extends Component {
     noPopUp: true
   };
 
+  componentDidMount() {
+    this.props.navigation.setParams({ toggleSearch: this.toggleSearch })
+  };
+
   toggleSearch = () => {
     this.setState({
       isVisible: !this.state.isVisible

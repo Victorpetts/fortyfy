@@ -35,7 +35,7 @@ class User extends Component {
           <View style={style.userBigContainer}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('UserCard', {
-                userName: userName,
+                userId: userId,
                 userCard: userCard
               })}
             >
