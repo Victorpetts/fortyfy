@@ -4,7 +4,8 @@ import {
     View,
     Text,
     ImageBackground,
-    StatusBar
+    StatusBar,
+    TouchableOpacity
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -26,16 +27,20 @@ class userCardScreen extends Component {
 
   render() {
 
-    const userName = this.props.navigation.getParam('userName');
+    const userId = this.props.navigation.getParam('userId');
     const userCard = this.props.navigation.getParam('userCard');
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userName = thisUser.name;
 
     return (
-      <View>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('CardBack', { userId: userId })}
+      >
         <ImageBackground source={userCard} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
-      </View>
-    )
+      </TouchableOpacity>
+  )
   }
 
 }

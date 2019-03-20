@@ -141,10 +141,11 @@ class TournamentsScreen extends Component {
 
   render() {
 
-    const didBlurSubscription = this.props.navigation.addListener(
-      'didFocus',
-      StatusBar.setHidden(false);
-    );
+    // const didBlurSubscription = this.props.navigation.addListener(
+    //   'didFocus',
+    //   StatusBar.setHidden(false);
+    // );
+    // work in progress
 
     const { navigate } = this.props.navigation;
 

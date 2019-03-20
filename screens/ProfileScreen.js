@@ -89,37 +89,35 @@ class ProfileScreen extends Component {
 
   };
 
-  componentDidMount = async() => {
-
-    StatusBar.setHidden(false);
-    this.setState({ loading: true });
-
-    const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/Ninja`, {
-      headers:{
-        "TRN-Api-Key": '6d6c58f4-a58f-463c-a049-751ef918f9d1'
-      }
-    });
-
-    const data = await api_call.json();
-    console.log(data);
-
-    if (data.epicUserHandle) {
-      this.setState({
-        name: data.epicUserHandle,
-        someStats: data.lifeTimeStats[1].value,
-        someMoreStats: data.lifeTimeStats[10].value,
-        loading: false
-      });
-    }
-
-  }
+  // componentDidMount = async() => {
+  //
+  //   StatusBar.setHidden(false);
+  //   this.setState({ loading: true });
+  //
+  //   const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/Ninja`, {
+  //     headers:{
+  //       "TRN-Api-Key": '6d6c58f4-a58f-463c-a049-751ef918f9d1'
+  //     }
+  //   });
+  //
+  //   const data = await api_call.json();
+  //   console.log(data);
+  //
+  //   if (data.epicUserHandle) {
+  //     this.setState({
+  //       name: data.epicUserHandle,
+  //       someStats: data.lifeTimeStats[1].value,
+  //       someMoreStats: data.lifeTimeStats[10].value,
+  //       loading: false
+  //     });
+  //   }
+  //
+  // }
 
   render() {
 
     const myId = this.props.users.find(user => user.id === "11");
     const myCard = myId.card;
-
-    const {name, someStats, someMoreStats, loading} = this.state;
 
     return (
 
@@ -154,18 +152,6 @@ class ProfileScreen extends Component {
             </View>
 
             <View style={style.mainContainer}>
-
-              {loading ?
-                <Text style={style.listItemText}>Loading...</Text>
-                :
-                <View>
-                  <Text style={style.listItemText}>{name}</Text>
-                  <Text style={style.listItemText}>Top 3s:</Text>
-                  <Text style={style.listItemText}>{someStats}</Text>
-                  <Text style={style.listItemText}>Kills:</Text>
-                  <Text style={style.listItemText}>{someMoreStats}</Text>
-                </View>
-              }
 
               <View style={{
                 justifyContent: 'center',

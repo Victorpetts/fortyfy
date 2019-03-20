@@ -17,6 +17,7 @@ import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import UserCardScreen from '../screens/UserCardScreen';
+import CardBackScreen from '../screens/CardBackScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 import CreateTourScreen from '../screens/CreateTourScreen';
 import FinishedScreen from '../screens/FinishedScreen';
@@ -131,6 +132,7 @@ TournamentsStack.navigationOptions = ({ navigation }) => {
 const UsersStack = createStackNavigator({
   Links: UsersScreen,
   UserCard: UserCardScreen,
+  CardBack: CardBackScreen,
   UserProfile: UserProfileScreen
 });
 
@@ -176,6 +178,7 @@ UsersStack.navigationOptions = ({ navigation }) => {
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
   IndvUserCard: UserCardScreen,
+  CardBack: CardBackScreen,
   ProfileSettings: ProfileSettingScreen
 });
 
