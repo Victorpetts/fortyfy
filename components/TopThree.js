@@ -75,8 +75,7 @@ class TopThree extends Component {
           <View style={{
             flexDirection: 'column',
             alignItems: 'center',
-            paddingRight: 10,
-            order: 2
+            paddingRight: 10
           }}>
             <Image
               source={require('../assets/images/bronze.png')}

@@ -112,7 +112,8 @@ class FinishedScreen extends Component {
 
         <View style={{
           flexDirection: 'row',
-          width: '100%',
+          width: '95%',
+          alignSelf: 'center',
           justifyContent: 'space-around',
           display: 'flex',
           flexWrap: 'wrap',

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -11,7 +12,18 @@ import style from '../assets/Style.js';
 class CardCollection extends Component {
 
   state = {
-    image: this.props.card
+    image: this.props.card,
+    animateItem: new Animated.Value(0),
+  }
+
+  componentDidMount() {
+    const { index } = this.props
+
+    Animated.timing(this.state.animateItem, {
+      toValue: 1,
+      duration: 1000,
+      delay: index * 100
+    }).start()
   }
 
   render() {
@@ -21,7 +33,15 @@ class CardCollection extends Component {
 
     return (
 
-      <View style={style.indvCardContainer}>
+      <Animated.View style={[style.indvCardContainer,
+        {transform: [
+          {
+            translateY: this.state.animateItem.interpolate({
+              inputRange: [0, 1],
+              outputRange: [700, 1]
+            }) 
+          }
+        ]}]}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('IndvUserCard', {
             userName: userName,
@@ -33,7 +53,7 @@ class CardCollection extends Component {
             style={{ height: 150, width: 100 }}
           />
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     )
   }
 }
