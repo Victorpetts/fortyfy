@@ -1,3 +1,6 @@
+// Används inte
+
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -53,7 +56,7 @@ class cardBackScreen extends Component {
     Animated.spring(this.state.animation, {
       toValue: 180,
       friction: 8,
-      tension: 20
+      tension: 10
     }).start();
 
     if (data.epicUserHandle) {

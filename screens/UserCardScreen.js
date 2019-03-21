@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Text,
-  ImageBackground,
+  View,
   StatusBar,
   Animated,
-  TouchableOpacity,
   TouchableWithoutFeedback
 } from 'react-native';
 
 import style from '../assets/Style.js';
+import CardFront from '../components/CardFront.js';
+import CardBack from '../components/CardBack.js';
 
 class userCardScreen extends Component {
 
@@ -18,42 +18,74 @@ class userCardScreen extends Component {
   };
 
   state = {
-    animation: new Animated.Value(0),
     flip: false
   }
 
-  componentDidMount() {
-    this.subs = [
-      this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
-      this.props.navigation.addListener('didBlur', () => StatusBar.setHidden(false)),
-    ];
+  componentWillMount() {
+    this.animatedValue = new Animated.Value(0);
+    this.value = 0;
+    this.animatedValue.addListener(({ value }) => {
+      this.value = value;
+    })
+    this.frontInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['0deg', '180deg'],
+    })
+    this.backInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['180deg', '360deg']
+    })
+    this.frontOpacity = this.animatedValue.interpolate({
+      inputRange: [89, 90],
+      outputRange: [1, 0]
+    })
+    this.backOpacity = this.animatedValue.interpolate({
+      inputRange: [89, 90],
+      outputRange: [0, 1]
+    })
   }
 
-  componentWillUnmount() {
-    this.subs.forEach((sub) => {
-      sub.remove();
-    });
-  } 
+  flipCard() {
+    if (this.value >= 90) {
+      Animated.spring(this.animatedValue, {
+        toValue: 0,
+        friction: 8,
+        tension: 10
+      }).start();
+    } else {
+      Animated.spring(this.animatedValue, {
+        toValue: 180,
+        friction: 8,
+        tension: 10
+      }).start();
+    }
 
-  startAnimation = async (userId) => {
-    await Animated.spring(this.state.animation, {
-      toValue: 90,
-      friction: 8,
-      tension: 20
-    }).start();
-    this.props.navigation.navigate('CardBack', { userId: userId })
   }
 
   render() {
 
-    const rotateInterpolate = this.state.animation.interpolate({
-      inputRange: [0, 90],
-      outputRange: ['0deg', '90deg']
-    })
-    const animatedStyles = {
+    const frontAnimatedStyles = {
+      backfaceVisibility: 'hidden',
+      alignItems: 'center',
+      justifyContent: 'center',
       transform: [
         {
-          rotateY: rotateInterpolate
+          rotateY: this.frontInterpolate
+        }
+      ]
+    }
+
+    const backAnimatedStyles = {
+      backfaceVisibility: 'hidden',
+      position: 'absolute',
+      alignItems: 'center',
+      justifyContent: 'center',
+      top: 0,
+      height: '100%',
+      width: '100%',
+      transform: [
+        {
+          rotateY: this.backInterpolate
         }
       ]
     }
@@ -67,15 +99,36 @@ class userCardScreen extends Component {
     // const card = findUser.card;
 
     return (
-      <TouchableWithoutFeedback
-        onPress={this.startAnimation}
-      >
-      <Animated.View style={animatedStyles}>
-        <ImageBackground source={userCard} style={{width: '100%', height: '100%'}}>
-          <Text style={style.cardText}>{userName}</Text>
-        </ImageBackground>
-        </Animated.View>
-      </TouchableWithoutFeedback>
+      <View style={{
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
+        <TouchableWithoutFeedback
+          style={{ height: '100%', width: '100%' }}
+          onPress={() => this.flipCard()}
+        >
+          <View style={{ height: '100%', width: '100%' }}>
+          <Animated.View style={[frontAnimatedStyles, {opacity: this.frontOpacity}]}>
+              <CardFront
+                userName={userName}
+                userCard={userCard}
+                userId={this.props.userId}
+              />
+            </Animated.View>
+            <Animated.View style={[backAnimatedStyles, {opacity: this.backOpacity}]}>
+              <CardBack
+                userName={userName}
+                userCard={userCard}
+                navigation={this.props.navigation}
+                userId={this.props.userId}
+              />
+            </Animated.View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     )
   }
 
