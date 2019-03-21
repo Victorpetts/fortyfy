@@ -9,10 +9,10 @@ import {
   StatusBar
 } from 'react-native';
 
-import { 
-  RoundButton, 
-  RoundButtonSmall, 
-  TourButtonMedium, 
+import {
+  RoundButton,
+  RoundButtonSmall,
+  TourButtonMedium,
   TourButtonMediumRed
 } from '../components/Buttons.js';
 import Tour from '../components/Tour.js';

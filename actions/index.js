@@ -63,3 +63,10 @@ export const scoreAction = (points, userId) => {
     }
   };
 };
+
+export const addPlayer = tourId => {
+  return {
+    type: 'PLAYER_ADDED',
+    payload: tourId
+  };
+};

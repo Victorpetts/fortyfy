@@ -62,6 +62,7 @@ class userCardScreen extends Component {
     const userId = this.props.navigation.getParam('userId');
     const userCard = this.props.navigation.getParam('userCard');
     const thisUser = this.props.users.find(user => user.id === userId);
+    const ingameName = thisUser.ingameName;
 
     // this.props.navigation.navigate('CardBack', { userId: userId })
     // const card = findUser.card;

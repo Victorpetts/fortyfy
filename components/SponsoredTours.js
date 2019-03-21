@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addPlayer } from '../actions';
 import {
   View,
   Image,
@@ -10,6 +11,7 @@ import { TourButton, TourButtonGold } from './Buttons.js';
 
 import style from '../assets/Style.js';
 import TourInfoSection from './TourInfoSection.js';
+
 
 class SponsoredTours extends Component {
 
@@ -28,6 +30,14 @@ class SponsoredTours extends Component {
       })
     }
 
+    buttonFunc = () => {
+
+      const tourId = this.props.id;
+
+      this.props.addPlayer(tourId);
+      this.setState({ pressed: true })
+    }
+
     return (
 
       <View style={style.itemContainerGoldBorder}>
@@ -38,20 +48,20 @@ class SponsoredTours extends Component {
             {this.state.pressed === false ?
               <TourButtonGold
                 buttonTitle={'Join tournament'}
-                buttonFunc={() => this.setState({ pressed: true })}
+                buttonFunc={buttonFunc}
               />
               :
-              <TourButton 
-              buttonTitle={'View tournament'}
-              buttonFunc={navigateToOngoing}
-               />
-              
+              <TourButton
+                buttonTitle={'View tournament'}
+                buttonFunc={navigateToOngoing}
+             />
             }
           </View>
       </View>
     )
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     tours: state.tours,
@@ -59,4 +69,4 @@ const mapStateToProps = (state) => {
    };
 };
 
-export default connect(mapStateToProps, null)(SponsoredTours);
+export default connect(mapStateToProps, { addPlayer })(SponsoredTours);

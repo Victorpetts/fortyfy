@@ -41,7 +41,9 @@ class cardBackScreen extends Component {
 
     this.setState({ loading: true });
 
-    const ingameName = this.props.navigation.getParam('ingameName');
+    const userId = this.props.navigation.getParam('userId');
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const ingameName = thisUser.ingameName;
 
     const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/${ingameName}`, {
       headers:{

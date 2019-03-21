@@ -48,21 +48,20 @@ class TourInfoSection extends Component {
           justifyContent: 'space-between'
         }}>
           {sponsorTour === true ?
-          <View style={{ margin: 10 }}>
-            <Image
-              source={require('../assets/images/redbullcom-logo.png')}
-              style={{
-                height: 30,
-                width: 150,
-                position: 'absolute'
-              }} />
+            <View style={{ margin: 10 }}>
+              <Image
+                source={require('../assets/images/redbullcom-logo.png')}
+                style={{
+                  height: 30,
+                  width: 150,
+                  position: 'absolute'
+                }}
+              />
               </View>
             :
             <Text style={style.itemText}>{tourName}</Text>
           }
-          <Text style={style.itemText}>
-            {totalMatches} matches
-                </Text>
+          <Text style={style.itemText}>{totalMatches} matches</Text>
         </View>
         <View style={style.tourContainer}>
           <View style={{

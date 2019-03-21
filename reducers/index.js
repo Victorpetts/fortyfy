@@ -50,7 +50,7 @@ const initialState = {
     {
       id: 5,
       name: "",
-      participants: ["1","2","3","4","5","6","7","8","9","10","11"],
+      participants: ["1","2","3","4","5","6","7","8","9","10"],
       players: "400",
       wincon: "2",
       totalMatches: "10",
@@ -104,7 +104,7 @@ const initialState = {
       id: "3",
       name: "Michirisu",
       lvl: "89",
-      matchStatistics: [new match(1,"3",40), new match(3,"2",26), new match(5,"2",26), new match(7,"4",19)],
+      matchStatistics: [new match(1,"3",40), new match(3,"2",26), new match(5,"10",26), new match(7,"4",19)],
       checkBox: false,
       friends: ["1","2"],
       friend: true,
@@ -124,7 +124,7 @@ const initialState = {
       status: "friend",
       card: require("../assets/images/playercards/playercard-special-go-bananas.png"),
       currentPoints: 0,
-      ingameName: "WézL"
+      ingameName: "nixxxay"
      },
     {
       id: "5",
@@ -235,6 +235,17 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
       let newToursArr = [...oldArr, action.payload]
       return newToursArr;
 
+    case'PLAYER_ADDED':
+      return oldArr.map((item, index) => {
+        if(item.id === action.payload) {
+          return {
+            ...item,
+            participants: ["1","2","3","4","5","6","7","8","9","10","11"]
+          }
+        }
+        return item;
+      });
+
     case 'TOURNAMENT_ENDED':
       return oldArr.map((item, index) => {
         if(item.name === action.payload) {
@@ -328,6 +339,5 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
 export default combineReducers ({
   tours: toursReducer,
-  // partic: particReducer,
   users: usersReducer
 });
