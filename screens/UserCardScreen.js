@@ -5,7 +5,8 @@ import {
   ImageBackground,
   StatusBar,
   Animated,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -34,18 +35,20 @@ class userCardScreen extends Component {
     });
   } 
 
-  startAnimation = () => {
-    Animated.timing(this.state.animation, {
-      toValue: 180,
-      duration: 1500
+  startAnimation = async (userId) => {
+    await Animated.spring(this.state.animation, {
+      toValue: 90,
+      friction: 8,
+      tension: 20
     }).start();
+    this.props.navigation.navigate('CardBack', { userId: userId })
   }
 
   render() {
 
     const rotateInterpolate = this.state.animation.interpolate({
-      inputRange: [0, 180],
-      outputRange: ['0deg', '180deg']
+      inputRange: [0, 90],
+      outputRange: ['0deg', '90deg']
     })
     const animatedStyles = {
       transform: [
@@ -55,20 +58,24 @@ class userCardScreen extends Component {
       ]
     }
 
+    const userName = this.props.navigation.getParam('userName');
     const userId = this.props.navigation.getParam('userId');
     const userCard = this.props.navigation.getParam('userCard');
     const thisUser = this.props.users.find(user => user.id === userId);
-    const userName = thisUser.name;
+
+    // this.props.navigation.navigate('CardBack', { userId: userId })
     // const card = findUser.card;
 
     return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('CardBack', { userId: userId })}
+      <TouchableWithoutFeedback
+        onPress={this.startAnimation}
       >
+      <Animated.View style={animatedStyles}>
         <ImageBackground source={userCard} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>
         </ImageBackground>
-      </TouchableOpacity>
+        </Animated.View>
+      </TouchableWithoutFeedback>
     )
   }
 

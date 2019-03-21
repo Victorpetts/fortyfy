@@ -97,7 +97,7 @@ class ProfileScreen extends Component {
 
     return (
 
-      <View style={{ height: '100%' }}>
+      <View>
         {this.state.toggleProfile ? (
           <View>
             <View
