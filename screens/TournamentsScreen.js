@@ -9,7 +9,12 @@ import {
   StatusBar
 } from 'react-native';
 
-import { RoundButton, RoundButtonSmall, TourButtonMedium, TourButtonMediumRed } from '../components/Buttons.js';
+import { 
+  RoundButton, 
+  RoundButtonSmall, 
+  TourButtonMedium, 
+  TourButtonMediumRed
+} from '../components/Buttons.js';
 import Tour from '../components/Tour.js';
 import TourInfoMockUp from '../components/TourInfoMockUp.js';
 import SponsoredTours from '../components/SponsoredTours.js';
@@ -161,7 +166,7 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{ paddingBottom: 100 }}>
+            <View style={{ paddingBottom: 75 }}>
 
               {this.state.show === true ?
 

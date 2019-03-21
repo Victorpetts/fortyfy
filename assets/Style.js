@@ -104,7 +104,7 @@ export default StyleSheet.create({
 
   roundButtonPos: {
     position: 'absolute',
-    bottom: 120,
+    bottom: 90,
     right: 10
   },
 
@@ -235,6 +235,25 @@ export default StyleSheet.create({
     marginTop: 5,
     marginLeft: 9,
     flex: 1
+  },
+
+  backCardTitle: {
+    fontSize: 20,
+    fontFamily: 'alergia-normal-semibold',
+    color: Colors.appBlueColor
+  },
+
+  backCardText: {
+    fontSize: 16,
+    fontFamily: 'alergia-normal-light'
+  },
+
+  backCardRow: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    padding: 5, 
+    justifyContent: 'space-evenly', 
+    width: '90%'
   },
 
   listItemText: {
