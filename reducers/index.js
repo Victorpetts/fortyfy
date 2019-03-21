@@ -60,7 +60,7 @@ const initialState = {
       owner: "12",
       sponsor: true
     },
-    
+
   ],
   usersArr:[
     {
@@ -73,18 +73,21 @@ const initialState = {
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-special-unicorns-rainbows.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "Jayste"
     },
     {
       id: "2",
       name: "Antonius",
       lvl: "13",
       matchStatistics: [new match(3,"6",43), new match(5,"7",55)],
-      checkBox: false, friends: ["3","4","5","9"],
+      checkBox: false,
+      friends: ["3","4","5","9"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-special-gems.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "Ninja"
     },
     {
       id: "3",
@@ -96,7 +99,8 @@ const initialState = {
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-special-magic.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "ScreeFN"
     },
     {
       id: "4",
@@ -108,7 +112,8 @@ const initialState = {
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-special-go-bananas.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "WézL"
      },
     {
       id: "5",
@@ -120,7 +125,8 @@ const initialState = {
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-special-cheeta.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "cRaBBLe%20McShiet"
     },
     {
       id: "6",
@@ -132,7 +138,8 @@ const initialState = {
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-green-frame-badge.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "MrDoom."
     },
     {
       id: "7",
@@ -144,7 +151,8 @@ const initialState = {
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/playercard-silver-frame-bg.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "Twitch-Ettnix"
     },
     {
       id: "8",
@@ -156,7 +164,8 @@ const initialState = {
       friend: false,
       status: "notFriend",
       card: require("../assets/images/playercards/playercard-silver-frame.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "ESL%20StancodTV"
     },
     {
       id: "9",
@@ -168,7 +177,8 @@ const initialState = {
       friend: false,
       status: "notFriend",
       card: require("../assets/images/playercards/playercard-special-mr-roboto.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "E11%20BlooTea"
     },
     {
       id: "10",
@@ -180,7 +190,8 @@ const initialState = {
       friend: false,
       status: "notFriend",
       card: require("../assets/images/playercards/playercard-special-scary.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "WBG%20Ranger"
     },
     {
       id: "11",
@@ -192,7 +203,8 @@ const initialState = {
       friend: '',
       status: '',
       card: require("../assets/images/playercards/playercard-special-gold.png"),
-      currentPoints: 0
+      currentPoints: 0,
+      ingameName: "TTV.Uwatakashi"
     },
     {
       id: "12",

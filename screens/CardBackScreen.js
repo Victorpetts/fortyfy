@@ -38,7 +38,9 @@ class cardBackScreen extends Component {
 
     this.setState({ loading: true });
 
-    const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/Ninja`, {
+    const ingameName = this.props.navigation.getParam('ingameName');
+
+    const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/${ingameName}`, {
       headers:{
         "TRN-Api-Key": '6d6c58f4-a58f-463c-a049-751ef918f9d1'
       }
@@ -86,7 +88,7 @@ class cardBackScreen extends Component {
             </View>
             :
             <View style={{ marginTop: 40 }}>
-              <Text style={style.listItemText}>{name}</Text>
+              <Text style={style.listItemText}>{userName}</Text>
               <Text style={style.listItemText}>Top 5s:</Text>
               <Text style={style.listItemText}>{top5Stat}</Text>
               <Text style={style.listItemText}>Kills:</Text>

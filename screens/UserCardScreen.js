@@ -32,7 +32,7 @@ class userCardScreen extends Component {
     this.subs.forEach((sub) => {
       sub.remove();
     });
-  } 
+  }
 
   startAnimation = () => {
     Animated.timing(this.state.animation, {
@@ -59,11 +59,16 @@ class userCardScreen extends Component {
     const userCard = this.props.navigation.getParam('userCard');
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
+    const ingameName = thisUser.ingameName;
     // const card = findUser.card;
 
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('CardBack', { userId: userId })}
+        onPress={() => this.props.navigation.navigate('CardBack',
+          {
+            userId: userId,
+            ingameName: ingameName
+           })}
       >
         <ImageBackground source={userCard} style={{width: '100%', height: '100%'}}>
           <Text style={style.cardText}>{userName}</Text>

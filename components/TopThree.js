@@ -24,7 +24,6 @@ class TopThree extends Component {
   }
 
   topSwitch = (placement, userName, newPoints) => {
-    console.log(placement);
     switch (placement) {
       case 1:
         return (
