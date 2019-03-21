@@ -318,6 +318,7 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
+
             <ScrollView style={style.mainContainer}
               automaticallyAdjustContentInsets={false}
             >
