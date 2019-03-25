@@ -85,7 +85,7 @@ class UserProfileScreen extends Component {
       return (
         <CardCollection
           key={user.id}
-          name={user.name}
+          userId={user.id}
           card={user.card}
           navigation={this.props.navigation}
         />

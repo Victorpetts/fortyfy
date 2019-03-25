@@ -13,7 +13,7 @@ class CardCollection extends Component {
 
   state = {
     image: this.props.card,
-    animateItem: new Animated.Value(0),
+    animateItem: new Animated.Value(0)
   }
 
   componentDidMount() {
@@ -28,8 +28,8 @@ class CardCollection extends Component {
 
   render() {
 
-    const userName = this.props.name;
-    const userCard = this.state.image;
+    const userId = this.props.userId;
+    const userCard = this.props.card;
 
     return (
 
@@ -39,12 +39,12 @@ class CardCollection extends Component {
             translateY: this.state.animateItem.interpolate({
               inputRange: [0, 1],
               outputRange: [700, 1]
-            }) 
+            })
           }
         ]}]}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('IndvUserCard', {
-            userName: userName,
+            userId: userId,
             userCard: userCard
           })}
         >

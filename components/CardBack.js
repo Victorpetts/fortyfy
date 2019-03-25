@@ -5,8 +5,7 @@ import {
   Text,
   StatusBar,
   ActivityIndicator,
-  Animated,
-  TouchableWithoutFeedback
+  Animated
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -15,7 +14,7 @@ import Colors from '../constants/Colors.js';
 class CardBack extends Component {
 
   state = {
-    ingameName: this.props.ingameName,
+    userId: this.props.userId,
     loading: false,
     name: '',
     top5Stat: '',
@@ -33,7 +32,9 @@ class CardBack extends Component {
 
   componentDidMount = async () => {
 
-    const ingameName = this.state.ingameName;
+    const userId = this.state.userId;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const ingameName = thisUser.ingameName;
 
     this.subs = [
       this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
@@ -72,6 +73,11 @@ class CardBack extends Component {
 
   render() {
 
+    const userId = this.props.userId;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userLvl = thisUser.lvl;
+    const userName = thisUser.name;
+
     const { name, top5Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
 
     return (
@@ -107,9 +113,7 @@ class CardBack extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    users: state.users
-  };
+  return { users: state.users };
 };
 
 export default connect(mapStateToProps, null)(CardBack);
