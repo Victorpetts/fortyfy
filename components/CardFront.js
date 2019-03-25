@@ -26,10 +26,13 @@ class CardFront extends Component {
     // const card = findUser.card;
 
     return (
-      <Image
+      <ImageBackground
         source={userCard}
         style={{ width: '100%', height: '100%' }}
-      />
+        resizeMode={'cover'}
+      >
+      <Text style={style.cardText}>{userName}</Text>
+      </ImageBackground>
     )
   }
 

@@ -17,10 +17,6 @@ class userCardScreen extends Component {
     header: null
   };
 
-  state = {
-    flip: false
-  }
-
   componentWillMount() {
     this.animatedValue = new Animated.Value(0);
     this.value = 0;
@@ -99,26 +95,20 @@ class userCardScreen extends Component {
     // const card = findUser.card;
 
     return (
-      <View style={{
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        alignItems: "center",
-        justifyContent: "center",
-      }}>
+      <View style={style.userCardContainer}>
         <TouchableWithoutFeedback
           style={{ height: '100%', width: '100%' }}
           onPress={() => this.flipCard()}
         >
           <View style={{ height: '100%', width: '100%' }}>
-          <Animated.View style={[frontAnimatedStyles, {opacity: this.frontOpacity}]}>
+            <Animated.View style={[frontAnimatedStyles, { opacity: this.frontOpacity }]}>
               <CardFront
                 userName={userName}
                 userCard={userCard}
                 userId={this.props.userId}
               />
             </Animated.View>
-            <Animated.View style={[backAnimatedStyles, {opacity: this.backOpacity}]}>
+            <Animated.View style={[backAnimatedStyles, { opacity: this.backOpacity }]}>
               <CardBack
                 userName={userName}
                 userCard={userCard}

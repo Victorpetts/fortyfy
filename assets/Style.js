@@ -104,7 +104,7 @@ export default StyleSheet.create({
 
   roundButtonPos: {
     position: 'absolute',
-    bottom: 90,
+    bottom: 10,
     right: 10
   },
 
@@ -237,23 +237,49 @@ export default StyleSheet.create({
     flex: 1
   },
 
+  userCardContainer: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  backCardContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: Colors.appBackgroundColor,
+    borderWidth: 2,
+    borderColor: Colors.appBlueColor
+  },
+
+  backCardContent: { 
+    justifyContent: 'space-between', 
+    height: '97%', 
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginTop: 10,
+    marginBottom: 20,
+    marginHorizontal: 10,
+  },
+
+  backCardColumn: { 
+    padding: 10, 
+    justifyContent: 'center' 
+  },
+
   backCardTitle: {
     fontSize: 20,
     fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor
+    color: Colors.appBlueColor,
+    textAlign: 'center'
   },
 
   backCardText: {
     fontSize: 16,
-    fontFamily: 'alergia-normal-light'
-  },
-
-  backCardRow: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap', 
-    padding: 5, 
-    justifyContent: 'space-evenly', 
-    width: '90%'
+    fontFamily: 'alergia-normal-light',
+    textAlign: 'center'
   },
 
   listItemText: {

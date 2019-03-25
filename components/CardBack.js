@@ -75,52 +75,32 @@ class CardBack extends Component {
     const { name, top5Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
 
     return (
-        <View style={{
-          width: '100%',
-          height: '100%',
-          backgroundColor: Colors.appBackgroundColor,
-          borderWidth: 2,
-          borderColor: Colors.appBlueColor
-        }}>
-          {loading ?
-            <View style={{ marginTop: 140 }}>
-              <ActivityIndicator size="large" color={Colors.appBlueColor} />
+      <View style={style.backCardContainer}>
+        {loading ?
+          <View style={{ marginTop: 140 }}>
+            <ActivityIndicator size="large" color={Colors.appBlueColor} />
+          </View>
+          :
+          <View style={style.backCardContent}>
+            <View style={style.backCardColumn}>
+              <Text style={style.backCardTitle}>Top 5s:</Text>
+              <Text style={style.backCardText}>{top5Stat}</Text>
+              <Text style={style.backCardTitle}>Kills:</Text>
+              <Text style={style.backCardText}>{killsStat}</Text>
+              <Text style={style.backCardTitle}>Matches Played:</Text>
+              <Text style={style.backCardText}>{playedMatchesStat}</Text>
             </View>
-            :
-            <View style={{ padding: 10, justifyContent: 'center', height: '100%' }}>
-              <View style={style.backCardRow}>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={style.backCardTitle}>Top 5s:</Text>
-                  <Text style={style.backCardText}>{top5Stat}</Text>
-                </View>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={style.backCardTitle}>Kills:</Text>
-                  <Text style={style.backCardText}>{killsStat}</Text>
-                </View>
-              </View>
-              <View style={style.backCardRow}>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={style.backCardTitle}>Matches Played:</Text>
-                  <Text style={style.backCardText}>{playedMatchesStat}</Text>
-                </View>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={style.backCardTitle}>Wins:</Text>
-                  <Text style={style.backCardText}>{winsStat}</Text>
-                </View>
-              </View>
-              <View style={style.backCardRow}>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={style.backCardTitle}>Win Ratio:</Text>
-                  <Text style={style.backCardText}>{winRatioStat}</Text>
-                </View>
-                <View style={{ flexDirection: 'column' }}>
-                  <Text style={style.backCardTitle}>Kill/Death Ratio:</Text>
-                  <Text style={style.backCardText}>{killRatioStat}</Text>
-                </View>
-              </View>
+            <View style={style.backCardColumn}>
+              <Text style={style.backCardTitle}>Wins:</Text>
+              <Text style={style.backCardText}>{winsStat}</Text>
+              <Text style={style.backCardTitle}>Win Ratio:</Text>
+              <Text style={style.backCardText}>{winRatioStat}</Text>
+              <Text style={style.backCardTitle}>Kill/Death Ratio:</Text>
+              <Text style={style.backCardText}>{killRatioStat}</Text>
             </View>
-          }
-        </View>
+          </View>
+        }
+      </View>
     )
   }
 
