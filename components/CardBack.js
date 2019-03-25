@@ -15,6 +15,7 @@ import Colors from '../constants/Colors.js';
 class CardBack extends Component {
 
   state = {
+    ingameName: this.props.ingameName,
     loading: false,
     name: '',
     top5Stat: '',
@@ -32,6 +33,8 @@ class CardBack extends Component {
 
   componentDidMount = async () => {
 
+    const ingameName = this.state.ingameName;
+
     this.subs = [
       this.props.navigation.addListener('didFocus', () => StatusBar.setHidden(true)),
       this.props.navigation.addListener('didBlur', () => StatusBar.setHidden(false)),
@@ -39,14 +42,13 @@ class CardBack extends Component {
 
     this.setState({ loading: true });
 
-    const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/Ninja`, {
+    const api_call = await fetch(`https://api.fortnitetracker.com/v1/profile/pc/${ingameName}`, {
       headers: {
         "TRN-Api-Key": '6d6c58f4-a58f-463c-a049-751ef918f9d1'
       }
     });
 
     const data = await api_call.json();
-    console.log(data);
 
     if (data.epicUserHandle) {
       this.setState({
@@ -70,8 +72,6 @@ class CardBack extends Component {
 
   render() {
 
-    const userId = this.props.userId;
-    const thisUser = this.props.users.find(user => user.id === userId);
     const { name, top5Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
 
     return (

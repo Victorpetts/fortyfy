@@ -155,7 +155,7 @@ const initialState = {
       status: "friend",
       card: require("../assets/images/playercards/playercard-green-frame-badge.png"),
       currentPoints: 0,
-      ingameName: "MrDoom."
+      ingameName: "sappfn"
     },
     {
       id: "7",
@@ -168,7 +168,7 @@ const initialState = {
       status: "friend",
       card: require("../assets/images/playercards/playercard-silver-frame-bg.png"),
       currentPoints: 0,
-      ingameName: "Twitch-Ettnix"
+      ingameName: "Nuzucki"
     },
     {
       id: "8",
@@ -181,7 +181,7 @@ const initialState = {
       status: "notFriend",
       card: require("../assets/images/playercards/playercard-silver-frame.png"),
       currentPoints: 0,
-      ingameName: "ESL%20StancodTV"
+      ingameName: "Nork4G%20ttv"
     },
     {
       id: "9",

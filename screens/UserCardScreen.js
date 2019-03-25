@@ -104,17 +104,14 @@ class userCardScreen extends Component {
           <View style={{ height: '100%', width: '100%' }}>
             <Animated.View style={[frontAnimatedStyles, { opacity: this.frontOpacity }]}>
               <CardFront
-                userName={userName}
                 userCard={userCard}
                 userId={this.props.userId}
               />
             </Animated.View>
             <Animated.View style={[backAnimatedStyles, { opacity: this.backOpacity }]}>
               <CardBack
-                userName={userName}
-                userCard={userCard}
                 navigation={this.props.navigation}
-                userId={this.props.userId}
+                ingameName={ingameName}
               />
             </Animated.View>
           </View>
