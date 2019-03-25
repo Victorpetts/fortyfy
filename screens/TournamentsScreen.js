@@ -62,7 +62,8 @@ class TournamentsScreen extends Component {
       'finished': false,
       'fromDate': "12th of March 13:37",
       'toDate': "15th of March 18:00",
-      'owner': "4"
+      'owner': "4",
+      'reward': false
     }
     this.props.createTour(newTour);
     this.setState({ inviteClicked: true })
@@ -302,7 +303,7 @@ class TournamentsScreen extends Component {
 
           // Renders finished tab as active and displays its content
 
-          <View>
+          <View style={{ height: '100%' }}>
             <View style={style.tabBackground}>
               <View style={style.disabledTab}>
                 <TouchableOpacity

@@ -4,17 +4,24 @@ import {
   View,
   ScrollView,
   Text,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
+import { Overlay } from 'react-native-elements';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import TourInfoSection from '../components/TourInfoSection.js';
 import LeaderBoardPartic from '../components/ParticipantLB';
 import TopThree from '../components/TopThree';
+import { TourButtonMedium } from '../components/Buttons.js';
 
 
 class FinishedScreen extends Component {
+
+  state = {
+    isVisible: true
+  }
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Tournaments',
@@ -93,17 +100,42 @@ class FinishedScreen extends Component {
     const tourId = this.props.navigation.getParam('tourId');
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const particArr = thisTour.participants;
+    const showReward = thisTour.reward;
     const allUsers = this.props.users;
     const thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
-    // const topThree = thisToursPartic.slice(0, 3);
-
-    // const first = topThree[0];
-    // const firstStats = first.matchStatistics.filter(stats => stats.matchId === tourId);
-    // const firstPoints = firstStats[0].points;
-
     return (
       <ScrollView style={style.mainContainer}>
+
+        {showReward && this.state.isVisible &&
+          <Overlay
+            height= 'auto'
+            width= '70%'
+            isVisible={this.state.isVisible}
+            overlayBackgroundColor={'black'}
+            overlayStyle={{
+              borderColor: Colors.appBlueColor,
+              borderWidth: 2,
+              borderRadius: 8,
+              backgroundColor: Colors.appBackgroundColor
+            }}
+          >
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={style.winnerText}>You Won!</Text>
+              <TouchableOpacity onPress={() => this.setState({ isVisible: false })}>
+                <Image
+                  source={require('../assets/images/chest_closed.png')}
+                  style={{ height: 100, width: 110, marginBottom: 15 }}
+                />
+              </TouchableOpacity>
+              <TourButtonMedium
+                buttonTitle={'Open the chest!'}
+                buttonFunc={() => this.setState({ isVisible: false })}
+              />
+            </View>
+          </Overlay>
+        }
+
         <View style={style.itemContainer}>
           <TourInfoSection
             tourId={tourId}

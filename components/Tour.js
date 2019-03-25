@@ -11,11 +11,16 @@ import TourInfoSection from './TourInfoSection.js';
 
 class Tour extends Component {
 
+  state = {
+    clicked: false
+  }
+
   render() {
 
     const tourId = this.props.id;
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
-    const tourStatus = thisTour.finished;
+    const isFinished = thisTour.finished;
+    const rewardToClaim = thisTour.reward;
     const { navigate } = this.props.navigation;
 
     navigateToOngoing = () => {
@@ -28,6 +33,7 @@ class Tour extends Component {
       navigate('Finished', {
         tourId: tourId
       })
+      this.setState({ clicked: true })
     }
 
     return (
@@ -36,18 +42,24 @@ class Tour extends Component {
         <TourInfoSection
           tourId={tourId}
         />
+
         <View style={style.singleButtonContainer}>
-          {tourStatus === false ? (
+          {!isFinished ?
             <TourButton
               buttonTitle={'View tournament'}
               buttonFunc={navigateToOngoing}
             />
-          ) : (
-            <TourButton
-              buttonTitle={'View tournament'}
-              buttonFunc={navigateToFinished}
-            />
-          )}
+          : rewardToClaim && !this.state.clicked ?
+              <TourButton
+                buttonTitle={'Claim Reward!'}
+                buttonFunc={navigateToFinished}
+              />
+            :
+              <TourButton
+                buttonTitle={'View tournament'}
+                buttonFunc={navigateToFinished}
+              />
+          }
         </View>
       </ScrollView>
 

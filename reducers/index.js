@@ -21,7 +21,8 @@ const initialState = {
       fromDate: "5th of March 10:30",
       toDate: "5th of March 13:00",
       finished: true,
-      owner: "3"
+      owner: "3",
+      reward: false
     },
     {
       id: 2,
@@ -33,7 +34,8 @@ const initialState = {
       fromDate: "7th of March 17:30",
       toDate: "8th of March 17:30",
       finished: false,
-      owner: "5"
+      owner: "5",
+      reward: false
     },
     {
       id: 3,
@@ -45,7 +47,8 @@ const initialState = {
       fromDate: "9th of March 07:00",
       toDate: "9th of March 21:00",
       finished: false,
-      owner: "1"
+      owner: "1",
+      reward: false
     },
     {
       id: 5,
@@ -58,7 +61,8 @@ const initialState = {
       toDate: "9th of April 21:00",
       finished: false,
       owner: "12",
-      sponsor: true
+      sponsor: true,
+      reward: false
     },
     {
       id: 7,
@@ -70,7 +74,8 @@ const initialState = {
       fromDate: "22nd of March 00:00",
       toDate: "22nd of March 23:59",
       finished: true,
-      owner: "1"
+      owner: "1",
+      reward: true
     },
   ],
   usersArr:[

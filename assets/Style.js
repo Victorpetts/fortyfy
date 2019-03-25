@@ -108,6 +108,12 @@ export default StyleSheet.create({
     right: 10
   },
 
+  // chest: {
+  //   position: 'absolute',
+  //   top: 190,
+  //   right: 20
+  // },
+
   buttonMenuItem2: {
     position: 'absolute',
     bottom: 125,
@@ -204,6 +210,14 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-light'
   },
 
+  winnerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.appBlackColor,
+    fontFamily: 'alergia-normal-light',
+    marginBottom: 15
+  },
+
   italicText: {
     fontSize: 16,
     textAlign: 'center',
@@ -248,11 +262,11 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-light'
   },
 
-  backCardRow: { 
-    flexDirection: 'row', 
-    flexWrap: 'wrap', 
-    padding: 5, 
-    justifyContent: 'space-evenly', 
+  backCardRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 5,
+    justifyContent: 'space-evenly',
     width: '90%'
   },
 
@@ -306,7 +320,6 @@ export default StyleSheet.create({
 
   mainContainer: {
     width: '100%',
-    height: '100%',
     backgroundColor: Colors.appBackgroundColor
   },
 
