@@ -119,25 +119,25 @@ class CardSettings extends Component {
                 >
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-blue-frame.png')}
+                      source={require('../assets/images/playercards/cardSimpleBlue.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-bronze-frame.png')}
+                      source={require('../assets/images/playercards/cardSimpleBronze.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-gold-frame.png')}
+                      source={require('../assets/images/playercards/cardSimpleGold.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-purple-frame.png')}
+                      source={require('../assets/images/playercards/cardSimplePurple.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
@@ -151,32 +151,32 @@ class CardSettings extends Component {
                 >
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-special-unicorns-rainbows.png')}
+                      source={require('../assets/images/playercards/cardUnicorn.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-special-magic.png')}
+                      source={require('../assets/images/playercards/cardMagic.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <Image
-                      source={require('../assets/images/playercards/playercard-special-pirate.png')}
+                      source={require('../assets/images/playercards/cardPirate.png')}
                       style={{ height: 250, width: 170, margin: 5 }}
                     />
                   </TouchableOpacity>
                   <Image
-                    source={require('../assets/images/playercards/playercard-special-mr-roboto.png')}
+                    source={require('../assets/images/playercards/cardRobot.png')}
                     style={{ height: 250, width: 170, margin: 5, opacity: .3 }}
                   />
                   <Image
-                    source={require('../assets/images/playercards/playercard-special-ufo.png')}
+                    source={require('../assets/images/playercards/cardUfo.png')}
                     style={{ height: 250, width: 170, margin: 5, opacity: .3 }}
                   />
                   <Image
-                    source={require('../assets/images/playercards/playercard-special-cheeta.png')}
+                    source={require('../assets/images/playercards/cardSpider.png')}
                     style={{ height: 250, width: 170, margin: 5, opacity: .3 }}
                   />
                 </ScrollView>

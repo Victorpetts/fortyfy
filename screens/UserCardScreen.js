@@ -87,10 +87,8 @@ class userCardScreen extends Component {
     }
 
     const userId = this.props.navigation.getParam('userId');
-    const userCard = this.props.navigation.getParam('userCard');
-
-    // this.props.navigation.navigate('CardBack', { userId: userId })
-    // const card = findUser.card;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const cardFull = thisUser.cardFull;
 
     return (
       <View style={style.userCardContainer}>
@@ -101,8 +99,7 @@ class userCardScreen extends Component {
           <View style={{ height: '100%', width: '100%' }}>
             <Animated.View style={[frontAnimatedStyles, { opacity: this.frontOpacity }]}>
               <CardFront
-                userCard={userCard}
-                userId={this.props.userId}
+                userCard={cardFull}
               />
             </Animated.View>
             <Animated.View style={[backAnimatedStyles, { opacity: this.backOpacity }]}>

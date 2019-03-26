@@ -4,7 +4,8 @@ import { addPlayer } from '../actions';
 import {
   View,
   Image,
-  ImageBackground
+  ImageBackground,
+  Text
 } from 'react-native';
 
 import { TourButton, TourButtonGold } from './Buttons.js';
@@ -39,24 +40,26 @@ class SponsoredTours extends Component {
     }
 
     return (
-
       <View style={style.itemContainerGoldBorder}>
-          <TourInfoSection
-            tourId={tourId}
-          />
-          <View style={style.singleButtonContainer}>
-            {this.state.pressed === false ?
-              <TourButtonGold
-                buttonTitle={'Join tournament'}
-                buttonFunc={buttonFunc}
-              />
-              :
-              <TourButton
-                buttonTitle={'View tournament'}
-                buttonFunc={navigateToOngoing}
-             />
-            }
-          </View>
+        <TourInfoSection
+          tourId={tourId}
+        />
+        <Text style={{ marginHorizontal: 25, textAlign: 'center' }}>
+          Join the tournament to win 10.000 coins and a unique background for your card!
+        </Text>
+        <View style={style.singleButtonContainer}>
+          {this.state.pressed === false ?
+            <TourButtonGold
+              buttonTitle={'Join tournament'}
+              buttonFunc={buttonFunc}
+            />
+            :
+            <TourButton
+              buttonTitle={'View tournament'}
+              buttonFunc={navigateToOngoing}
+           />
+          }
+        </View>
       </View>
     )
   }

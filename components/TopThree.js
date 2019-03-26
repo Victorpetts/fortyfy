@@ -4,7 +4,8 @@ import { scoreAction } from '../actions';
 import {
   View,
   Text,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -23,7 +24,7 @@ class TopThree extends Component {
     this.props.scoreAction(points, userId);
   }
 
-  topSwitch = (placement, userName, newPoints) => {
+  topSwitch = (placement, userName, newPoints, userId) => {
     switch (placement) {
       case 1:
         return (
@@ -39,12 +40,19 @@ class TopThree extends Component {
               style={{ height: 55, width: 90 }}
             />
             <Text style={style.subTitleText}>{userName}</Text>
-            <View style={{ paddingVertical: 3 }}>
-              <Image
-                source={this.props.card}
-                style={{ height: 158, width: 106 }}
-              />
-            </View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TopUserCard', {
+                userId: userId,
+                userCard: this.props.card
+              })}
+            >
+              <View style={{ paddingVertical: 3 }}>
+                <Image
+                  source={this.props.card}
+                  style={{ height: 158, width: 106 }}
+                />
+              </View>
+            </TouchableOpacity>
             <Text style={style.subTitleText}>{newPoints} points</Text>
           </View>
         );
@@ -60,12 +68,19 @@ class TopThree extends Component {
               style={{ height: 20, width: 50 }}
             />
             <Text style={style.subTitleText}>{userName}</Text>
-            <View style={{ paddingVertical: 3 }}>
-              <Image
-                source={this.props.card}
-                style={{ height: 158, width: 106 }}
-              />
-            </View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TopUserCard', {
+                userId: userId,
+                userCard: this.props.card
+              })}
+            >
+              <View style={{ paddingVertical: 3 }}>
+                <Image
+                  source={this.props.card}
+                  style={{ height: 158, width: 106 }}
+                />
+              </View>
+            </TouchableOpacity>
             <Text style={style.subTitleText}>{newPoints} points</Text>
           </View>
         );
@@ -81,12 +96,19 @@ class TopThree extends Component {
               style={{ height: 20, width: 50 }}
             />
             <Text style={style.subTitleText}>{userName}</Text>
-            <View style={{ paddingVertical: 3 }}>
-              <Image
-                source={this.props.card}
-                style={{ height: 158, width: 106 }}
-              />
-            </View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TopUserCard', {
+                userId: userId,
+                userCard: this.props.card
+              })}
+            >
+              <View style={{ paddingVertical: 3 }}>
+                <Image
+                  source={this.props.card}
+                  style={{ height: 158, width: 106 }}
+                />
+              </View>
+            </TouchableOpacity>
             <Text style={style.subTitleText}>{newPoints} points</Text>
           </View>
         );
@@ -112,7 +134,7 @@ class TopThree extends Component {
 
     return (
       <View>
-          {this.topSwitch(placement, userName, newPoints)}
+        {this.topSwitch(placement, userName, newPoints, userId)}
       </View>
     )
   }

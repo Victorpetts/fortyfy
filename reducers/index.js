@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 
-//Create a class for matchStatistics maybe dont need to be a component
 class match {
   constructor(matchId, playedMatches, points){
     this.matchId = matchId;
@@ -88,7 +87,8 @@ const initialState = {
       friends: ["3","5","6","8","9","10"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-special-unicorns-rainbows.png"),
+      card: require("../assets/images/playercards/cardUnicorn.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardUnicorn.png"),
       currentPoints: 0,
       ingameName: "Jayste"
     },
@@ -101,7 +101,8 @@ const initialState = {
       friends: ["3","4","5","9"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-special-gems.png"),
+      card: require("../assets/images/playercards/cardGems.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardGems.png"),
       currentPoints: 0,
       ingameName: "Ninja"
     },
@@ -114,7 +115,8 @@ const initialState = {
       friends: ["1","2"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-special-magic.png"),
+      card: require("../assets/images/playercards/cardMagic.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardMagic.png"),
       currentPoints: 0,
       ingameName: "ScreeFN"
     },
@@ -127,7 +129,8 @@ const initialState = {
       friends: ["2"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-special-go-bananas.png"),
+      card: require("../assets/images/playercards/cardPirate.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardPirate.png"),
       currentPoints: 0,
       ingameName: "nixxxay"
      },
@@ -140,7 +143,8 @@ const initialState = {
       friends: ["1","2","7","8"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-special-cheeta.png"),
+      card: require("../assets/images/playercards/cardCheetah.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardCheetah.png"),
       currentPoints: 0,
       ingameName: "cRaBBLe%20McShiet"
     },
@@ -153,7 +157,8 @@ const initialState = {
       friends: ["1","9","10"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-green-frame-badge.png"),
+      card: require("../assets/images/playercards/cardGold.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardGold.png"),
       currentPoints: 0,
       ingameName: "sappfn"
     },
@@ -166,7 +171,8 @@ const initialState = {
       friends: ["5","9","10"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/playercard-silver-frame-bg.png"),
+      card: require("../assets/images/playercards/cardSpider.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSpider.png"),
       currentPoints: 0,
       ingameName: "Nuzucki"
     },
@@ -179,7 +185,8 @@ const initialState = {
       friends: ["1","5"],
       friend: false,
       status: "notFriend",
-      card: require("../assets/images/playercards/playercard-silver-frame.png"),
+      card: require("../assets/images/playercards/cardSimpleGold.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSimpleGold.png"),
       currentPoints: 0,
       ingameName: "Nork4G%20ttv"
     },
@@ -192,7 +199,8 @@ const initialState = {
       friends: ["1","2","6","7"],
       friend: false,
       status: "notFriend",
-      card: require("../assets/images/playercards/playercard-special-mr-roboto.png"),
+      card: require("../assets/images/playercards/cardUfo.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardUfo.png"),
       currentPoints: 0,
       ingameName: "E11%20BlooTea"
     },
@@ -205,7 +213,8 @@ const initialState = {
       friends: ["1","6","7"],
       friend: false,
       status: "notFriend",
-      card: require("../assets/images/playercards/playercard-special-scary.png"),
+      card: require("../assets/images/playercards/cardRobot.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardRobot.png"),
       currentPoints: 0,
       ingameName: "WBG%20Ranger"
     },
@@ -218,7 +227,8 @@ const initialState = {
       friends: [],
       friend: '',
       status: '',
-      card: require("../assets/images/playercards/playercard-special-gold.png"),
+      card: require("../assets/images/playercards/cardSirYonyfy.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSirYonyfy.png"),
       currentPoints: 0,
       ingameName: "TTV.Uwatakashi"
     },

@@ -221,6 +221,7 @@ class UsersScreen extends Component {
             </Overlay>
           )}
         </ScrollView>
+
         <View style={{
           position: 'absolute',
           bottom: 10,

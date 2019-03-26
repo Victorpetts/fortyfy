@@ -14,7 +14,7 @@ import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import { TourButtonFullWidth, TourButtonSmallRed } from '../components/Buttons.js';
 import Participant from '../components/Participant.js';
-import ParticipantCard from '../components/ParticipantCards.js';
+import ParticipantCard from '../components/ParticipantCard.js';
 import InviteList from '../components/InviteList';
 import TourInfoSection from '../components/TourInfoSection.js';
 
@@ -206,7 +206,7 @@ class OngoingScreen extends Component {
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
 
     return (
-      <View>
+      <View style={{ height: '100%' }}>
         <ScrollView style={style.mainContainer}>
           <View style={style.itemContainer}>
             <TourInfoSection
@@ -227,6 +227,7 @@ class OngoingScreen extends Component {
               </View>
             </View>
           }
+
           <View style={{ justifyContent: 'flex-end', flexDirection: 'row', paddingRight: 10 }}>
             <TouchableOpacity
               style={{
@@ -257,6 +258,7 @@ class OngoingScreen extends Component {
               />
             </TouchableOpacity>
           </View>
+
           {this.state.activeColor1 === Colors.appBlueColor &&
             <View>
               <View style={style.subTitleContainer}>
@@ -267,13 +269,8 @@ class OngoingScreen extends Component {
             </View>
           }
           {this.state.activeColor2 === Colors.appBlueColor &&
-            <View>
-              <View style={style.subTitleContainer}>
-                <Text style={style.subTitleText}>Players</Text>
-              </View>
-              <View style={style.friendsListContainer}>
-                {this.mapParticCard(thisTour)}
-              </View>
+            <View style={style.friendsListContainer}>
+              {this.mapParticCard(thisTour)}
             </View>
           }
 
@@ -313,7 +310,7 @@ class OngoingScreen extends Component {
             </Overlay>
           }
 
-          {this.state.isVisible && this.state.isInfoWindow === true &&
+          {this.state.isVisible && this.state.isInfoWindow &&
             <Overlay
               height='auto'
               width='90%'
@@ -337,14 +334,9 @@ class OngoingScreen extends Component {
                   elit, sed do eiusmod tempor incididunt ut labore et
                   dolore magna aliqua. Ut enim ad minim veniam,
                   quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure
-                  dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint
-                  occaecat cupidatat non proident, sunt in culpa qui
-                  officia deserunt mollit anim id est laborum.
-                    </Text>
-                <View style={{ paddingBottom: '50%' }} />
-                <View style={{ alignSelf: 'center' }}>
+                  aliquip ex ea commodo consequat.
+                </Text>
+                <View style={{ alignSelf: 'center', margin: 15 }}>
                   <TourButtonSmallRed
                     buttonTitle={'Close'}
                     buttonFunc={this.toggleOverlay}

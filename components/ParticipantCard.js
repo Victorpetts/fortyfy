@@ -31,8 +31,6 @@ class ParticipantCard extends Component {
     const owner = thisTour.owner
 
     const thisUser = this.props.users.find(user => user.id === userId);
-    const userName = thisUser.name;
-
     const allStats = thisUser.matchStatistics;
     const thisToursStats = allStats.filter(stats => stats.matchId === tourId);
     const playedMatches = thisToursStats[0].playedMatches;
@@ -53,7 +51,7 @@ class ParticipantCard extends Component {
               <View style={style.bigImageContainer}>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('TopUserCard', {
-                  userName: userName,
+                  userId: userId,
                   userCard: this.props.card
                 })}
               >
@@ -72,10 +70,10 @@ class ParticipantCard extends Component {
           :
           <View style={style.userBigContainer}>
             <View style={style.userSquareContainer}>
-              <View style={style.bigImageContainer}> 
+              <View style={style.bigImageContainer}>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('TopUserCard', {
-                  userName: userName,
+                  userId: userId,
                   userCard: this.props.card
                 })}
               >

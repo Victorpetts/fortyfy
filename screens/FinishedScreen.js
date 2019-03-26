@@ -64,7 +64,6 @@ class FinishedScreen extends Component {
           placement={index + 4}
         />
       )
-
     });
 
   };
@@ -88,6 +87,7 @@ class FinishedScreen extends Component {
           userPoints={userPoints}
           placement={index + 1}
           card={user.card}
+          navigation={this.props.navigation}
         />
       )
 

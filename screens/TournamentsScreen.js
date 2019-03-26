@@ -142,8 +142,7 @@ class TournamentsScreen extends Component {
     return (
       <View style={{ height: '100%' }}>
 
-        {this.state.toggleOngoing === true ? (
-
+        {this.state.toggleOngoing ? (
           // Renders ongoing tab as active and displays its content
 
           <View>
@@ -167,15 +166,21 @@ class TournamentsScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
+
+            <View style={style.roundButtonPos}>
+              <RoundButton
+                id={'plus'}
+                buttonFunc={this.pressButton}
+                showing={this.state.show}
+              />
+            </View>
+
             <View style={{ paddingBottom: 75 }}>
 
-              {this.state.show === true ?
-
+              {this.state.show ?
                 // White overlay is active
 
-                <View
-                  style={style.whiteOverlay}
-                >
+                <View style={style.whiteOverlay}>
                   <TouchableOpacity
                     onPress={this.pressButton}
                     activeOpacity={1}
@@ -187,7 +192,7 @@ class TournamentsScreen extends Component {
 
                       <View style={style.divider} />
 
-                      {this.state.inviteClicked === false ?
+                      {!this.state.inviteClicked ?
                         <View>
                           <Text style={style.blueText}>Invites (1)</Text>
                           <View style={style.itemContainer}>
@@ -226,7 +231,6 @@ class TournamentsScreen extends Component {
                 </View>
 
                 :
-
                 // White overlay is not active
 
                 <ScrollView style={style.mainContainer}>
@@ -236,7 +240,7 @@ class TournamentsScreen extends Component {
 
                   <View style={style.divider} />
 
-                  {this.state.inviteClicked === false ?
+                  {!this.state.inviteClicked ?
                     <View>
                       <Text style={style.blueText}>Invites (1)</Text>
                       <View style={style.itemContainer}>
@@ -268,17 +272,8 @@ class TournamentsScreen extends Component {
                   {this.mapOngoingTours()}
                 </ScrollView>
               }
-              <View style={style.roundButtonPos}>
-                <RoundButton
-                  id={'plus'}
-                  buttonFunc={this.pressButton}
-                  showing={this.state.show}
-                />
-              </View>
 
-
-              {this.state.show === true &&
-
+              {this.state.show &&
                 // + button menu is displayed
 
                 <View>
@@ -297,10 +292,11 @@ class TournamentsScreen extends Component {
                   </View>
                 </View>
               }
+
             </View>
           </View>
-        ) : this.state.toggleFinished === true ? (
 
+        ) : (
           // Renders finished tab as active and displays its content
 
           <View style={{ height: '100%' }}>
@@ -331,8 +327,7 @@ class TournamentsScreen extends Component {
               {this.mapFinishedTours()}
             </ScrollView>
           </View>
-        ) : null
-        }
+        )}
 
       </View>
     )

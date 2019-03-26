@@ -134,7 +134,7 @@ class ProfileScreen extends Component {
                 alignItems: 'center'
               }}>
                 <MyCardProfile
-                  card={myCard}
+                  card={require("../assets/images/playercards/fullsize/cardSirYonyfy.png")}
                   navigation={this.props.navigation}
                 />
               </View>

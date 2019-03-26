@@ -104,7 +104,7 @@ export default StyleSheet.create({
 
   roundButtonPos: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 49,
     right: 10
   },
 
@@ -182,13 +182,6 @@ export default StyleSheet.create({
     color: 'white'
   },
 
-  paragraphText: {
-    fontSize: 20,
-    alignSelf: 'center',
-    color: 'white',
-    marginBottom: 10
-  },
-
   cardText: {
     fontSize: 30,
     alignSelf: 'center',
@@ -228,14 +221,17 @@ export default StyleSheet.create({
 
   subTitleText: {
     fontSize: 15,
-    fontFamily: 'alergia-normal-semibold'
+    fontFamily: 'alergia-normal-semibold',
+    margin: 5,
+    textAlign: 'center'
   },
 
   paragraphText: {
     fontSize: 13,
     fontFamily: 'alergia-normal-light',
     lineHeight: 18,
-    marginVertical: 5
+    margin: 10,
+    textAlign: 'center'
   },
 
   lvlText: {
@@ -261,9 +257,9 @@ export default StyleSheet.create({
     borderColor: Colors.appBlueColor
   },
 
-  backCardContent: { 
+  backCardContent: {
     flexWrap: 'wrap',
-    height: '97%', 
+    height: '97%',
     flexDirection: 'row',
     backgroundColor: 'white',
     borderRadius: 5,
@@ -302,7 +298,7 @@ export default StyleSheet.create({
     paddingRight: 5
   },
 
-  backCardStatRow: { 
+  backCardStatRow: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
     padding: 5
