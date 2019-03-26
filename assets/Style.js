@@ -254,7 +254,7 @@ export default StyleSheet.create({
   },
 
   backCardContent: { 
-    justifyContent: 'space-between', 
+    flexWrap: 'wrap',
     height: '97%', 
     flexDirection: 'row',
     backgroundColor: 'white',
@@ -262,6 +262,7 @@ export default StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
     marginHorizontal: 10,
+    justifyContent: 'center',
   },
 
   backCardColumn: { 
@@ -273,7 +274,30 @@ export default StyleSheet.create({
     fontSize: 20,
     fontFamily: 'alergia-normal-semibold',
     color: Colors.appBlueColor,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 10
+  },
+
+  backCardName: {
+    fontSize: 30,
+    fontFamily: 'alergia-normal-semibold',
+    color: Colors.appBlueColor,
+    textAlign: 'center',
+    paddingBottom: 20
+  },
+
+  backCardSubTitle: {
+    fontSize: 16,
+    fontFamily: 'alergia-normal-semibold',
+    color: Colors.appBlueColor,
+    textAlign: 'center',
+    paddingRight: 5
+  },
+
+  backCardStatRow: { 
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+    padding: 5
   },
 
   backCardText: {

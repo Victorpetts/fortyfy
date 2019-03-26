@@ -17,7 +17,6 @@ class CardFront extends Component {
 
   render() {
 
-    const userName = this.props.userName;
     const userId = this.props.userId;
     const userCard = this.props.userCard;
     const thisUser = this.props.users.find(user => user.id === userId);
@@ -31,7 +30,6 @@ class CardFront extends Component {
         style={{ width: '100%', height: '100%' }}
         resizeMode={'cover'}
       >
-      <Text style={style.cardText}>{userName}</Text>
       </ImageBackground>
     )
   }

@@ -6,7 +6,7 @@ import {
   StatusBar,
   ActivityIndicator,
   Animated,
-  TouchableWithoutFeedback
+  Image
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -70,36 +70,62 @@ class CardBack extends Component {
 
   render() {
 
-    const userId = this.props.userId;
+    const userName = this.props.userName;
+    const userLvl = thisUser.lvl;
     const thisUser = this.props.users.find(user => user.id === userId);
     const { name, top5Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
 
     return (
       <View style={style.backCardContainer}>
-        {loading ?
-          <View style={{ marginTop: 140 }}>
-            <ActivityIndicator size="large" color={Colors.appBlueColor} />
+        <View style={style.backCardContent}>
+          <View style={{ paddingTop: '30%' }}>
+            {loading ?
+              <View style={{ marginTop: 140 }}>
+                <ActivityIndicator size="large" color={Colors.appBlueColor} />
+              </View>
+              :
+              <View>
+                <Text style={style.backCardTitle}>Player Stats</Text>
+                <Text style={style.backCardName}>{userName}</Text>
+                <Image 
+                  source={require('../assets/images/gold.png')}
+                  style={{ width: 200, height: 100, alignSelf: 'center' }}
+                />
+                <Text style={style.backCardTitle}>Level {userLvl}</Text>
+                <View style={{ flexDirection: 'row' }}>
+                  <View style={style.backCardColumn}>
+                    <View style={style.backCardStatRow}>
+                      <Text style={style.backCardSubTitle}>Kills:</Text>
+                      <Text style={style.backCardText}>{killsStat}</Text>
+                    </View>
+                    <View style={style.backCardStatRow}>
+                      <Text style={style.backCardSubTitle}>Kill/Death Ratio:</Text>
+                      <Text style={style.backCardText}>{killRatioStat}</Text>
+                    </View>
+                    <View style={style.backCardStatRow}>
+                      <Text style={style.backCardSubTitle}>Matches Played:</Text>
+                      <Text style={style.backCardText}>{playedMatchesStat}</Text>
+                    </View>
+                  </View>
+                  <View style={style.backCardColumn}>
+                    <View style={style.backCardStatRow}>
+                      <Text style={style.backCardSubTitle}>Wins:</Text>
+                      <Text style={style.backCardText}>{winsStat}</Text>
+                    </View>
+                    <View style={style.backCardStatRow}>
+                      <Text style={style.backCardSubTitle}>Win Ratio:</Text>
+                      <Text style={style.backCardText}>{winRatioStat}</Text>
+                    </View>
+                    <View style={style.backCardStatRow}>
+                      <Text style={style.backCardSubTitle}>Top 5s:</Text>
+                      <Text style={style.backCardText}>{top5Stat}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            }
           </View>
-          :
-          <View style={style.backCardContent}>
-            <View style={style.backCardColumn}>
-              <Text style={style.backCardTitle}>Top 5s:</Text>
-              <Text style={style.backCardText}>{top5Stat}</Text>
-              <Text style={style.backCardTitle}>Kills:</Text>
-              <Text style={style.backCardText}>{killsStat}</Text>
-              <Text style={style.backCardTitle}>Matches Played:</Text>
-              <Text style={style.backCardText}>{playedMatchesStat}</Text>
-            </View>
-            <View style={style.backCardColumn}>
-              <Text style={style.backCardTitle}>Wins:</Text>
-              <Text style={style.backCardText}>{winsStat}</Text>
-              <Text style={style.backCardTitle}>Win Ratio:</Text>
-              <Text style={style.backCardText}>{winRatioStat}</Text>
-              <Text style={style.backCardTitle}>Kill/Death Ratio:</Text>
-              <Text style={style.backCardText}>{killRatioStat}</Text>
-            </View>
-          </View>
-        }
+        </View>
       </View>
     )
   }
