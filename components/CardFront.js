@@ -18,7 +18,8 @@ class CardFront extends Component {
         source={userCard}
         style={{ width: '100%', height: '100%' }}
         resizeMode={'cover'}
-      />
+      >
+      </ImageBackground>
     )
   }
 
