@@ -74,7 +74,7 @@ class CardBack extends Component {
 
   render() {
 
-    const thisUser = this.props.users.find(user => user.id === userId);
+    const thisUser = this.props.users.find(user => user.id === this.state.userId);
     const userName = thisUser.name;
     const userLvl = thisUser.lvl;
 
