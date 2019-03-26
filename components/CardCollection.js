@@ -28,7 +28,7 @@ class CardCollection extends Component {
 
   render() {
 
-    const userId = this.props.userId;
+    const userId = this.props.id;
     const userCard = this.props.card;
 
     return (

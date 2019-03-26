@@ -76,14 +76,13 @@ class ProfileScreen extends Component {
 
     let cardList = this.props.users.filter(user => user.friend === true);
 
-    return cardList.map((user, index) => {
+    return cardList.map((user) => {
       return (
         <CardCollection
           key={user.id}
-          name={user.name}
+          id={user.id}
           card={user.card}
           navigation={this.props.navigation}
-          index={index}
         />
       )
     });
