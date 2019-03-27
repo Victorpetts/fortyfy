@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import { TourButton } from '../components/Buttons.js';
+import { TourButton, TourButtonGold } from '../components/Buttons.js';
 import TourInfoSection from './TourInfoSection.js';
 
 class Tour extends Component {
@@ -50,7 +50,7 @@ class Tour extends Component {
               buttonFunc={navigateToOngoing}
             />
           : rewardToClaim && !this.state.clicked ?
-              <TourButton
+              <TourButtonGold
                 buttonTitle={'Claim Reward!'}
                 buttonFunc={navigateToFinished}
               />

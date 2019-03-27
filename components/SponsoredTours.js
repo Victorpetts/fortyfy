@@ -44,8 +44,8 @@ class SponsoredTours extends Component {
         <TourInfoSection
           tourId={tourId}
         />
-        <Text style={{ marginHorizontal: 25, textAlign: 'center' }}>
-          Join the tournament to win 10.000 coins and a unique background for your card!
+        <Text style={{ marginHorizontal: 25, marginBottom: 10, textAlign: 'center', fontFamily: 'alergia-normal-light', }}>
+          Join the tournament to win <Text style={{fontFamily: 'alergia-normal-semibold'}}>10.000 coins</Text> and a <Text style={{fontFamily: 'alergia-normal-semibold'}}>unique background</Text> for your card!
         </Text>
         <View style={style.singleButtonContainer}>
           {this.state.pressed === false ?

@@ -157,8 +157,8 @@ const initialState = {
       friends: ["1","9","10"],
       friend: true,
       status: "friend",
-      card: require("../assets/images/playercards/cardGold.png"),
-      cardFull: require("../assets/images/playercards/fullsize/cardGold.png"),
+      card: require("../assets/images/playercards/cardSimplePurple.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSimplePurple.png"),
       currentPoints: 0,
       ingameName: "sappfn"
     },
