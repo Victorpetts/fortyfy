@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   View,
   ScrollView,
   Image,
-  Text
+  TouchableOpacity
 } from 'react-native';
 
 import CardSettings from './CardSettings.js';
@@ -35,14 +34,18 @@ class MyCardProfile extends Component {
         <ScrollView style={{
           paddingVertical: 10
         }}>
-          <Image
-            source={this.state.image}
-            resizeMode={'contain'}
-            style={{ height: 400, width: 350, alignSelf: 'center' }}
-          />
-
-
-          <View style={{ alignSelf: 'center', paddingTop: '5%', paddingBottom: '10%' }}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('IndvUserCard', {
+              userId: "11"
+            })}
+          >
+            <Image
+              source={this.state.image}
+              resizeMode={'contain'}
+              style={{ height: 400, width: 350, alignSelf: 'center' }}
+            />
+          </TouchableOpacity>
+          <View style={{ alignSelf: 'center', marginTop: 15, marginBottom: 45 }}>
             <TourButton
               buttonTitle={"Customize your card!"}
               buttonFunc={this.toggleCardSettings}
@@ -60,10 +63,4 @@ class MyCardProfile extends Component {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    users: state.users
-  };
-};
-
-export default connect(mapStateToProps, null)(MyCardProfile);
+export default MyCardProfile;

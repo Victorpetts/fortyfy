@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { sendRequest } from '../actions/index.js';
+import { SearchBar, Overlay } from 'react-native-elements';
 import {
   ScrollView,
   Text,
@@ -8,14 +10,11 @@ import {
   Image
 } from 'react-native';
 
-import { SearchBar, Overlay } from 'react-native-elements';
 import { TourButtonSmall, DisabledButtonSmall, TourButtonFullWidth, RoundButton } from '../components/Buttons.js';
 import FriendsList from '../components/FriendsList.js';
 
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
-
-import { sendRequest } from '../actions/index.js';
 
 
 class UsersScreen extends Component {
@@ -126,12 +125,10 @@ class UsersScreen extends Component {
     return (
       <View>
         <ScrollView style={style.mainContainer}>
-          <View>
-            <FriendsList
-              navigation={this.props.navigation}
-            />
-          </View>
-          {this.state.isVisible && (
+          <FriendsList
+            navigation={this.props.navigation}
+          />
+          {this.state.isVisible &&
             <Overlay
               height='auto'
               width='90%'
@@ -167,50 +164,47 @@ class UsersScreen extends Component {
                 />
                 {filteredPlayers.map((player) => {
                   return (
-                    this.state.search !== '' && (
-                      <ScrollView
-                        key={player.name}
-                        contentContainerStyle={{
-                          flexDirection: 'column',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <View style={style.inviteListContainer}>
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              justifyContent: 'space-between'
-                            }}
-                          >
-                            <Image
-                              source={player.card}
-                              style={{ height: 60, width: 40, marginRight: 5 }}
-                            />
-                            <TouchableOpacity
-                              onPress={() => this.goToUserProfile(player)}
+                    <View>
+                      {this.state.search !== '' &&
+                        <ScrollView
+                          key={player.name}
+                          contentContainerStyle={{
+                            flexDirection: 'column',
+                            justifyContent: 'space-between'
+                          }}
+                        >
+                          <View style={style.inviteListContainer}>
+                            <View
                               style={{
-                                flexDirection: 'column',
-                                flex: 1
+                                flexDirection: 'row',
+                                justifyContent: 'space-between'
                               }}
                             >
-                              <Text style={style.listItemText}>
-                                {player.name}
-                              </Text>
-                              <Text style={style.listItemSmallText}>
-                                Level {player.lvl}
-                              </Text>
-                            </TouchableOpacity>
-                            <View style={{
-                              flexDirection: 'column',
-                              justifyContent: 'center'
-                            }}>
-                              {this.buttonSwitch(player)}
+                              <Image
+                                source={player.card}
+                                style={{ height: 60, width: 40, marginRight: 5 }}
+                              />
+                              <TouchableOpacity
+                                onPress={() => this.goToUserProfile(player)}
+                                style={{
+                                  flexDirection: 'column',
+                                  flex: 1
+                                }}
+                              >
+                                <Text style={style.listItemText}>{player.name}</Text>
+                                <Text style={style.listItemSmallText}>Level {player.lvl}</Text>
+                              </TouchableOpacity>
+                              <View style={{
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                              }}>
+                                {this.buttonSwitch(player)}
+                              </View>
                             </View>
                           </View>
-                        </View>
-
-                      </ScrollView>
-                    )
+                        </ScrollView>
+                      }
+                    </View>
                   )
                 })}
                 <TourButtonFullWidth
@@ -219,7 +213,7 @@ class UsersScreen extends Component {
                 />
               </View>
             </Overlay>
-          )}
+          }
         </ScrollView>
 
         <View style={{
@@ -228,16 +222,15 @@ class UsersScreen extends Component {
           right: 10,
           flexDirection: 'row'
         }}>
-          {this.state.noPopUp === true &&
+          {this.state.noPopUp &&
             <View style={{
               backgroundColor: Colors.appBlueColor,
               width: 200,
               marginRight: 5
             }}>
               <Text style={style.popUpText}>
-                Invite friends and recieve
-                40000 YONYFY coins
-                </Text>
+                Invite a friend and recieve 500 coins
+              </Text>
             </View>
           }
           <RoundButton

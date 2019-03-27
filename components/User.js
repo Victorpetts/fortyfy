@@ -15,35 +15,28 @@ import { TourButtonSmall, TourButtonSmallRed } from './Buttons.js';
 
 class User extends Component {
 
-  state = {
-    image: this.props.card
-  };
-
   render() {
 
     const userId = this.props.id;
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
-    const userCard = this.state.image;
+    const userCard = thisUser.card;
     const userLvl = thisUser.lvl;
     const isFriend = thisUser.friend;
 
     return (
       <View>
-        {isFriend
-          ?
+        {isFriend ?
           <View style={style.userBigContainer}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('UserCard', {
-                userName: userName,
-                userId: userId,
-                userCard: userCard
+                userId: userId
               })}
             >
               <View style={style.userSquareContainer}>
                 <View style={style.bigImageContainer}>
                   <Image
-                    source={this.state.image}
+                    source={userCard}
                     style={{ height: 140, width: 90 }}
                   />
                 </View>
@@ -54,26 +47,23 @@ class User extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          :
+        :
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('UserCard', {
+            userId: userId
+          })}
+        >
           <View style={style.userSmallContainer}>
             <View style={style.smallImageContainer}>
               <Image
-                source={this.state.image}
+                source={userCard}
                 style={{ height: 76, width: 50 }}
               />
             </View>
             <View style={style.smallListItemContainer}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('UserProfile', {
-                tourName: userName,
-                userCard: userCard,
-                isFriend: thisUser.friend
-              })}
-            >
               <Text style={style.listItemText}>{userName}</Text>
-            </TouchableOpacity>
               <Text style={style.listItemSmallText}>Level {userLvl}</Text>
-              </View>
+            </View>
             <View style={style.smallButtonContainer}>
               <TourButtonSmall
                 buttonTitle={'Accept'}
@@ -85,6 +75,7 @@ class User extends Component {
               />
             </View>
           </View>
+        </TouchableOpacity>
         }
       </View>
     )

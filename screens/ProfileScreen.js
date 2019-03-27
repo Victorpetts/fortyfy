@@ -4,12 +4,12 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity,
-  StatusBar
+  TouchableOpacity
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
+
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons'
@@ -19,11 +19,7 @@ class ProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
-    toggleCards: false,
-    name: '',
-    someStats: '',
-    someMoreStats: '',
-    loading: false
+    toggleCollection: false
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -61,13 +57,13 @@ class ProfileScreen extends Component {
   toggleProfile = () => {
     this.setState({
       toggleProfile: true,
-      toggleCards: false
+      toggleCollection: false
     });
   };
 
-  toggleCards = () => {
+  toggleCollection = () => {
     this.setState({
-      toggleCards: true,
+      toggleCollection: true,
       toggleProfile: false
     });
   };
@@ -118,7 +114,7 @@ class ProfileScreen extends Component {
                 style={style.disabledTab}
               >
                 <TouchableOpacity
-                  onPress={() => this.toggleCards()}
+                  onPress={() => this.toggleCollection()}
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
@@ -128,7 +124,6 @@ class ProfileScreen extends Component {
             </View>
 
             <View style={style.mainContainer}>
-
               <View style={{
                 justifyContent: 'center',
                 alignItems: 'center'
@@ -139,8 +134,9 @@ class ProfileScreen extends Component {
                 />
               </View>
             </View>
+
           </View>
-        ) : this.state.toggleCards ? (
+        ) : this.state.toggleCollection ? (
           <View>
             <View
               style={style.tabBackground}
@@ -160,7 +156,7 @@ class ProfileScreen extends Component {
                 style={style.enabledTab}
               >
                 <TouchableOpacity
-                  onPress={() => this.toggleCards()}
+                  onPress={() => this.toggleCollection()}
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >

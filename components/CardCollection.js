@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   View,
   Image,
@@ -29,7 +28,6 @@ class CardCollection extends Component {
   render() {
 
     const userId = this.props.id;
-    const userCard = this.props.card;
 
     return (
 
@@ -44,8 +42,7 @@ class CardCollection extends Component {
         ]}]}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('IndvUserCard', {
-            userId: userId,
-            userCard: userCard
+            userId: userId
           })}
         >
           <Image
@@ -58,8 +55,4 @@ class CardCollection extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { users: state.users };
-};
-
-export default connect(mapStateToProps, null)(CardCollection);
+export default CardCollection;
