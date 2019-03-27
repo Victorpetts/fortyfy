@@ -385,8 +385,8 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     height: '100%',
     display: 'flex',
-    padding: '2%',
-    paddingBottom: '15%'
+    paddingHorizontal: '2%',
+    paddingBottom: '25%'
   },
 
   cardContainer: {

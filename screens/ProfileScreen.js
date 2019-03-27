@@ -96,12 +96,8 @@ class ProfileScreen extends Component {
       <View>
         {this.state.toggleProfile ? (
           <View>
-            <View
-              style={style.tabBackground}
-            >
-              <View
-                style={style.enabledTab}
-              >
+            <View style={style.tabBackground}>
+              <View style={style.enabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleProfile()}
                   accessible={true}
@@ -110,9 +106,7 @@ class ProfileScreen extends Component {
                   <Text style={style.enabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
-              <View
-                style={style.disabledTab}
-              >
+              <View style={style.disabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleCollection()}
                   accessible={true}
@@ -123,20 +117,22 @@ class ProfileScreen extends Component {
               </View>
             </View>
 
-            <View style={style.mainContainer}>
+            <ScrollView style={style.mainContainer}>
               <View style={{
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                marginTop: 15,
+                marginBottom: 80
               }}>
                 <MyCardProfile
                   card={require("../assets/images/playercards/fullsize/cardSirYonyfy.png")}
                   navigation={this.props.navigation}
                 />
               </View>
-            </View>
+            </ScrollView>
 
           </View>
-        ) : this.state.toggleCollection ? (
+        ) :  (
           <View>
             <View
               style={style.tabBackground}
@@ -170,8 +166,7 @@ class ProfileScreen extends Component {
               </View>
             </ScrollView>
           </View>
-        )
-        : null}
+        )}
       </View>
 
     )

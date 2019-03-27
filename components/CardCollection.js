@@ -11,7 +11,6 @@ import style from '../assets/Style.js';
 class CardCollection extends Component {
 
   state = {
-    image: this.props.card,
     animateItem: new Animated.Value(0)
   }
 
@@ -21,13 +20,15 @@ class CardCollection extends Component {
     Animated.timing(this.state.animateItem, {
       toValue: 1,
       duration: 1000,
-      delay: index * 100
+      delay: index * 100,
+      useNativeDriver: true
     }).start()
   }
 
   render() {
 
     const userId = this.props.id;
+    const userCard = this.props.card;
 
     return (
 
@@ -46,7 +47,7 @@ class CardCollection extends Component {
           })}
         >
           <Image
-            source={this.state.image}
+            source={userCard}
             style={{ height: 150, width: 100 }}
           />
         </TouchableOpacity>
