@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Platform,
+  Text,
   View,
   Image
 
@@ -8,7 +8,8 @@ import {
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
-import TabBarIcon from '../components/TabBarIcon';
+import style from '../assets/Style.js';
+
 import NewsScreen from '../screens/NewsScreen';
 import TournamentsScreen from '../screens/TournamentsScreen';
 import TourIndvScreen from '../screens/TourIndvScreen';
@@ -16,36 +17,52 @@ import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import UserCardScreen from '../screens/UserCardScreen';
+import CardBackScreen from '../screens/CardBackScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 import CreateTourScreen from '../screens/CreateTourScreen';
 import FinishedScreen from '../screens/FinishedScreen';
 import OngoingScreen from '../screens/OngoingScreen';
 
 const NewsStack = createStackNavigator({
-  News: NewsScreen,
+  News: NewsScreen
 });
 
-NewsStack.navigationOptions = {
-  tabBarLabel: 'News',
-  tabBarIcon: ({ focused }) => (
-    <View style={{
-      paddingTop: 10
-    }}>
-      <Image
-        focused={focused}
-        style={{ height: 25, width: 29 }}
-        resizeMode={'contain'}
-        source={require("../assets/images/news.png")} 
-      />
-    </View>
-  ),
-  tabBarOptions: {
-    labelStyle: 'alergia-condensed-regular',
-    activeTintColor: 'white',
-    activeBackgroundColor: Colors.appBlueColor,
-    style: {
-      backgroundColor: Colors.tabBarbackgroundColor
+NewsStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'News',
+    tabBarOnPress: () => {
+      // Scroll to top
+      if (navigation.state.index === 0) {
+        const navigationInRoute = navigation.getChildNavigation(navigation.state.routes[0].key);
+
+        if (!!navigationInRoute && navigationInRoute.isFocused() && !!navigationInRoute.state.params && !!navigationInRoute.state.params.scrollToTop) {
+          navigationInRoute.state.params.scrollToTop();
+        }
+        else {
+          navigation.navigate(navigation.state.key)
+        }
+      }
     },
+    tabBarIcon: ({ focused }) => (
+      <View style={{
+        paddingTop: 10
+      }}>
+        <Image
+          focused={focused}
+          style={{ height: 25, width: 29 }}
+          resizeMode={'contain'}
+          source={require("../assets/images/tabicons/news.png")}
+        />
+      </View>
+    ),
+    tabBarOptions: {
+      labelStyle: 'alergia-condensed-regular',
+      activeTintColor: 'white',
+      activeBackgroundColor: Colors.appBlueColor,
+      style: {
+        backgroundColor: Colors.tabBarbackgroundColor
+      },
+    }
   }
 };
 
@@ -58,88 +75,84 @@ const TournamentsStack = createStackNavigator({
   TopUserCard: UserCardScreen
 });
 
-TournamentsStack.navigationOptions = {
-  tabBarLabel: 'Tournaments',
-  tabBarIcon: ({ focused }) => (
-    focused ?
-    <View style={{
-      paddingTop: 10
-    }}>
-    <Image
-    focused={focused}
-    style={{ height: 25, width: 29 }}
-    resizeMode={'contain'}
-    source={require("../assets/images/tournament.png")} 
-  />
-  </View>
-      :
-      <View style={{
-        paddingTop: 10
-      }}>
+TournamentsStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Tournaments',
+    tabBarIcon: ({ focused }) => (
+      focused ?
         <View style={{
-          borderRadius: 9,
-          width: 10,
-          height: 10,
-          backgroundColor: '#b10606',
-          position: 'absolute',
-          top: 5,
-          right: -10,
-          zIndex: 1000,
-          borderWidth: .5,
-          borderColor: 'white'
+          paddingTop: 10
         }}>
+          <Image
+            focused={focused}
+            style={{ height: 25, width: 29 }}
+            resizeMode={'contain'}
+            source={require("../assets/images/tabicons/tournament.png")}
+          />
         </View>
-        <Image
-      focused={focused}
-      style={{ height: 25, width: 29 }}
-      resizeMode={'contain'}
-      source={require("../assets/images/tournament.png")} 
-    />
-      </View>
-  ),
-  tabBarOptions: {
-    labelStyle: 'alergia-condensed-regular',
-    activeTintColor: 'white',
-    activeBackgroundColor: Colors.appBlueColor,
-    style: {
-      backgroundColor: Colors.tabBarbackgroundColor,
-    },
+        :
+        <View style={{
+          paddingTop: 10
+        }}>
+          <View style={style.notificationCircle}>
+            <Text style={style.notificationText}>1</Text>
+          </View>
+          <Image
+            focused={focused}
+            style={{ height: 25, width: 29 }}
+            resizeMode={'contain'}
+            source={require("../assets/images/tabicons/tournament.png")}
+          />
+        </View>
+    ),
+    tabBarOptions: {
+      labelStyle: 'alergia-condensed-regular',
+      activeTintColor: 'white',
+      activeBackgroundColor: Colors.appBlueColor,
+      style: {
+        backgroundColor: Colors.tabBarbackgroundColor,
+      },
+    }
   }
 };
 
 const UsersStack = createStackNavigator({
   Links: UsersScreen,
   UserCard: UserCardScreen,
+  CardBack: CardBackScreen,
   UserProfile: UserProfileScreen
 });
 
-UsersStack.navigationOptions = {
-  tabBarLabel: 'Friends',
-  tabBarIcon: ({ focused }) => (
-    <View style={{
-      paddingTop: 10
-    }}>
-      <Image
-        focused={focused}
-        style={{ height: 25, width: 29 }}
-        resizeMode={'contain'}
-        source={require("../assets/images/friends.png")} 
-      />
-    </View>
-  ),
-  tabBarOptions: {    
-    labelStyle: 'alergia-condensed-regular',
-    activeTintColor: 'white',
-    activeBackgroundColor: Colors.appBlueColor,
-    style: {
-      backgroundColor: Colors.tabBarbackgroundColor,
-    },
+UsersStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: 'Friends',
+    tabBarIcon: ({ focused }) => (
+      <View style={{
+        paddingTop: 10
+      }}>
+        <Image
+          focused={focused}
+          style={{ height: 25, width: 29 }}
+          resizeMode={'contain'}
+          source={require("../assets/images/tabicons/friends.png")}
+        />
+      </View>
+    ),
+    tabBarOptions: {
+      labelStyle: 'alergia-condensed-regular',
+      activeTintColor: 'white',
+      activeBackgroundColor: Colors.appBlueColor,
+      style: {
+        backgroundColor: Colors.tabBarbackgroundColor,
+      },
+    }
   }
 };
 
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
   IndvUserCard: UserCardScreen,
+  CardBack: CardBackScreen,
   ProfileSettings: ProfileSettingScreen
 });
 
@@ -153,7 +166,7 @@ ProfileStack.navigationOptions = {
         focused={focused}
         style={{ height: 25, width: 29 }}
         resizeMode={'contain'}
-        source={require("../assets/images/profile.png")} 
+        source={require("../assets/images/tabicons/profile.png")}
       />
     </View>
   ),

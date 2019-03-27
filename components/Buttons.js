@@ -21,20 +21,20 @@ export class TourButton extends React.Component {
     )
   }
 }
-  
-  export class TourButtonRed extends React.Component {
-    render() {
-      return (
-        <TouchableOpacity
-          onPress={this.props.buttonFunc}
-          accessibilityLabel="Button"
-          style={style.buttonClassRed}
-        >
-          <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
-        </TouchableOpacity>
-      )
-    }
+
+export class TourButtonGold extends React.Component {
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={this.props.buttonFunc}
+        accessibilityLabel="Button"
+        style={style.buttonClassGold}
+      >
+        <Text style={style.buttonText}>{this.props.buttonTitle}</Text>
+      </TouchableOpacity>
+    )
   }
+}
 
 export class TourButtonMedium extends React.Component {
   render() {
@@ -148,7 +148,7 @@ export class DisabledButtonSmall extends React.Component {
 }
 
 export class RoundButton extends React.Component {
-    
+
   state = {
     show: false
   }
@@ -158,65 +158,49 @@ export class RoundButton extends React.Component {
     return (
       <View>
 
-        {this.props.id === 'plus' &&
-        <View>
-          
-          <TouchableOpacity
-            onPress={this.props.buttonFunc}
-            accessibilityLabel="A button"
-            style={style.roundButtonLarge}
-          >
+        <TouchableOpacity
+          onPress={this.props.buttonFunc}
+          accessibilityLabel="A button"
+          style={style.roundButtonLarge}
+        >
 
           {this.props.showing === true
-          ? <Image 
-          source={require('../assets/images/cross.png')}
-          style={{ height: 20, width: 20, alignSelf: 'center', marginTop: '30%' }}
-          resizeMode={'contain'}
+            ? <Image
+              source={require('../assets/images/menuicons/cross.png')}
+              style={{ height: 20, width: 20, alignSelf: 'center', marginTop: '30%' }}
+              resizeMode={'contain'}
             />
-          : <Image 
-            source={require('../assets/images/plus.png')}
-            style={{ height: 25, width: 25, alignSelf: 'center', marginTop: '25%' }}
-            resizeMode={'contain'}
-              />
+            : <Image
+              source={require('../assets/images/menuicons/plus.png')}
+              style={{ height: 25, width: 25, alignSelf: 'center', marginTop: '25%' }}
+              resizeMode={'contain'}
+            />
           }
-          </TouchableOpacity>
-        </View>
-        }
-
-        {this.props.id === 'search' || this.props.showingSmall === true &&
-        <View>
-          <TouchableOpacity
-            accessibilityLabel="A button"
-            style={style.roundButtonMedium}
-          >
-            <Image 
-            testID={'search'}
-            source={require('../assets/images/search.png')}
-            style={{ height: 17.5, width: 18, alignSelf: 'center', marginTop: '25%' }}
-            resizeMode={'contain'}
-            />
-          </TouchableOpacity>
-        </View>
-        }
-
-        {this.props.id === 'small plus' || this.props.showingSmall === true &&
-        <View>
-          <TouchableOpacity
-            onPress={this.props.thirdButtonFunc}
-            accessibilityLabel="A button"
-            style={style.roundButtonMedium}
-          >
-            <Image 
-            testID={'search'}
-            source={require('../assets/images/plus.png')}
-            style={{ height: 20.5, width: 20, alignSelf: 'center', marginTop: '25%' }}
-            resizeMode={'contain'}
-            />
-          </TouchableOpacity>
-        </View>
-        }
+        </TouchableOpacity>
       </View>
     )
   }
 }
-  
+
+export class RoundButtonSmall extends React.Component {
+
+  render() {
+
+    return (
+
+      <View>
+        <TouchableOpacity
+          onPress={this.props.buttonFunc}
+          accessibilityLabel="A button"
+          style={style.roundButtonSmall}
+        >
+          <Image
+            source={this.props.buttonImg}
+            style={{ height: 17.5, width: 18, alignSelf: 'center', marginTop: '25%' }}
+            resizeMode={'contain'}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}

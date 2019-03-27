@@ -45,23 +45,26 @@ class CreateTourScreen extends Component {
   state = {
     name: '',
     players: '',
-    wincon: '',
+    wincon: "1",
     totalMatches: '',
     fromDate: '',
     toDate: '',
     isVisible: false
   };
 
-  createTour = () => {
+  createTourFunc = () => {
     if (this.state.name !== '') {
       let newTour = {
+        'id': 4,
         'name': this.state.name,
+        'participants': ["11"],
         'players': this.state.players,
         'wincon': this.state.wincon,
         'totalMatches': this.state.totalMatches,
         'finished': false,
         'fromDate': this.state.fromDate,
-        'toDate': this.state.toDate
+        'toDate': this.state.toDate,
+        'owner': "11"
       }
       this.props.createTour(newTour);
       this.props.navigation.navigate('Tournaments');
@@ -76,29 +79,25 @@ class CreateTourScreen extends Component {
 
   mapInviteList() {
 
-    friendsList = this.props.users.filter(function (item) {
-      return item.friend === true;
-    }).map(function ({ name, level, friend }) {
-      return { name, level, friend };
-    });
+    let friendsList = this.props.users.filter(user => user.status === "friend");
 
-    friendsList.sort((a, b) => b.level - a.level);
+    friendsList.sort((a, b) => b.lvl - a.lvl);
 
     return friendsList.map((user) => {
       return (
         <InviteList
-          key={user.name}
-          name={user.name}
-          level={user.level}
-          friend={user.friend}
-          navigation={this.props.navigation}
-          invite={this.state.invite}
+          key={user.id}
+          id={user.id}
+          card={user.card}
         />
       )
     })
   };
 
   render() {
+
+    const bla = this.props.tours.length;
+    const blah = bla + 1;
 
     const { name, players, wincon, totalMatches } = this.state
 
@@ -110,10 +109,9 @@ class CreateTourScreen extends Component {
             id='name'
             value={name}
             style={style.inputField}
-            placeholder={'Enter a tournament name'}
+            placeholder={'Choose a tournament name'}
             maxLength={20}
-            onChangeText={(event) =>
-              this.setState({ name: event })}
+            onChangeText={(event) => this.setState({ name: event })}
             onSubmitEditing={Keyboard.dismiss}
           />
           <Text style={style.inputFieldText}>Max number of players</Text>
@@ -121,10 +119,9 @@ class CreateTourScreen extends Component {
             id='players'
             value={players}
             style={style.inputField}
-            placeholder={'Enter a number between 5-100'}
+            placeholder={'2-100 players'}
             maxLength={3}
-            onChangeText={(event) =>
-              this.setState({ players: event })}
+            onChangeText={(event) => this.setState({ players: event })}
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
@@ -134,9 +131,7 @@ class CreateTourScreen extends Component {
             marginVertical: 10
           }}>
             <DatePicker
-              style={{ 
-                width: 170
-              }}
+              style={{ width: 170 }}
               date={this.state.fromDate}
               is24Hour={true}
               mode="datetime"
@@ -197,15 +192,16 @@ class CreateTourScreen extends Component {
               onDateChange={(date) => { this.setState({ toDate: date }) }}
             />
           </View>
-          <Text style={style.inputFieldText}>Victory conditions</Text>
+
+          <Text style={style.inputFieldText}>Victory condition</Text>
           <View style={style.pickerField}>
             <Picker
               selectedValue={this.state.wincon}
               onValueChange={(itemValue) => this.setState({ wincon: itemValue })}
             >
-              <Picker.Item label="Survived most minutes" value="1" />
-              <Picker.Item label="Most accumulated kills" value="2" />
-              <Picker.Item label="Most placements in top 5" value="3" />
+              <Picker.Item label="Survived longest" value="1" />
+              <Picker.Item label="Most kills" value="2" />
+              <Picker.Item label="Most top 5" value="3" />
             </Picker>
           </View>
 
@@ -214,33 +210,28 @@ class CreateTourScreen extends Component {
             id='totalMatches'
             value={totalMatches}
             style={style.inputField}
-            placeholder={'Enter a number between 5-100'}
+            placeholder={'2-100 matches'}
             maxLength={3}
-            onChangeText={(event) =>
-              this.setState({ totalMatches: event })
-            }
+            onChangeText={(event) => this.setState({ totalMatches: event })}
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
-          <View style={{
-            alignItems: 'center',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            height: '25%'
-          }}>
+          <View style={{ paddingVertical: 10 }}>
+          <View style={style.buttonContainerFullCol}>
             <TourButtonFullWidth
               buttonTitle={'Invite friends'}
               buttonFunc={this.toggleOverlay}
             />
             <TourButtonFullWidth
-              buttonTitle={'Handle tournament'}
-              buttonFunc={this.createTour}
+              buttonTitle={'Create tournament!'}
+              buttonFunc={this.createTourFunc}
             />
+          </View>
           </View>
         </ScrollView>
         {this.state.isVisible &&
           <Overlay
-            height='auto'
+            height='90%'
             width='90%'
             isVisible={this.state.isVisible == true}
             onBackdropPress={() => this.setState({
@@ -261,18 +252,16 @@ class CreateTourScreen extends Component {
                 flexDirection: 'column',
                 justifyContent: 'space-between'
               }}
-              style={{
-                padding: 5
-              }}
             >
               <View>
                 {this.mapInviteList()}
               </View>
+            </ScrollView>
+            <View style={{ padding: 5 }} />
               <TourButtonFullWidth
                 buttonTitle={'Done'}
                 buttonFunc={this.toggleOverlay}
               />
-            </ScrollView>
           </Overlay>
         }
       </ScrollView>

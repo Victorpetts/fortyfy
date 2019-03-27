@@ -15,54 +15,74 @@ import { TourButtonSmall, TourButtonSmallRed } from './Buttons.js';
 
 class User extends Component {
 
+  state = {
+    image: this.props.card
+  };
+
   render() {
 
-    const userName = this.props.name;
+    const userId = this.props.id;
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const userName = thisUser.name;
+    const userCard = this.state.image;
+    const userLvl = thisUser.lvl;
+    const isFriend = thisUser.friend;
 
     return (
       <View>
-        {this.props.friend
-          ? 
-          <View style={{ flexDirection: 'row', width: '100%', flex: 1, padding: 5 }}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('UserCard', {
-              userName: userName
-            })}
-          >
-            <View style={style.friendContainer}>
-            <View style={{ paddingTop: 5, paddingHorizontal: 5, alignSelf: 'center' }}>
-            <Image 
-              source={require('../assets/images/frame-silver.png')}
-              style={{ height: 150, width: 100 }}
-            />
+        {isFriend
+          ?
+          <View style={style.userBigContainer}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('UserCard', {
+                userName: userName,
+                userId: userId,
+                userCard: userCard
+              })}
+            >
+              <View style={style.userSquareContainer}>
+                <View style={style.bigImageContainer}>
+                  <Image
+                    source={this.state.image}
+                    style={{ height: 140, width: 90 }}
+                  />
+                </View>
+                <View style={style.bigListItemContainer}>
+                  <Text style={style.listItemText}>{userName}</Text>
+                  <Text style={style.listItemSmallText}>Level {userLvl}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
-            <View style={{ flexDirection: 'column', flex: 1, alignItems: 'center', paddingBottom: 5 }}>
-              <Text style={style.listItemText}>{this.props.name}</Text>
-              <Text style={style.listItemSmallText}>Level {this.props.lvl}</Text>
+          :
+          <View style={style.userSmallContainer}>
+            <View style={style.smallImageContainer}>
+              <Image
+                source={this.state.image}
+                style={{ height: 76, width: 50 }}
+              />
             </View>
-            </View>
-          </TouchableOpacity>
-            </View>
-          : <View style={style.userContainer}>
-          <View style={{ padding: 5, alignSelf: 'center' }}>
-            <Image 
-              source={require('../assets/images/frame-silver.png')}
-              style={{ height: 76, width: 50 }}
-            />
-          </View>
-            <View style={{ flexDirection: 'column', flex: 1, paddingTop: 5 }}>
-              <Text style={style.listItemText}>{this.props.name}</Text>
-              <Text style={style.listItemSmallText}>Level {this.props.lvl}</Text>
-            </View>
-            <View style={{ flexDirection: 'column', padding: 5, justifyContent: 'space-around' }}>
-                <TourButtonSmall
-                  buttonTitle={'Accept'}
-                  buttonFunc={() => this.props.acceptFriend(userName)}
-                />
-                <TourButtonSmallRed
-                  buttonTitle={'Decline'}
-                  buttonFunc={() => this.props.acceptFriend(userName)}
-                />
+            <View style={style.smallListItemContainer}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('UserProfile', {
+                tourName: userName,
+                userCard: userCard,
+                isFriend: thisUser.friend
+              })}
+            >
+              <Text style={style.listItemText}>{userName}</Text>
+            </TouchableOpacity>
+              <Text style={style.listItemSmallText}>Level {userLvl}</Text>
+              </View>
+            <View style={style.smallButtonContainer}>
+              <TourButtonSmall
+                buttonTitle={'Accept'}
+                buttonFunc={() => this.props.acceptFriend(userName)}
+              />
+              <TourButtonSmallRed
+                buttonTitle={'Decline'}
+                buttonFunc={() => this.props.denyFriend(userName)}
+              />
             </View>
           </View>
         }

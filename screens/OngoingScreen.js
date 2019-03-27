@@ -14,6 +14,7 @@ import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import { TourButtonFullWidth, TourButtonSmallRed } from '../components/Buttons.js';
 import Participant from '../components/Participant.js';
+import ParticipantCard from '../components/ParticipantCard.js';
 import InviteList from '../components/InviteList';
 import TourInfoSection from '../components/TourInfoSection.js';
 
@@ -44,7 +45,7 @@ class OngoingScreen extends Component {
         onPress={navigation.getParam('toggleInfoWindow')}
       >
         <Image
-          source={require('../assets/images/information.png')}
+          source={require('../assets/images/menuicons/information.png')}
           style={{ height: 25, width: 25, marginRight: 15 }}
         />
       </TouchableOpacity>
@@ -56,7 +57,9 @@ class OngoingScreen extends Component {
     buttonToggle: false,
     invite: true,
     isInfoWindow: false,
-    isInviteList: false
+    isInviteList: false,
+    activeColor1: Colors.appBlueColor,
+    activeColor2: Colors.appWhiteColor
   }
 
   componentDidMount() {
@@ -69,12 +72,35 @@ class OngoingScreen extends Component {
     const particArr = thisTour.participants;
     let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
+    thisToursPartic.sort((a, b) => b.lvl - a.lvl);
+
     return thisToursPartic.map((user) => {
       return (
         <Participant
           key={user.id}
-          id={user.id}
-          thisTour={thisTour}
+          userId={user.id}
+          tourId={thisTour.id}
+        />
+      );
+    });
+  };
+
+  mapParticCard(thisTour) {
+
+    const allUsers = this.props.users;
+    const particArr = thisTour.participants;
+    let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
+
+    thisToursPartic.sort((a, b) => b.lvl - a.lvl);
+
+    return thisToursPartic.map((user) => {
+      return (
+        <ParticipantCard
+          key={user.id}
+          userId={user.id}
+          tourId={thisTour.id}
+          card={user.card}
+          navigation={this.props.navigation}
         />
       );
     });
@@ -91,6 +117,7 @@ class OngoingScreen extends Component {
         <InviteList
           key={user.id}
           id={user.id}
+          card={user.card}
         />
       )
     })
@@ -112,14 +139,16 @@ class OngoingScreen extends Component {
   toggleInviteList = () => {
     this.setState({
       isVisible: true,
-      isInviteList: true
+      isInviteList: true,
+      isInfoWindow: false
     })
   };
 
   toggleInfoWindow = () => {
     this.setState({
       isVisible: true,
-      isInfoWindow: true
+      isInfoWindow: true,
+      isInviteList: false
     })
   };
 
@@ -173,72 +202,121 @@ class OngoingScreen extends Component {
 
   render() {
 
-    const owner = this.props.navigation.getParam('owner');
-    const thisToursId = this.props.navigation.getParam('tourId');
-    const thisTour = this.props.tours.find(thisTour => thisTour.id === thisToursId);
-    let winconText;
-
-    switch (thisTour.wincon) {
-      case '1':
-        winconText = 'Survived longest';
-        break
-      case '2':
-        winconText = 'Most kills';
-        break
-      case '3':
-        winconText = 'Most top 5';
-        break
-      default:
-        winconText = '';
-        break
-    };
+    const tourId = this.props.navigation.getParam('tourId');
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
 
     return (
-      <View>
+      <View style={{ height: '100%' }}>
         <ScrollView style={style.mainContainer}>
           <View style={style.itemContainer}>
             <TourInfoSection
-              id={thisToursId}
-              owner={owner}
+              tourId={tourId}
             />
           </View>
 
-          <View style={{
-            alignItems: 'center',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            paddingHorizontal: 10,
-            height: '20%'
-          }}>
-              <TourButtonFullWidth
-                buttonTitle={'Invite friends'}
-                buttonFunc={this.toggleInviteList}
+          {thisTour.owner === "11" &&
+            <View style={{ padding: 10 }}>
+              <View style={style.buttonContainerFullCol}>
+                <TourButtonFullWidth
+                  buttonTitle={'Invite friends'}
+                  buttonFunc={this.toggleInviteList}
+                />
+                <TourButtonFullWidth
+                  buttonTitle={'Manage tournament'}
+                />
+              </View>
+            </View>
+          }
+
+          <View style={{ justifyContent: 'flex-end', flexDirection: 'row', paddingRight: 10 }}>
+            <TouchableOpacity
+              style={{
+                height: 25,
+                width: 37,
+                backgroundColor: this.state.activeColor1,
+                borderRadius: 2.5
+              }}
+              onPress={() => this.setState({ activeColor1: Colors.appBlueColor, activeColor2: Colors.appWhiteColor })}
+            >
+              <Image
+                source={require('../assets/images/menuicons/dashes.png')}
+                style={{ height: 12.5, width: 15, alignSelf: 'center', marginTop: 6 }}
               />
-              <TourButtonFullWidth
-                buttonTitle={'Manage tournament'}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: 25,
+                width: 37,
+                backgroundColor: this.state.activeColor2,
+                borderRadius: 2.5
+              }}
+              onPress={() => this.setState({ activeColor2: Colors.appBlueColor, activeColor1: Colors.appWhiteColor })}
+            >
+              <Image
+                source={require('../assets/images/menuicons/squares.png')}
+                style={{ height: 14.5, width: 15, alignSelf: 'center', marginTop: 5 }}
               />
+            </TouchableOpacity>
           </View>
 
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            padding: 10
-          }}>
-            <Text style={style.subTitleText}>Player</Text>
-            <Text style={style.subTitleText}>Matches played</Text>
-          </View>
-          <View style={{ paddingBottom: '15%' }}>
-            {this.mapPartic(thisTour)}
-          </View>
+          {this.state.activeColor1 === Colors.appBlueColor &&
+            <View>
+              <View style={style.subTitleContainer}>
+                <Text style={style.subTitleText}>Players</Text>
+                <Text style={style.subTitleText}>Matches played</Text>
+              </View>
+              {this.mapPartic(thisTour)}
+            </View>
+          }
+          {this.state.activeColor2 === Colors.appBlueColor &&
+            <View style={style.friendsListContainer}>
+              {this.mapParticCard(thisTour)}
+            </View>
+          }
 
-          {this.state.isVisible &&
+          {this.state.isVisible && this.state.isInviteList === true &&
+            <Overlay
+              height='90%'
+              width='90%'
+              isVisible={this.state.isVisible == true}
+              onBackdropPress={() => this.setState({
+                isVisible: false,
+                isInviteList: false,
+              })}
+              overlayBackgroundColor={'black'}
+              overlayStyle={{
+                borderColor: Colors.appBlueColor,
+                borderWidth: 2,
+                borderRadius: 2.5,
+                backgroundColor: Colors.appBackgroundColor
+              }}
+            >
+              <View style={{ height: '100%' }}>
+                <ScrollView
+                  contentContainerStyle={{
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  {this.mapInviteList()}
+                </ScrollView>
+
+                <View style={{ padding: 5 }} />
+                <TourButtonFullWidth
+                  buttonTitle={'Done'}
+                  buttonFunc={this.toggleOverlay}
+                />
+              </View>
+            </Overlay>
+          }
+
+          {this.state.isVisible && this.state.isInfoWindow &&
             <Overlay
               height='auto'
               width='90%'
               isVisible={this.state.isVisible == true}
               onBackdropPress={() => this.setState({
                 isVisible: false,
-                isFriendList: false,
                 isInfoWindow: false
               })}
               overlayBackgroundColor={'black'}
@@ -249,51 +327,22 @@ class OngoingScreen extends Component {
                 backgroundColor: Colors.appBackgroundColor
               }}
             >
-              <ScrollView
-                contentContainerStyle={{
-                  flexDirection: 'column',
-                  justifyContent: 'space-between'
-                }}
-                style={{ padding: 5 }}
-              >
-
-                {this.state.isInviteList === true &&
-                  <View>
-                    <View>
-                      {this.mapInviteList()}
-                    </View>
-                    <TourButtonFullWidth
-                      buttonTitle={'Done'}
-                      buttonFunc={this.toggleOverlay}
-                    />
-                  </View>
-                }
-
-                {this.state.isInfoWindow === true &&
-                  <View>
-                    <Text style={style.subTitleText}>Tournament rules</Text>
-                    <Text style={style.paragraphText}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure
-                      dolor in reprehenderit in voluptate velit esse cillum
-                      dolore eu fugiat nulla pariatur. Excepteur sint
-                      occaecat cupidatat non proident, sunt in culpa qui
-                      officia deserunt mollit anim id est laborum.
-                    </Text>
-                    <View style={{ paddingBottom: '50%' }} />
-                    <View style={{ alignSelf: 'center' }}>
-                      <TourButtonSmallRed
-                        buttonTitle={'Close'}
-                        buttonFunc={this.toggleOverlay}
-                      />
-                    </View>
-                  </View>
-                }
-
-              </ScrollView>
+              <View>
+                <Text style={style.subTitleText}>Tournament rules</Text>
+                <Text style={style.paragraphText}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut
+                  aliquip ex ea commodo consequat.
+                </Text>
+                <View style={{ alignSelf: 'center', margin: 15 }}>
+                  <TourButtonSmallRed
+                    buttonTitle={'Close'}
+                    buttonFunc={this.toggleOverlay}
+                  />
+                </View>
+              </View>
             </Overlay>
           }
 
@@ -306,8 +355,8 @@ class OngoingScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
-    users: state.users
+    users: state.users,
+    tours: state.tours
   };
 };
 

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addPlayer } from '../actions';
 import {
   View,
   Image,
-  ImageBackground
+  ImageBackground,
+  Text
 } from 'react-native';
 
-import TourInfoMockUp from '../components/TourInfoMockUp';
-import { TourButton, TourButtonRed } from '../components/Buttons.js';
+import { TourButton, TourButtonGold } from './Buttons.js';
 
 import style from '../assets/Style.js';
+import TourInfoSection from './TourInfoSection.js';
+
 
 class SponsoredTours extends Component {
 
@@ -18,41 +22,54 @@ class SponsoredTours extends Component {
 
   render() {
 
-    return (
+    const tourId = this.props.id;
+    const { navigate } = this.props.navigation;
 
-      <View style={style.itemContainerNoBorder}>
-        <ImageBackground
-          source={require('../assets/images/redbullsponsorbg.png')}
-          style={{ width: '100%', padding: 0 }}
-          resizeMode={'cover'}
-        >
-          <Image
-            source={require('../assets/images/redbull.png')}
-            style={{ height: 50, width: 87, position: 'absolute', top: 15, left: 20 }}
-          />
-          <TourInfoMockUp
-            totalMatches={'10'}
-            winconText={'Most kills'}
-            numberOfPlayers={this.state.pressed === false ? '6' : '7'}
-            maxPlayers={'100'}
-            owner={'Red Bull'}
-          />
-          <View style={{ width: '100%', alignItems: 'center', padding: 10 }}>
-            {this.state.pressed === false ?
-              <TourButtonRed
-                buttonTitle={'Join tournament'}
-                buttonFunc={() => this.setState({ pressed: true })}
-              />
-              :
-              <TourButton
-                buttonTitle={'View tournament'}
-              />
-            }
-          </View>
-        </ImageBackground>
+    navigateToOngoing = () => {
+      navigate('Ongoing', {
+        tourId: tourId
+      })
+    }
+
+    buttonFunc = () => {
+
+      const tourId = this.props.id;
+
+      this.props.addPlayer(tourId);
+      this.setState({ pressed: true })
+    }
+
+    return (
+      <View style={style.itemContainerGoldBorder}>
+        <TourInfoSection
+          tourId={tourId}
+        />
+        <Text style={{ marginHorizontal: 25, marginBottom: 10, textAlign: 'center', fontFamily: 'alergia-normal-light', }}>
+          Join the tournament to win <Text style={{fontFamily: 'alergia-normal-semibold'}}>10.000 coins</Text> and a <Text style={{fontFamily: 'alergia-normal-semibold'}}>unique background</Text> for your card!
+        </Text>
+        <View style={style.singleButtonContainer}>
+          {this.state.pressed === false ?
+            <TourButtonGold
+              buttonTitle={'Join tournament'}
+              buttonFunc={buttonFunc}
+            />
+            :
+            <TourButton
+              buttonTitle={'View tournament'}
+              buttonFunc={navigateToOngoing}
+           />
+          }
+        </View>
       </View>
     )
   }
 }
 
-export default SponsoredTours;
+const mapStateToProps = (state) => {
+  return {
+    tours: state.tours,
+    users: state.users
+   };
+};
+
+export default connect(mapStateToProps, { addPlayer })(SponsoredTours);

@@ -10,6 +10,8 @@ import {
 import CardCollection from '../components/CardCollection.js';
 import PlayerCardProfile from '../components/PlayerCardProfile.js';
 import style from '../assets/Style.js';
+import Colors from '../constants/Colors';
+
 import { Feather } from '@expo/vector-icons';
 
 class UserProfileScreen extends Component {
@@ -26,12 +28,17 @@ class UserProfileScreen extends Component {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 0,
-      backgroundColor: 'black',
-      height: 90
+      backgroundColor: Colors.appBlackColor,
+      height: 60,
     },
     headerTitleStyle: {
-      color: 'yellow',
-      fontSize: 34
+      color: 'white',
+      fontSize: 20,
+      alignSelf: 'center',
+      textAlign: 'center',
+      width: '80%',
+      fontFamily: 'luckiest-guy-regular',
+      fontWeight: '200'
     },
     headerRight: (
       <View>
@@ -40,7 +47,7 @@ class UserProfileScreen extends Component {
             <Feather
               name="user-plus"
               size={30}
-              color='yellow'
+              color='white'
               style={{ marginRight: 20 }}
             />
           </TouchableOpacity>
@@ -48,7 +55,7 @@ class UserProfileScreen extends Component {
             <Feather
               name="user"
               size={30}
-              color='yellow'
+              color='white'
               style={{ marginRight: 20 }}
             />
           }
@@ -72,19 +79,14 @@ class UserProfileScreen extends Component {
 
   mapCardCollection() {
 
-    cardCollection = this.props.users.filter(function (item) {
-      return item.friend === true;
-    }).map(function ({ name, level, friend }) {
-      return { name, level, friend };
-    });
+    let cardList = this.props.users.filter(user => user.friend === true);
 
-    return cardCollection.map((user) => {
+    return cardList.map((user) => {
       return (
         <CardCollection
-          key={user.name}
-          name={user.name}
-          lvl={user.level}
-          friend={user.friend}
+          key={user.id}
+          userId={user.id}
+          card={user.card}
           navigation={this.props.navigation}
         />
       )
@@ -93,6 +95,8 @@ class UserProfileScreen extends Component {
   };
 
   render() {
+
+    const userCard = this.props.navigation.getParam('userCard');
 
     return (
 
@@ -136,6 +140,7 @@ class UserProfileScreen extends Component {
 
             <View style={style.mainContainer}>
               <PlayerCardProfile
+                card={userCard}
                 navigation={this.props.navigation}
               />
             </View>

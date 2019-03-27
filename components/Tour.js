@@ -6,87 +6,60 @@ import {
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import { TourButton } from '../components/Buttons.js';
+import { TourButton, TourButtonGold } from '../components/Buttons.js';
 import TourInfoSection from './TourInfoSection.js';
 
 class Tour extends Component {
+
+  state = {
+    clicked: false
+  }
 
   render() {
 
     const tourId = this.props.id;
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
-    const tourName = thisTour.name;
-    const tourStatus = thisTour.finished;
-    const totalMatches = thisTour.totalMatches;
-    const numberOfPartic = thisTour.participants.length;
-    const maxPlayers = thisTour.players;
-
-    const ownersId = thisTour.owner;
-    const ownerObj = this.props.users.find(user => user.id === ownersId);
-    const owner = ownerObj.name;
-    const ownerLvl = ownerObj.lvl;
-
+    const isFinished = thisTour.finished;
+    const rewardToClaim = thisTour.reward;
     const { navigate } = this.props.navigation;
-    let winconText;
-
-    switch (thisTour.wincon) {
-      case '1':
-        winconText = 'Survived longest';
-        break
-      case '2':
-        winconText = 'Most kills';
-        break
-      case '3':
-        winconText = 'Most top 5';
-        break
-      default:
-        winconText = '';
-        break
-    }
 
     navigateToOngoing = () => {
       navigate('Ongoing', {
-        tourId: tourId,
-        owner: owner
+        tourId: tourId
       })
     }
 
     navigateToFinished = () => {
       navigate('Finished', {
-        tourId: tourId,
-        owner: owner
+        tourId: tourId
       })
+      this.setState({ clicked: true })
     }
 
     return (
 
-      <ScrollView
-        contentContainerStyle={
-          tourStatus === false
-            ? style.itemContainer
-            : style.itemContainerNoBorder
-        }
-        automaticallyAdjustContentInsets={false}
-      >
+      <ScrollView contentContainerStyle={style.itemContainer}>
         <TourInfoSection
-          id={tourId}
-          owner={owner}
+          tourId={tourId}
         />
-        <View style={{
-          alignItems: 'center',
-          padding: 10
-        }}>
-          {tourStatus === false ? (
+
+        <View style={style.singleButtonContainer}>
+          {!isFinished ?
             <TourButton
               buttonTitle={'View tournament'}
               buttonFunc={navigateToOngoing}
             />
-          ) : (
-            <TourButton
-              buttonTitle={'View tournament'}
-              buttonFunc={navigateToFinished}
-            />
-          )}
+          : rewardToClaim && !this.state.clicked ?
+              <TourButtonGold
+                buttonTitle={'Claim Reward!'}
+                buttonFunc={navigateToFinished}
+              />
+            :
+              <TourButton
+                buttonTitle={'View tournament'}
+                buttonFunc={navigateToFinished}
+              />
+          }
         </View>
       </ScrollView>
 
@@ -97,8 +70,7 @@ class Tour extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
-    users: state.users,
+    tours: state.tours
    };
 };
 

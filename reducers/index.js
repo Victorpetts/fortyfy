@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
-//Create a class for matchStatistics maybe dont need to be a component
-class match{
-  constructor(tourId,playedMatches, points){
-    this.tourId = tourId;
-    this.matchesPlayed = playedMatches;
+class match {
+  constructor(matchId, playedMatches, points){
+    this.matchId = matchId;
+    this.playedMatches = playedMatches;
     this.points = points;
   }
 }
@@ -14,38 +13,68 @@ const initialState = {
     {
       id: 1,
       name: "Miranda's Tournament",
-      participants: ["1","3","4","5","10"],
+      participants: ["1","3","4","5","11"],
       players: "5",
       wincon: "2",
       totalMatches: "3",
       fromDate: "5th of March 10:30",
       toDate: "5th of March 13:00",
       finished: true,
-      owner: "3"
+      owner: "3",
+      reward: false
     },
     {
       id: 2,
       name: "Pinar's Tournament",
-      participants: ["5","6","7","9"],
+      participants: ["5","6","7","11"],
       players: "4",
       wincon: "3",
       totalMatches: "5",
       fromDate: "7th of March 17:30",
       toDate: "8th of March 17:30",
       finished: false,
-      owner: "5"
+      owner: "5",
+      reward: false
     },
     {
       id: 3,
-      name: "Victor's Tournament",
-      participants: ["1","2","3","4","7","8","10"],
+      name: "Kool kidz tour",
+      participants: ["1","2","3","4","7","8","10","11"],
       players: "8",
       wincon: "1",
       totalMatches: "7",
       fromDate: "9th of March 07:00",
       toDate: "9th of March 21:00",
       finished: false,
-      owner: "1"
+      owner: "1",
+      reward: false
+    },
+    {
+      id: 5,
+      name: "",
+      participants: ["1","2","3","4","5","6","7","8","9","10"],
+      players: "400",
+      wincon: "2",
+      totalMatches: "10",
+      fromDate: "9th of March 07:00",
+      toDate: "9th of April 21:00",
+      finished: false,
+      owner: "12",
+      sponsor: true,
+      reward: false
+    },
+    {
+      id: 7,
+      name: "A Tour far, far away",
+      participants: ["1","3","8","11"],
+      players: "4",
+      wincon: "1",
+      totalMatches: "4",
+      fromDate: "22nd of March 00:00",
+      toDate: "22nd of March 23:59",
+      finished: true,
+      owner: "1",
+      reward: true
     },
   ],
   usersArr:[
@@ -53,141 +82,164 @@ const initialState = {
       id: "1",
       name: "Vicky",
       lvl: "27",
-      matchStatistics: [new match(1,3,10), new match(3,7,56)],
+      matchStatistics: [new match(1,"3",10), new match(3,"7",55), new match(5,"7",55), new match(7,"4",59)],
       checkBox: false,
       friends: ["3","5","6","8","9","10"],
       friend: true,
       status: "friend",
-      card: "1"
+      card: require("../assets/images/playercards/cardUnicorn.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardUnicorn.png"),
+      currentPoints: 0,
+      ingameName: "Jayste"
     },
     {
       id: "2",
       name: "Antonius",
       lvl: "13",
-      matchStatistics: [new match(3,6,43)],
-      checkBox: false, friends: ["3","4","5","9"],
+      matchStatistics: [new match(3,"6",43), new match(5,"7",55)],
+      checkBox: false,
+      friends: ["3","4","5","9"],
       friend: true,
       status: "friend",
-      card: "2"
+      card: require("../assets/images/playercards/cardGems.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardGems.png"),
+      currentPoints: 0,
+      ingameName: "Ninja"
     },
     {
       id: "3",
       name: "Michirisu",
       lvl: "89",
-      matchStatistics: [new match(1,3,40), new match(3,2,26)],
+      matchStatistics: [new match(1,"3",40), new match(3,"2",26), new match(5,"10",26), new match(7,"4",19)],
       checkBox: false,
       friends: ["1","2"],
       friend: true,
       status: "friend",
-      card: "3"
+      card: require("../assets/images/playercards/cardMagic.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardMagic.png"),
+      currentPoints: 0,
+      ingameName: "ScreeFN"
     },
     {
       id: "4",
       name: "J-Dawg",
-      lvl: "1",
-      matchStatistics: [new match(1,3,55), new match(3,6,75)],
+      lvl: "15",
+      matchStatistics: [new match(1,"3",55), new match(3,"7",75), new match(5,"7",75), new match(6,"0",0)],
       checkBox: false,
       friends: ["2"],
       friend: true,
       status: "friend",
-      card: "4"
+      card: require("../assets/images/playercards/cardPirate.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardPirate.png"),
+      currentPoints: 0,
+      ingameName: "nixxxay"
      },
     {
       id: "5",
       name: "Petitepinita",
       lvl: "29",
-      matchStatistics: [new match(1,3,0), new match(1,4,71)],
+      matchStatistics: [new match(1,"3",0), new match(2,"4",71), new match(5,"4",71)],
       checkBox: false,
       friends: ["1","2","7","8"],
       friend: true,
       status: "friend",
-      card: "5"
+      card: require("../assets/images/playercards/cardCheetah.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardCheetah.png"),
+      currentPoints: 0,
+      ingameName: "cRaBBLe%20McShiet"
     },
     {
       id: "6",
       name: "MrMister",
-      lvl: "50",
-      matchStatistics: [new match(2,1,2)],
+      lvl: "3",
+      matchStatistics: [new match(2,"1",2), new match(5,"10",100)],
       checkBox: false,
       friends: ["1","9","10"],
       friend: true,
       status: "friend",
-      card: "6"
+      card: require("../assets/images/playercards/cardSimplePurple.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSimplePurple.png"),
+      currentPoints: 0,
+      ingameName: "sappfn"
     },
     {
       id: "7",
       name: "Meagzter",
       lvl: "7",
-      matchStatistics: [new match(2,2,11), new match(3,6,81)],
+      matchStatistics: [new match(2,"2",11), new match(3,"6",81), new match(5,"6",81)],
       checkBox: false,
       friends: ["5","9","10"],
       friend: true,
       status: "friend",
-      card: "7"
+      card: require("../assets/images/playercards/cardSpider.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSpider.png"),
+      currentPoints: 0,
+      ingameName: "Nuzucki"
     },
     {
       id: "8",
       name: "Viktorious",
       lvl: "96",
-      matchStatistics: [new match(3,0,0)],
+      matchStatistics: [new match(3,"0",0), new match(5,"0",0), new match(7,"4",85)],
       checkBox: false,
       friends: ["1","5"],
       friend: false,
-      status: "notfriend",
-      card: "8"
+      status: "notFriend",
+      card: require("../assets/images/playercards/cardSimpleGold.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSimpleGold.png"),
+      currentPoints: 0,
+      ingameName: "Nork4G%20ttv"
     },
     {
       id: "9",
       name: "4ld3gr3n",
       lvl: "11",
-      matchStatistics: [new match(2,2,8)],
+      matchStatistics: [new match(5,"2",8)],
       checkBox: false,
       friends: ["1","2","6","7"],
       friend: false,
-      status: "notfriend",
-      card: "9"
+      status: "notFriend",
+      card: require("../assets/images/playercards/cardUfo.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardUfo.png"),
+      currentPoints: 0,
+      ingameName: "E11%20BlooTea"
     },
     {
       id: "10",
       name: "The_Shoulder",
       lvl: "82",
-      matchStatistics: [new match(1,3,5), new match(3,1,15)],
+      matchStatistics: [new match(2,"2",8), new match(3,"1",15), new match(5,"1",15)],
       checkBox: false,
       friends: ["1","6","7"],
       friend: false,
-      status: "notfriend",
-      card: "3"
+      status: "notFriend",
+      card: require("../assets/images/playercards/cardRobot.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardRobot.png"),
+      currentPoints: 0,
+      ingameName: "WBG%20Ranger"
     },
     {
       id: "11",
       name: "SirYonyfy",
       lvl: "99",
-      matchStatistics: [],
+      matchStatistics: [new match(1,"3",5), new match(2,"0",0), new match(3,"4",20), new match(4,"0",0), new match(5,"0",0), new match(6,"0",0), new match(7,"4",91)],
       checkBox: false,
       friends: [],
-      friend: false,
-      status: "notfriend",
-      card: "11"
+      friend: '',
+      status: '',
+      card: require("../assets/images/playercards/cardSirYonyfy.png"),
+      cardFull: require("../assets/images/playercards/fullsize/cardSirYonyfy.png"),
+      currentPoints: 0,
+      ingameName: "TTV.Uwatakashi"
     },
+    {
+      id: "12",
+      name: "Red Bull"
+    }
   ]
-  // particArr:[
-    // { id : 1, name: "Victor", playedMatches: "2", points: "27", checkBox: false },
-    //   { id : 2, name: "Miranda", playedMatches: "5", points: "13", checkBox: false },
-    //   { id : 3, name: "Jesper", playedMatches: "1", points: "2", checkBox: false },
-    //   { id : 4, name: "Robert", playedMatches: "2", points: "7", checkBox: false },
-    //   { id : 5, name: "Pinar", playedMatches: "5", points: "99", checkBox: false },
-    //   { id : 6, name: "Viktor", playedMatches: "1", points: "4", checkBox: false },
-    // ],
-    // usersArr:[
-      //   { name: "Axel", lvl: "27", friend: true, status: "friend" },
-      //   { name: "Constantine", lvl: "13", friend: true, status: "friend" },
-      //   { name: "Moa", lvl: "2", friend: true, status: "friend" },
-      //   { name: "Jesper", lvl: "99", friend: true, status: "friend" },
-      //   { name: "Pinar", lvl: "7", friend: true, status: "friend" },
-      //   { name: "Bo", lvl: "61", friend: true, status: "friend" },
-      //   { name: "Robert", lvl: "75", friend: false, status: "notFriend" },
-      //   { name: "Fredrik", lvl: "23", friend: false, status: "notFriend" },
-      // ],
+
+// ändra status till friendStatus som är antingen friend, notFriend eller request
+
 }
 
 
@@ -197,6 +249,17 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
     case'TOURNAMENT_CREATED':
       let newToursArr = [...oldArr, action.payload]
       return newToursArr;
+
+    case'PLAYER_ADDED':
+      return oldArr.map((item, index) => {
+        if(item.id === action.payload) {
+          return {
+            ...item,
+            participants: ["1","2","3","4","5","6","7","8","9","10","11"]
+          }
+        }
+        return item;
+      });
 
     case 'TOURNAMENT_ENDED':
       return oldArr.map((item, index) => {
@@ -272,6 +335,17 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
       let newArr = oldArr.filter(item => !playersToKick.includes(item.name));
       return newArr;
 
+    case 'SCORE_RETRIEVED':
+      return oldArr.map((item, index) => {
+        if(item.id === action.payload.userId) {
+          return {
+            ...item,
+            currentPoints: action.payload.points
+          }
+        }
+        return item;
+      });
+
     default:
       return oldArr;
 
@@ -280,6 +354,5 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
 export default combineReducers ({
   tours: toursReducer,
-  // partic: particReducer,
   users: usersReducer
 });

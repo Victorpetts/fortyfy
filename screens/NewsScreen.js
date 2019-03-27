@@ -1,7 +1,10 @@
 import React from 'react';
 import {
   ScrollView,
-  View
+  View,
+  FlatList,
+  ActivityIndicator,
+  StatusBar
 } from 'react-native';
 
 import { NewsArticle } from '../components/NewsArticle';
@@ -14,54 +17,62 @@ let data = output;
 // const scraper = 'https://evening-taiga-62440.herokuapp.com/';
 
 export default class NewsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'News',
-    headerStyle: {
-      elevation: 0,
-      shadowOpacity: 0,
-      borderBottomWidth: 0,
-      backgroundColor: Colors.appBlackColor,
-      height: 60,
-    },
-    headerTitleStyle: {
-      color: 'white',
-      fontSize: 20,
-      alignSelf: 'center',
-      textAlign: 'center',
-      width: '90%',
-      fontFamily: 'luckiest-guy-regular',
-      fontWeight: '200'
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'News',
+      headerStyle: {
+        elevation: 0,
+        shadowOpacity: 0,
+        borderBottomWidth: 0,
+        backgroundColor: Colors.appBlackColor,
+        height: 60,
+      },
+      headerTitleStyle: {
+        color: 'white',
+        fontSize: 20,
+        alignSelf: 'center',
+        textAlign: 'center',
+        width: '90%',
+        fontFamily: 'luckiest-guy-regular',
+        fontWeight: '200'
+      },
     }
+  };
+
+  componentDidMount() {
+    StatusBar.setHidden(false);
+
+    this.props.navigation.setParams({
+      scrollToTop: () => {
+        this.flatListRef.scrollToOffset({ animated: true, offset: 0 });
+      }
+    })
   };
 
   render() {
     return (
-        <ScrollView
-          style={style.mainContainer}
-        >
-          <View style={{ padding: '2%' }} />
-          <View style={{
-            alignItems: 'center',
-            width: '90%',
-            marginLeft: '5%',
-            marginRight: '5%'
-          }}>
-
-            {data.slice(0, 10).map(item =>
-              <NewsArticle
-                key={item.title}
-                title={item.title}
-                date={item.date}
-                img={item.img}
-                link={item.link}
-              />
-            )
-            }
-
-          </View>
-          <View style={{ padding: '2%' }} />
-        </ScrollView>
-      )
+      <View style={style.mainContainer}>
+        <FlatList
+          ref={(ref) => { this.flatListRef = ref; }}
+          data={data.slice(0, 10)}
+          renderItem={({ item }) => (
+            <NewsArticle
+              title={item.title}
+              date={item.date}
+              img={item.img}
+              link={item.link}
+            />
+          )}
+          contentContainerStyle={{ alignItems: 'center' }}
+          style={{
+            width: '100%',
+            paddingVertical: 10
+          }}
+          keyExtractor={item => item.title}
+          ListHeaderComponent={<View style={{ padding: 5 }} />}
+          ListFooterComponent={<View style={{ height: 690 }} />}
+        />
+      </View>
+    )
   }
 }
-

@@ -7,26 +7,12 @@ import {
   Linking
 } from 'react-native';
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
-
-import Colors from '../constants/Colors';
+import style from '../assets/Style.js';
 
 export class NewsArticle extends React.Component {
   render() {
     return (
-      <View style={{
-        width: '100%',
-        backgroundColor: 'white',
-        borderRadius: 5,
-        marginBottom: '5%',
-        padding: '5%',
-        justifyContent: 'space-between'
-
-      }}
-      >
+      <View style={style.articleContainer}>
         <Image
           source={{ uri: this.props.img }}
           style={{
@@ -40,20 +26,8 @@ export class NewsArticle extends React.Component {
           paddingTop: 20,
           paddingHorizontal: 5
         }}>
-          <Text style={{
-            fontSize: 20,
-            color: Colors.appBlackColor,
-            fontFamily: 'alergia-normal-regular'
-          }}>{
-              this.props.title}
-          </Text>
-          <Text style={{
-              fontSize: 10,
-              color: Colors.appBlackColor,
-              fontFamily: 'alergia-normal-light'
-            }}>
-              {this.props.date}
-            </Text>
+          <Text style={style.articleTitle}>{this.props.title}</Text>
+          <Text style={style.articleDate}>{this.props.date}</Text>
           <TouchableOpacity
             onPress={() => Linking.openURL(this.props.link)}
             style={{
@@ -61,15 +35,7 @@ export class NewsArticle extends React.Component {
               alignSelf: 'flex-end'
             }}
           >
-            <Text style={{
-              textAlign: 'center',
-              color: Colors.appBlackColor,
-              fontSize: 10,
-              borderBottomWidth: 1.2,
-              width: 55,
-              borderColor: Colors.appBlackColor,
-              fontFamily: 'alergia-normal-regular'
-            }}>Read article</Text>
+            <Text style={style.articleLink}>Read article</Text>
           </TouchableOpacity>
         </View>
       </View>

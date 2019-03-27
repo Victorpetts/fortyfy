@@ -26,31 +26,34 @@ class TourInfoMockUp extends Component {
         <View style={style.tourContainer}>
           <View style={{
             alignItems: 'center',
-            padding: 15
+            paddingVertical: 15,
+            width: '33%'
           }}>
             <Text style={style.tourInfoTitle}>Owner</Text>
             <Image
-              source={require('../assets/images/crown.png')}
+              source={require('../assets/images/tourinfoicons/crown.png')}
               style={{ width: 25, height: 17 }}
             />
             <Text style={style.tourInfoText}>{this.props.owner}</Text>
           </View>
           <View style={{
-            alignItems: 'center'
+            alignItems: 'center',
+            width: '33%'
           }}>
             <Text style={style.tourInfoTitle}>Victory Conditions</Text>
             <Image
-              source={require('../assets/images/trophy.png')}
+              source={require('../assets/images/tourinfoicons/trophy.png')}
               style={{ width: 17, height: 17 }}
             />
             <Text style={style.tourInfoText}>{this.props.winconText}</Text>
           </View>
           <View style={{
-            alignItems: 'center'
+            alignItems: 'center',
+            width: '33%'
           }}>
             <Text style={style.tourInfoTitle}>Participants</Text>
             <Image
-              source={require('../assets/images/group.png')}
+              source={require('../assets/images/tourinfoicons/group.png')}
               style={{ width: 24, height: 17 }}
             />
             <Text style={style.tourInfoText}>{this.props.numberOfPlayers} / {this.props.maxPlayers}</Text>

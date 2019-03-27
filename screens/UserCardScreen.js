@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-    View,
-    Text,
-    ImageBackground,
-    StatusBar
+  View,
+  StatusBar,
+  Animated,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import style from '../assets/Style.js';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
+import CardFront from '../components/CardFront.js';
+import CardBack from '../components/CardBack.js';
 
 class userCardScreen extends Component {
 
@@ -19,25 +17,99 @@ class userCardScreen extends Component {
     header: null
   };
 
-  componentDidMount() {
-    StatusBar.setHidden(true);
+  componentWillMount() {
+    this.animatedValue = new Animated.Value(0);
+    this.value = 0;
+    this.animatedValue.addListener(({ value }) => {
+      this.value = value;
+    })
+    this.frontInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['0deg', '180deg'],
+    })
+    this.backInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['180deg', '360deg']
+    })
+    this.frontOpacity = this.animatedValue.interpolate({
+      inputRange: [89, 90],
+      outputRange: [1, 0]
+    })
+    this.backOpacity = this.animatedValue.interpolate({
+      inputRange: [89, 90],
+      outputRange: [0, 1]
+    })
   }
 
-  componentWillUnmount() {
-    StatusBar.setHidden(false);
+  flipCard() {
+    if (this.value >= 90) {
+      Animated.spring(this.animatedValue, {
+        toValue: 0,
+        friction: 8,
+        tension: 10
+      }).start();
+    } else {
+      Animated.spring(this.animatedValue, {
+        toValue: 180,
+        friction: 8,
+        tension: 10
+      }).start();
+    }
+
   }
-  // funkar inte helt
 
   render() {
-    const userName = this.props.navigation.getParam('userName');
-    const findUser = this.props.users.find( user => user.name === userName );
-    // const card = findUser.card;
+
+    const frontAnimatedStyles = {
+      backfaceVisibility: 'hidden',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transform: [
+        {
+          rotateY: this.frontInterpolate
+        }
+      ]
+    }
+
+    const backAnimatedStyles = {
+      backfaceVisibility: 'hidden',
+      position: 'absolute',
+      alignItems: 'center',
+      justifyContent: 'center',
+      top: 0,
+      height: '100%',
+      width: '100%',
+      transform: [
+        {
+          rotateY: this.backInterpolate
+        }
+      ]
+    }
+
+    const userId = this.props.navigation.getParam('userId');
+    const thisUser = this.props.users.find(user => user.id === userId);
+    const cardFull = thisUser.cardFull;
 
     return (
-      <View>
-        <ImageBackground source={require('../assets/images/playercard-gold-frame.png')} style={{width: '100%', height: '100%'}}>
-          <Text style={style.cardText}>{userName}</Text>
-        </ImageBackground>
+      <View style={style.userCardContainer}>
+        <TouchableWithoutFeedback
+          style={{ height: '100%', width: '100%' }}
+          onPress={() => this.flipCard()}
+        >
+          <View style={{ height: '100%', width: '100%' }}>
+            <Animated.View style={[frontAnimatedStyles, { opacity: this.frontOpacity }]}>
+              <CardFront
+                userCard={cardFull}
+              />
+            </Animated.View>
+            <Animated.View style={[backAnimatedStyles, { opacity: this.backOpacity }]}>
+              <CardBack
+                navigation={this.props.navigation}
+                userId={userId}
+              />
+            </Animated.View>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     )
   }
@@ -47,7 +119,7 @@ class userCardScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     users: state.users
-   };
+  };
 };
 
 export default connect(mapStateToProps, null)(userCardScreen);

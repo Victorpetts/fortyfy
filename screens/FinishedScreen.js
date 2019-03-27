@@ -4,16 +4,24 @@ import {
   View,
   ScrollView,
   Text,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
+import { Overlay } from 'react-native-elements';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import TourInfoSection from '../components/TourInfoSection.js';
 import LeaderBoardPartic from '../components/ParticipantLB';
+import TopThree from '../components/TopThree';
+import { TourButtonMedium } from '../components/Buttons.js';
 
 
 class FinishedScreen extends Component {
+
+  state = {
+    isVisible: true
+  }
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Tournaments',
@@ -36,88 +44,117 @@ class FinishedScreen extends Component {
     }
   });
 
+  mapLeaderboard(thisToursPartic, tourId) {
+
+    thisToursPartic.sort((a, b) => b.currentPoints - a.currentPoints);
+
+    const theRest = thisToursPartic.slice(3);
+    const topThree = thisToursPartic.slice(0, 3);
+
+    return theRest.map((user, index) => {
+      userStats = user.matchStatistics.filter(stats => stats.matchId === tourId);
+      userPoints = userStats[0].points;
+
+      return (
+        <LeaderBoardPartic
+          key={user.id}
+          userId={user.id}
+          tourId={tourId}
+          userPoints={userPoints}
+          placement={index + 4}
+        />
+      )
+    });
+
+  };
+
+  mapTop(thisToursPartic, tourId) {
+
+    thisToursPartic.sort((a, b) => b.currentPoints - a.currentPoints);
+
+    const theRest = thisToursPartic.slice(3);
+    const topThree = thisToursPartic.slice(0, 3);
+
+    return topThree.map((user, index) => {
+      userStats = user.matchStatistics.filter(stats => stats.matchId === tourId);
+      userPoints = userStats[0].points;
+
+      return (
+        <TopThree
+          key={user.id}
+          userId={user.id}
+          tourId={tourId}
+          userPoints={userPoints}
+          placement={index + 1}
+          card={user.card}
+          navigation={this.props.navigation}
+        />
+      )
+
+    });
+
+  };
+
   render() {
 
     const tourId = this.props.navigation.getParam('tourId');
-    const owner = this.props.navigation.getParam('owner')
-    // const thisTour = this.props.tours.find(tour => tour.id === tourId);
-
-
+    const thisTour = this.props.tours.find(tour => tour.id === tourId);
+    const particArr = thisTour.participants;
+    const showReward = thisTour.reward;
+    const allUsers = this.props.users;
+    const thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
     return (
       <ScrollView style={style.mainContainer}>
-        <View style={style.itemContainerNoBorder}>
+
+        {showReward && this.state.isVisible &&
+          <Overlay
+            height= 'auto'
+            width= '70%'
+            isVisible={this.state.isVisible}
+            overlayBackgroundColor={'black'}
+            overlayStyle={{
+              borderColor: Colors.appBlueColor,
+              borderWidth: 2,
+              borderRadius: 8,
+              backgroundColor: Colors.appBackgroundColor
+            }}
+          >
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={style.winnerText}>You Won!</Text>
+              <TouchableOpacity onPress={() => this.setState({ isVisible: false })}>
+                <Image
+                  source={require('../assets/images/chest_closed.png')}
+                  style={{ height: 100, width: 110, marginBottom: 15 }}
+                />
+              </TouchableOpacity>
+              <TourButtonMedium
+                buttonTitle={'Open the chest!'}
+                buttonFunc={() => this.setState({ isVisible: false })}
+              />
+            </View>
+          </Overlay>
+        }
+
+        <View style={style.itemContainer}>
           <TourInfoSection
-            id={tourId}
-            owner={owner}
+            tourId={tourId}
           />
         </View>
 
         <View style={{
           flexDirection: 'row',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center'
+          width: '95%',
+          alignSelf: 'center',
+          justifyContent: 'space-around',
+          display: 'flex',
+          flexWrap: 'wrap',
+          paddingBottom: 30
         }}>
-          <View style={{
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-            <Text style={style.subTitleText}>2:nd</Text>
-            <View style={{ paddingVertical: 5 }}>
-              <Image
-                source={require('../assets/images/frame-green-w-badge.png')}
-                style={{ height: 158, width: 106 }}
-              />
-            </View>
-            <Text style={style.subTitleText}>91 points</Text>
-          </View>
-
-          <View style={{
-            flexDirection: 'column',
-            alignItems: 'center',
-            paddingBottom: '30%',
-            padding: '5%'
-          }}>
-            <View style={{
-              flexDirection: 'row'
-            }}>
-              <Image
-                source={require('../assets/images/trophy.png')}
-                style={{ height: 17, width: 17.5, marginRight: 5 }}
-              />
-              <Text style={style.subTitleText}>Winner</Text>
-            </View>
-            <View style={{ paddingVertical: 5 }}>
-              <Image
-                source={require('../assets/images/frame-gold-w-badge.png')}
-                style={{ height: 158, width: 106 }}
-              />
-            </View>
-            <Text style={style.subTitleText}>99 points</Text>
-          </View>
-
-          <View style={{
-            flexDirection: 'column',
-            alignItems: 'center'
-          }}>
-            <Text style={style.subTitleText}>3:rd</Text>
-            <View style={{ paddingVertical: 5 }}>
-              <Image
-                source={require('../assets/images/frame-silver.png')}
-                style={{ height: 158, width: 106 }}
-              />
-            </View>
-            <Text style={style.subTitleText}>84 points</Text>
-          </View>
+          {this.mapTop(thisToursPartic, tourId)}
         </View>
 
-        <LeaderBoardPartic
-          id={"5"}
-        />
-        <LeaderBoardPartic
-          id={"10"}
-        />
+        {this.mapLeaderboard(thisToursPartic, tourId)}
 
       </ScrollView>
     )
@@ -133,7 +170,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(FinishedScreen);
-
-// let particArr = thisTour.participants;
-// let allUsers = this.props.users;
-// let thisToursPartic = allUsers.filter(user => particArr.includes(user.id));

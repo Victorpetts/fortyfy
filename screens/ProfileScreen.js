@@ -4,22 +4,26 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
-
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'
 
 
 class ProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
-    toggleCards: false
+    toggleCards: false,
+    name: '',
+    someStats: '',
+    someMoreStats: '',
+    loading: false
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -42,14 +46,14 @@ class ProfileScreen extends Component {
     },
     headerRight: (
       <TouchableOpacity
-      onPress={() => navigation.navigate('ProfileSettings')}
+        onPress={() => navigation.navigate('ProfileSettings')}
       >
         <FontAwesome
-        name="cog"
-        size={26}
-        color='white'
-        style={{marginRight: 20}}
-         />
+          name="cog"
+          size={26}
+          color='white'
+          style={{ marginRight: 20 }}
+        />
       </TouchableOpacity>
     )
   });
@@ -70,30 +74,30 @@ class ProfileScreen extends Component {
 
   mapCardCollection() {
 
-    cardCollection = this.props.users.filter(function(item){
-      return item.friend === true;
-    }).map(function({name, level, friend}){
-      return {name, level, friend};
-    });
+    let cardList = this.props.users.filter(user => user.friend === true);
 
-    return cardCollection.map((user) => {
+    return cardList.map((user, index) => {
       return (
         <CardCollection
-        key={user.name}
-        name={user.name}
-        lvl={user.level}
-        friend={user.friend}
-        navigation={this.props.navigation}
-      />
+          key={user.id}
+          id={user.id}
+          card={user.card}
+          navigation={this.props.navigation}
+          index={index}
+        />
       )
     });
 
   };
 
   render() {
+
+    const myId = this.props.users.find(user => user.id === "11");
+    const myCard = myId.card;
+
     return (
 
-      <View style={{ height: '100%' }}>
+      <View>
         {this.state.toggleProfile ? (
           <View>
             <View
@@ -107,11 +111,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa mina kort'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    My Card
-                    </Text>
+                  <Text style={style.enabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -122,23 +122,21 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    Card Collection
-                      </Text>
+                  <Text style={style.disabledTabText}>Card Collection</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
             <View style={style.mainContainer}>
-            <View style={{
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <MyCardProfile
-              navigation={this.props.navigation}
-              />
+
+              <View style={{
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <MyCardProfile
+                  card={require("../assets/images/playercards/fullsize/cardSirYonyfy.png")}
+                  navigation={this.props.navigation}
+                />
               </View>
             </View>
           </View>
@@ -155,11 +153,7 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa mina kort'}
                 >
-                  <Text
-                    style={style.disabledTabText}
-                  >
-                    My Card
-                  </Text>
+                  <Text style={style.disabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
               <View
@@ -170,22 +164,18 @@ class ProfileScreen extends Component {
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
-                  <Text
-                    style={style.enabledTabText}
-                  >
-                    Card Collection
-                    </Text>
+                  <Text style={style.enabledTabText}>Card Collection</Text>
                 </TouchableOpacity>
               </View>
             </View>
             <ScrollView style={style.mainContainer}>
-            <View style={style.cardsContainer}>
-            {this.mapCardCollection()}
-            </View>
+              <View style={style.cardsContainer}>
+                {this.mapCardCollection()}
+              </View>
             </ScrollView>
           </View>
-
-        ) : null}
+        )
+        : null}
       </View>
 
     )
