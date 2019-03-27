@@ -5,7 +5,9 @@ import {
   ScrollView,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated,
+  Easing
 } from 'react-native';
 
 import { Overlay } from 'react-native-elements';
@@ -20,7 +22,10 @@ import { TourButtonMedium } from '../components/Buttons.js';
 class FinishedScreen extends Component {
 
   state = {
-    isVisible: true
+    isVisible: true,
+    animatedExplosion: new Animated.Value(0),
+    animatedCoin: new Animated.Value(0),
+    showCoin: false
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -97,6 +102,23 @@ class FinishedScreen extends Component {
 
   render() {
 
+    Animated.loop(
+      Animated.timing(
+        this.state.animatedExplosion,
+        {
+          toValue: 1,
+          duration: 3000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }
+      )
+    ).start()
+
+    const spin = this.state.animatedExplosion.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    })
+
     const tourId = this.props.navigation.getParam('tourId');
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const particArr = thisTour.participants;
@@ -104,13 +126,29 @@ class FinishedScreen extends Component {
     const allUsers = this.props.users;
     const thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
 
+    animateCoins = () => {
+      this.setState({ showCoin: true })
+      Animated.timing(this.state.animatedCoin, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.ease,
+        useNativeDriver: true,
+      }).start()
+    }
+
+    const scale = this.state.animatedCoin.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1]
+    })
+
+
     return (
       <ScrollView style={style.mainContainer}>
 
         {showReward && this.state.isVisible &&
           <Overlay
-            height= 'auto'
-            width= '70%'
+            height='auto'
+            width='70%'
             isVisible={this.state.isVisible}
             overlayBackgroundColor={'black'}
             overlayStyle={{
@@ -122,15 +160,47 @@ class FinishedScreen extends Component {
           >
             <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
               <Text style={style.winnerText}>You Won!</Text>
-              <TouchableOpacity onPress={() => this.setState({ isVisible: false })}>
-                <Image
-                  source={require('../assets/images/chest_closed.png')}
-                  style={{ height: 100, width: 110, marginBottom: 15 }}
-                />
-              </TouchableOpacity>
+              {this.state.showCoin ?
+                <Animated.View
+                  style={{
+                    alignItems: 'center',
+                    marginBottom: 10,
+                    transform: [{
+                      scale: scale
+                    }]
+                  }}>
+                  <Image
+                    source={require('../assets/images/coins.png')}
+                  />
+                  <Text style={style.blueText}>10 000 coins</Text>
+                </Animated.View>
+                :
+                <TouchableOpacity onPress={animateCoins}>
+                  <Animated.Image
+                    source={require('../assets/images/explosion_effect.png')}
+                    style={{
+                      height: 200,
+                      width: 210,
+                      transform: [{ rotate: spin }]
+                    }}
+                  />
+                  <Image
+                    source={require('../assets/images/chest_closed.png')}
+                    style={{ height: 100, width: 110, position: 'absolute', marginTop: 50, alignSelf: 'center' }}
+                  />
+                </TouchableOpacity>
+              }
               <TourButtonMedium
-                buttonTitle={'Open the chest!'}
-                buttonFunc={() => this.setState({ isVisible: false })}
+                buttonTitle={
+                  this.state.showCoin
+                    ? 'Get coins'
+                    : 'Open the chest!'
+                }
+                buttonFunc={
+                  this.state.showCoin
+                    ? () => this.setState({ isVisible: false })
+                    : animateCoins
+                  }
               />
             </View>
           </Overlay>
