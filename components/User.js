@@ -13,6 +13,7 @@ import style from '../assets/Style.js';
 
 import { TourButtonSmall, TourButtonSmallRed } from './Buttons.js';
 
+
 class User extends Component {
 
   render() {

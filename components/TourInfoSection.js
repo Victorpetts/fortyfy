@@ -47,7 +47,7 @@ class TourInfoSection extends Component {
           flexDirection: 'row',
           justifyContent: 'space-between'
         }}>
-          {sponsorTour === true ?
+          {sponsorTour ?
             <View style={{ margin: 10 }}>
               <Image
                 source={require('../assets/images/redbullcom-logo.png')}
@@ -58,7 +58,7 @@ class TourInfoSection extends Component {
                 }}
               />
               </View>
-            :
+          :
             <Text style={style.itemText}>{tourName}</Text>
           }
           <Text style={style.itemText}>{totalMatches} matches</Text>

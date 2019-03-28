@@ -48,12 +48,12 @@ class SponsoredTours extends Component {
           Join the tournament to win <Text style={{fontFamily: 'alergia-normal-semibold'}}>10.000 coins</Text> and a <Text style={{fontFamily: 'alergia-normal-semibold'}}>unique background</Text> for your card!
         </Text>
         <View style={style.singleButtonContainer}>
-          {this.state.pressed === false ?
+          {!this.state.pressed ?
             <TourButtonGold
               buttonTitle={'Join tournament'}
               buttonFunc={buttonFunc}
             />
-            :
+          :
             <TourButton
               buttonTitle={'View tournament'}
               buttonFunc={navigateToOngoing}
@@ -67,8 +67,7 @@ class SponsoredTours extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
-    users: state.users
+    tours: state.tours
    };
 };
 

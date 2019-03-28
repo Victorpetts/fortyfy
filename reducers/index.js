@@ -235,11 +235,8 @@ const initialState = {
     {
       id: "12",
       name: "Red Bull"
-    }
+    },
   ]
-
-// ändra status till friendStatus som är antingen friend, notFriend eller request
-
 }
 
 
