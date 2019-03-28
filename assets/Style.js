@@ -379,6 +379,14 @@ export default StyleSheet.create({
     })
   },
 
+  coinContainer: { 
+    width: '100%', 
+    justifyContent: 'flex-end', 
+    flexDirection: 'row' ,
+    paddingTop: 10,
+    paddingRight: 10
+  },
+
   cardsContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -479,6 +487,13 @@ export default StyleSheet.create({
     textAlign: 'center',
     padding: 5,
     lineHeight: 20
+  },
+
+  sponsorInfoText: {
+    marginHorizontal: 25,
+    marginBottom: 10, 
+    textAlign: 'center', 
+    fontFamily: 'alergia-normal-light'
   },
 
   particText: {

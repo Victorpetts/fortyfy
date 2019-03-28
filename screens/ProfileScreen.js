@@ -90,6 +90,8 @@ class ProfileScreen extends Component {
 
     const myId = this.props.users.find(user => user.id === "11");
     const myCard = myId.card;
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
 
     return (
 
@@ -118,6 +120,15 @@ class ProfileScreen extends Component {
             </View>
 
             <ScrollView style={style.mainContainer}>
+              <View style={style.coinContainer}>
+              <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                <Image
+                  source={require('../assets/images/coin.png')}
+                  style={{ height: 20, alignSelf: 'center' }}
+                  resizeMode={'contain'}
+                />
+              </View>
+
               <View style={{
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -130,7 +141,6 @@ class ProfileScreen extends Component {
                 />
               </View>
             </ScrollView>
-
           </View>
         ) :  (
           <View>

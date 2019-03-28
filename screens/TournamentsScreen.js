@@ -6,7 +6,7 @@ import {
   View,
   TouchableOpacity,
   Text,
-  StatusBar
+  Image
 } from 'react-native';
 
 import {
@@ -114,8 +114,8 @@ class TournamentsScreen extends Component {
       )
     })
   }
-
-  mapFinishedTours() {
+  
+  mapFinishedTours = () => {
 
     let allTours = this.props.tours;
     let finishedTours = allTours.filter(tour => tour.finished === true);
@@ -130,14 +130,16 @@ class TournamentsScreen extends Component {
       )
     })
   }
-
+  
   pressButton = () => {
     this.setState({ show: !this.state.show })
   }
-
+  
   render() {
-
+    
     const { navigate } = this.props.navigation;
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
 
     return (
       <View style={{ height: '100%' }}>
@@ -167,6 +169,7 @@ class TournamentsScreen extends Component {
               </View>
             </View>
 
+
             <View style={style.roundButtonPos}>
               <RoundButton
                 id={'plus'}
@@ -186,6 +189,14 @@ class TournamentsScreen extends Component {
                     activeOpacity={1}
                   >
                     <ScrollView style={style.mainContainer}>
+                      <View style={style.coinContainer}>
+                        <Image
+                          source={require('../assets/images/coin.png')}
+                          style={{ height: 20, alignSelf: 'center' }}
+                          resizeMode={'contain'}
+                        />
+                        <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                      </View>
 
                       <Text style={style.goldenText}>Sponsored</Text>
                       {this.mapSponsoredTours()}
@@ -204,11 +215,7 @@ class TournamentsScreen extends Component {
                               maxPlayers={'10'}
                               owner={'J-Dawg'}
                             />
-                            <View style={{
-                              padding: 10,
-                              flexDirection: 'row',
-                              justifyContent: 'space-around'
-                            }}>
+                            <View style={style.doubleButtonContainer}>
                               <TourButtonMedium
                                 buttonTitle={'Accept invitation'}
                                 buttonFunc={this.inviteTour}
@@ -234,7 +241,14 @@ class TournamentsScreen extends Component {
                 // White overlay is not active
 
                 <ScrollView style={style.mainContainer}>
-
+                  <View style={style.coinContainer}>
+                  <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                    <Image
+                      source={require('../assets/images/coin.png')}
+                      style={{ height: 20, alignSelf: 'center' }}
+                      resizeMode={'contain'}
+                    />
+                  </View>
                   <Text style={style.goldenText}>Sponsored</Text>
                   {this.mapSponsoredTours()}
 
@@ -297,37 +311,45 @@ class TournamentsScreen extends Component {
           </View>
 
         ) : (
-          // Renders finished tab as active and displays its content
+            // Renders finished tab as active and displays its content
 
-          <View style={{ height: '100%' }}>
-            <View style={style.tabBackground}>
-              <View style={style.disabledTab}>
-                <TouchableOpacity
-                  onPress={() => this.toggleOngoing()}
-                  accessible={true}
-                  accessibilityLabel={'Button - Show ongoing tournaments'}
-                >
-                  <Text style={style.disabledTabText}>Ongoing</Text>
-                </TouchableOpacity>
+            <View style={{ height: '100%' }}>
+              <View style={style.tabBackground}>
+                <View style={style.disabledTab}>
+                  <TouchableOpacity
+                    onPress={() => this.toggleOngoing()}
+                    accessible={true}
+                    accessibilityLabel={'Button - Show ongoing tournaments'}
+                  >
+                    <Text style={style.disabledTabText}>Ongoing</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={style.enabledTab}>
+                  <TouchableOpacity
+                    onPress={() => this.toggleFinished()}
+                    accessible={true}
+                    accessibilityLabel={'Button - Show finished tournaments'}
+                  >
+                    <Text style={style.enabledTabText}>Finished</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-              <View style={style.enabledTab}>
-                <TouchableOpacity
-                  onPress={() => this.toggleFinished()}
-                  accessible={true}
-                  accessibilityLabel={'Button - Show finished tournaments'}
-                >
-                  <Text style={style.enabledTabText}>Finished</Text>
-                </TouchableOpacity>
-              </View>
+
+              <ScrollView style={style.mainContainer}
+                automaticallyAdjustContentInsets={false}
+              >
+                <View style={style.coinContainer}>
+                <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                  <Image
+                    source={require('../assets/images/coin.png')}
+                    style={{ height: 20, alignSelf: 'center' }}
+                    resizeMode={'contain'}
+                  />
+                </View>
+                {this.mapFinishedTours()}
+              </ScrollView>
             </View>
-
-            <ScrollView style={style.mainContainer}
-              automaticallyAdjustContentInsets={false}
-            >
-              {this.mapFinishedTours()}
-            </ScrollView>
-          </View>
-        )}
+          )}
 
       </View>
     )
@@ -335,7 +357,10 @@ class TournamentsScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { tours: state.tours };
+  return {
+    tours: state.tours,
+    users: state.users
+  };
 };
 
 export default connect(mapStateToProps, { createTour })(TournamentsScreen);

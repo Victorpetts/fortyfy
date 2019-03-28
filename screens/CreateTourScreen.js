@@ -235,9 +235,7 @@ class CreateTourScreen extends Component {
             width='90%'
             isVisible={this.state.isVisible == true}
             onBackdropPress={() => this.setState({
-              isVisible: false,
-              isFriendList: false,
-              isInfoWindow: false
+              isVisible: false
             })}
             overlayBackgroundColor={'black'}
             overlayStyle={{
