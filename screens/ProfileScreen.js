@@ -5,7 +5,7 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  StatusBar
+  Image
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
@@ -94,6 +94,8 @@ class ProfileScreen extends Component {
 
     const myId = this.props.users.find(user => user.id === "11");
     const myCard = myId.card;
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
 
     return (
 
@@ -127,7 +129,15 @@ class ProfileScreen extends Component {
               </View>
             </View>
 
-            <View style={style.mainContainer}>
+            <ScrollView style={style.mainContainer}>
+              <View style={style.coinContainer}>
+              <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                <Image
+                  source={require('../assets/images/coin.png')}
+                  style={{ height: 20, alignSelf: 'center' }}
+                  resizeMode={'contain'}
+                />
+              </View>
 
               <View style={{
                 justifyContent: 'center',
@@ -138,7 +148,7 @@ class ProfileScreen extends Component {
                   navigation={this.props.navigation}
                 />
               </View>
-            </View>
+            </ScrollView>
           </View>
         ) : this.state.toggleCards ? (
           <View>
@@ -175,7 +185,7 @@ class ProfileScreen extends Component {
             </ScrollView>
           </View>
         )
-        : null}
+            : null}
       </View>
 
     )

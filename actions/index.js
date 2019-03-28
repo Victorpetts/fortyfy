@@ -70,3 +70,17 @@ export const addPlayer = tourId => {
     payload: tourId
   };
 };
+
+export const withdrawCoins = coins => {
+  return {
+    type: 'COINS_WITHDRAWN',
+    payload: coins
+  }
+}
+
+export const obtainCoins = coins => {
+  return {
+    type: 'COINS_OBTAINED',
+    payload: coins
+  }
+}

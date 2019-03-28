@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { obtainCoins } from '../actions';
 import {
   View,
   ScrollView,
@@ -125,6 +126,8 @@ class FinishedScreen extends Component {
     const showReward = thisTour.reward;
     const allUsers = this.props.users;
     const thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
 
     animateCoins = () => {
       this.setState({ showCoin: true })
@@ -141,9 +144,23 @@ class FinishedScreen extends Component {
       outputRange: [0, 1]
     })
 
+    getCoins = () => {
+      this.props.obtainCoins(1000)
+      this.setState({ isVisible: false })
+
+    }
+
 
     return (
       <ScrollView style={style.mainContainer}>
+        <View style={style.coinContainer}>
+        <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+          <Image
+            source={require('../assets/images/coin.png')}
+            style={{ height: 20, alignSelf: 'center' }}
+            resizeMode={'contain'}
+          />
+        </View>
 
         {showReward && this.state.isVisible &&
           <Overlay
@@ -172,7 +189,7 @@ class FinishedScreen extends Component {
                   <Image
                     source={require('../assets/images/coins.png')}
                   />
-                  <Text style={style.blueText}>10 000 coins</Text>
+                  <Text style={style.blueText}>1000 coins</Text>
                 </Animated.View>
                 :
                 <TouchableOpacity onPress={animateCoins}>
@@ -198,9 +215,9 @@ class FinishedScreen extends Component {
                 }
                 buttonFunc={
                   this.state.showCoin
-                    ? () => this.setState({ isVisible: false })
+                    ? getCoins
                     : animateCoins
-                  }
+                }
               />
             </View>
           </Overlay>
@@ -239,4 +256,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(FinishedScreen);
+export default connect(mapStateToProps, { obtainCoins })(FinishedScreen);

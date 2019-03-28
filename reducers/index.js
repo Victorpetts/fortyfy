@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 class match {
-  constructor(matchId, playedMatches, points){
+  constructor(matchId, playedMatches, points) {
     this.matchId = matchId;
     this.playedMatches = playedMatches;
     this.points = points;
@@ -9,11 +9,11 @@ class match {
 }
 
 const initialState = {
-  toursArr:[
+  toursArr: [
     {
       id: 1,
       name: "Miranda's Tournament",
-      participants: ["1","3","4","5","11"],
+      participants: ["1", "3", "4", "5", "11"],
       players: "5",
       wincon: "2",
       totalMatches: "3",
@@ -26,7 +26,7 @@ const initialState = {
     {
       id: 2,
       name: "Pinar's Tournament",
-      participants: ["5","6","7","11"],
+      participants: ["5", "6", "7", "11"],
       players: "4",
       wincon: "3",
       totalMatches: "5",
@@ -39,7 +39,7 @@ const initialState = {
     {
       id: 3,
       name: "Kool kidz tour",
-      participants: ["1","2","3","4","7","8","10","11"],
+      participants: ["1", "2", "3", "4", "7", "8", "10", "11"],
       players: "8",
       wincon: "1",
       totalMatches: "7",
@@ -52,7 +52,7 @@ const initialState = {
     {
       id: 5,
       name: "",
-      participants: ["1","2","3","4","5","6","7","8","9","10"],
+      participants: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
       players: "400",
       wincon: "2",
       totalMatches: "10",
@@ -66,7 +66,7 @@ const initialState = {
     {
       id: 7,
       name: "A Tour far, far away",
-      participants: ["1","3","8","11"],
+      participants: ["1", "3", "8", "11"],
       players: "4",
       wincon: "1",
       totalMatches: "4",
@@ -77,14 +77,14 @@ const initialState = {
       reward: true
     },
   ],
-  usersArr:[
+  usersArr: [
     {
       id: "1",
       name: "Vicky",
       lvl: "27",
-      matchStatistics: [new match(1,"3",10), new match(3,"7",55), new match(5,"7",55), new match(7,"4",59)],
+      matchStatistics: [new match(1, "3", 10), new match(3, "7", 55), new match(5, "7", 55), new match(7, "4", 59)],
       checkBox: false,
-      friends: ["3","5","6","8","9","10"],
+      friends: ["3", "5", "6", "8", "9", "10"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardUnicorn.png"),
@@ -96,9 +96,9 @@ const initialState = {
       id: "2",
       name: "Antonius",
       lvl: "13",
-      matchStatistics: [new match(3,"6",43), new match(5,"7",55)],
+      matchStatistics: [new match(3, "6", 43), new match(5, "7", 55)],
       checkBox: false,
-      friends: ["3","4","5","9"],
+      friends: ["3", "4", "5", "9"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardGems.png"),
@@ -110,9 +110,9 @@ const initialState = {
       id: "3",
       name: "Michirisu",
       lvl: "89",
-      matchStatistics: [new match(1,"3",40), new match(3,"2",26), new match(5,"10",26), new match(7,"4",19)],
+      matchStatistics: [new match(1, "3", 40), new match(3, "2", 26), new match(5, "10", 26), new match(7, "4", 19)],
       checkBox: false,
-      friends: ["1","2"],
+      friends: ["1", "2"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardMagic.png"),
@@ -124,7 +124,7 @@ const initialState = {
       id: "4",
       name: "J-Dawg",
       lvl: "15",
-      matchStatistics: [new match(1,"3",55), new match(3,"7",75), new match(5,"7",75), new match(6,"0",0)],
+      matchStatistics: [new match(1, "3", 55), new match(3, "7", 75), new match(5, "7", 75), new match(6, "0", 0)],
       checkBox: false,
       friends: ["2"],
       friend: true,
@@ -133,14 +133,14 @@ const initialState = {
       cardFull: require("../assets/images/playercards/fullsize/cardPirate.png"),
       currentPoints: 0,
       ingameName: "nixxxay"
-     },
+    },
     {
       id: "5",
       name: "Petitepinita",
       lvl: "29",
-      matchStatistics: [new match(1,"3",0), new match(2,"4",71), new match(5,"4",71)],
+      matchStatistics: [new match(1, "3", 0), new match(2, "4", 71), new match(5, "4", 71)],
       checkBox: false,
-      friends: ["1","2","7","8"],
+      friends: ["1", "2", "7", "8"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardCheetah.png"),
@@ -152,9 +152,9 @@ const initialState = {
       id: "6",
       name: "MrMister",
       lvl: "3",
-      matchStatistics: [new match(2,"1",2), new match(5,"10",100)],
+      matchStatistics: [new match(2, "1", 2), new match(5, "10", 100)],
       checkBox: false,
-      friends: ["1","9","10"],
+      friends: ["1", "9", "10"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardSimplePurple.png"),
@@ -166,9 +166,9 @@ const initialState = {
       id: "7",
       name: "Meagzter",
       lvl: "7",
-      matchStatistics: [new match(2,"2",11), new match(3,"6",81), new match(5,"6",81)],
+      matchStatistics: [new match(2, "2", 11), new match(3, "6", 81), new match(5, "6", 81)],
       checkBox: false,
-      friends: ["5","9","10"],
+      friends: ["5", "9", "10"],
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardSpider.png"),
@@ -180,9 +180,9 @@ const initialState = {
       id: "8",
       name: "Viktorious",
       lvl: "96",
-      matchStatistics: [new match(3,"0",0), new match(5,"0",0), new match(7,"4",85)],
+      matchStatistics: [new match(3, "0", 0), new match(5, "0", 0), new match(7, "4", 85)],
       checkBox: false,
-      friends: ["1","5"],
+      friends: ["1", "5"],
       friend: false,
       status: "notFriend",
       card: require("../assets/images/playercards/cardSimpleGold.png"),
@@ -194,9 +194,9 @@ const initialState = {
       id: "9",
       name: "4ld3gr3n",
       lvl: "11",
-      matchStatistics: [new match(5,"2",8)],
+      matchStatistics: [new match(5, "2", 8)],
       checkBox: false,
-      friends: ["1","2","6","7"],
+      friends: ["1", "2", "6", "7"],
       friend: false,
       status: "notFriend",
       card: require("../assets/images/playercards/cardUfo.png"),
@@ -208,9 +208,9 @@ const initialState = {
       id: "10",
       name: "The_Shoulder",
       lvl: "82",
-      matchStatistics: [new match(2,"2",8), new match(3,"1",15), new match(5,"1",15)],
+      matchStatistics: [new match(2, "2", 8), new match(3, "1", 15), new match(5, "1", 15)],
       checkBox: false,
-      friends: ["1","6","7"],
+      friends: ["1", "6", "7"],
       friend: false,
       status: "notFriend",
       card: require("../assets/images/playercards/cardRobot.png"),
@@ -222,7 +222,7 @@ const initialState = {
       id: "11",
       name: "SirYonyfy",
       lvl: "99",
-      matchStatistics: [new match(1,"3",5), new match(2,"0",0), new match(3,"4",20), new match(4,"0",0), new match(5,"0",0), new match(6,"0",0), new match(7,"4",91)],
+      matchStatistics: [new match(1, "3", 5), new match(2, "0", 0), new match(3, "4", 20), new match(4, "0", 0), new match(5, "0", 0), new match(6, "0", 0), new match(7, "4", 91)],
       checkBox: false,
       friends: [],
       friend: '',
@@ -230,7 +230,8 @@ const initialState = {
       card: require("../assets/images/playercards/cardSirYonyfy.png"),
       cardFull: require("../assets/images/playercards/fullsize/cardSirYonyfy.png"),
       currentPoints: 0,
-      ingameName: "TTV.Uwatakashi"
+      ingameName: "TTV.Uwatakashi",
+      coins: 10000
     },
     {
       id: "12",
@@ -238,7 +239,7 @@ const initialState = {
     }
   ]
 
-// ändra status till friendStatus som är antingen friend, notFriend eller request
+  // ändra status till friendStatus som är antingen friend, notFriend eller request
 
 }
 
@@ -246,16 +247,16 @@ const initialState = {
 const toursReducer = (oldArr = initialState.toursArr, action) => {
   switch (action.type) {
 
-    case'TOURNAMENT_CREATED':
+    case 'TOURNAMENT_CREATED':
       let newToursArr = [...oldArr, action.payload]
       return newToursArr;
 
-    case'PLAYER_ADDED':
+    case 'PLAYER_ADDED':
       return oldArr.map((item, index) => {
-        if(item.id === action.payload) {
+        if (item.id === action.payload) {
           return {
             ...item,
-            participants: ["1","2","3","4","5","6","7","8","9","10","11"]
+            participants: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
           }
         }
         return item;
@@ -263,7 +264,7 @@ const toursReducer = (oldArr = initialState.toursArr, action) => {
 
     case 'TOURNAMENT_ENDED':
       return oldArr.map((item, index) => {
-        if(item.name === action.payload) {
+        if (item.name === action.payload) {
           return {
             ...item,
             finished: true
@@ -283,7 +284,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'FRIEND_ACCEPTED':
       return oldArr.map((item, index) => {
-        if(item.name === action.payload) {
+        if (item.name === action.payload) {
           return {
             ...item,
             friend: true
@@ -294,7 +295,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'FRIEND_DENIED':
       return oldArr.map((item, index) => {
-        if(item.name === action.payload) {
+        if (item.name === action.payload) {
           return {
             ...item,
             friend: ''
@@ -305,7 +306,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'FRIEND_REQUEST_SENT':
       return oldArr.map((item, index) => {
-        if(item.name === action.payload) {
+        if (item.name === action.payload) {
           return {
             ...item,
             status: 'pending'
@@ -337,7 +338,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'SCORE_RETRIEVED':
       return oldArr.map((item, index) => {
-        if(item.id === action.payload.userId) {
+        if (item.id === action.payload.userId) {
           return {
             ...item,
             currentPoints: action.payload.points
@@ -346,13 +347,36 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
         return item;
       });
 
+    case 'COINS_WITHDRAWN':
+    return oldArr.map((item) => {
+      if (item.id === "11") {
+        return {
+          ...item,
+          coins: item.coins - action.payload
+        }
+      }
+      return item;
+    });
+
+    case 'COINS_OBTAINED':
+    return oldArr.map((item) => {
+      if (item.id === "11") {
+        return {
+          ...item,
+          coins: item.coins + action.payload
+        }
+      }
+      return item;
+    });
+
     default:
       return oldArr;
+
 
   }
 };
 
-export default combineReducers ({
+export default combineReducers({
   tours: toursReducer,
   users: usersReducer
 });
