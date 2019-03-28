@@ -11,15 +11,15 @@ import Colors from '../constants/Colors.js';
 
 class Participant extends Component {
 
-  state = {
-    checked: false
-  }
-
-  insideFunc = () => {
-    this.setState(prevState => ({
-      checked: !prevState.checked
-    }));
-  }
+  // state = {
+  //   checked: false
+  // }
+  //
+  // insideFunc = () => {
+  //   this.setState(prevState => ({
+  //     checked: !prevState.checked
+  //   }));
+  // }
 
   render() {
 

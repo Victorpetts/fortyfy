@@ -51,14 +51,13 @@ class ParticipantCard extends Component {
               <View style={style.bigImageContainer}>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('TopUserCard', {
-                  userId: userId,
-                  userCard: this.props.card
+                  userId: userId
                 })}
               >
-                <Image
-                  source={this.props.card}
-                  style={{ height: 140, width: 90 }}
-                />
+                  <Image
+                    source={this.props.card}
+                    style={{ height: 140, width: 90 }}
+                  />
                 </TouchableOpacity>
               </View>
               <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5 }}>
@@ -77,10 +76,10 @@ class ParticipantCard extends Component {
                   userCard: this.props.card
                 })}
               >
-                <Image
-                  source={this.props.card}
-                  style={{ height: 140, width: 90 }}
-                />
+                  <Image
+                    source={this.props.card}
+                    style={{ height: 140, width: 90 }}
+                  />
                 </TouchableOpacity>
               </View>
               {owner === userId &&
