@@ -4,7 +4,8 @@ import {
   View,
   ScrollView,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';

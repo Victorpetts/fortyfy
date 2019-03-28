@@ -49,7 +49,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.appBlueColor,
     padding: 12,
     paddingBottom: 15,
-    borderRadius: 2.5,
+    borderRadius: 5,
     width: '100%'
   },
 
@@ -57,7 +57,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.appRedColor,
     padding: 12,
     paddingBottom: 15,
-    borderRadius: 2.5,
+    borderRadius: 5,
     width: '100%'
   },
 
@@ -379,9 +379,9 @@ export default StyleSheet.create({
     })
   },
 
-  coinContainer: { 
-    width: '100%', 
-    justifyContent: 'flex-end', 
+  coinContainer: {
+    width: '100%',
+    justifyContent: 'flex-end',
     flexDirection: 'row' ,
     paddingTop: 10,
     paddingRight: 10
@@ -491,8 +491,8 @@ export default StyleSheet.create({
 
   sponsorInfoText: {
     marginHorizontal: 25,
-    marginBottom: 10, 
-    textAlign: 'center', 
+    marginBottom: 10,
+    textAlign: 'center',
     fontFamily: 'alergia-normal-light'
   },
 
@@ -560,11 +560,11 @@ export default StyleSheet.create({
   },
 
   userSquareContainer: {
-    borderRadius: 2.5,
+    borderRadius: 3,
     marginVertical: 5,
     backgroundColor: 'white',
     borderColor: Colors.appBlueColor,
-    borderWidth: 1,
+    borderWidth: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     width: 110,
@@ -572,11 +572,11 @@ export default StyleSheet.create({
   },
 
   userSquareGoldContainer: {
-    borderRadius: 2.5,
+    borderRadius: 3,
     marginVertical: 5,
     backgroundColor: 'white',
     borderColor: Colors.appGoldColor,
-    borderWidth: 1,
+    borderWidth: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     width: 110,
@@ -608,10 +608,10 @@ export default StyleSheet.create({
 
   crownContainer: {
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: -4,
+    left: -3,
     zIndex: 100,
-    transform: [{ rotate: '340deg'}]
+    transform: [{ rotate: '320deg'}]
   },
 
   userCard: {
@@ -781,9 +781,8 @@ export default StyleSheet.create({
 
   goldenText: {
     fontFamily: 'alergia-normal-semibold',
-    fontSize: 20,
+    fontSize: 18,
     color: Colors.appGoldColor,
-    paddingTop: '5%',
     paddingLeft: '3%'
   },
 
@@ -838,7 +837,6 @@ export default StyleSheet.create({
 
   divider: {
     padding: 10,
-    margin: 10,
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.appGoldColor,

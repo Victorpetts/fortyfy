@@ -120,6 +120,8 @@ class FinishedScreen extends Component {
       outputRange: ['0deg', '360deg']
     })
 
+    const rewardToClaim = this.props.navigation.getParam('reward');
+
     const tourId = this.props.navigation.getParam('tourId');
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const particArr = thisTour.participants;
@@ -162,7 +164,7 @@ class FinishedScreen extends Component {
           />
         </View>
 
-        {showReward && this.state.isVisible &&
+        {showReward && rewardToClaim &&
           <Overlay
             height='auto'
             width='70%'
@@ -208,12 +210,12 @@ class FinishedScreen extends Component {
                 </TouchableOpacity>
               }
               <TourButtonMedium
-                buttonTitle={
+                buttonTitle = {
                   this.state.showCoin
-                    ? 'Get coins'
+                    ? 'Take em!'
                     : 'Open the chest!'
                 }
-                buttonFunc={
+                buttonFunc = {
                   this.state.showCoin
                     ? getCoins
                     : animateCoins

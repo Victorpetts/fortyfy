@@ -75,7 +75,7 @@ class FriendsList extends Component {
         }}>
         <View style={style.friendsListContainer}>
           {this.mapFriendsList()}
-          </View>
+        </View>
         </View>
 
       </View>

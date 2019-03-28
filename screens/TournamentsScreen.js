@@ -114,7 +114,7 @@ class TournamentsScreen extends Component {
       )
     })
   }
-  
+
   mapFinishedTours = () => {
 
     let allTours = this.props.tours;
@@ -130,13 +130,13 @@ class TournamentsScreen extends Component {
       )
     })
   }
-  
+
   pressButton = () => {
     this.setState({ show: !this.state.show })
   }
-  
+
   render() {
-    
+
     const { navigate } = this.props.navigation;
     const myAcc = this.props.users[10]
     const coins = myAcc.coins
@@ -216,13 +216,13 @@ class TournamentsScreen extends Component {
                               owner={'J-Dawg'}
                             />
                             <View style={style.doubleButtonContainer}>
-                              <TourButtonMedium
-                                buttonTitle={'Accept invitation'}
-                                buttonFunc={this.inviteTour}
-                              />
                               <TourButtonMediumRed
                                 buttonTitle={'Decline invitation'}
                                 buttonFunc={() => this.setState({ inviteClicked: true })}
+                                />
+                              <TourButtonMedium
+                                buttonTitle={'Accept invitation'}
+                                buttonFunc={this.inviteTour}
                               />
                             </View>
                           </View>
@@ -267,13 +267,13 @@ class TournamentsScreen extends Component {
                           owner={'J-Dawg'}
                         />
                         <View style={style.doubleButtonContainer}>
-                          <TourButtonMedium
-                            buttonTitle={'Accept invitation'}
-                            buttonFunc={this.inviteTour}
-                          />
                           <TourButtonMediumRed
                             buttonTitle={'Decline invitation'}
                             buttonFunc={() => this.setState({ inviteClicked: true })}
+                            />
+                          <TourButtonMedium
+                            buttonTitle={'Accept invitation'}
+                            buttonFunc={this.inviteTour}
                           />
                         </View>
                       </View>

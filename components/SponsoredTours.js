@@ -42,12 +42,17 @@ class SponsoredTours extends Component {
 
       const tourId = this.props.id;
       this.props.addPlayer(tourId);
-      this.props.withdrawCoins(1000);
+      this.props.withdrawCoins(500);
       this.setState({
         pressed: true,
         isVisible: false
       })
+
+      navigate('Ongoing', {
+        tourId: tourId
+      })
     }
+
     return (
       <View style={style.itemContainerGoldBorder}>
         <TourInfoSection
@@ -77,22 +82,22 @@ class SponsoredTours extends Component {
               overlayBackgroundColor={'black'}
               overlayStyle={{
                 borderColor: Colors.appBlueColor,
-                borderWidth: 2.5,
-                borderRadius: 2.5,
+                borderWidth: 2,
+                borderRadius: 5,
                 backgroundColor: Colors.appBackgroundColor
               }}>
               <View>
                 <Text style={style.paragraphText}>
-                  Participating in a sponsored tournament costs <Text style={{ fontFamily: 'alergia-normal-semibold' }}>1000 coins</Text>. Do you still want to participate?
+                  Participating in this tournament costs <Text style={{ fontFamily: 'alergia-normal-semibold' }}>500 coins</Text>. Do you want to join?
                 </Text>
                 <View style={style.doubleButtonContainer}>
-                  <TourButtonMedium
-                    buttonTitle={'Pay and join'}
-                    buttonFunc={acceptButton}
-                  />
                   <TourButtonMediumRed
                     buttonTitle={'Cancel'}
                     buttonFunc={() => this.setState({ isVisible: false })}
+                    />
+                  <TourButtonMedium
+                    buttonTitle={'Pay and join'}
+                    buttonFunc={acceptButton}
                   />
                 </View>
               </View>

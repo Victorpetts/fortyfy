@@ -82,7 +82,7 @@ const initialState = {
       id: "1",
       name: "Vicky",
       lvl: "27",
-      matchStatistics: [new match(1, "3", 10), new match(3, "7", 55), new match(5, "7", 55), new match(7, "4", 59)],
+      matchStatistics: [new match(1, "3", 10), new match(3, "7", 55), new match(5, "10", 55), new match(7, "4", 59)],
       checkBox: false,
       friends: ["3", "5", "6", "8", "9", "10"],
       friend: true,
@@ -124,7 +124,7 @@ const initialState = {
       id: "4",
       name: "J-Dawg",
       lvl: "15",
-      matchStatistics: [new match(1, "3", 55), new match(3, "7", 75), new match(5, "7", 75), new match(6, "0", 0)],
+      matchStatistics: [new match(1, "3", 55), new match(3, "7", 75), new match(5, "10", 75), new match(6, "0", 0)],
       checkBox: false,
       friends: ["2"],
       friend: true,
@@ -231,7 +231,7 @@ const initialState = {
       cardFull: require("../assets/images/playercards/fullsize/cardSirYonyfy.png"),
       currentPoints: 0,
       ingameName: "TTV.Uwatakashi",
-      coins: 10000
+      coins: 4000
     },
     {
       id: "12",

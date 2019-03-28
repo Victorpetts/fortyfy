@@ -32,6 +32,8 @@ class ParticipantCard extends Component {
 
     const thisUser = this.props.users.find(user => user.id === userId);
     const allStats = thisUser.matchStatistics;
+    const userName = thisUser.name;
+    const userLvl = thisUser.lvl;
     const thisToursStats = allStats.filter(stats => stats.matchId === tourId);
     const playedMatches = thisToursStats[0].playedMatches;
 
@@ -39,62 +41,61 @@ class ParticipantCard extends Component {
       <View>
         {playedMatches === totalMatches ?
           <View style={style.userBigContainer}>
-            <View style={style.userSquareGoldContainer}>
-              {owner === userId &&
-                <View style={style.crownContainer}>
-                  <Image
-                    source={require('../assets/images/tourinfoicons/crown.png')}
-                    style={{ width: 25, height: 17 }}
-                  />
-                </View>
-              }
-              <View style={style.bigImageContainer}>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('TopUserCard', {
-                  userId: userId
-                })}
-              >
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TopUserCard', {
+                userId: userId
+              })}
+            >
+              <View style={style.userSquareGoldContainer}>
+                {owner === userId &&
+                  <View style={style.crownContainer}>
+                    <Image
+                      source={require('../assets/images/tourinfoicons/crown.png')}
+                      style={{ width: 30, height: 20 }}
+                    />
+                  </View>
+                }
+                <View style={style.bigImageContainer}>
                   <Image
                     source={this.props.card}
                     style={{ height: 140, width: 90 }}
                   />
-                </TouchableOpacity>
+                </View>
+                <View style={style.bigListItemContainer}>
+                  <Text style={style.listItemText}>{userName}</Text>
+                  <Text style={style.listItemSmallText}>Level {userLvl}</Text>
+                </View>
               </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5 }}>
-                <Text style={style.particCardTextBold}>{playedMatches} / {totalMatches}</Text>
-                <Text style={style.particCardText}> played</Text>
-              </View>
-            </View>
+            </TouchableOpacity>
           </View>
           :
           <View style={style.userBigContainer}>
-            <View style={style.userSquareContainer}>
-              <View style={style.bigImageContainer}>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('TopUserCard', {
-                  userId: userId,
-                  userCard: this.props.card
-                })}
-              >
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TopUserCard', {
+                userId: userId
+              })}
+            >
+              <View style={style.userSquareContainer}>
+                {owner === userId &&
+                  <View style={style.crownContainer}>
+                    <Image
+                      source={require('../assets/images/tourinfoicons/crown.png')}
+                      style={{ width: 30, height: 20 }}
+                    />
+                  </View>
+                }
+                <View style={style.bigImageContainer}>
                   <Image
                     source={this.props.card}
                     style={{ height: 140, width: 90 }}
                   />
-                </TouchableOpacity>
-              </View>
-              {owner === userId &&
-                <View style={style.crownContainer}>
-                  <Image
-                    source={require('../assets/images/tourinfoicons/crown.png')}
-                    style={{ width: 25, height: 17 }}
-                  />
                 </View>
-              }
-              <View style={{ flexDirection: 'row', justifyContent: 'center', padding: 5 }}>
-                <Text style={style.particCardTextBold}>{playedMatches} / {totalMatches}</Text>
-                <Text style={style.particCardText}> played</Text>
+                <View style={style.bigListItemContainer}>
+                  <Text style={style.listItemText}>{userName}</Text>
+                  <Text style={style.listItemSmallText}>Level {userLvl}</Text>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         }
       </View>
