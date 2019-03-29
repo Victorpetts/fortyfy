@@ -83,16 +83,16 @@ class CardBack extends Component {
     return (
       <View style={style.backCardContainer}>
         <View style={style.backCardContent}>
-          <View style={{ paddingTop: '30%' }}>
+          <View style={{ paddingTop: '15%' }}>
             {loading ?
               <View style={{ marginTop: 140 }}>
                 <ActivityIndicator size="large" color={Colors.appBlueColor} />
               </View>
-              :
+            :
               <View>
                 <Text style={style.backCardTitle}>Player Stats</Text>
                 <Text style={style.backCardName}>{userName}</Text>
-                <Image 
+                <Image
                   source={require('../assets/images/gold.png')}
                   style={{ width: 200, height: 100, alignSelf: 'center' }}
                 />

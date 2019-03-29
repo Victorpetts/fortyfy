@@ -89,8 +89,6 @@ class ProfileScreen extends Component {
 
   render() {
 
-    const myId = this.props.users.find(user => user.id === "11");
-    const myCard = myId.card;
     const myAcc = this.props.users[10]
     const coins = myAcc.coins
 
@@ -137,7 +135,6 @@ class ProfileScreen extends Component {
                 marginBottom: 80
               }}>
                 <MyCardProfile
-                  card={require("../assets/images/playercards/fullsize/cardSirYonyfy.png")}
                   navigation={this.props.navigation}
                 />
               </View>
