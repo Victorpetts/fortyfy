@@ -14,27 +14,22 @@ class TourInfoSection extends Component {
 
     const tourId = this.props.tourId;
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
-    const tourName = thisTour.name;
+    const tourImg = thisTour.name;
     const totalMatches = thisTour.totalMatches;
     const numberOfPlayers = thisTour.participants.length;
     const maxPlayers = thisTour.players;
-    const sponsorTour = thisTour.sponsor
+    const sponsoredTour = thisTour.sponsor
 
-    const ownerId = thisTour.owner;
-    const thisOwner = this.props.users.find(user => user.id === ownerId);
-    const owner = thisOwner.name;
+    const owner = thisTour.owner;
 
     let winconText;
 
     switch (thisTour.wincon) {
       case '1':
-        winconText = 'Survived longest';
+        winconText = 'Most top 5';
         break
       case '2':
         winconText = 'Most kills';
-        break
-      case '3':
-        winconText = 'Most top 5';
         break
       default:
         winconText = '';
@@ -47,28 +42,21 @@ class TourInfoSection extends Component {
           flexDirection: 'row',
           justifyContent: 'space-between'
         }}>
-          {sponsorTour ?
-            <View style={{ margin: 10 }}>
-              <Image
-                source={require('../assets/images/redbullcom-logo.png')}
-                style={{
-                  height: 30,
-                  width: 150,
-                  position: 'absolute'
-                }}
-              />
-              </View>
-          :
-            <Text style={style.itemText}>{tourName}</Text>
-          }
+          <Image
+            source={tourImg}
+            style={{
+              resizeMode: 'contain',
+              width: 160,
+              height:30,
+              marginTop: 15,
+              marginLeft: 15,
+              marginBottom: 8
+            }}
+          />
           <Text style={style.itemText}>{totalMatches} matches</Text>
         </View>
         <View style={style.tourContainer}>
-          <View style={{
-            alignItems: 'center',
-            paddingVertical: 15,
-            width: '33%'
-          }}>
+          <View style={{ alignItems: 'center', width: '33%' }}>
             <Text style={style.tourInfoTitle}>Owner</Text>
             <Image
               source={require('../assets/images/tourinfoicons/crown.png')}
@@ -76,10 +64,7 @@ class TourInfoSection extends Component {
             />
             <Text style={style.tourInfoText}>{owner}</Text>
           </View>
-          <View style={{
-            alignItems: 'center',
-            width: '33%'
-          }}>
+          <View style={{ alignItems: 'center', width: '33%' }}>
             <Text style={style.tourInfoTitle}>Victory Conditions</Text>
             <Image
               source={require('../assets/images/tourinfoicons/trophy.png')}
@@ -87,10 +72,7 @@ class TourInfoSection extends Component {
             />
             <Text style={style.tourInfoText}>{winconText}</Text>
           </View>
-          <View style={{
-            alignItems: 'center',
-            width: '33%'
-          }}>
+          <View style={{ alignItems: 'center',width: '33%' }}>
             <Text style={style.tourInfoTitle}>Participants</Text>
             <Image
               source={require('../assets/images/tourinfoicons/group.png')}
@@ -106,8 +88,7 @@ class TourInfoSection extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tours: state.tours,
-    users: state.users
+    tours: state.tours
   };
 };
 

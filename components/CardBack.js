@@ -6,7 +6,8 @@ import {
   StatusBar,
   ActivityIndicator,
   Animated,
-  Image
+  Image,
+  ImageBackground
 } from 'react-native';
 
 import style from '../assets/Style.js';
@@ -51,6 +52,7 @@ class CardBack extends Component {
     });
 
     const data = await api_call.json();
+    console.log(data);
 
     if (data.epicUserHandle) {
       this.setState({
@@ -81,56 +83,72 @@ class CardBack extends Component {
     const { name, top5Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
 
     return (
-      <View style={style.backCardContainer}>
-        <View style={style.backCardContent}>
-          <View style={{ paddingTop: '15%' }}>
-            {loading ?
-              <View style={{ marginTop: 140 }}>
-                <ActivityIndicator size="large" color={Colors.appBlueColor} />
+      <View style={style.cardBackContainer}>
+        {loading ?
+          <View style={{ marginTop: 140 }}>
+            <ActivityIndicator size="large" color={Colors.appBlueColor} />
+          </View>
+        :
+          <View>
+            <ImageBackground
+              source={require('../assets/images/cardBackAssets/cardBack.png')}
+              style={{ width: '100%', height: 130 }}
+            >
+              <View style={{position: 'absolute', top: 20, left: 150, right: 0, bottom: 0}}>
+                <Text style={style.cardBackName}>{userName}</Text>
+                <Text style={style.cardBackLvl}>Lvl {userLvl}</Text>
               </View>
-            :
-              <View>
-                <Text style={style.backCardTitle}>Player Stats</Text>
-                <Text style={style.backCardName}>{userName}</Text>
-                <Image
-                  source={require('../assets/images/gold.png')}
-                  style={{ width: 200, height: 100, alignSelf: 'center' }}
-                />
-                <Text style={style.backCardTitle}>Level {userLvl}</Text>
-                <View style={{ flexDirection: 'row' }}>
-                  <View style={style.backCardColumn}>
-                    <View style={style.backCardStatRow}>
-                      <Text style={style.backCardSubTitle}>Kills:</Text>
-                      <Text style={style.backCardText}>{killsStat}</Text>
-                    </View>
-                    <View style={style.backCardStatRow}>
-                      <Text style={style.backCardSubTitle}>Kill/Death Ratio:</Text>
-                      <Text style={style.backCardText}>{killRatioStat}</Text>
-                    </View>
-                    <View style={style.backCardStatRow}>
-                      <Text style={style.backCardSubTitle}>Matches Played:</Text>
-                      <Text style={style.backCardText}>{playedMatchesStat}</Text>
-                    </View>
-                  </View>
-                  <View style={style.backCardColumn}>
-                    <View style={style.backCardStatRow}>
-                      <Text style={style.backCardSubTitle}>Wins:</Text>
-                      <Text style={style.backCardText}>{winsStat}</Text>
-                    </View>
-                    <View style={style.backCardStatRow}>
-                      <Text style={style.backCardSubTitle}>Win Ratio:</Text>
-                      <Text style={style.backCardText}>{winRatioStat}</Text>
-                    </View>
-                    <View style={style.backCardStatRow}>
-                      <Text style={style.backCardSubTitle}>Top 5s:</Text>
-                      <Text style={style.backCardText}>{top5Stat}</Text>
-                    </View>
-                  </View>
+            </ImageBackground>
+            <View style={{ flexDirection: 'row', alignSelf: 'center', marginTop: 15 }}>
+              <View style={style.cardBackColumn}>
+                <ImageBackground
+                  source={require('../assets/images/cardBackAssets/kills_skull.png')}
+                  style={{ width: 90, height: 90, marginBottom: 30, opacity: 0.7 }}
+                >
+                  <Text style={style.cardBackText}>KILLS</Text>
+                  <Text style={style.cardBackNumb}>{killsStat}</Text>
+                </ImageBackground>
+                <ImageBackground
+                  source={require('../assets/images/cardBackAssets/wins_1.png')}
+                  style={{ width: 90, height: 90, marginBottom: 30, opacity: 0.7 }}
+                >
+                  <Text style={style.cardBackText}>WINS</Text>
+                  <Text style={style.cardBackNumb}>{winsStat}</Text>
+                </ImageBackground>
+              </View>
+              <View style={style.cardBackColumn}>
+                <Text style={style.cardBackTextR}>K/D RATIO</Text>
+                <View style={style.cardBackCircle}>
+                  <Text style={style.cardBackNumbW}>{killRatioStat}</Text>
+                </View>
+                <Text style={style.cardBackTextR}>WIN RATIO</Text>
+                <View style={style.cardBackCircle}>
+                  <Text style={style.cardBackNumbW}>{winRatioStat}</Text>
                 </View>
               </View>
-            }
+              <View style={style.cardBackColumn}>
+                <ImageBackground
+                  source={require('../assets/images/cardBackAssets/rifles.png')}
+                  style={{ width: 90, height: 90, marginBottom: 30, opacity: 0.7 }}
+                >
+                  <Text style={style.cardBackText}>MATCHES</Text>
+                  <Text style={style.cardBackNumb}>{playedMatchesStat}</Text>
+                </ImageBackground>
+                <ImageBackground
+                  source={require('../assets/images/cardBackAssets/top5_podium.png')}
+                  style={{ width: 90, height: 90, marginBottom: 30, opacity: 0.7 }}
+                >
+                  <Text style={style.cardBackText}>TOP 5s</Text>
+                  <Text style={style.cardBackNumb}>{top5Stat}</Text>
+                </ImageBackground>
+              </View>
+            </View>
+            <Image
+              source={require('../assets/images/gold.png')}
+              style={{ width: 280, height: 150, alignSelf: 'center' }}
+            />
           </View>
-        </View>
+        }
       </View>
     )
   }

@@ -46,7 +46,11 @@ class Participant extends Component {
             <View style={{ alignItems: 'center' }}>
               <Image
                 source={require('../assets/images/badges/badge-bluegold.png')}
-                style={{ height: 20, width: 20, opacity: .6 }}
+                style={{
+                  height: 20,
+                  width: 20,
+                  opacity: .6
+                }}
               />
               <Text style={style.badgeText}>{thisUser.lvl}</Text>
             </View>
@@ -55,7 +59,11 @@ class Participant extends Component {
                 <Text style={style.particText}>
                   {userName}
                 </Text>
-                <View style={{ marginLeft: 5, flexDirection: 'column', justifyContent: 'center' }}>
+                <View style={{
+                  marginLeft: 5,
+                  flexDirection: 'column',
+                  justifyContent: 'center'
+                }}>
                   <Image
                     source={require('../assets/images/tourinfoicons/crown.png')}
                     style={{ width: 25, height: 17 }}
@@ -81,11 +89,19 @@ class Participant extends Component {
               <Text style={style.badgeText}>{thisUser.lvl}</Text>
             </View>
             {owner === userId ?
-              <View style={{ flexDirection: 'row', flex: 1, paddingLeft: 5 }}>
+              <View style={{
+                flexDirection: 'row',
+                flex: 1,
+                paddingLeft: 5
+              }}>
                 <Text style={style.particText}>
                   {userName}
                 </Text>
-                <View style={{ marginLeft: 5, flexDirection: 'column', justifyContent: 'center' }}>
+                <View style={{
+                  marginLeft: 5,
+                  flexDirection: 'column',
+                  justifyContent: 'center'
+                }}>
                   <Image
                     source={require('../assets/images/tourinfoicons/crown.png')}
                     style={{ width: 25, height: 17 }}

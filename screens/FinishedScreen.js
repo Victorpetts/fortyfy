@@ -225,7 +225,7 @@ class FinishedScreen extends Component {
           </Overlay>
         }
 
-        <View style={style.itemContainer}>
+        <View style={style.itemContainerBlueBorder}>
           <TourInfoSection
             tourId={tourId}
           />

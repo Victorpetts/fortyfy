@@ -208,7 +208,7 @@ class OngoingScreen extends Component {
     return (
       <View style={{ height: '100%' }}>
         <ScrollView style={style.mainContainer}>
-          <View style={style.itemContainer}>
+          <View style={style.itemContainerBlueBorder}>
             <TourInfoSection
               tourId={tourId}
             />

@@ -234,6 +234,7 @@ class UsersScreen extends Component {
             </View>
           }
           <RoundButton
+            buttonImg={require('../assets/images/menuicons/plus.png')}
             buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
           />
         </View>

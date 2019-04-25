@@ -64,9 +64,9 @@ export const scoreAction = (points, userId) => {
   };
 };
 
-export const addPlayer = tourId => {
+export const joinTour = tourId => {
   return {
-    type: 'PLAYER_ADDED',
+    type: 'TOUR_JOINED',
     payload: tourId
   };
 };

@@ -215,7 +215,8 @@ export default StyleSheet.create({
 
   itemText: {
     fontSize: 18,
-    margin: 10,
+    marginTop: 15,
+    marginRight: 15,
     fontFamily: 'alergia-normal-semibold'
   },
 
@@ -245,69 +246,67 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  backCardContainer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: Colors.appBackgroundColor,
-    borderWidth: 2,
-    borderColor: Colors.appBlueColor
-  },
-
-  backCardContent: {
-    flexWrap: 'wrap',
-    height: '97%',
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderRadius: 5,
-    marginTop: 10,
-    marginBottom: 20,
-    marginHorizontal: 10,
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
-  backCardColumn: {
-    padding: 10,
-    justifyContent: 'center'
+  cardBackContainer: {
+    width: '100%',
+    height: '100%',
+    // flexWrap: 'wrap',
+    // flexDirection: 'row',
+    // backgroundColor: 'white',
+    // justifyContent: 'center'
   },
 
-  backCardTitle: {
-    fontSize: 20,
-    fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor,
-    textAlign: 'center',
-    padding: 10
+  cardBackColumn: {
+    margin: 12,
   },
 
-  backCardName: {
+  cardBackCircle: {
+    backgroundColor: Colors.appBlueColor,
+    borderRadius: 100,
+    width: 75,
+    height: 75,
+    alignSelf: 'center',
+    marginBottom: 17
+  },
+
+  cardBackName: {
     fontSize: 30,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  cardBackLvl: {
+    fontSize: 25,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  cardBackText: {
+    fontSize: 18,
     fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor,
-    textAlign: 'center',
-    paddingBottom: 20
-  },
-
-  backCardSubTitle: {
-    fontSize: 16,
-    fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor,
-    textAlign: 'center',
-    paddingRight: 5
-  },
-
-  backCardStatRow: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    padding: 5
-  },
-
-  backCardText: {
-    fontSize: 16,
-    fontFamily: 'alergia-normal-light',
     textAlign: 'center'
+  },
+
+  cardBackTextR: {
+    fontSize: 18,
+    fontFamily: 'alergia-normal-semibold',
+    textAlign: 'center',
+    marginBottom: 2
+  },
+
+  cardBackNumb: {
+    fontSize: 24,
+    fontFamily: 'alergia-normal-bold',
+    textAlign: 'center'
+  },
+
+  cardBackNumbW: {
+    fontSize: 26,
+    fontFamily: 'alergia-normal-bold',
+    textAlign: 'center',
+    marginTop: 17,
+    color: 'white'
   },
 
   listItemText: {
@@ -360,6 +359,7 @@ export default StyleSheet.create({
 
   mainContainer: {
     width: '100%',
+    height: '100%',
     backgroundColor: Colors.appBackgroundColor
   },
 
@@ -387,6 +387,13 @@ export default StyleSheet.create({
     paddingRight: 10
   },
 
+  coinContainerPos: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 10,
+    right: 10
+  },
+
   cardsContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -402,7 +409,7 @@ export default StyleSheet.create({
     width: '100%'
   },
 
-  itemContainer: {
+  itemContainerBlueBorder: {
     borderRadius: 5,
     margin: 10,
     paddingBottom: 10,
@@ -775,8 +782,8 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-semibold',
     fontSize: 15,
     color: Colors.appBlueColor,
-    paddingTop: '5%',
-    paddingLeft: '3%'
+    paddingLeft: '3%',
+    marginVertical: 8
   },
 
   goldenText: {
@@ -835,11 +842,21 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
 
-  divider: {
+  goldDivider: {
     padding: 10,
+    marginBottom: 20,
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.appGoldColor,
+    width: '80%'
+  },
+
+  blueDivider: {
+    padding: 15,
+    marginBottom: 20,
+    alignSelf: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.appBlueColor,
     width: '80%'
   },
 

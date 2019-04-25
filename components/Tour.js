@@ -47,7 +47,7 @@ class Tour extends Component {
 
     return (
 
-      <ScrollView contentContainerStyle={style.itemContainer}>
+      <ScrollView contentContainerStyle={style.itemContainerGoldBorder}>
         <TourInfoSection
           tourId={tourId}
         />
