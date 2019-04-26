@@ -15,6 +15,8 @@ class TourInfoSection extends Component {
     const tourId = this.props.tourId;
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const tourImg = thisTour.name;
+    const fromDate = thisTour.fromDate;
+    const toDate = thisTour.toDate;
     const totalMatches = thisTour.totalMatches;
     const numberOfPlayers = thisTour.participants.length;
     const maxPlayers = thisTour.players;
@@ -38,25 +40,25 @@ class TourInfoSection extends Component {
 
     return (
       <View>
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between'
-        }}>
+        <View style={style.logoContainer}>
           <Image
             source={tourImg}
-            style={{
-              resizeMode: 'contain',
-              width: 160,
-              height:30,
-              marginTop: 15,
-              marginLeft: 15,
-              marginBottom: 8
-            }}
+            style={style.companyLogo}
           />
           <Text style={style.itemText}>{totalMatches} matches</Text>
         </View>
+        <View style={style.logoContainer}>
+          <View style={{ alignItems: 'center'}}>
+            <Text style={style.tourInfoTitle}>From</Text>
+            <Text style={style.dateText}>{fromDate}</Text>
+          </View>
+          <View style={{ alignItems: 'center'}}>
+            <Text style={style.tourInfoTitle}>To</Text>
+            <Text style={style.dateText}>{toDate}</Text>
+          </View>
+        </View>
         <View style={style.tourContainer}>
-          <View style={{ alignItems: 'center', width: '33%' }}>
+          <View style={{ alignItems: 'center'}}>
             <Text style={style.tourInfoTitle}>Owner</Text>
             <Image
               source={require('../assets/images/tourinfoicons/crown.png')}
@@ -64,7 +66,7 @@ class TourInfoSection extends Component {
             />
             <Text style={style.tourInfoText}>{owner}</Text>
           </View>
-          <View style={{ alignItems: 'center', width: '33%' }}>
+          <View style={{ alignItems: 'center'}}>
             <Text style={style.tourInfoTitle}>Victory Conditions</Text>
             <Image
               source={require('../assets/images/tourinfoicons/trophy.png')}
@@ -72,7 +74,7 @@ class TourInfoSection extends Component {
             />
             <Text style={style.tourInfoText}>{winconText}</Text>
           </View>
-          <View style={{ alignItems: 'center',width: '33%' }}>
+          <View style={{ alignItems: 'center'}}>
             <Text style={style.tourInfoTitle}>Participants</Text>
             <Image
               source={require('../assets/images/tourinfoicons/group.png')}

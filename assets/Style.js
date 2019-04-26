@@ -193,14 +193,12 @@ export default StyleSheet.create({
   smallText: {
     fontSize: 18,
     textAlign: 'center',
-    color: Colors.appBlackColor,
     fontFamily: 'alergia-normal-light'
   },
 
   winnerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.appBlackColor,
     fontFamily: 'alergia-normal-light',
     marginBottom: 15
   },
@@ -225,6 +223,12 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-semibold',
     margin: 5,
     textAlign: 'center'
+  },
+
+  dateText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-semibold',
+    marginHorizontal: 25
   },
 
   paragraphText: {
@@ -498,7 +502,8 @@ export default StyleSheet.create({
 
   sponsorInfoText: {
     marginHorizontal: 25,
-    marginBottom: 10,
+    marginBottom: 15,
+    marginTop: 5,
     textAlign: 'center',
     fontFamily: 'alergia-normal-light'
   },
@@ -794,7 +799,7 @@ export default StyleSheet.create({
   },
 
   tourInfoTitle: {
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: 'alergia-normal-light',
     paddingBottom: 5
   },
@@ -810,11 +815,23 @@ export default StyleSheet.create({
     color: Colors.appBlueColor,
   },
 
+  logoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  companyLogo: {
+    resizeMode: 'contain',
+    width: 160,
+    height: 30,
+    marginTop: 15,
+    marginLeft: 15,
+    marginBottom: 8
+  },
+
   tourContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: '100%',
-    alignItems: 'center',
     paddingVertical: 10
   },
 

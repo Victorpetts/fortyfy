@@ -66,30 +66,30 @@ class SponsoredTour extends Component {
             <TourInfoSection
               tourId={tourId}
             />
-            <Text style={style.sponsorInfoText}>
-              Join the tournament to win <Text style={{ fontFamily: 'alergia-normal-semibold' }}>10.000 coins</Text> and a <Text style={{ fontFamily: 'alergia-normal-semibold' }}>unique background</Text> for your card!
-            </Text>
             <View style={style.singleButtonContainer}>
               <TourButtonGold
                 buttonTitle={'Join tournament'}
                 buttonFunc={buttonFunc}
               />
             </View>
+            <Text style={style.sponsorInfoText}>
+              Join the tournament to win <Text style={{ fontFamily: 'alergia-normal-semibold' }}>10.000 coins</Text> and a <Text style={{ fontFamily: 'alergia-normal-semibold' }}>unique background</Text> for your card!
+            </Text>
           </View>
         :
           <View style={style.itemContainerBlueBorder}>
             <TourInfoSection
               tourId={tourId}
             />
-            <Text style={style.sponsorInfoText}>
-              Play your matches to win <Text style={{ fontFamily: 'alergia-normal-semibold' }}>10.000 coins</Text> and a <Text style={{ fontFamily: 'alergia-normal-semibold' }}>unique background</Text> for your card!
-            </Text>
             <View style={style.singleButtonContainer}>
               <TourButton
                 buttonTitle={'View tournament'}
                 buttonFunc={navigateToOngoing}
               />
             </View>
+            <Text style={style.sponsorInfoText}>
+              Play your matches to win <Text style={{ fontFamily: 'alergia-normal-semibold' }}>10.000 coins</Text> and a <Text style={{ fontFamily: 'alergia-normal-semibold' }}>unique background</Text> for your card!
+            </Text>
           </View>
         }
 
