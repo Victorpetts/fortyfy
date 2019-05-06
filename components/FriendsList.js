@@ -73,9 +73,9 @@ class FriendsList extends Component {
           height: '100%',
           flex: 1
         }}>
-        <View style={style.friendsListContainer}>
-          {this.mapFriendsList()}
-        </View>
+          <View style={style.friendsListContainer}>
+            {this.mapFriendsList()}
+          </View>
         </View>
 
       </View>

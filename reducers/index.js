@@ -70,26 +70,41 @@ const initialState = {
       reward: false,
       joined: false
     },
+    {
+      id: 5,
+      name: require("../assets/images/razer-logo.png"),
+      participants: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
+      players: 50,
+      wincon: "2",
+      totalMatches: 3,
+      fromDate: "28th of April 07:00",
+      toDate: "29th of April 07:00",
+      finished: true,
+      owner: "Razer",
+      sponsor: true,
+      reward: false,
+      joined: true
+    },
   ],
   usersArr: [
     {
       id: 1,
       name: "Vicky",
       lvl: 27,
-      matchStatistics: [new match(1, 10, 17), new match(2, 8, 5), new match(3, 2, 26), new match(4, 5, 5)],
+      matchStatistics: [new match(1, 10, 17), new match(2, 8, 5), new match(3, 2, 26), new match(4, 5, 5), new match(5, 3, 5)],
       checkBox: false,
       friend: true,
       status: "friend",
       card: require("../assets/images/playercards/cardUnicorn.png"),
       cardFull: require("../assets/images/playercards/fullsize/cardUnicorn.png"),
       currentPoints: 0,
-      ingameName: "Jayste"
+      ingameName: "VanDeVoo"
     },
     {
       id: "2",
       name: "Antonius",
       lvl: "13",
-      matchStatistics: [new match(1, 9, 27), new match(2, 8, 1), new match(3, 2, 2), new match(4, 1, 1)],
+      matchStatistics: [new match(1, 9, 27), new match(2, 8, 1), new match(3, 2, 2), new match(4, 1, 1), new match(5, 3, 15)],
       checkBox: false,
       friend: true,
       status: "friend",
@@ -102,7 +117,7 @@ const initialState = {
       id: "3",
       name: "Michirisu",
       lvl: "89",
-      matchStatistics: [new match(1, 2, 0), new match(2, 2, 2), new match(3, 2, 6), new match(4, 2, 0)],
+      matchStatistics: [new match(1, 2, 0), new match(2, 2, 2), new match(3, 2, 6), new match(4, 2, 0), new match(5, 3, 5)],
       checkBox: false,
       friend: true,
       status: "friend",
@@ -115,7 +130,7 @@ const initialState = {
       id: "4",
       name: "J-Dawg",
       lvl: "15",
-      matchStatistics: [new match(1, 8, 15), new match(2, 2, 0), new match(3, 2, 0), new match(4, 5, 5)],
+      matchStatistics: [new match(1, 8, 15), new match(2, 2, 0), new match(3, 2, 0), new match(4, 5, 5), new match(5, 3, 1)],
       checkBox: false,
       friend: true,
       status: "friend",
@@ -128,7 +143,7 @@ const initialState = {
       id: "5",
       name: "Petitepinita",
       lvl: "29",
-      matchStatistics: [new match(1, 0, 0), new match(2, 8, 0), new match(3, 2, 0), new match(4, 4, 2)],
+      matchStatistics: [new match(1, 0, 0), new match(2, 8, 0), new match(3, 2, 0), new match(4, 4, 2), new match(5, 3, 12)],
       checkBox: false,
       friend: true,
       status: "friend",
@@ -141,7 +156,7 @@ const initialState = {
       id: "6",
       name: "MrMister",
       lvl: "3",
-      matchStatistics: [new match(1, 1, 7), new match(2, 3, 2), new match(3, 2, 1), new match(4, 1, 1)],
+      matchStatistics: [new match(1, 1, 7), new match(2, 3, 2), new match(3, 2, 1), new match(4, 1, 1), new match(5, 3, 19)],
       checkBox: false,
       friend: true,
       status: "friend",
@@ -154,7 +169,7 @@ const initialState = {
       id: "7",
       name: "Meagzter",
       lvl: "7",
-      matchStatistics: [new match(1, 10, 38), new match(2, 0, 0), new match(3, 2, 11), new match(4, 0, 0)],
+      matchStatistics: [new match(1, 10, 38), new match(2, 0, 0), new match(3, 2, 11), new match(4, 0, 0), new match(5, 3, 2)],
       checkBox: false,
       friend: true,
       status: "friend",
@@ -167,7 +182,7 @@ const initialState = {
       id: "8",
       name: "Viktorious",
       lvl: "96",
-      matchStatistics: [new match(1, 1, 3), new match(2, 8, 6), new match(3, 2, 3), new match(4, 0, 0)],
+      matchStatistics: [new match(1, 1, 3), new match(2, 8, 6), new match(3, 2, 3), new match(4, 0, 0), new match(5, 3, 9)],
       checkBox: false,
       friend: false,
       status: "notFriend",
@@ -180,7 +195,7 @@ const initialState = {
       id: "9",
       name: "4ld3gr3n",
       lvl: "11",
-      matchStatistics: [new match(1, 9, 17), new match(2, 1, 1), new match(3, 2, 12), new match(4, 5, 4)],
+      matchStatistics: [new match(1, 9, 17), new match(2, 1, 1), new match(3, 2, 12), new match(4, 5, 4), new match(5, 3, 11)],
       checkBox: false,
       friend: false,
       status: "notFriend",
@@ -193,7 +208,7 @@ const initialState = {
       id: "10",
       name: "The_Shoulder",
       lvl: "82",
-      matchStatistics: [new match(1, 5, 6), new match(2, 2, 0), new match(3, 2, 6), new match(4, 3, 2)],
+      matchStatistics: [new match(1, 5, 6), new match(2, 2, 0), new match(3, 2, 6), new match(4, 3, 2), new match(5, 3, 13)],
       checkBox: false,
       friend: false,
       status: "notFriend",
@@ -206,7 +221,7 @@ const initialState = {
       id: "11",
       name: "SirYonyfy",
       lvl: "99",
-      matchStatistics: [new match(1, 0, 0), new match(2, 6, 6), new match(3, 2, 27), new match(4, 0, 0)],
+      matchStatistics: [new match(1, 0, 0), new match(2, 6, 6), new match(3, 2, 27), new match(4, 0, 0), new match(5, 3, 7)],
       checkBox: false,
       friends: [],
       friend: '',
@@ -262,7 +277,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'FRIEND_ACCEPTED':
       return oldArr.map((item, index) => {
-        if (item.name === action.payload) {
+        if (item.id === action.payload) {
           return {
             ...item,
             friend: true
@@ -273,7 +288,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'FRIEND_DENIED':
       return oldArr.map((item, index) => {
-        if (item.name === action.payload) {
+        if (item.id === action.payload) {
           return {
             ...item,
             friend: ''
@@ -284,7 +299,7 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     case 'FRIEND_REQUEST_SENT':
       return oldArr.map((item, index) => {
-        if (item.name === action.payload) {
+        if (item.id === action.payload) {
           return {
             ...item,
             status: 'pending'

@@ -57,7 +57,7 @@ class CardBack extends Component {
     if (data.epicUserHandle) {
       this.setState({
         name: data.epicUserHandle,
-        top5Stat: data.lifeTimeStats[0].value,
+        top5Stat: data.lifeTimeStats[3].value,
         playedMatchesStat: data.lifeTimeStats[7].value,
         winsStat: data.lifeTimeStats[8].value,
         winRatioStat: data.lifeTimeStats[9].value,
@@ -138,7 +138,7 @@ class CardBack extends Component {
                   source={require('../assets/images/cardBackAssets/top5_podium.png')}
                   style={{ width: 90, height: 90, marginBottom: 30, opacity: 0.7 }}
                 >
-                  <Text style={style.cardBackText}>TOP 5s</Text>
+                  <Text style={style.cardBackText}>TOP 10s</Text>
                   <Text style={style.cardBackNumb}>{top5Stat}</Text>
                 </ImageBackground>
               </View>
@@ -160,3 +160,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(CardBack);
+
+// 3754e51115404841a4d31b03e77c7a01

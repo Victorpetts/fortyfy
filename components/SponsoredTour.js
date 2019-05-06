@@ -93,7 +93,7 @@ class SponsoredTour extends Component {
           </View>
         }
 
-        { this.state.isVisible &&
+        {this.state.isVisible &&
           <Overlay
             height='auto'
             width='90%'

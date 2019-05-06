@@ -70,18 +70,18 @@ class UsersScreen extends Component {
     this.setState({ search });
   };
 
-  goToUserProfile = (player) => {
-    this.props.navigation.navigate('UserProfile', {
-      tourName: player.name,
-      isFriend: player.friend
+  goToUserCard = (userId) => {
+    this.props.navigation.navigate('UserCard', {
+      userId: userId
     })
+
     this.setState({
       isVisible: false
     })
   }
 
-  sendRequest = (player) => {
-    this.props.sendRequest(player.name)
+  sendRequest = (userId) => {
+    this.props.sendRequest(userId)
   }
 
   buttonSwitch = (player) => {
@@ -90,13 +90,7 @@ class UsersScreen extends Component {
         return (
           <TourButtonSmall
             buttonTitle={'ADD FRIEND'}
-            buttonFunc={() => this.sendRequest(player)}
-          />
-        );
-      case "friend":
-        return (
-          <DisabledButtonSmall
-            buttonTitle={'FRIEND'}
+            buttonFunc={() => this.sendRequest(player.id)}
           />
         );
       case "pending":
@@ -116,8 +110,7 @@ class UsersScreen extends Component {
 
   render() {
 
-    let filteredPlayers = this.props.users.filter(
-      (player) => {
+    let filteredPlayers = this.props.users.filter((player) => {
         return player.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
@@ -137,8 +130,8 @@ class UsersScreen extends Component {
               overlayBackgroundColor={'black'}
               overlayStyle={{
                 borderColor: Colors.appBlueColor,
-                borderWidth: 2.5,
-                borderRadius: 2.5,
+                borderWidth: 2,
+                borderRadius: 5,
                 backgroundColor: Colors.appBackgroundColor
               }}
             >
@@ -152,29 +145,25 @@ class UsersScreen extends Component {
                     borderBottomColor: Colors.appBackgroundColor,
                     borderTopColor: Colors.appBackgroundColor,
                     paddingHorizontal: 0,
-                    paddingVertical: 10,
+                    paddingBottom: 20,
                   }}
                   inputContainerStyle={{
-                    margin: 0,
-                    borderRadius: 5,
-                    backgroundColor: 'white',
-                    borderColor: Colors.appBlueColor,
-                    borderWidth: 1
+                    backgroundColor: 'white'
                   }}
                 />
                 {filteredPlayers.map((player) => {
                   return (
-                    <View>
+                    <View key={player.id} >
                       {this.state.search !== '' &&
                         <ScrollView
-                          key={player.name}
                           contentContainerStyle={{
                             flexDirection: 'column',
                             justifyContent: 'space-between'
                           }}
                         >
                           <View style={style.inviteListContainer}>
-                            <View
+                            <TouchableOpacity
+                              onPress={() => this.goToUserCard(player.id)}
                               style={{
                                 flexDirection: 'row',
                                 justifyContent: 'space-between'
@@ -184,8 +173,7 @@ class UsersScreen extends Component {
                                 source={player.card}
                                 style={{ height: 60, width: 40, marginRight: 5 }}
                               />
-                              <TouchableOpacity
-                                onPress={() => this.goToUserProfile(player)}
+                              <View
                                 style={{
                                   flexDirection: 'column',
                                   flex: 1
@@ -193,14 +181,14 @@ class UsersScreen extends Component {
                               >
                                 <Text style={style.listItemText}>{player.name}</Text>
                                 <Text style={style.listItemSmallText}>Level {player.lvl}</Text>
-                              </TouchableOpacity>
+                              </View>
                               <View style={{
                                 flexDirection: 'column',
                                 justifyContent: 'center'
                               }}>
-                                {this.buttonSwitch(player)}
+                                {this.buttonSwitch(player.status)}
                               </View>
-                            </View>
+                            </TouchableOpacity>
                           </View>
                         </ScrollView>
                       }

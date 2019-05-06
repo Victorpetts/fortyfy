@@ -603,19 +603,19 @@ export default StyleSheet.create({
   },
 
   inviteListContainer: {
-      borderRadius: 2.5,
+      borderRadius: 5,
       padding: 5,
-      marginVertical: 5,
+      marginBottom: 15,
       borderColor: Colors.appBlueColor,
-      borderWidth: 1,
+      borderWidth: 2,
       backgroundColor: 'white'
   },
 
   inputFieldContainer: {
     width: '90%',
     height: '100%',
-    marginLeft: '5%',
-    marginRight: '5%'
+    marginHorizontal: '5%',
+    marginBottom: '10%',
   },
 
   crownContainer: {

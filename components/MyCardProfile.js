@@ -6,8 +6,8 @@ import {
 } from 'react-native';
 
 import CardSettings from './CardSettings.js';
-
 import { TourButton } from './Buttons.js';
+
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 

@@ -68,11 +68,11 @@ class User extends Component {
             <View style={style.smallButtonContainer}>
               <TourButtonSmall
                 buttonTitle={'Accept'}
-                buttonFunc={() => this.props.acceptFriend(userName)}
+                buttonFunc={() => this.props.acceptFriend(userId)}
               />
               <TourButtonSmallRed
                 buttonTitle={'Decline'}
-                buttonFunc={() => this.props.denyFriend(userName)}
+                buttonFunc={() => this.props.denyFriend(userId)}
               />
             </View>
           </View>

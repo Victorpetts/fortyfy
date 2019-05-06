@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   ScrollView,
   Text,
@@ -10,7 +9,6 @@ import {
 } from 'react-native';
 
 import { TourButtonFullWidth } from '../components/Buttons.js';
-
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 
@@ -49,19 +47,38 @@ class ProfileSettingScreen extends Component {
     return (
       <ScrollView style={style.mainContainer}>
         <ScrollView style={style.inputFieldContainer}>
-          <Text style={style.inputFieldText}>Change Email: </Text>
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}>
+            <Text style={style.inputFieldText}>Notifications:</Text>
+            <View style={{ paddingTop: 20 }}>
+              <Switch
+                value={this.state.toggleSwitch}
+                onValueChange={value => this.setState({ toggleSwitch: value })}
+                trackColor={{ false: 'grey', true: Colors.appBrightBlueColor }}
+                thumbColor={Colors.appBlueColor}
+              />
+            </View>
+          </View>
+          <Text style={style.inputFieldText}>Email Address: </Text>
           <TextInput
             id='name'
             style={style.inputField}
-            placeholder={'Email'}
+            placeholder={'sirYonyfy@hotmail.com'}
             maxLength={20}
             onSubmitEditing={Keyboard.dismiss}
           />
-          <Text style={style.inputFieldText}>Old Password: </Text>
+          <View style={{ paddingTop: 20 }}>
+            <TourButtonFullWidth
+              buttonTitle={'Change Email Address'}
+            />
+          </View>
+          <Text style={style.inputFieldText}>Current Password: </Text>
           <TextInput
             id='name'
             style={style.inputField}
-            placeholder={'Old Password'}
+            placeholder={'Current Password'}
             maxLength={20}
             onSubmitEditing={Keyboard.dismiss}
           />
@@ -73,36 +90,33 @@ class ProfileSettingScreen extends Component {
             maxLength={20}
             onSubmitEditing={Keyboard.dismiss}
           />
-          <Text style={style.inputFieldText}>Change Phone Number: </Text>
+        <Text style={style.inputFieldText}>Retype New Password: </Text>
           <TextInput
             id='name'
             style={style.inputField}
-            placeholder={'Phone number'}
+            placeholder={'Retype New Password:'}
+            maxLength={20}
+            onSubmitEditing={Keyboard.dismiss}
+          />
+          <View style={{ paddingTop: 20 }}>
+            <TourButtonFullWidth
+              buttonTitle={'Change Password'}
+            />
+          </View>
+          <Text style={style.inputFieldText}>Phone Number: </Text>
+          <TextInput
+            id='name'
+            style={style.inputField}
+            placeholder={'073-1337404'}
             maxLength={20}
             onSubmitEditing={Keyboard.dismiss}
             keyboardType='numeric'
           />
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between'
-          }}>
-          <Text style={style.inputFieldText}>Notifications:</Text>
           <View style={{ paddingTop: 20 }}>
-            <Switch
-              value={this.state.toggleSwitch}
-              onValueChange={value => this.setState({ toggleSwitch: value })}
-              trackColor={{ false: 'grey', true: Colors.appBrightBlueColor }}
-              thumbColor={Colors.appBlueColor}
-            />
-            </View>
-          </View>
-          <View style={{
-            paddingTop: 20
-          }}>
             <TourButtonFullWidth
-              buttonTitle={'SAVE'}
-              buttonFunc={() => navigate('Home')}
-            /></View>
+              buttonTitle={'Change Phone Number'}
+            />
+          </View>
         </ScrollView>
       </ScrollView>
     )
@@ -113,4 +127,4 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 };
 
-export default connect(mapStateToProps, null)(ProfileSettingScreen);
+export default ProfileSettingScreen;
