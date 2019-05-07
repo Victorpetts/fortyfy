@@ -12,12 +12,9 @@ import style from '../assets/Style.js';
 
 import NewsScreen from '../screens/NewsScreen';
 import TournamentsScreen from '../screens/TournamentsScreen';
-import TourIndvScreen from '../screens/TourIndvScreen';
 import UsersScreen from '../screens/UsersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import UserProfileScreen from '../screens/UserProfileScreen';
 import UserCardScreen from '../screens/UserCardScreen';
-import CardBackScreen from '../screens/CardBackScreen';
 import ProfileSettingScreen from '../screens/ProfileSettingScreen';
 import CreateTourScreen from '../screens/CreateTourScreen';
 import FinishedScreen from '../screens/FinishedScreen';
@@ -68,7 +65,6 @@ NewsStack.navigationOptions = ({ navigation }) => {
 
 const TournamentsStack = createStackNavigator({
   Tournaments: TournamentsScreen,
-  TourIndv: TourIndvScreen,
   TourCreate: CreateTourScreen,
   Ongoing: OngoingScreen,
   Finished: FinishedScreen,
@@ -119,8 +115,7 @@ TournamentsStack.navigationOptions = ({ navigation }) => {
 const UsersStack = createStackNavigator({
   Links: UsersScreen,
   UserCard: UserCardScreen,
-  CardBack: CardBackScreen,
-  UserProfile: UserProfileScreen
+  Profile: ProfileScreen
 });
 
 UsersStack.navigationOptions = ({ navigation }) => {
@@ -152,7 +147,6 @@ UsersStack.navigationOptions = ({ navigation }) => {
 const ProfileStack = createStackNavigator({
   Home: ProfileScreen,
   IndvUserCard: UserCardScreen,
-  CardBack: CardBackScreen,
   ProfileSettings: ProfileSettingScreen
 });
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Overlay } from 'react-native-elements';
 import {
   View,
   ScrollView,
@@ -6,7 +7,6 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import { Overlay } from 'react-native-elements';
 
 import { RoundButtonSmall, TourButtonFullWidth } from './Buttons.js';
 
@@ -58,9 +58,9 @@ class CardSettings extends Component {
       <View style={{
         position: 'absolute',
         top: 0,
-        right: 5,
+        right: 0,
         justifyContent: 'space-evenly',
-        height: '80%'
+        height: '90%'
       }}>
         <RoundButtonSmall
           buttonImg={require('../assets/images/menuicons/plus.png')}

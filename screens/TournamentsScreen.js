@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createTour } from '../actions';
+import { SearchBar, Overlay } from 'react-native-elements';
 import {
   ScrollView,
   View,
   TouchableOpacity,
   Text,
-  StatusBar
+  Image
 } from 'react-native';
 
 import {
   RoundButton,
-  RoundButtonSmall,
   TourButtonMedium,
   TourButtonMediumRed
 } from '../components/Buttons.js';
 import Tour from '../components/Tour.js';
-import TourInfoMockUp from '../components/TourInfoMockUp.js';
-import SponsoredTours from '../components/SponsoredTours.js';
+import SponsoredTour from '../components/SponsoredTour.js';
 
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
+
 
 class TournamentsScreen extends Component {
 
@@ -47,27 +46,8 @@ class TournamentsScreen extends Component {
   state = {
     toggleOngoing: true,
     toggleFinished: false,
-    show: false,
-    inviteClicked: false
+    searchOverlay = false
   }
-
-  inviteTour = () => {
-    let newTour = {
-      'id': 6,
-      'name': "Jesper's Tournament",
-      'participants': ["4", "11"],
-      'players': "10",
-      'wincon': "3",
-      'totalMatches': "8",
-      'finished': false,
-      'fromDate': "12th of March 13:37",
-      'toDate': "15th of March 18:00",
-      'owner': "4",
-      'reward': false
-    }
-    this.props.createTour(newTour);
-    this.setState({ inviteClicked: true })
-  };
 
   toggleOngoing = () => {
     this.setState({
@@ -78,19 +58,19 @@ class TournamentsScreen extends Component {
 
   toggleFinished = () => {
     this.setState({
-      toggleFinished: true,
-      toggleOngoing: false
+      toggleOngoing: false,
+      toggleFinished: true
     });
   };
 
   mapSponsoredTours() {
 
     let allTours = this.props.tours;
-    let sponsoredTours = allTours.filter(tour => tour.finished === false && tour.sponsor === true);
+    let sponsoredTours = allTours.filter(tour => !tour.finished && tour.sponsor && !tour.joined);
 
     return sponsoredTours.map((tour) => {
       return (
-        <SponsoredTours
+        <SponsoredTour
           key={tour.id}
           id={tour.id}
           navigation={this.props.navigation}
@@ -99,14 +79,14 @@ class TournamentsScreen extends Component {
     })
   }
 
-  mapOngoingTours() {
+  mapJoinedTours() {
 
     let allTours = this.props.tours;
-    let ongoingTours = allTours.filter(tour => tour.finished === false && !tour.sponsor);
+    let sponsoredTours = allTours.filter(tour => !tour.finished && tour.sponsor && tour.joined);
 
-    return ongoingTours.map((tour) => {
+    return sponsoredTours.map((tour) => {
       return (
-        <Tour
+        <SponsoredTour
           key={tour.id}
           id={tour.id}
           navigation={this.props.navigation}
@@ -115,10 +95,26 @@ class TournamentsScreen extends Component {
     })
   }
 
-  mapFinishedTours() {
+  // mapOngoingTours() {
+  //
+  //   let allTours = this.props.tours;
+  //   let ongoingTours = allTours.filter(tour => !tour.finished && !tour.sponsor);
+  //
+  //   return ongoingTours.map((tour) => {
+  //     return (
+  //       <Tour
+  //         key={tour.id}
+  //         id={tour.id}
+  //         navigation={this.props.navigation}
+  //       />
+  //     )
+  //   })
+  // }
+
+  mapFinishedTours = () => {
 
     let allTours = this.props.tours;
-    let finishedTours = allTours.filter(tour => tour.finished === true);
+    let finishedTours = allTours.filter(tour => tour.finished);
 
     return finishedTours.map((tour) => {
       return (
@@ -131,21 +127,103 @@ class TournamentsScreen extends Component {
     })
   }
 
-  pressButton = () => {
-    this.setState({ show: !this.state.show })
-  }
-
   render() {
 
+    const {searchOverlay, toggleOngoing} = this.state
     const { navigate } = this.props.navigation;
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
 
     return (
-      <View style={{ height: '100%' }}>
+      <View>
 
-        {this.state.toggleOngoing ? (
-          // Renders ongoing tab as active and displays its content
+        {searchOverlay &&
+          <Overlay
+            height='auto'
+            width='90%'
+            searchOverlay={searchOverlay}
+            onBackdropPress={() => this.setState({ searchOverlay: false })}
+            overlayBackgroundColor={'black'}
+            overlayStyle={{
+              borderColor: Colors.appBlueColor,
+              borderWidth: 2,
+              borderRadius: 5,
+              backgroundColor: Colors.appBackgroundColor
+            }}
+          >
+            <View>
+              <SearchBar
+                placeholder="Search..."
+                onChangeText={this.updateSearch}
+                value={this.state.search}
+                containerStyle={{
+                  backgroundColor: Colors.appBackgroundColor,
+                  borderBottomColor: Colors.appBackgroundColor,
+                  borderTopColor: Colors.appBackgroundColor,
+                  paddingHorizontal: 0,
+                  paddingBottom: 20,
+                }}
+                inputContainerStyle={{
+                  backgroundColor: 'white'
+                }}
+              />
+              {filteredPlayers.map((player) => {
+                return (
+                  <View key={player.id} >
+                    {this.state.search !== '' &&
+                      <ScrollView
+                        contentContainerStyle={{
+                          flexDirection: 'column',
+                          justifyContent: 'space-between'
+                        }}
+                      >
+                        <View style={style.inviteListContainer}>
+                          <TouchableOpacity
+                            onPress={() => this.goToUserCard(player.id)}
+                            style={{
+                              flexDirection: 'row',
+                              justifyContent: 'space-between'
+                            }}
+                          >
+                            <Image
+                              source={player.card}
+                              style={{ height: 60, width: 40, marginRight: 5 }}
+                            />
+                            <View
+                              style={{
+                                flexDirection: 'column',
+                                flex: 1
+                              }}
+                            >
+                              <Text style={style.listItemText}>{player.name}</Text>
+                              <Text style={style.listItemSmallText}>Level {player.lvl}</Text>
+                            </View>
+                            <View style={{
+                              flexDirection: 'column',
+                              justifyContent: 'center'
+                            }}>
+                              {this.buttonSwitch(player)}
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      </ScrollView>
+                    }
+                  </View>
+                )
+              })}
+              <TourButtonFullWidth
+                buttonTitle={'Done'}
+                onPress={() => this.setState({ searchOverlay: false })}
+              />
+            </View>
+          </Overlay>
+        }
 
-          <View>
+        {toggleOngoing ? (
+        // Renders ongoing tab as active and displays its content
+
+          <View style={{ height: '100%' }}>
+
             <View style={style.tabBackground}>
               <View style={style.enabledTab}>
                 <TouchableOpacity
@@ -169,137 +247,37 @@ class TournamentsScreen extends Component {
 
             <View style={style.roundButtonPos}>
               <RoundButton
-                id={'plus'}
+                buttonImg={require('../assets/images/menuicons/search.png')}
                 buttonFunc={this.pressButton}
-                showing={this.state.show}
               />
             </View>
 
-            <View style={{ paddingBottom: 75 }}>
+            <ScrollView
+              style={{ backgroundColor: Colors.appBackgroundColor }}
+              automaticallyAdjustContentInsets={false}
+            >
+              <View style={style.coinContainer}>
+                <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                <Image
+                  source={require('../assets/images/coin.png')}
+                  style={{ height: 20, alignSelf: 'center' }}
+                  resizeMode={'contain'}
+                />
+              </View>
 
-              {this.state.show ?
-                // White overlay is active
+              {this.mapSponsoredTours()}
+              <View style={style.goldDivider} />
+              {this.mapJoinedTours()}
 
-                <View style={style.whiteOverlay}>
-                  <TouchableOpacity
-                    onPress={this.pressButton}
-                    activeOpacity={1}
-                  >
-                    <ScrollView style={style.mainContainer}>
+            </ScrollView>
 
-                      <Text style={style.goldenText}>Sponsored</Text>
-                      {this.mapSponsoredTours()}
-
-                      <View style={style.divider} />
-
-                      {!this.state.inviteClicked ?
-                        <View>
-                          <Text style={style.blueText}>Invites (1)</Text>
-                          <View style={style.itemContainer}>
-                            <TourInfoMockUp
-                              tourName={`Jesper's Tournament`}
-                              totalMatches={'8'}
-                              winconText={'Most Top 5'}
-                              numberOfPlayers={'1'}
-                              maxPlayers={'10'}
-                              owner={'J-Dawg'}
-                            />
-                            <View style={{
-                              padding: 10,
-                              flexDirection: 'row',
-                              justifyContent: 'space-around'
-                            }}>
-                              <TourButtonMedium
-                                buttonTitle={'Accept invitation'}
-                                buttonFunc={this.inviteTour}
-                              />
-                              <TourButtonMediumRed
-                                buttonTitle={'Decline invitation'}
-                                buttonFunc={() => this.setState({ inviteClicked: true })}
-                              />
-                            </View>
-                          </View>
-                        </View>
-                        :
-                        <Text style={style.blueText}>Invites (0)</Text>
-                      }
-
-                      <Text style={style.blueText}>Tournaments</Text>
-                      {this.mapOngoingTours()}
-                    </ScrollView>
-                  </TouchableOpacity>
-                </View>
-
-                :
-                // White overlay is not active
-
-                <ScrollView style={style.mainContainer}>
-
-                  <Text style={style.goldenText}>Sponsored</Text>
-                  {this.mapSponsoredTours()}
-
-                  <View style={style.divider} />
-
-                  {!this.state.inviteClicked ?
-                    <View>
-                      <Text style={style.blueText}>Invites (1)</Text>
-                      <View style={style.itemContainer}>
-                        <TourInfoMockUp
-                          tourName={`Jesper's Tournament`}
-                          totalMatches={'8'}
-                          winconText={'Most Top 5'}
-                          numberOfPlayers={'0'}
-                          maxPlayers={'10'}
-                          owner={'J-Dawg'}
-                        />
-                        <View style={style.doubleButtonContainer}>
-                          <TourButtonMedium
-                            buttonTitle={'Accept invitation'}
-                            buttonFunc={this.inviteTour}
-                          />
-                          <TourButtonMediumRed
-                            buttonTitle={'Decline invitation'}
-                            buttonFunc={() => this.setState({ inviteClicked: true })}
-                          />
-                        </View>
-                      </View>
-                    </View>
-                    :
-                    <Text style={style.blueText}>Invites (0)</Text>
-                  }
-
-                  <Text style={style.blueText}>Tournaments</Text>
-                  {this.mapOngoingTours()}
-                </ScrollView>
-              }
-
-              {this.state.show &&
-                // + button menu is displayed
-
-                <View>
-                  <View style={style.buttonMenuItem2}>
-                    <Text style={style.buttonMediumText}>Create tournament</Text>
-                    <RoundButtonSmall
-                      buttonImg={require('../assets/images/menuicons/plus.png')}
-                      buttonFunc={() => navigate('TourCreate')}
-                    />
-                  </View>
-                  <View style={style.buttonMenuItem1}>
-                    <Text style={style.buttonMediumText}>Find tournament</Text>
-                    <RoundButtonSmall
-                      buttonImg={require('../assets/images/menuicons/search.png')}
-                    />
-                  </View>
-                </View>
-              }
-
-            </View>
           </View>
 
         ) : (
-          // Renders finished tab as active and displays its content
+        // Renders finished tab as active and displays its content
 
           <View style={{ height: '100%' }}>
+
             <View style={style.tabBackground}>
               <View style={style.disabledTab}>
                 <TouchableOpacity
@@ -321,11 +299,22 @@ class TournamentsScreen extends Component {
               </View>
             </View>
 
-            <ScrollView style={style.mainContainer}
+            <ScrollView
+              style={style.mainContainer}
               automaticallyAdjustContentInsets={false}
             >
+              <View style={style.coinContainer}>
+              <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                <Image
+                  source={require('../assets/images/coin.png')}
+                  style={{ height: 20, alignSelf: 'center' }}
+                  resizeMode={'contain'}
+                />
+              </View>
+
               {this.mapFinishedTours()}
             </ScrollView>
+
           </View>
         )}
 
@@ -335,7 +324,10 @@ class TournamentsScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { tours: state.tours };
+  return {
+    tours: state.tours,
+    users: state.users
+  };
 };
 
-export default connect(mapStateToProps, { createTour })(TournamentsScreen);
+export default connect(mapStateToProps, null)(TournamentsScreen);

@@ -208,7 +208,7 @@ class OngoingScreen extends Component {
     return (
       <View style={{ height: '100%' }}>
         <ScrollView style={style.mainContainer}>
-          <View style={style.itemContainer}>
+          <View style={style.itemContainerBlueBorder}>
             <TourInfoSection
               tourId={tourId}
             />
@@ -323,7 +323,7 @@ class OngoingScreen extends Component {
               overlayStyle={{
                 borderColor: Colors.appBlueColor,
                 borderWidth: 2,
-                borderRadius: 2.5,
+                borderRadius: 5,
                 backgroundColor: Colors.appBackgroundColor
               }}
             >

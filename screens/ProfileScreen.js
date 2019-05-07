@@ -5,11 +5,12 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  StatusBar
+  Image
 } from 'react-native';
 
 import CardCollection from '../components/CardCollection.js';
 import MyCardProfile from '../components/MyCardProfile.js';
+
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons'
@@ -19,11 +20,7 @@ class ProfileScreen extends Component {
 
   state = {
     toggleProfile: true,
-    toggleCards: false,
-    name: '',
-    someStats: '',
-    someMoreStats: '',
-    loading: false
+    toggleCollection: false
   };
 
   static navigationOptions = ({ navigation }) => ({
@@ -61,13 +58,13 @@ class ProfileScreen extends Component {
   toggleProfile = () => {
     this.setState({
       toggleProfile: true,
-      toggleCards: false
+      toggleCollection: false
     });
   };
 
-  toggleCards = () => {
+  toggleCollection = () => {
     this.setState({
-      toggleCards: true,
+      toggleCollection: true,
       toggleProfile: false
     });
   };
@@ -92,20 +89,16 @@ class ProfileScreen extends Component {
 
   render() {
 
-    const myId = this.props.users.find(user => user.id === "11");
-    const myCard = myId.card;
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
 
     return (
 
       <View>
         {this.state.toggleProfile ? (
           <View>
-            <View
-              style={style.tabBackground}
-            >
-              <View
-                style={style.enabledTab}
-              >
+            <View style={style.tabBackground}>
+              <View style={style.enabledTab}>
                 <TouchableOpacity
                   onPress={() => this.toggleProfile()}
                   accessible={true}
@@ -114,11 +107,9 @@ class ProfileScreen extends Component {
                   <Text style={style.enabledTabText}>My Card</Text>
                 </TouchableOpacity>
               </View>
-              <View
-                style={style.disabledTab}
-              >
+              <View style={style.disabledTab}>
                 <TouchableOpacity
-                  onPress={() => this.toggleCards()}
+                  onPress={() => this.toggleCollection()}
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
@@ -127,20 +118,29 @@ class ProfileScreen extends Component {
               </View>
             </View>
 
-            <View style={style.mainContainer}>
+            <ScrollView style={style.mainContainer}>
+              <View style={style.coinContainer}>
+              <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+                <Image
+                  source={require('../assets/images/coin.png')}
+                  style={{ height: 20, alignSelf: 'center' }}
+                  resizeMode={'contain'}
+                />
+              </View>
 
               <View style={{
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                marginTop: 15,
+                marginBottom: 80
               }}>
                 <MyCardProfile
-                  card={require("../assets/images/playercards/fullsize/cardSirYonyfy.png")}
                   navigation={this.props.navigation}
                 />
               </View>
-            </View>
+            </ScrollView>
           </View>
-        ) : this.state.toggleCards ? (
+        ) :  (
           <View>
             <View
               style={style.tabBackground}
@@ -160,7 +160,7 @@ class ProfileScreen extends Component {
                 style={style.enabledTab}
               >
                 <TouchableOpacity
-                  onPress={() => this.toggleCards()}
+                  onPress={() => this.toggleCollection()}
                   accessible={true}
                   accessibilityLabel={'Knapp - Visa min kortsamling'}
                 >
@@ -174,8 +174,7 @@ class ProfileScreen extends Component {
               </View>
             </ScrollView>
           </View>
-        )
-        : null}
+        )}
       </View>
 
     )

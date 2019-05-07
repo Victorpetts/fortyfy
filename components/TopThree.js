@@ -10,6 +10,7 @@ import {
 
 import style from '../assets/Style.js';
 
+
 class TopThree extends Component {
 
   state = {
@@ -125,11 +126,9 @@ class TopThree extends Component {
 
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const totalMatches = thisTour.totalMatches;
-    const owner = thisTour.owner
 
     const thisUser = this.props.users.find(user => user.id === userId);
     const userName = thisUser.name;
-
     const newPoints = thisUser.currentPoints;
 
     return (

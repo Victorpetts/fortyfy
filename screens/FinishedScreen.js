@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { obtainCoins } from '../actions';
 import {
   View,
   ScrollView,
   Text,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated,
+  Easing
 } from 'react-native';
 
 import { Overlay } from 'react-native-elements';
@@ -20,7 +23,10 @@ import { TourButtonMedium } from '../components/Buttons.js';
 class FinishedScreen extends Component {
 
   state = {
-    isVisible: true
+    isVisible: true,
+    animatedExplosion: new Animated.Value(0),
+    animatedCoin: new Animated.Value(0),
+    showCoin: false
   }
 
   static navigationOptions = ({ navigation }) => ({
@@ -97,20 +103,71 @@ class FinishedScreen extends Component {
 
   render() {
 
+    Animated.loop(
+      Animated.timing(
+        this.state.animatedExplosion,
+        {
+          toValue: 1,
+          duration: 3000,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }
+      )
+    ).start()
+
+    const spin = this.state.animatedExplosion.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    })
+
+    const rewardToClaim = this.props.navigation.getParam('reward');
+
     const tourId = this.props.navigation.getParam('tourId');
     const thisTour = this.props.tours.find(tour => tour.id === tourId);
     const particArr = thisTour.participants;
     const showReward = thisTour.reward;
     const allUsers = this.props.users;
     const thisToursPartic = allUsers.filter(user => particArr.includes(user.id));
+    const myAcc = this.props.users[10]
+    const coins = myAcc.coins
+
+    animateCoins = () => {
+      this.setState({ showCoin: true })
+      Animated.timing(this.state.animatedCoin, {
+        toValue: 1,
+        duration: 1000,
+        easing: Easing.ease,
+        useNativeDriver: true,
+      }).start()
+    }
+
+    const scale = this.state.animatedCoin.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 1]
+    })
+
+    getCoins = () => {
+      this.props.obtainCoins(1000)
+      this.setState({ isVisible: false })
+
+    }
+
 
     return (
       <ScrollView style={style.mainContainer}>
+        <View style={style.coinContainer}>
+        <Text style={style.tourInfoTitle}>{coins} Coins</Text>
+          <Image
+            source={require('../assets/images/coin.png')}
+            style={{ height: 20, alignSelf: 'center' }}
+            resizeMode={'contain'}
+          />
+        </View>
 
-        {showReward && this.state.isVisible &&
+        {showReward && rewardToClaim &&
           <Overlay
-            height= 'auto'
-            width= '70%'
+            height='auto'
+            width='70%'
             isVisible={this.state.isVisible}
             overlayBackgroundColor={'black'}
             overlayStyle={{
@@ -122,21 +179,53 @@ class FinishedScreen extends Component {
           >
             <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
               <Text style={style.winnerText}>You Won!</Text>
-              <TouchableOpacity onPress={() => this.setState({ isVisible: false })}>
-                <Image
-                  source={require('../assets/images/chest_closed.png')}
-                  style={{ height: 100, width: 110, marginBottom: 15 }}
-                />
-              </TouchableOpacity>
+              {this.state.showCoin ?
+                <Animated.View
+                  style={{
+                    alignItems: 'center',
+                    marginBottom: 10,
+                    transform: [{
+                      scale: scale
+                    }]
+                  }}>
+                  <Image
+                    source={require('../assets/images/coins.png')}
+                  />
+                  <Text style={style.blueText}>1000 coins</Text>
+                </Animated.View>
+                :
+                <TouchableOpacity onPress={animateCoins}>
+                  <Animated.Image
+                    source={require('../assets/images/explosion_effect.png')}
+                    style={{
+                      height: 200,
+                      width: 210,
+                      transform: [{ rotate: spin }]
+                    }}
+                  />
+                  <Image
+                    source={require('../assets/images/chest_closed.png')}
+                    style={{ height: 100, width: 110, position: 'absolute', marginTop: 50, alignSelf: 'center' }}
+                  />
+                </TouchableOpacity>
+              }
               <TourButtonMedium
-                buttonTitle={'Open the chest!'}
-                buttonFunc={() => this.setState({ isVisible: false })}
+                buttonTitle = {
+                  this.state.showCoin
+                    ? 'Take em!'
+                    : 'Open the chest!'
+                }
+                buttonFunc = {
+                  this.state.showCoin
+                    ? getCoins
+                    : animateCoins
+                }
               />
             </View>
           </Overlay>
         }
 
-        <View style={style.itemContainer}>
+        <View style={style.itemContainerBlueBorder}>
           <TourInfoSection
             tourId={tourId}
           />
@@ -169,4 +258,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(FinishedScreen);
+export default connect(mapStateToProps, { obtainCoins })(FinishedScreen);

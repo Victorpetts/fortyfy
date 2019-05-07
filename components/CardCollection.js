@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   View,
   Image,
@@ -12,7 +11,6 @@ import style from '../assets/Style.js';
 class CardCollection extends Component {
 
   state = {
-    image: this.props.card,
     animateItem: new Animated.Value(0)
   }
 
@@ -22,7 +20,8 @@ class CardCollection extends Component {
     Animated.timing(this.state.animateItem, {
       toValue: 1,
       duration: 1000,
-      delay: index * 100
+      delay: index * 100,
+      useNativeDriver: true
     }).start()
   }
 
@@ -44,12 +43,11 @@ class CardCollection extends Component {
         ]}]}>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('IndvUserCard', {
-            userId: userId,
-            userCard: userCard
+            userId: userId
           })}
         >
           <Image
-            source={this.state.image}
+            source={userCard}
             style={{ height: 150, width: 100 }}
           />
         </TouchableOpacity>
@@ -58,8 +56,4 @@ class CardCollection extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { users: state.users };
-};
-
-export default connect(mapStateToProps, null)(CardCollection);
+export default CardCollection;

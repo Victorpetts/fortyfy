@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { sendRequest } from '../actions/index.js';
+import { SearchBar, Overlay } from 'react-native-elements';
 import {
   ScrollView,
   Text,
@@ -8,14 +10,11 @@ import {
   Image
 } from 'react-native';
 
-import { SearchBar, Overlay } from 'react-native-elements';
 import { TourButtonSmall, DisabledButtonSmall, TourButtonFullWidth, RoundButton } from '../components/Buttons.js';
 import FriendsList from '../components/FriendsList.js';
 
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
-
-import { sendRequest } from '../actions/index.js';
 
 
 class UsersScreen extends Component {
@@ -71,18 +70,18 @@ class UsersScreen extends Component {
     this.setState({ search });
   };
 
-  goToUserProfile = (player) => {
-    this.props.navigation.navigate('UserProfile', {
-      tourName: player.name,
-      isFriend: player.friend
+  goToUserCard = (userId) => {
+    this.props.navigation.navigate('UserCard', {
+      userId: userId
     })
+
     this.setState({
       isVisible: false
     })
   }
 
-  sendRequest = (player) => {
-    this.props.sendRequest(player.name)
+  sendRequest = (userId) => {
+    this.props.sendRequest(userId)
   }
 
   buttonSwitch = (player) => {
@@ -91,19 +90,13 @@ class UsersScreen extends Component {
         return (
           <TourButtonSmall
             buttonTitle={'ADD FRIEND'}
-            buttonFunc={() => this.sendRequest(player)}
-          />
-        );
-      case "friend":
-        return (
-          <DisabledButtonSmall
-            buttonTitle={'FRIEND'}
+            buttonFunc={() => this.sendRequest(player.id)}
           />
         );
       case "pending":
         return (
           <DisabledButtonSmall
-            buttonTitle={'REQUEST SENT'}
+            buttonTitle={'PENDING'}
           />
         );
       default:
@@ -117,8 +110,7 @@ class UsersScreen extends Component {
 
   render() {
 
-    let filteredPlayers = this.props.users.filter(
-      (player) => {
+    let filteredPlayers = this.props.users.filter((player) => {
         return player.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
@@ -126,12 +118,10 @@ class UsersScreen extends Component {
     return (
       <View>
         <ScrollView style={style.mainContainer}>
-          <View>
-            <FriendsList
-              navigation={this.props.navigation}
-            />
-          </View>
-          {this.state.isVisible && (
+          <FriendsList
+            navigation={this.props.navigation}
+          />
+          {this.state.isVisible &&
             <Overlay
               height='auto'
               width='90%'
@@ -140,8 +130,8 @@ class UsersScreen extends Component {
               overlayBackgroundColor={'black'}
               overlayStyle={{
                 borderColor: Colors.appBlueColor,
-                borderWidth: 2.5,
-                borderRadius: 2.5,
+                borderWidth: 2,
+                borderRadius: 5,
                 backgroundColor: Colors.appBackgroundColor
               }}
             >
@@ -155,62 +145,54 @@ class UsersScreen extends Component {
                     borderBottomColor: Colors.appBackgroundColor,
                     borderTopColor: Colors.appBackgroundColor,
                     paddingHorizontal: 0,
-                    paddingVertical: 10,
+                    paddingBottom: 20,
                   }}
                   inputContainerStyle={{
-                    margin: 0,
-                    borderRadius: 5,
-                    backgroundColor: 'white',
-                    borderColor: Colors.appBlueColor,
-                    borderWidth: 1
+                    backgroundColor: 'white'
                   }}
                 />
                 {filteredPlayers.map((player) => {
                   return (
-                    this.state.search !== '' && (
-                      <ScrollView
-                        key={player.name}
-                        contentContainerStyle={{
-                          flexDirection: 'column',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <View style={style.inviteListContainer}>
-                          <View
-                            style={{
-                              flexDirection: 'row',
-                              justifyContent: 'space-between'
-                            }}
-                          >
-                            <Image
-                              source={player.card}
-                              style={{ height: 60, width: 40, marginRight: 5 }}
-                            />
+                    <View key={player.id} >
+                      {this.state.search !== '' &&
+                        <ScrollView
+                          contentContainerStyle={{
+                            flexDirection: 'column',
+                            justifyContent: 'space-between'
+                          }}
+                        >
+                          <View style={style.inviteListContainer}>
                             <TouchableOpacity
-                              onPress={() => this.goToUserProfile(player)}
+                              onPress={() => this.goToUserCard(player.id)}
                               style={{
-                                flexDirection: 'column',
-                                flex: 1
+                                flexDirection: 'row',
+                                justifyContent: 'space-between'
                               }}
                             >
-                              <Text style={style.listItemText}>
-                                {player.name}
-                              </Text>
-                              <Text style={style.listItemSmallText}>
-                                Level {player.lvl}
-                              </Text>
+                              <Image
+                                source={player.card}
+                                style={{ height: 60, width: 40, marginRight: 5 }}
+                              />
+                              <View
+                                style={{
+                                  flexDirection: 'column',
+                                  flex: 1
+                                }}
+                              >
+                                <Text style={style.listItemText}>{player.name}</Text>
+                                <Text style={style.listItemSmallText}>Level {player.lvl}</Text>
+                              </View>
+                              <View style={{
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                              }}>
+                                {this.buttonSwitch(player)}
+                              </View>
                             </TouchableOpacity>
-                            <View style={{
-                              flexDirection: 'column',
-                              justifyContent: 'center'
-                            }}>
-                              {this.buttonSwitch(player)}
-                            </View>
                           </View>
-                        </View>
-
-                      </ScrollView>
-                    )
+                        </ScrollView>
+                      }
+                    </View>
                   )
                 })}
                 <TourButtonFullWidth
@@ -219,7 +201,7 @@ class UsersScreen extends Component {
                 />
               </View>
             </Overlay>
-          )}
+          }
         </ScrollView>
 
         <View style={{
@@ -228,19 +210,19 @@ class UsersScreen extends Component {
           right: 10,
           flexDirection: 'row'
         }}>
-          {this.state.noPopUp === true &&
+          {this.state.noPopUp &&
             <View style={{
               backgroundColor: Colors.appBlueColor,
               width: 200,
               marginRight: 5
             }}>
               <Text style={style.popUpText}>
-                Invite friends and recieve
-                40000 YONYFY coins
-                </Text>
+                Invite a friend and recieve 500 coins
+              </Text>
             </View>
           }
           <RoundButton
+            buttonImg={require('../assets/images/menuicons/plus.png')}
             buttonFunc={() => this.setState({ noPopUp: !this.state.noPopUp })}
           />
         </View>

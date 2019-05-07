@@ -31,14 +31,23 @@ class Tour extends Component {
 
     navigateToFinished = () => {
       navigate('Finished', {
-        tourId: tourId
+        tourId: tourId,
+        reward: false
+      })
+      this.setState({ clicked: true })
+    }
+
+    navigateToFinishedReward = () => {
+      navigate('Finished', {
+        tourId: tourId,
+        reward: true
       })
       this.setState({ clicked: true })
     }
 
     return (
 
-      <ScrollView contentContainerStyle={style.itemContainer}>
+      <ScrollView contentContainerStyle={style.itemContainerGoldBorder}>
         <TourInfoSection
           tourId={tourId}
         />
@@ -52,7 +61,7 @@ class Tour extends Component {
           : rewardToClaim && !this.state.clicked ?
               <TourButtonGold
                 buttonTitle={'Claim Reward!'}
-                buttonFunc={navigateToFinished}
+                buttonFunc={navigateToFinishedReward}
               />
             :
               <TourButton

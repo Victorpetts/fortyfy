@@ -49,7 +49,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.appBlueColor,
     padding: 12,
     paddingBottom: 15,
-    borderRadius: 2.5,
+    borderRadius: 5,
     width: '100%'
   },
 
@@ -57,7 +57,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.appRedColor,
     padding: 12,
     paddingBottom: 15,
-    borderRadius: 2.5,
+    borderRadius: 5,
     width: '100%'
   },
 
@@ -193,14 +193,12 @@ export default StyleSheet.create({
   smallText: {
     fontSize: 18,
     textAlign: 'center',
-    color: Colors.appBlackColor,
     fontFamily: 'alergia-normal-light'
   },
 
   winnerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.appBlackColor,
     fontFamily: 'alergia-normal-light',
     marginBottom: 15
   },
@@ -215,7 +213,8 @@ export default StyleSheet.create({
 
   itemText: {
     fontSize: 18,
-    margin: 10,
+    marginTop: 15,
+    marginRight: 15,
     fontFamily: 'alergia-normal-semibold'
   },
 
@@ -224,6 +223,12 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-semibold',
     margin: 5,
     textAlign: 'center'
+  },
+
+  dateText: {
+    fontSize: 11,
+    fontFamily: 'alergia-normal-semibold',
+    marginHorizontal: 25
   },
 
   paragraphText: {
@@ -245,69 +250,67 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  backCardContainer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: Colors.appBackgroundColor,
-    borderWidth: 2,
-    borderColor: Colors.appBlueColor
-  },
-
-  backCardContent: {
-    flexWrap: 'wrap',
-    height: '97%',
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderRadius: 5,
-    marginTop: 10,
-    marginBottom: 20,
-    marginHorizontal: 10,
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
-  backCardColumn: {
-    padding: 10,
-    justifyContent: 'center'
+  cardBackContainer: {
+    width: '100%',
+    height: '100%',
+    // flexWrap: 'wrap',
+    // flexDirection: 'row',
+    // backgroundColor: 'white',
+    // justifyContent: 'center'
   },
 
-  backCardTitle: {
-    fontSize: 20,
-    fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor,
-    textAlign: 'center',
-    padding: 10
+  cardBackColumn: {
+    margin: 12,
   },
 
-  backCardName: {
+  cardBackCircle: {
+    backgroundColor: Colors.appBlueColor,
+    borderRadius: 100,
+    width: 75,
+    height: 75,
+    alignSelf: 'center',
+    marginBottom: 17
+  },
+
+  cardBackName: {
     fontSize: 30,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  cardBackLvl: {
+    fontSize: 25,
+    fontFamily: 'alergia-normal-semibold'
+  },
+
+  cardBackText: {
+    fontSize: 18,
     fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor,
-    textAlign: 'center',
-    paddingBottom: 20
-  },
-
-  backCardSubTitle: {
-    fontSize: 16,
-    fontFamily: 'alergia-normal-semibold',
-    color: Colors.appBlueColor,
-    textAlign: 'center',
-    paddingRight: 5
-  },
-
-  backCardStatRow: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    padding: 5
-  },
-
-  backCardText: {
-    fontSize: 16,
-    fontFamily: 'alergia-normal-light',
     textAlign: 'center'
+  },
+
+  cardBackTextR: {
+    fontSize: 18,
+    fontFamily: 'alergia-normal-semibold',
+    textAlign: 'center',
+    marginBottom: 2
+  },
+
+  cardBackNumb: {
+    fontSize: 24,
+    fontFamily: 'alergia-normal-bold',
+    textAlign: 'center'
+  },
+
+  cardBackNumbW: {
+    fontSize: 26,
+    fontFamily: 'alergia-normal-bold',
+    textAlign: 'center',
+    marginTop: 17,
+    color: 'white'
   },
 
   listItemText: {
@@ -360,6 +363,7 @@ export default StyleSheet.create({
 
   mainContainer: {
     width: '100%',
+    height: '100%',
     backgroundColor: Colors.appBackgroundColor
   },
 
@@ -379,14 +383,29 @@ export default StyleSheet.create({
     })
   },
 
+  coinContainer: {
+    width: '100%',
+    justifyContent: 'flex-end',
+    flexDirection: 'row' ,
+    paddingTop: 10,
+    paddingRight: 10
+  },
+
+  coinContainerPos: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 10,
+    right: 10
+  },
+
   cardsContainer: {
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
     height: '100%',
     display: 'flex',
-    padding: '2%',
-    paddingBottom: '15%'
+    paddingHorizontal: '2%',
+    paddingBottom: '25%'
   },
 
   cardContainer: {
@@ -394,7 +413,7 @@ export default StyleSheet.create({
     width: '100%'
   },
 
-  itemContainer: {
+  itemContainerBlueBorder: {
     borderRadius: 5,
     margin: 10,
     paddingBottom: 10,
@@ -481,6 +500,14 @@ export default StyleSheet.create({
     lineHeight: 20
   },
 
+  sponsorInfoText: {
+    marginHorizontal: 25,
+    marginBottom: 15,
+    marginTop: 5,
+    textAlign: 'center',
+    fontFamily: 'alergia-normal-light'
+  },
+
   particText: {
     fontSize: 15,
     fontFamily: 'alergia-normal-light'
@@ -545,11 +572,11 @@ export default StyleSheet.create({
   },
 
   userSquareContainer: {
-    borderRadius: 2.5,
+    borderRadius: 3,
     marginVertical: 5,
     backgroundColor: 'white',
     borderColor: Colors.appBlueColor,
-    borderWidth: 1,
+    borderWidth: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     width: 110,
@@ -557,11 +584,11 @@ export default StyleSheet.create({
   },
 
   userSquareGoldContainer: {
-    borderRadius: 2.5,
+    borderRadius: 3,
     marginVertical: 5,
     backgroundColor: 'white',
     borderColor: Colors.appGoldColor,
-    borderWidth: 1,
+    borderWidth: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     width: 110,
@@ -576,27 +603,27 @@ export default StyleSheet.create({
   },
 
   inviteListContainer: {
-      borderRadius: 2.5,
+      borderRadius: 5,
       padding: 5,
-      marginVertical: 5,
+      marginBottom: 15,
       borderColor: Colors.appBlueColor,
-      borderWidth: 1,
+      borderWidth: 2,
       backgroundColor: 'white'
   },
 
   inputFieldContainer: {
     width: '90%',
     height: '100%',
-    marginLeft: '5%',
-    marginRight: '5%'
+    marginHorizontal: '5%',
+    marginBottom: '10%',
   },
 
   crownContainer: {
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: -4,
+    left: -3,
     zIndex: 100,
-    transform: [{ rotate: '340deg'}]
+    transform: [{ rotate: '320deg'}]
   },
 
   userCard: {
@@ -760,20 +787,19 @@ export default StyleSheet.create({
     fontFamily: 'alergia-normal-semibold',
     fontSize: 15,
     color: Colors.appBlueColor,
-    paddingTop: '5%',
-    paddingLeft: '3%'
+    paddingLeft: '3%',
+    marginVertical: 8
   },
 
   goldenText: {
     fontFamily: 'alergia-normal-semibold',
-    fontSize: 20,
+    fontSize: 18,
     color: Colors.appGoldColor,
-    paddingTop: '5%',
     paddingLeft: '3%'
   },
 
   tourInfoTitle: {
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: 'alergia-normal-light',
     paddingBottom: 5
   },
@@ -789,11 +815,23 @@ export default StyleSheet.create({
     color: Colors.appBlueColor,
   },
 
+  logoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
+  companyLogo: {
+    resizeMode: 'contain',
+    width: 160,
+    height: 30,
+    marginTop: 15,
+    marginLeft: 15,
+    marginBottom: 8
+  },
+
   tourContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: '100%',
-    alignItems: 'center',
     paddingVertical: 10
   },
 
@@ -821,12 +859,21 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
 
-  divider: {
+  goldDivider: {
     padding: 10,
-    margin: 10,
+    marginBottom: 20,
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.appGoldColor,
+    width: '80%'
+  },
+
+  blueDivider: {
+    padding: 15,
+    marginBottom: 20,
+    alignSelf: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.appBlueColor,
     width: '80%'
   },
 

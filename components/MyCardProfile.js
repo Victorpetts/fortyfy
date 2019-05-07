@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   View,
-  ScrollView,
   Image,
-  Text
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import CardSettings from './CardSettings.js';
-
 import { TourButton } from './Buttons.js';
+
 import style from '../assets/Style.js';
 import Colors from '../constants/Colors';
 
 class MyCardProfile extends Component {
 
   state = {
-    image: this.props.card,
     isShowing: false
   };
 
@@ -25,45 +22,33 @@ class MyCardProfile extends Component {
   };
 
   render() {
-
     return (
 
-      <View style={{
-        height: '100%',
-        width: '100%'
-      }}>
-        <ScrollView style={{
-          paddingVertical: 10
-        }}>
+      <View>
+        <TouchableWithoutFeedback
+          onPress={() => this.props.navigation.navigate('IndvUserCard', {
+            userId: "11"
+          })}
+        >
           <Image
-            source={this.state.image}
+            source={require("../assets/images/playercards/fullsize/cardSirYonyfy.png")}
             resizeMode={'contain'}
             style={{ height: 400, width: 350, alignSelf: 'center' }}
           />
-
-
-          <View style={{ alignSelf: 'center', paddingTop: '5%', paddingBottom: '10%' }}>
-            <TourButton
-              buttonTitle={"Customize your card!"}
-              buttonFunc={this.toggleCardSettings}
-            />
-          </View>
-          {this.state.isShowing === true &&
-            <CardSettings />
-          }
-
-        </ScrollView>
-        <View style={{ paddingBottom: 100 }} />
+        </TouchableWithoutFeedback>
+        <View style={{ alignSelf: 'center', marginTop: 15, marginBottom: 15 }}>
+          <TourButton
+            buttonTitle={"Customize your card!"}
+            buttonFunc={this.toggleCardSettings}
+          />
+        </View>
+        {this.state.isShowing &&
+          <CardSettings />
+        }
       </View>
 
     )
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    users: state.users
-  };
-};
-
-export default connect(mapStateToProps, null)(MyCardProfile);
+export default MyCardProfile;
