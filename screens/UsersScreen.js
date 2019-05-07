@@ -96,7 +96,7 @@ class UsersScreen extends Component {
       case "pending":
         return (
           <DisabledButtonSmall
-            buttonTitle={'REQUEST SENT'}
+            buttonTitle={'PENDING'}
           />
         );
       default:
@@ -186,7 +186,7 @@ class UsersScreen extends Component {
                                 flexDirection: 'column',
                                 justifyContent: 'center'
                               }}>
-                                {this.buttonSwitch(player.status)}
+                                {this.buttonSwitch(player)}
                               </View>
                             </TouchableOpacity>
                           </View>

@@ -19,7 +19,7 @@ class CardBack extends Component {
     userId: this.props.userId,
     loading: false,
     name: '',
-    top5Stat: '',
+    top10Stat: '',
     killsStat: '',
     playedMatchesStat: '',
     winsStat: '',
@@ -57,7 +57,7 @@ class CardBack extends Component {
     if (data.epicUserHandle) {
       this.setState({
         name: data.epicUserHandle,
-        top5Stat: data.lifeTimeStats[3].value,
+        top10Stat: data.lifeTimeStats[3].value,
         playedMatchesStat: data.lifeTimeStats[7].value,
         winsStat: data.lifeTimeStats[8].value,
         winRatioStat: data.lifeTimeStats[9].value,
@@ -80,7 +80,7 @@ class CardBack extends Component {
     const userName = thisUser.name;
     const userLvl = thisUser.lvl;
 
-    const { name, top5Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
+    const { name, top10Stat, killsStat, loading, playedMatchesStat, winsStat, winRatioStat, killRatioStat } = this.state;
 
     return (
       <View style={style.cardBackContainer}>
@@ -139,7 +139,7 @@ class CardBack extends Component {
                   style={{ width: 90, height: 90, marginBottom: 30, opacity: 0.7 }}
                 >
                   <Text style={style.cardBackText}>TOP 10s</Text>
-                  <Text style={style.cardBackNumb}>{top5Stat}</Text>
+                  <Text style={style.cardBackNumb}>{top10Stat}</Text>
                 </ImageBackground>
               </View>
             </View>
