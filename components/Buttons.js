@@ -149,15 +149,11 @@ export class DisabledButtonSmall extends React.Component {
 
 export class RoundButton extends React.Component {
 
-  state = {
-    show: false
-  }
-
   render() {
     return (
       <TouchableOpacity
         onPress={this.props.buttonFunc}
-        accessibilityLabel="A button"
+        accessibilityLabel="A round button"
         style={style.roundButtonLarge}
       >
         <Image

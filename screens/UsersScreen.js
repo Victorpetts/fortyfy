@@ -204,12 +204,7 @@ class UsersScreen extends Component {
           }
         </ScrollView>
 
-        <View style={{
-          position: 'absolute',
-          bottom: 10,
-          right: 10,
-          flexDirection: 'row'
-        }}>
+        <View style={style.roundButtonAbsolute}>
           {this.state.noPopUp &&
             <View style={{
               backgroundColor: Colors.appBlueColor,

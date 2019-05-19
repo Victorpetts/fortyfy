@@ -11,6 +11,7 @@ import {
 
 import {
   RoundButton,
+  RoundButtonSmall,
   TourButtonMedium,
   TourButtonMediumRed
 } from '../components/Buttons.js';
@@ -45,8 +46,7 @@ class TournamentsScreen extends Component {
 
   state = {
     toggleOngoing: true,
-    toggleFinished: false,
-    searchOverlay = false
+    toggleFinished: false
   }
 
   toggleOngoing = () => {
@@ -95,22 +95,6 @@ class TournamentsScreen extends Component {
     })
   }
 
-  // mapOngoingTours() {
-  //
-  //   let allTours = this.props.tours;
-  //   let ongoingTours = allTours.filter(tour => !tour.finished && !tour.sponsor);
-  //
-  //   return ongoingTours.map((tour) => {
-  //     return (
-  //       <Tour
-  //         key={tour.id}
-  //         id={tour.id}
-  //         navigation={this.props.navigation}
-  //       />
-  //     )
-  //   })
-  // }
-
   mapFinishedTours = () => {
 
     let allTours = this.props.tours;
@@ -129,95 +113,13 @@ class TournamentsScreen extends Component {
 
   render() {
 
-    const {searchOverlay, toggleOngoing} = this.state
+    const {toggleOngoing} = this.state
     const { navigate } = this.props.navigation;
     const myAcc = this.props.users[10]
     const coins = myAcc.coins
 
     return (
       <View>
-
-        {searchOverlay &&
-          <Overlay
-            height='auto'
-            width='90%'
-            searchOverlay={searchOverlay}
-            onBackdropPress={() => this.setState({ searchOverlay: false })}
-            overlayBackgroundColor={'black'}
-            overlayStyle={{
-              borderColor: Colors.appBlueColor,
-              borderWidth: 2,
-              borderRadius: 5,
-              backgroundColor: Colors.appBackgroundColor
-            }}
-          >
-            <View>
-              <SearchBar
-                placeholder="Search..."
-                onChangeText={this.updateSearch}
-                value={this.state.search}
-                containerStyle={{
-                  backgroundColor: Colors.appBackgroundColor,
-                  borderBottomColor: Colors.appBackgroundColor,
-                  borderTopColor: Colors.appBackgroundColor,
-                  paddingHorizontal: 0,
-                  paddingBottom: 20,
-                }}
-                inputContainerStyle={{
-                  backgroundColor: 'white'
-                }}
-              />
-              {filteredPlayers.map((player) => {
-                return (
-                  <View key={player.id} >
-                    {this.state.search !== '' &&
-                      <ScrollView
-                        contentContainerStyle={{
-                          flexDirection: 'column',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <View style={style.inviteListContainer}>
-                          <TouchableOpacity
-                            onPress={() => this.goToUserCard(player.id)}
-                            style={{
-                              flexDirection: 'row',
-                              justifyContent: 'space-between'
-                            }}
-                          >
-                            <Image
-                              source={player.card}
-                              style={{ height: 60, width: 40, marginRight: 5 }}
-                            />
-                            <View
-                              style={{
-                                flexDirection: 'column',
-                                flex: 1
-                              }}
-                            >
-                              <Text style={style.listItemText}>{player.name}</Text>
-                              <Text style={style.listItemSmallText}>Level {player.lvl}</Text>
-                            </View>
-                            <View style={{
-                              flexDirection: 'column',
-                              justifyContent: 'center'
-                            }}>
-                              {this.buttonSwitch(player)}
-                            </View>
-                          </TouchableOpacity>
-                        </View>
-                      </ScrollView>
-                    }
-                  </View>
-                )
-              })}
-              <TourButtonFullWidth
-                buttonTitle={'Done'}
-                onPress={() => this.setState({ searchOverlay: false })}
-              />
-            </View>
-          </Overlay>
-        }
 
         {toggleOngoing ? (
         // Renders ongoing tab as active and displays its content
@@ -245,11 +147,11 @@ class TournamentsScreen extends Component {
               </View>
             </View>
 
-            <View style={style.roundButtonPos}>
+            <View style={style.roundButtonAbsolute}>
               <RoundButton
-                buttonImg={require('../assets/images/menuicons/search.png')}
-                buttonFunc={this.pressButton}
-              />
+                buttonImg={require('../assets/images/menuicons/plus.png')}
+                buttonFunc={() => this.props.navigation.navigate('TourCreate')}
+                />
             </View>
 
             <ScrollView

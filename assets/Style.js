@@ -102,23 +102,24 @@ export default StyleSheet.create({
     zIndex: 1000
   },
 
-  roundButtonPos: {
+  roundButtonAbsolute: {
     position: 'absolute',
-    bottom: 49,
-    right: 10
+    bottom: 10,
+    right: 10,
+    flexDirection: 'row'
   },
 
   buttonMenuItem2: {
     position: 'absolute',
-    bottom: 125,
-    right: 15,
+    bottom: 70,
+    right: 5,
     flexDirection: 'row'
   },
 
   buttonMenuItem1: {
     position: 'absolute',
-    bottom: 80,
-    right: 15,
+    bottom: 15,
+    right: 5,
     flexDirection: 'row'
   },
 

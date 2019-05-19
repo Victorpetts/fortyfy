@@ -104,13 +104,13 @@ class CreateTourScreen extends Component {
     return (
       <ScrollView style={style.mainContainer}>
         <ScrollView style={style.inputFieldContainer}>
-          <Text style={style.inputFieldText}>Tournament name</Text>
+          <Text style={style.inputFieldText}>Tournament owner</Text>
           <TextInput
             id='name'
             value={name}
             style={style.inputField}
-            placeholder={'Choose a tournament name'}
-            maxLength={20}
+            placeholder={'Owners name'}
+            maxLength={30}
             onChangeText={(event) => this.setState({ name: event })}
             onSubmitEditing={Keyboard.dismiss}
           />
@@ -119,7 +119,7 @@ class CreateTourScreen extends Component {
             id='players'
             value={players}
             style={style.inputField}
-            placeholder={'2-100 players'}
+            placeholder={'Set a player limit'}
             maxLength={3}
             onChangeText={(event) => this.setState({ players: event })}
             onSubmitEditing={Keyboard.dismiss}
@@ -135,7 +135,7 @@ class CreateTourScreen extends Component {
               date={this.state.fromDate}
               is24Hour={true}
               mode="datetime"
-              placeholder="select date"
+              placeholder="start"
               format="Do MM, HH:mm"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
@@ -168,7 +168,7 @@ class CreateTourScreen extends Component {
               date={this.state.toDate}
               is24Hour={true}
               mode="datetime"
-              placeholder="select date"
+              placeholder="end"
               format="Do MM, HH:mm"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
@@ -199,9 +199,8 @@ class CreateTourScreen extends Component {
               selectedValue={this.state.wincon}
               onValueChange={(itemValue) => this.setState({ wincon: itemValue })}
             >
-              <Picker.Item label="Survived longest" value="1" />
-              <Picker.Item label="Most kills" value="2" />
-              <Picker.Item label="Most top 5" value="3" />
+              <Picker.Item label="Most kills" value="1" />
+              <Picker.Item label="Most top 10 placements" value="2" />
             </Picker>
           </View>
 
@@ -210,7 +209,7 @@ class CreateTourScreen extends Component {
             id='totalMatches'
             value={totalMatches}
             style={style.inputField}
-            placeholder={'2-100 matches'}
+            placeholder={'Set the number of matches'}
             maxLength={3}
             onChangeText={(event) => this.setState({ totalMatches: event })}
             onSubmitEditing={Keyboard.dismiss}
@@ -219,7 +218,7 @@ class CreateTourScreen extends Component {
           <View style={{ paddingVertical: 10 }}>
           <View style={style.buttonContainerFullCol}>
             <TourButtonFullWidth
-              buttonTitle={'Invite friends'}
+              buttonTitle={'Invite players'}
               buttonFunc={this.toggleOverlay}
             />
             <TourButtonFullWidth
