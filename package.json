@@ -29,7 +29,10 @@
     "react-native-responsive-screen": "^1.2.0",
     "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
