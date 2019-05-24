@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SearchBar, Overlay } from 'react-native-elements';
+import { getData } from '../actions';
 import {
   ScrollView,
   View,
@@ -47,6 +48,13 @@ class TournamentsScreen extends Component {
   state = {
     toggleOngoing: true,
     toggleFinished: false
+  }
+
+  componentDidMount = () => {
+    fetch('http://192.168.10.180:5000/users')
+    .then(response => response.json())
+    .then(json => this.props.getData(json))
+    .then(json => console.log("got users data", json))
   }
 
   toggleOngoing = () => {
@@ -232,4 +240,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(TournamentsScreen);
+export default connect(mapStateToProps, { getData })(TournamentsScreen);

@@ -9,6 +9,7 @@ class match {
 }
 
 const initialState = {
+  toursArrNew:[],
   toursArr: [
     {
       id: 1,
@@ -364,7 +365,6 @@ const usersReducer = (oldArr = initialState.usersArr, action) => {
 
     default:
       return oldArr;
-
 
   }
 };

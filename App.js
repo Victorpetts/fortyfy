@@ -4,7 +4,6 @@ import { createStore } from 'redux';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-
 import reducers from './reducers';
 
 export default class App extends React.Component {

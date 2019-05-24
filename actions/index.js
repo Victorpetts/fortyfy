@@ -84,3 +84,10 @@ export const obtainCoins = coins => {
     payload: coins
   }
 }
+
+export const getData = data => {
+  return {
+    type: 'DATA_OBTAINED',
+    payload: data
+  }
+}

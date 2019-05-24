@@ -19,8 +19,11 @@
   "dependencies": {
     "@expo/samples": "2.1.1",
     "@types/expo__vector-icons": "^9.0.1",
+    "cheerio": "^1.0.0-rc.2",
     "expo": "^32.0.0",
+    "express": "^4.16.4",
     "firebase": "^5.8.2",
+    "mysql": "^2.17.1",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-datepicker": "^1.7.2",
@@ -30,13 +33,11 @@
     "react-navigation": "^3.0.9",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.4",
     "request": "^2.88.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^32.0.0"
+    "jest-expo": "^32.0.1"
   },
   "private": true
 }
